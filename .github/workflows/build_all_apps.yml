@@ -1,0 +1,27 @@
+name: Build all apps
+
+on:
+  push:
+    branches:
+      - 'rel_**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: wirepas/sdk-builder:v1.5
+      options: --user 0
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Accept license
+      run: touch .license_accepted
+    - name: Create dummy key file
+      run: |
+        touch custom_bootloader_keys.ini
+        echo "[key:default]" >> custom_bootloader_keys.ini
+        echo "keytype = ES256_AES128CTR" >> custom_bootloader_keys.ini
+        echo "authprivate = 30 81 87 02 01 00 30 13 06 07 2A 86 48 CE 3D 02 01 06 08 2A 86 48 CE 3D 03 01 07 04 6D 30 6B 02 01 01 04 20 DB CA EB 07 95 D1 42 56 02 67 AC 4F 54 5F 81 28 6F 53 2E 7F 7B B7 36 23 56 A4 C4 4A 8A 30 0E 10 A1 44 03 42 00 04 4F 0F DD 10 BC 9F 88 5E 4A 7C 07 68 CC 5F 0D 95 61 07 02 D4 72 06 1D B9 05 79 43 BA 39 DB A2 10 7F 00 FD 74 27 EF BF FE 81 50 24 DE A3 F5 ED D3 89 47 36 8E 34 91 6E 1F AB 23 92 C3 9F 32 25 04" >> custom_bootloader_keys.ini
+        echo "encrypt = C0 BB 0F 86 BB CB F7 7A DD 46 0E CA 63 54 BC 50" >> custom_bootloader_keys.ini
+    - name: Build all apps
+      run: ./tools/sdk_builder.py --app_only

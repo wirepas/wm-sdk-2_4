@@ -1,0 +1,60 @@
+name: Build and deploy doc
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      version_name:
+        description: 'Version that will be used in version selector'
+        required: true
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    container:
+      image: wirepas/sdk-builder:v1.5
+      options: --user 0
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+    - name: Generate doc
+      run: make doxygen target_board=pca10056
+    - name: Set folder for release
+      if: ${{ github.event_name == 'release' }}
+      run: echo "FOLDER=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+    - name: Set folder for manual triggering
+      if: ${{ github.event_name == 'workflow_dispatch' }}
+      run: echo "FOLDER=${{ github.event.inputs.version_name }}" >> $GITHUB_ENV
+    - name: Deploy doc
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build/html
+        destination_dir: ${{ env.FOLDER }}
+    - name: Duplicate to latest folder too
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build/html
+        destination_dir: 'latest'
+    - name: Checkout gh-pages branch
+      uses: actions/checkout@v2
+      with:
+        ref: 'gh-pages'
+        path: 'gh-pages'
+    - name: Add new version
+      run: sed -i "/^'latest'/i '${{ env.FOLDER }}'," gh-pages/select_version.js
+    - name: Publish change
+      uses: EndBug/add-and-commit@v5
+      with:
+        add: select_version.js
+        author_name: GH Action build_doc
+        author_email: invalid@invalid.com
+        branch: gh-pages
+        cwd: 'gh-pages'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
