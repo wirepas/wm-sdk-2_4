@@ -1,4 +1,5 @@
 const versions = [
+'v1.5.2',
 'latest'
 ];
 
