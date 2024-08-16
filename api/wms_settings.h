@@ -332,10 +332,7 @@ typedef app_res_e
     (*app_lib_settings_set_node_role_f)(app_lib_settings_role_t role);
 
 /**
- * @brief Check if authentication key is set
- *
- * It is not possible to actually read the key from the stack.
- * The @p key_p parameter is ignored.
+ * @brief Get authentication key
  *
  * @param   key_p
  *          If NULL, key is not return but return code will inform if keys are set or not.
@@ -370,10 +367,7 @@ typedef app_res_e
     (*app_lib_settings_set_authentication_key_f)(const uint8_t * key_p);
 
 /**
- * @brief Check if encryption key is set
- *
- * It is not possible to actually read the key from the stack.
- * The @p key_p parameter is ignored.
+ * @brief Get encryption key
  *
  * @param   key_p
  *          If NULL, key is not return but return code will inform if keys are set or not.
