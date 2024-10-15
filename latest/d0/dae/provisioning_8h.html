@@ -314,7 +314,7 @@ When using provisioning application must use Shared_data instead of data library
 <p>Initialize the provisioning proxy. </p>
 <dl class="section note"><dt>Note</dt><dd>If Provisioning Proxy is used, Shared_data MUST BE initialized in App_Init of the application. </dd>
 <dd>
-If local provisioing is enabled, provisioning request sent by new node will be treated locally by this library instead of being forwarded to the provisioning server. </dd></dl>
+If local provisioning is enabled, provisioning request sent by new node will be treated locally by this library instead of being forwarded to the provisioning server. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">conf</td><td>Configuration for the provisioning proxy. </td></tr>
@@ -414,7 +414,7 @@ If local provisioing is enabled, provisioning request sent by new node will be t
 </div><div class="memdoc">
 
 <p>Stops the provisioning process. </p>
-<dl class="section note"><dt>Note</dt><dd>All taken callback, packet recieved filter and tasks are freed. </dd>
+<dl class="section note"><dt>Note</dt><dd>All taken callback, packet received filter and tasks are freed. </dd>
 <dd>
 Stop is not immediate, it takes approximately 100ms. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6a07bd8a0d138f700e67947a3550de61c9">PROV_RET_OK</a> if provisioning has stopped. See <a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6">provisioning_ret_e</a> for other return codes. </dd></dl>
@@ -576,7 +576,7 @@ user_data_cb</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock"><p>This structure holds the joining proxy parameters. </p>
-<dl class="section note"><dt>Note</dt><dd>Local provisioning is enabled if unsecured or secured method is allowed. When local provisioning is enabled the provisioning packets are treated locally by the proxy and are not forwarded anymore to the Sink / Provisioing server. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Local provisioning is enabled if unsecured or secured method is allowed. When local provisioning is enabled the provisioning packets are treated locally by the proxy and are not forwarded anymore to the Sink / Provisioning server. </dd></dl>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../db/d30/provisioning_proxy_2app_8c-example.html#_a9">provisioning_proxy/app.c</a>.</dd>
 </dl>
 
@@ -697,7 +697,7 @@ tx_power</td>
 </td></tr>
 <tr><td class="fieldname"><a id="a6d4b29ca58ea67e8612eeb1556ffe853a0d75eea4c9053f32f72e7ba66ed8c130"></a>PROV_RES_INVALID_DATA&#160;</td><td class="fielddoc"><p>Received provisioning data is invalid. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a6d4b29ca58ea67e8612eeb1556ffe853a454eab792e4957475a7768fef2b88210"></a>PROV_RES_INVALID_PACKET&#160;</td><td class="fielddoc"><p>Received packet badly formated. </p>
+<tr><td class="fieldname"><a id="a6d4b29ca58ea67e8612eeb1556ffe853a454eab792e4957475a7768fef2b88210"></a>PROV_RES_INVALID_PACKET&#160;</td><td class="fielddoc"><p>Received packet badly formatted. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a6d4b29ca58ea67e8612eeb1556ffe853aeba50ac50675b115136c1e22e9774dfb"></a>PROV_RES_ERROR_SENDING_DATA&#160;</td><td class="fielddoc"><p>Problem when sending packet. </p>
 </td></tr>
