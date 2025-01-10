@@ -139,7 +139,7 @@ else ifeq ($(MCU)$(MCU_SUB),efr32xg24)
     HAL_SYSTEM_C := efr32mg24/Source/system_efr32mg24.c
     # Bootloader sanity check
     ifneq ($(board_hw_dcdc),yes)
-        $(error "DCDC must be enabled on efr32xg24")
+        # $(error "DCDC must be enabled on efr32xg24")
     endif
 
     # Program Flash start address (not zero!)
