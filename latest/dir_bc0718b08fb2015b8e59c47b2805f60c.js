@@ -4,6 +4,7 @@ var dir_bc0718b08fb2015b8e59c47b2805f60c =
     [ "control_node", "dir_41c76b8dbcc7da3301d9bf1771c67eb7.html", "dir_41c76b8dbcc7da3301d9bf1771c67eb7" ],
     [ "dualmcu", "dir_f336371ed0cdf8166671c78b649eae30.html", "dir_f336371ed0cdf8166671c78b649eae30" ],
     [ "local_provisioning", "dir_7352890d51814ff0683afd3515450f97.html", "dir_7352890d51814ff0683afd3515450f97" ],
+    [ "positioning", "dir_31d37069473c50c4db24eabd3d0983f0.html", "dir_31d37069473c50c4db24eabd3d0983f0" ],
     [ "provisioning", "dir_8258201b1c46e4dd0767f786a7edbec4.html", "dir_8258201b1c46e4dd0767f786a7edbec4" ],
     [ "rtc", "dir_b13fc024502ebc0e54c2b869c10bdc8c.html", "dir_b13fc024502ebc0e54c2b869c10bdc8c" ],
     [ "scheduler", "dir_4d589c85a316fc8d53ffee704172fcc7.html", "dir_4d589c85a316fc8d53ffee704172fcc7" ],
