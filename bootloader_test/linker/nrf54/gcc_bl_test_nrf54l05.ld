@@ -1,0 +1,1 @@
+INCLUDE gcc_bl_test_nrf54l.ld
