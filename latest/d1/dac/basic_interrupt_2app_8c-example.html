@@ -17,13 +17,6 @@
 <script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-  /* @license-end */
-</script>
 <link rel="search" href="../../search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 <link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -54,27 +47,19 @@
 var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 /* @license-end */
 </script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="../../pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="../../annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li><a href="../../files.html"><span>Files</span></a></li>
-      <li><a href="../../examples.html"><span>Example&#160;applications</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-          <div class="left">
-            <form id="FSearchBox" action="../../search.html" method="get">
-              <img id="MSearchSelect" src="../../search/mag.png" alt=""/>
-              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
-                     onfocus="searchBox.OnSearchFieldFocus(true)" 
-                     onblur="searchBox.OnSearchFieldFocus(false)"/>
-            </form>
-          </div><div class="right"></div>
-        </div>
-      </li>
-    </ul>
-  </div>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,true,'search.html','Search');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -167,9 +152,6 @@ $(document).ready(function(){initNavTree('d1/dac/basic_interrupt_2app_8c-example
 <div class="line">                        <span class="keyword">const</span> shared_data_item_t * item,</div>
 <div class="line">                        <span class="keyword">const</span> <a name="_a8"></a><a class="code" href="../../d6/d50/wms__data_8h.html#d7/df3/structapp__lib__data__received__t">app_lib_data_received_t</a> * data )</div>
 <div class="line">{</div>
-<div class="line">    (void) item;</div>
-<div class="line">    (void) data;</div>
-<div class="line"> </div>
 <div class="line">    m_temperature = 0;</div>
 <div class="line">    NRF_TEMP-&gt;TASKS_START = 1;</div>
 <div class="line">    NRF_TEMP-&gt;INTENSET = 1;</div>
@@ -190,8 +172,6 @@ $(document).ready(function(){initNavTree('d1/dac/basic_interrupt_2app_8c-example
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> App_init(<span class="keyword">const</span> <a name="_a11"></a><a class="code" href="../../da/dbb/wms__app_8h.html#d6/d81/structapp__global__functions__t">app_global_functions_t</a> * functions)</div>
 <div class="line">{</div>
-<div class="line">    (void) functions;</div>
-<div class="line"> </div>
 <div class="line">    <span class="comment">// Basic configuration of the node with a unique node address</span></div>
 <div class="line">    <span class="keywordflow">if</span> (<a name="a12"></a><a class="code" href="../../df/d2e/node__configuration_8h.html#a2560821c66e34240aa698da5affba7c7">configureNodeFromBuildParameters</a>() != <a name="a13"></a><a class="code" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a>)</div>
 <div class="line">    {</div>
@@ -220,16 +200,16 @@ $(document).ready(function(){initNavTree('d1/dac/basic_interrupt_2app_8c-example
 <div class="ttc" id="awms__data_8h_html_ad3aa19c96da7da312cd8fe99ea34554b"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ad3aa19c96da7da312cd8fe99ea34554b">app_lib_data_receive_res_e</a></div><div class="ttdeci">app_lib_data_receive_res_e</div><div class="ttdoc">Return value of data reception callback.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00188">wms_data.h:188</a></div></div>
 <div class="ttc" id="awms__system_8h_html_a5aed22308c8c4fe915119ec9d5e67b76"><div class="ttname"><a href="../../df/d6b/wms__system_8h.html#a5aed22308c8c4fe915119ec9d5e67b76">APP_LIB_SYSTEM_IRQ_PRIO_LO</a></div><div class="ttdeci">#define APP_LIB_SYSTEM_IRQ_PRIO_LO</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6b/wms__system_8h_source.html#l00055">wms_system.h:55</a></div></div>
 <div class="ttc" id="aapp__scheduler_8h_html"><div class="ttname"><a href="../../dd/ddc/app__scheduler_8h.html">app_scheduler.h</a></div></div>
-<div class="ttc" id="awms__data_8h_html_d7/d10/structapp__lib__data__to__send__t"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#d7/d10/structapp__lib__data__to__send__t">app_lib_data_to_send_t</a></div><div class="ttdoc">A struct for lib_data-&gt;sendData().</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00329">wms_data.h:329</a></div></div>
+<div class="ttc" id="awms__data_8h_html_d7/d10/structapp__lib__data__to__send__t"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#d7/d10/structapp__lib__data__to__send__t">app_lib_data_to_send_t</a></div><div class="ttdoc">A struct for lib_data-&gt;sendData().</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00331">wms_data.h:331</a></div></div>
 <div class="ttc" id="awms__app_8h_html_d6/d81/structapp__global__functions__t"><div class="ttname"><a href="../../da/dbb/wms__app_8h.html#d6/d81/structapp__global__functions__t">app_global_functions_t</a></div><div class="ttdoc">List of global functions, passed to App_entrypoint()</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dbb/wms__app_8h_source.html#l00157">wms_app.h:157</a></div></div>
 <div class="ttc" id="awms__data_8h_html_aa03fbf2cdb28616e79aca69710c8b134a2c19a7699397df7b39155e4711bb762e"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#aa03fbf2cdb28616e79aca69710c8b134a2c19a7699397df7b39155e4711bb762e">APP_LIB_DATA_QOS_HIGH</a></div><div class="ttdeci">@ APP_LIB_DATA_QOS_HIGH</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00091">wms_data.h:91</a></div></div>
-<div class="ttc" id="anode__configuration_8h_html_a2560821c66e34240aa698da5affba7c7"><div class="ttname"><a href="../../df/d2e/node__configuration_8h.html#a2560821c66e34240aa698da5affba7c7">configureNodeFromBuildParameters</a></div><div class="ttdeci">__STATIC_INLINE app_res_e configureNodeFromBuildParameters()</div><div class="ttdoc">Wrapper on top of configureNode to get parameters from build system and hardcoded values from chip (f...</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d2e/node__configuration_8h_source.html#l00224">node_configuration.h:224</a></div></div>
-<div class="ttc" id="awms__data_8h_html_d7/df3/structapp__lib__data__received__t"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#d7/df3/structapp__lib__data__received__t">app_lib_data_received_t</a></div><div class="ttdoc">Struct passed to data reception callback functions.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00285">wms_data.h:285</a></div></div>
+<div class="ttc" id="anode__configuration_8h_html_a2560821c66e34240aa698da5affba7c7"><div class="ttname"><a href="../../df/d2e/node__configuration_8h.html#a2560821c66e34240aa698da5affba7c7">configureNodeFromBuildParameters</a></div><div class="ttdeci">__STATIC_INLINE app_res_e configureNodeFromBuildParameters()</div><div class="ttdoc">Wrapper on top of configureNode to get parameters from build system and hardcoded values from chip (f...</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d2e/node__configuration_8h_source.html#l00233">node_configuration.h:233</a></div></div>
+<div class="ttc" id="awms__data_8h_html_d7/df3/structapp__lib__data__received__t"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#d7/df3/structapp__lib__data__received__t">app_lib_data_received_t</a></div><div class="ttdoc">Struct passed to data reception callback functions.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00283">wms_data.h:283</a></div></div>
 <div class="ttc" id="awms__app_8h_html_a2fe888af6a0b27cd2455757d0823a313a1d64d118fbd3df68c8ab52ce6fd94c6c"><div class="ttname"><a href="../../da/dbb/wms__app_8h.html#a2fe888af6a0b27cd2455757d0823a313a1d64d118fbd3df68c8ab52ce6fd94c6c">APP_ADDR_ANYSINK</a></div><div class="ttdeci">@ APP_ADDR_ANYSINK</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dbb/wms__app_8h_source.html#l00236">wms_app.h:236</a></div></div>
 <div class="ttc" id="ashared__data_8h_html"><div class="ttname"><a href="../../d5/d74/shared__data_8h.html">shared_data.h</a></div></div>
 <div class="ttc" id="ashared__data_8h_html_a639c2cd4c2ad7deba30bf25dc9c03043"><div class="ttname"><a href="../../d5/d74/shared__data_8h.html#a639c2cd4c2ad7deba30bf25dc9c03043">Shared_Data_sendData</a></div><div class="ttdeci">app_lib_data_send_res_e Shared_Data_sendData(app_lib_data_to_send_t *data, app_lib_data_data_sent_cb_f sent_cb)</div><div class="ttdoc">Send data. The packet to send is represented as a app_lib_data_to_send_t struct.</div></div>
-<div class="ttc" id="ashared__data_8h_html_a2e6186783b7766ef287959ae36ccc3d7abe7fd6617fa17f362c9dfd9e061a8b97"><div class="ttname"><a href="../../d5/d74/shared__data_8h.html#a2e6186783b7766ef287959ae36ccc3d7abe7fd6617fa17f362c9dfd9e061a8b97">SHARED_DATA_NET_MODE_UNICAST</a></div><div class="ttdeci">@ SHARED_DATA_NET_MODE_UNICAST</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d74/shared__data_8h_source.html#l00047">shared_data.h:47</a></div></div>
-<div class="ttc" id="awms__data_8h_html_acc7ee0a7ec28292d2c1be47c4a23f78d"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#acc7ee0a7ec28292d2c1be47c4a23f78d">app_lib_data_to_send_t::bytes</a></div><div class="ttdeci">const uint8_t * bytes</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00332">wms_data.h:332</a></div></div>
+<div class="ttc" id="ashared__data_8h_html_a2e6186783b7766ef287959ae36ccc3d7abe7fd6617fa17f362c9dfd9e061a8b97"><div class="ttname"><a href="../../d5/d74/shared__data_8h.html#a2e6186783b7766ef287959ae36ccc3d7abe7fd6617fa17f362c9dfd9e061a8b97">SHARED_DATA_NET_MODE_UNICAST</a></div><div class="ttdeci">@ SHARED_DATA_NET_MODE_UNICAST</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d74/shared__data_8h_source.html#l00042">shared_data.h:42</a></div></div>
+<div class="ttc" id="awms__data_8h_html_acc7ee0a7ec28292d2c1be47c4a23f78d"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#acc7ee0a7ec28292d2c1be47c4a23f78d">app_lib_data_to_send_t::bytes</a></div><div class="ttdeci">const uint8_t * bytes</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00334">wms_data.h:334</a></div></div>
 <div class="ttc" id="aapp__scheduler_8h_html_ae49a1abde6843cb44c37e47616d2a810"><div class="ttname"><a href="../../dd/ddc/app__scheduler_8h.html#ae49a1abde6843cb44c37e47616d2a810">APP_SCHEDULER_SCHEDULE_ASAP</a></div><div class="ttdeci">#define APP_SCHEDULER_SCHEDULE_ASAP</div><div class="ttdoc">Value to return from task or as initial time to be executed ASAP.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/ddc/app__scheduler_8h_source.html#l00042">app_scheduler.h:42</a></div></div>
 <div class="ttc" id="awms__system_8h_html_a0b580da45d85ae46ec76d485ef9bc406"><div class="ttname"><a href="../../df/d6b/wms__system_8h.html#a0b580da45d85ae46ec76d485ef9bc406">APP_LIB_SYSTEM_STOP_PERIODIC</a></div><div class="ttdeci">#define APP_LIB_SYSTEM_STOP_PERIODIC</div><div class="ttdoc">Constant to stop periodic callback.</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6b/wms__system_8h_source.html#l00046">wms_system.h:46</a></div></div>
 <div class="ttc" id="aapi_8h_html"><div class="ttname"><a href="../../dc/d65/api_8h.html">api.h</a></div></div>

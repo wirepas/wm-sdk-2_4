@@ -15,9 +15,6 @@ var rtc_8h =
       [ "PROV_DATA_ID_NET_CHAN", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2acdef30ff0f3ffd783c7f35560b01a003", null ],
       [ "PROV_DATA_ID_NODE_ADDR", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a9c062e96b8a51d81a67313b6b66d7471", null ],
       [ "PROV_DATA_ID_NODE_ROLE", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a4f41a683db426dac2beabf560f9d261d", null ],
-      [ "PROV_DATA_ID_NET_KEY_SEQ", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a03fd02db9136d91cdb509f9ed302ba07", null ],
-      [ "PROV_DATA_ID_MGMT_ENC_KEY", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a3c72798ed8e5531bc70f0a4fdf65af21", null ],
-      [ "PROV_DATA_ID_MGMT_AUTH_KEY", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2ad3d06dc3d9f95b868020030aed11434f", null ],
       [ "RTC_ID_TIMESTAMP", "dc/d1b/rtc_8h.html#aee542072e8ed4c6421604a90538f9dc2a48d8e55630c25eacd43229f49680ebf1", null ],
       [ "RTC_ID_TIMEZONE_OFFSET", "dc/d1b/rtc_8h.html#aee542072e8ed4c6421604a90538f9dc2a4a3f2add8548db9b69ec808237fee449", null ]
     ] ],

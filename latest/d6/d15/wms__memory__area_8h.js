@@ -40,8 +40,7 @@ var wms__memory__area_8h =
       [ "APP_LIB_MEM_AREA_RES_BUSY", "d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae11aa2c4b44350b2a86415b11feff294", null ],
       [ "APP_LIB_MEM_AREA_RES_NODRIVER", "d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76aeaad5d1e5a494e240f5508a6d253c086", null ],
       [ "APP_LIB_MEM_AREA_RES_PARAM", "d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a15b1563bc64559a7df2717d52dd1ef8f", null ],
-      [ "APP_LIB_MEM_AREA_RES_INVALID_AREA", "d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a62df140ce20fd6d26fa1a6a1fa922a46", null ],
-      [ "APP_LIB_MEM_AREA_RES_INVALID_TAG", "d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a51ad5a220adb43422186dbae13c1bd27", null ]
+      [ "APP_LIB_MEM_AREA_RES_INVALID_AREA", "d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a62df140ce20fd6d26fa1a6a1fa922a46", null ]
     ] ],
     [ "app_lib_mem_area_type_e", "d6/d15/wms__memory__area_8h.html#acbc43eb76d51f02f1e66b4c5452e41de", [
       [ "APP_LIB_MEM_AREA_TYPE_APPLICATION", "d6/d15/wms__memory__area_8h.html#acbc43eb76d51f02f1e66b4c5452e41deacdf7609377c5ea0ef03be6c17d8da2cd", null ],

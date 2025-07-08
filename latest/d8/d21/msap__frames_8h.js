@@ -135,44 +135,7 @@ var msap__frames_8h =
       [ "bytes", "d8/d21/msap__frames_8h.html#a46560221161407b0bd855493abedf5a7", null ],
       [ "result", "d8/d21/msap__frames_8h.html#a556c80259568976b607ec50f8747d42a", null ]
     ] ],
-    [ "msap_config_data_item_set_req_t", "d8/d21/msap__frames_8h.html#de/d06/structmsap__config__data__item__set__req__t", [
-      [ "npd_endpoint", "d8/d21/msap__frames_8h.html#af5bf14327592e9c90815a03a44ba8680", null ],
-      [ "npd_payload", "d8/d21/msap__frames_8h.html#a99d3749b2c06415c0b3dfde20f365295", null ],
-      [ "npd_payload_len", "d8/d21/msap__frames_8h.html#ac15595632fd2b28c0d0f7dd82dd96d08", null ]
-    ] ],
-    [ "msap_config_data_item_set_cnf_t", "d8/d21/msap__frames_8h.html#d6/db3/structmsap__config__data__item__set__cnf__t", [
-      [ "result", "d8/d21/msap__frames_8h.html#a556c80259568976b607ec50f8747d42a", null ]
-    ] ],
-    [ "msap_config_data_item_get_req_t", "d8/d21/msap__frames_8h.html#d7/d6c/structmsap__config__data__item__get__req__t", [
-      [ "npd_endpoint", "d8/d21/msap__frames_8h.html#af5bf14327592e9c90815a03a44ba8680", null ]
-    ] ],
-    [ "msap_config_data_item_get_cnf_t", "d8/d21/msap__frames_8h.html#d3/d34/structmsap__config__data__item__get__cnf__t", [
-      [ "npd_payload", "d8/d21/msap__frames_8h.html#a99d3749b2c06415c0b3dfde20f365295", null ],
-      [ "npd_payload_len", "d8/d21/msap__frames_8h.html#ac15595632fd2b28c0d0f7dd82dd96d08", null ],
-      [ "result", "d8/d21/msap__frames_8h.html#a556c80259568976b607ec50f8747d42a", null ]
-    ] ],
-    [ "msap_config_data_list_items_cnf_t", "d8/d21/msap__frames_8h.html#d7/d5e/structmsap__config__data__list__items__cnf__t", [
-      [ "amount_endpoints", "d8/d21/msap__frames_8h.html#aeba916d616f59b2f9bd24313c169c33b", null ],
-      [ "endpoints", "d8/d21/msap__frames_8h.html#a08da770b91b4540e0c7f71fe6d986a8c", null ],
-      [ "result", "d8/d21/msap__frames_8h.html#a556c80259568976b607ec50f8747d42a", null ]
-    ] ],
-    [ "msap_config_data_list_items_req_t", "d8/d21/msap__frames_8h.html#d5/d63/structmsap__config__data__list__items__req__t", [
-      [ "command", "d8/d21/msap__frames_8h.html#a1a5aaa930940857f68f245eeb89506b5", null ]
-    ] ],
-    [ "msap_config_data_item_ind_t", "d8/d21/msap__frames_8h.html#db/d88/structmsap__config__data__item__ind__t", [
-      [ "npd_endpoint", "d8/d21/msap__frames_8h.html#af5bf14327592e9c90815a03a44ba8680", null ],
-      [ "npd_payload", "d8/d21/msap__frames_8h.html#a99d3749b2c06415c0b3dfde20f365295", null ],
-      [ "npd_payload_len", "d8/d21/msap__frames_8h.html#ac15595632fd2b28c0d0f7dd82dd96d08", null ],
-      [ "queued_indications", "d8/d21/msap__frames_8h.html#a728d3d9f16d71b13ff793321294778fc", null ]
-    ] ],
     [ "frame_msap", "d8/d21/msap__frames_8h.html#d4/d04/unionframe__msap", [
-      [ "config_data_item_get_cnf", "d8/d21/msap__frames_8h.html#a447733f370d16a4278bae255516c08ee", null ],
-      [ "config_data_item_get_req", "d8/d21/msap__frames_8h.html#a82cd4e16d162a30182693ab6db49e524", null ],
-      [ "config_data_item_ind", "d8/d21/msap__frames_8h.html#a31b5c220321a207c6ec97989cf5f306b", null ],
-      [ "config_data_item_set_cnf", "d8/d21/msap__frames_8h.html#afa4fdaa88108f8826bb96a25e2d1bf60", null ],
-      [ "config_data_item_set_req", "d8/d21/msap__frames_8h.html#af156efc5c424ecb94382d93ddc391f17", null ],
-      [ "config_data_list_items_cnf", "d8/d21/msap__frames_8h.html#a19cda34e652596fd9e51dba91509106b", null ],
-      [ "config_data_list_items_req", "d8/d21/msap__frames_8h.html#a3feb47852da5eb893532ae8998dd1ff3", null ],
       [ "cost_read_cnf", "d8/d21/msap__frames_8h.html#a44da237d33e2e45cb68bab8eccc42556", null ],
       [ "cost_write_req", "d8/d21/msap__frames_8h.html#aade0b33ebebdc8435ecf34963b21d6e0", null ],
       [ "ind_poll_cnf", "d8/d21/msap__frames_8h.html#aac52d153cf2fc2b39c4b36f58c2d500f", null ],
@@ -229,23 +192,6 @@ var msap__frames_8h =
       [ "MSAP_ATTR_SCRATCHPAD_BLOCK_MAX_SIZE", "d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8eeaa42d4aa925c4c2d71246d4dd2cb9da25", null ],
       [ "MSAP_ATTR_MCAST_GROUPS_SIZE", "d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8eea2197d8bf5d28e193c52f5e40742b6a1e", null ],
       [ "MSAP_ATTR_SCRATCHPAD_NUM_BYTES_SIZE", "d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8eea4faf690981d6fcb23694f9f586cce872", null ]
-    ] ],
-    [ "msap_config_data_item_get_e", "d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaa", [
-      [ "MSAP_CONFIG_DATA_ITEM_GET_SUCCESS", "d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaaa848f1e36f57a6b01a2ade91e3248af98", null ],
-      [ "MSAP_CONFIG_DATA_ITEM_GET_INVALID_ENDPOINT", "d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaaa9cab79c96bce21c0348b27c77f466184", null ],
-      [ "MSAP_CONFIG_DATA_ITEM_GET_NOT_SUPPORTED", "d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaaaf72aa8ef904e8e076ecb89ab56cb530a", null ]
-    ] ],
-    [ "msap_config_data_item_set_e", "d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18ed", [
-      [ "MSAP_CONFIG_DATA_ITEM_SET_SUCCESS", "d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18eda44c95728afcb737abbc7d52909445611", null ],
-      [ "MSAP_CONFIG_DATA_ITEM_SET_INVALID_ROLE", "d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18edad2ba7852aa6459819ddce1634babe00c", null ],
-      [ "MSAP_CONFIG_DATA_ITEM_SET_INVALID_ENDPOINT", "d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18edadc516ccef642bad20962fe03273a0aad", null ],
-      [ "MSAP_CONFIG_DATA_ITEM_SET_OUT_OF_MEMORY", "d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18eda0aeb8591aab981df9c01488504c0f823", null ],
-      [ "MSAP_CONFIG_DATA_ITEM_SET_INVALID_CONTENT", "d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18eda3268d22a26ff18809193b8b14ce6636c", null ],
-      [ "MSAP_CONFIG_DATA_ITEM_SET_NOT_SUPPORTED", "d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18edaadfb3603f181b10ca30ea8a20bf67f9c", null ]
-    ] ],
-    [ "msap_config_data_list_items_e", "d8/d21/msap__frames_8h.html#a1510b361ab18c4b2b07fa6a9446a01f2", [
-      [ "MSAP_CONFIG_DATA_LIST_ITEMS_SUCCESS", "d8/d21/msap__frames_8h.html#a1510b361ab18c4b2b07fa6a9446a01f2acceb74b3efc7728ca84ae1311b61e8b4", null ],
-      [ "MSAP_CONFIG_DATA_LIST_ITEMS_NOT_SUPPORTED", "d8/d21/msap__frames_8h.html#a1510b361ab18c4b2b07fa6a9446a01f2a28bd5814743820a16214ab317c377126", null ]
     ] ],
     [ "msap_neighbor_type_e", "d8/d21/msap__frames_8h.html#adcac49bfd7b8b23309a15712c3595e45", [
       [ "NEIGHBOR_IS_NEXT_HOP", "d8/d21/msap__frames_8h.html#adcac49bfd7b8b23309a15712c3595e45a1b01567af18765d87487a1bc87bf272c", null ],
@@ -324,11 +270,7 @@ var msap__frames_8h =
     [ "FRAME_MSAP_SCRATCHPAD_BLOCK_READ_CNF_HEADER_SIZE", "d8/d21/msap__frames_8h.html#a94e36c3b4d2769267941ee8522318a65", null ],
     [ "FRAME_MSAP_SCRATCHPAD_BLOCK_REQ_HEADER_SIZE", "d8/d21/msap__frames_8h.html#ac34e524252412910c39cc78a39d27a5b", null ],
     [ "MSAP_AUTOSTART", "d8/d21/msap__frames_8h.html#a3143f0824d83f318f852ff97d992748d", null ],
-    [ "MSAP_CONFIG_DATA_ITEM_GET_HEADER_SIZE", "d8/d21/msap__frames_8h.html#ac54235dc419fa5fd4e952f11a9b197d3", null ],
-    [ "MSAP_CONFIG_DATA_LIST_ITEMS_HEADER_SIZE", "d8/d21/msap__frames_8h.html#afd13e76aebf7466db215ae0864cebaab", null ],
-    [ "MSAP_CONFIG_DATA_LIST_ITEMS_MAX_NUM_ENDPOINTS", "d8/d21/msap__frames_8h.html#a1f11d8fddbed10602ed5b8bf991c679a", null ],
     [ "MSAP_MAX_NBORS", "d8/d21/msap__frames_8h.html#aa717101fb772efdc14220976746cb332", null ],
-    [ "MSAP_NPD_PAYLOAD_MAX_LEN", "d8/d21/msap__frames_8h.html#ac1f8b5b91975877f71d5347700cf26ca", null ],
     [ "MSAP_SCRATCHPAD_BLOCK_MAX_NUM_BYTES", "d8/d21/msap__frames_8h.html#abb7ff711457d36e634ef0c3c4494e88d", null ],
     [ "MSAP_SCRATCHPAD_BLOCK_READ_MAX_NUM_BYTES", "d8/d21/msap__frames_8h.html#aad83f15e91ca4740cdd7a5e303f5ba92", null ]
 ];

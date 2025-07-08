@@ -17,13 +17,6 @@
 <script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-  /* @license-end */
-</script>
 <link rel="search" href="../../search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 <link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -54,33 +47,19 @@
 var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 /* @license-end */
 </script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="../../pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="../../annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li class="current"><a href="../../files.html"><span>Files</span></a></li>
-      <li><a href="../../examples.html"><span>Example&#160;applications</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-          <div class="left">
-            <form id="FSearchBox" action="../../search.html" method="get">
-              <img id="MSearchSelect" src="../../search/mag.png" alt=""/>
-              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
-                     onfocus="searchBox.OnSearchFieldFocus(true)" 
-                     onblur="searchBox.OnSearchFieldFocus(false)"/>
-            </form>
-          </div><div class="right"></div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="../../files.html"><span>File&#160;List</span></a></li>
-      <li><a href="../../globals.html"><span>Globals</span></a></li>
-    </ul>
-  </div>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,true,'search.html','Search');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -117,33 +96,30 @@ $(document).ready(function(){initNavTree('dd/dbc/makefile__stack_8mk_source.html
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;$(STACK_HEX): FORCE</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    @echo &quot;$(COLOR_INFO)Select Stack firmware from the image folder$(COLOR_END)&quot;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    $(DD)$(MKDIR) $(@D)</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    $(DD)$(MKDIR) $(EXTRACT_PATH)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    $(D)$(FMW_SEL)  --firmware_path=$(FIRMWARE_PATH)\</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                --firmware_type=&quot;wp_stack&quot;\</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                --archive_path=$(ARCHIVE_PATH)\</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                --extract_path=$(EXTRACT_PATH)\</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                --output_path=$(@D)\</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                --output_name=$(FIRMWARE_NAME)\</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                --mcu=$(MCU)\</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                --mcu_sub=$(MCU_SUB)\</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                --mcu_mem_var=$(MCU_MEM_VAR)\</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                --mac_profile=$(mac_profile)\</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                --mac_profileid=$(mac_profileid)\</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                --mode=$(stack_mode)\</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                --modem_fw=$(modemfw_name)\</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                --radio=$(radio)\</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                --radio_config=$(radio_config)\</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                --version=$(MIN_STACK_VERSION)\</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                --stack_area_addr=$(stack_area_addr)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    $(D)$(FMW_SEL) --firmware_path=$(IMAGE_PATH) \</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                   --firmware_type=&quot;wp_stack&quot; \</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                   --output_path=$(@D) \</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                   --output_name=&quot;wpc_stack&quot; \</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                   --mcu=$(MCU) \</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                   --mcu_sub=$(MCU_SUB) \</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                   --mcu_mem_var=$(MCU_MEM_VAR) \</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                   --mac_profile=$(mac_profile) \</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                   --mac_profileid=$(mac_profileid) \</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                   --mode=$(stack_mode) \</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                   --modem_fw=$(modemfw_name) \</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                   --radio=$(radio) \</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                   --radio_config=$(radio_config) \</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                   --version=$(MIN_STACK_VERSION) \</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                   --stack_area_addr=$(stack_area_addr)</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;.PHONY: all</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;all: $(STACK_HEX)</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;.PHONY: all</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;all: $(STACK_HEX)</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;clean:</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    $(D)$(RM) -rf $(STACK_HEX)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;clean:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    $(D)$(RM) -rf $(STACK_HEX)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;# Special rule to force other rule to run every time</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;FORCE:</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;# Special ruel to force other rule to run every time</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;FORCE:</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.17-->

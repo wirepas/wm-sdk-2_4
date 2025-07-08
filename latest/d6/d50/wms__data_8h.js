@@ -45,27 +45,17 @@ var wms__data_8h =
       [ "max_data_size", "d6/d50/wms__data_8h.html#a1fc8222b39b9e50ce780d8ec0205b972", null ],
       [ "max_fragment_size", "d6/d50/wms__data_8h.html#af7239c6457de59d6816001ff89888aa0", null ]
     ] ],
-    [ "app_lib_config_data_item_t", "d6/d50/wms__data_8h.html#d7/d76/structapp__lib__config__data__item__t", [
-      [ "bytes", "d6/d50/wms__data_8h.html#a3eb60371888da20c911c2062091ac81e", null ],
-      [ "endpoint", "d6/d50/wms__data_8h.html#a09294ef650c9488fa9cc94e0704e91b5", null ],
-      [ "length", "d6/d50/wms__data_8h.html#ab2b3adeb2a67e656ff030b56727fd0ac", null ]
-    ] ],
     [ "app_lib_data_local_mc_info_t", "d6/d50/wms__data_8h.html#db/d19/structapp__lib__data__local__mc__info__t", [
       [ "hops_left", "d6/d50/wms__data_8h.html#acf176bd8b11c3f2a4fd06463260cac25", null ]
     ] ],
     [ "app_lib_data_t", "d6/d50/wms__data_8h.html#d0/d3a/structapp__lib__data__t", [
       [ "allowReception", "d6/d50/wms__data_8h.html#aeea4fa805f730ad9ea1d5aa9eedcfce4", null ],
-      [ "disableBootDiagnostics", "d6/d50/wms__data_8h.html#a59885a666a8aa9aafbe024b23b5ed20c", null ],
-      [ "getAllConfigDataEndpoints", "d6/d50/wms__data_8h.html#a9419d79ad8e7da463f6b1a11a203b822", null ],
       [ "getAppConfigNumBytes", "d6/d50/wms__data_8h.html#a7880d731b35d4859af5cc03e532a5ee2", null ],
-      [ "getConfigDataItem", "d6/d50/wms__data_8h.html#aa39b901d7e7bf3f03ee7a1d6352ac6cc", null ],
       [ "getDataMaxNumBytes", "d6/d50/wms__data_8h.html#af48d20fb67cf4c7e4815f8b37ee2f097", null ],
       [ "getNumBuffers", "d6/d50/wms__data_8h.html#af37e39667749f84966729293787d71a3", null ],
       [ "getNumFreeBuffers", "d6/d50/wms__data_8h.html#a3a269db0cadd55365431f63887ae9ff7", null ],
       [ "readAppConfig", "d6/d50/wms__data_8h.html#a1e36792f80a94d5021679ea631b58ff2", null ],
       [ "sendData", "d6/d50/wms__data_8h.html#ae5430956321eb31f198b6e2e85c327ed", null ],
-      [ "setConfigDataItem", "d6/d50/wms__data_8h.html#a7d56d9ee01771509b42593e7b22f6009", null ],
-      [ "setConfigDataItemReceivedCb", "d6/d50/wms__data_8h.html#a94f6a0b50a71c26420803c29f80cae78", null ],
       [ "setDataReceivedCb", "d6/d50/wms__data_8h.html#a13489e95ff4f3593662f9d65b5239a85", null ],
       [ "setDataSentCb", "d6/d50/wms__data_8h.html#a9c1c70812e5a7dabd812d7aac97d63b7", null ],
       [ "setFragmentMode", "d6/d50/wms__data_8h.html#a6191fa55908cb3c60606c133721c60e1", null ],
@@ -77,24 +67,18 @@ var wms__data_8h =
     [ "app_lib_data_allow_reception_f", "d6/d50/wms__data_8h.html#abb2289fea975f61fe189f4310578c0df", null ],
     [ "app_lib_data_data_received_cb_f", "d6/d50/wms__data_8h.html#a7d8adb4ccf27eed17ff4b39ef26c6ab7", null ],
     [ "app_lib_data_data_sent_cb_f", "d6/d50/wms__data_8h.html#ad4532c2af19fb5161fd44dd3d806be38", null ],
-    [ "app_lib_data_disable_boot_diagnostics_f", "d6/d50/wms__data_8h.html#a9f74d7e82ce1454b1cccc0ec2031f460", null ],
-    [ "app_lib_data_get_all_config_data_endpoints_f", "d6/d50/wms__data_8h.html#a0fee82cb0b37cc0069352dabe7ae025b", null ],
     [ "app_lib_data_get_app_config_num_bytes_f", "d6/d50/wms__data_8h.html#a37af27daa2e4777b89b13f2f8440b8b9", null ],
-    [ "app_lib_data_get_config_data_item_f", "d6/d50/wms__data_8h.html#af188f75bb6012b292b08e93771f5c371", null ],
     [ "app_lib_data_get_data_max_num_bytes_f", "d6/d50/wms__data_8h.html#ab009dfe9504a81d9938b1d863d4a93db", null ],
     [ "app_lib_data_get_num_buffers_f", "d6/d50/wms__data_8h.html#a58aea42da58d6bdbeb88ec0c5d6a1023", null ],
     [ "app_lib_data_get_num_free_buffers_f", "d6/d50/wms__data_8h.html#a562531defac3f48df9019556d1771043", null ],
     [ "app_lib_data_new_app_config_cb_f", "d6/d50/wms__data_8h.html#aca1298154f7a3d7be77c64ca602639ed", null ],
-    [ "app_lib_data_new_config_data_item_cb_f", "d6/d50/wms__data_8h.html#af3b731e4b55dd49490913e17f2c7a197", null ],
     [ "app_lib_data_read_app_config_f", "d6/d50/wms__data_8h.html#a96f7b21d1f7992439c9526b3a4d27530", null ],
     [ "app_lib_data_send_data_f", "d6/d50/wms__data_8h.html#a9ae6095889898db72257eeca385eee7b", null ],
-    [ "app_lib_data_set_config_data_item_f", "d6/d50/wms__data_8h.html#a69ac79c096cae0e747496be4c681b53f", null ],
     [ "app_lib_data_set_data_received_cb_f", "d6/d50/wms__data_8h.html#a108548eef01aa6b4e3db667ef3c1c780", null ],
     [ "app_lib_data_set_data_sent_cb_f", "d6/d50/wms__data_8h.html#a602aad54057eaa2a5afb26888e9b1298", null ],
     [ "app_lib_data_set_fragmented_mode_f", "d6/d50/wms__data_8h.html#a17030d1679ad1f8b895196bf44967c8f", null ],
     [ "app_lib_data_set_local_mc_f", "d6/d50/wms__data_8h.html#aa25a094a9e377a22976a9c76b9eb66a6", null ],
     [ "app_lib_data_set_new_app_config_cb_f", "d6/d50/wms__data_8h.html#abcc8bb343266f3fc98d25590ed9a66a6", null ],
-    [ "app_lib_data_set_new_config_data_item_cb_f", "d6/d50/wms__data_8h.html#a82e2c31af97ae5b9ef38e1ef262589b8", null ],
     [ "app_lib_data_tracking_id_t", "d6/d50/wms__data_8h.html#a3a8535cade8b081cfee20f0f4b9b0e65", null ],
     [ "app_lib_data_write_app_config_data_f", "d6/d50/wms__data_8h.html#a68d651aed3da98281a9e46f4145b4848", null ],
     [ "app_lib_data_write_diagnostic_interval_f", "d6/d50/wms__data_8h.html#ab1f635574fae483de32201368ec6b6d0", null ],
@@ -104,19 +88,7 @@ var wms__data_8h =
       [ "APP_LIB_DATA_APP_CONFIG_RES_INVALID_APP_CONFIG", "d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5aff1d36228852aef7252f370bb39bdc01", null ],
       [ "APP_LIB_DATA_APP_CONFIG_RES_INVALID_SEQ", "d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5acb59466353d5324cffe17afa496844c4", null ],
       [ "APP_LIB_DATA_APP_CONFIG_RES_INVALID_INTERVAL", "d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5af4dc7da81f898934f9127869aacd37b0", null ],
-      [ "APP_LIB_DATA_APP_CONFIG_RES_INVALID_NULL_POINTER", "d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5a99898fcc462142af4e21f8e834681218", null ],
-      [ "APP_LIB_DATA_APP_CONFIG_RES_OUT_OF_MEMORY", "d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5adbcc40e86ac543c8c36562e344909b07", null ]
-    ] ],
-    [ "app_lib_data_config_data_res_e", "d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25", [
-      [ "APP_LIB_DATA_CONFIG_DATA_RES_SUCCESS", "d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25ab60e02552d6ee46d8ab1c55e59fff153", null ],
-      [ "APP_LIB_DATA_CONFIG_DATA_RES_INVALID_ROLE", "d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a493bd2a4f4f03c04a357ce25aeefc5cc", null ],
-      [ "APP_LIB_DATA_CONFIG_DATA_RES_INVALID_ENDPOINT", "d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25aec1c50c85765aa6632cc9be3b805d44e", null ],
-      [ "APP_LIB_DATA_CONFIG_DATA_RES_INVALID_NULL_POINTER", "d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a2b275a24da3fa9a2a4b9b0408204365f", null ],
-      [ "APP_LIB_DATA_CONFIG_DATA_RES_OUT_OF_MEMORY", "d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a177f00f63f33dbac9dcdb6192f6feeea", null ],
-      [ "APP_LIB_DATA_CONFIG_DATA_RES_INVALID_CONTENT", "d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25ab5865c4c2e801b918dc144a4b5a0c871", null ],
-      [ "APP_LIB_DATA_CONFIG_DATA_RES_INVALID_INPUT", "d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a03b3b0f03ac1c6df45f7cc16ffddbf10", null ],
-      [ "APP_LIB_DATA_CONFIG_DATA_RES_NOT_SUPPORTED", "d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a2b29759b95fa241123b44eaebfad6e25", null ],
-      [ "APP_LIB_DATA_CONFIG_DATA_RES_INTERNAL_ERROR", "d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a8fd4d7f109a911b219c04cc9be1c3baf", null ]
+      [ "APP_LIB_DATA_APP_CONFIG_RES_INVALID_NULL_POINTER", "d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5a99898fcc462142af4e21f8e834681218", null ]
     ] ],
     [ "app_lib_data_fragmented_mode_e", "d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7", [
       [ "APP_LIB_DATA_FRAGMENTED_MODE_ENABLED", "d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7a535d7c4d38642b8aa436bbbbc3c09752", null ],

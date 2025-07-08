@@ -17,13 +17,6 @@
 <script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-  /* @license-end */
-</script>
 <link rel="search" href="search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -54,64 +47,19 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 /* @license-end */
 </script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Example&#160;applications</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-          <div class="left">
-            <form id="FSearchBox" action="search.html" method="get">
-              <img id="MSearchSelect" src="search/mag.png" alt=""/>
-              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
-                     onfocus="searchBox.OnSearchFieldFocus(true)" 
-                     onblur="searchBox.OnSearchFieldFocus(false)"/>
-            </form>
-          </div><div class="right"></div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li class="current"><a href="globals.html"><span>Globals</span></a></li>
-    </ul>
-  </div>
-  <div id="navrow3" class="tabs2">
-    <ul class="tablist">
-      <li><a href="globals.html"><span>All</span></a></li>
-      <li><a href="globals_func.html"><span>Functions</span></a></li>
-      <li><a href="globals_vars.html"><span>Variables</span></a></li>
-      <li><a href="globals_type.html"><span>Typedefs</span></a></li>
-      <li class="current"><a href="globals_enum.html"><span>Enumerations</span></a></li>
-      <li><a href="globals_eval.html"><span>Enumerator</span></a></li>
-      <li><a href="globals_defs.html"><span>Macros</span></a></li>
-    </ul>
-  </div>
-  <div id="navrow4" class="tabs3">
-    <ul class="tablist">
-      <li><a href="#index_a"><span>a</span></a></li>
-      <li><a href="#index_b"><span>b</span></a></li>
-      <li><a href="#index_c"><span>c</span></a></li>
-      <li><a href="#index_d"><span>d</span></a></li>
-      <li><a href="#index_e"><span>e</span></a></li>
-      <li><a href="#index_g"><span>g</span></a></li>
-      <li><a href="#index_h"><span>h</span></a></li>
-      <li><a href="#index_i"><span>i</span></a></li>
-      <li><a href="#index_l"><span>l</span></a></li>
-      <li><a href="#index_m"><span>m</span></a></li>
-      <li><a href="#index_p"><span>p</span></a></li>
-      <li><a href="#index_r"><span>r</span></a></li>
-      <li><a href="#index_s"><span>s</span></a></li>
-      <li><a href="#index_t"><span>t</span></a></li>
-      <li><a href="#index_u"><span>u</span></a></li>
-      <li class="current"><a href="#index_w"><span>w</span></a></li>
-    </ul>
-  </div>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,true,'search.html','Search');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -141,9 +89,6 @@ $(document).ready(function(){initNavTree('globals_enum.html',''); initResizable(
 </li>
 <li>app_lib_data_app_config_res_e
 : <a class="el" href="d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5">wms_data.h</a>
-</li>
-<li>app_lib_data_config_data_res_e
-: <a class="el" href="d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25">wms_data.h</a>
 </li>
 <li>app_lib_data_fragmented_mode_e
 : <a class="el" href="d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7">wms_data.h</a>
@@ -186,12 +131,6 @@ $(document).ready(function(){initNavTree('globals_enum.html',''); initResizable(
 </li>
 <li>app_lib_radio_cfg_femcmd_e
 : <a class="el" href="d8/da1/wms__radio__config_8h.html#a198f7a8d83d5a6f34a323d2ca02000e9">wms_radio_config.h</a>
-</li>
-<li>app_lib_secure_storage_command_e
-: <a class="el" href="dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6">wms_secure_storage.h</a>
-</li>
-<li>app_lib_secure_storage_record_flags_e
-: <a class="el" href="dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dff">wms_secure_storage.h</a>
 </li>
 <li>app_lib_settings_role_e
 : <a class="el" href="df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8">wms_settings.h</a>
@@ -238,15 +177,6 @@ $(document).ready(function(){initNavTree('globals_enum.html',''); initResizable(
 <li>app_scheduler_res_e
 : <a class="el" href="dd/ddc/app__scheduler_8h.html#a245a7f2a478b72e2d4a43b3c18676ab3">app_scheduler.h</a>
 </li>
-<li>app_secure_storage_flags_e
-: <a class="el" href="d2/da8/app__secure__storage_8h.html#a07cd45900dfbd46cfc3a036569e6d4df">app_secure_storage.h</a>
-</li>
-<li>app_secure_storage_res_e
-: <a class="el" href="d2/da8/app__secure__storage_8h.html#a8439f1c5810d6119fa833689ce904b5b">app_secure_storage.h</a>
-</li>
-<li>app_setup_res_e
-: <a class="el" href="d4/d4f/app__setup_8h.html#aa9ff7fc26fe8cf1d0950768687be8d8d">app_setup.h</a>
-</li>
 <li>app_special_addr_e
 : <a class="el" href="da/dbb/wms__app_8h.html#a2fe888af6a0b27cd2455757d0823a313">wms_app.h</a>
 </li>
@@ -265,9 +195,6 @@ $(document).ready(function(){initNavTree('globals_enum.html',''); initResizable(
 </li>
 <li>bl_memory_area_type_e
 : <a class="el" href="dd/d2c/bl__interface_8h.html#a827b71e6d5cdcaa075983c98ddc7563d">bl_interface.h</a>
-</li>
-<li>bl_scrat_modem_file_type_e
-: <a class="el" href="dd/d2c/bl__interface_8h.html#a47563e507911f3a052d8171f90e93742">bl_interface.h</a>
 </li>
 <li>bl_scrat_type_e
 : <a class="el" href="dd/d2c/bl__interface_8h.html#abcd1a4851130b269c0f236bde1ff9568">bl_interface.h</a>
@@ -411,15 +338,6 @@ $(document).ready(function(){initNavTree('globals_enum.html',''); initResizable(
 </li>
 <li>msap_attr_size_e
 : <a class="el" href="d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8ee">msap_frames.h</a>
-</li>
-<li>msap_config_data_item_get_e
-: <a class="el" href="d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaa">msap_frames.h</a>
-</li>
-<li>msap_config_data_item_set_e
-: <a class="el" href="d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18ed">msap_frames.h</a>
-</li>
-<li>msap_config_data_list_items_e
-: <a class="el" href="d8/d21/msap__frames_8h.html#a1510b361ab18c4b2b07fa6a9446a01f2">msap_frames.h</a>
 </li>
 <li>msap_neighbor_type_e
 : <a class="el" href="d8/d21/msap__frames_8h.html#adcac49bfd7b8b23309a15712c3595e45">msap_frames.h</a>

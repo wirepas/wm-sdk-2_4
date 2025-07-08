@@ -17,13 +17,6 @@
 <script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-  /* @license-end */
-</script>
 <link rel="search" href="../../search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 <link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -54,33 +47,19 @@
 var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 /* @license-end */
 </script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="../../pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="../../annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li class="current"><a href="../../files.html"><span>Files</span></a></li>
-      <li><a href="../../examples.html"><span>Example&#160;applications</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-          <div class="left">
-            <form id="FSearchBox" action="../../search.html" method="get">
-              <img id="MSearchSelect" src="../../search/mag.png" alt=""/>
-              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
-                     onfocus="searchBox.OnSearchFieldFocus(true)" 
-                     onblur="searchBox.OnSearchFieldFocus(false)"/>
-            </form>
-          </div><div class="right"></div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="../../files.html"><span>File&#160;List</span></a></li>
-      <li><a href="../../globals.html"><span>Globals</span></a></li>
-    </ul>
-  </div>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,true,'search.html','Search');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -171,20 +150,6 @@ Data Structures</h2></td></tr>
 <tr class="separator:df/d88/structmsap__scratchpad__block__read__req__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:de/dea/structmsap__scratchpad__block__read__cnf__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#de/dea/structmsap__scratchpad__block__read__cnf__t">msap_scratchpad_block_read_cnf_t</a></td></tr>
 <tr class="separator:de/dea/structmsap__scratchpad__block__read__cnf__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:de/d06/structmsap__config__data__item__set__req__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#de/d06/structmsap__config__data__item__set__req__t">msap_config_data_item_set_req_t</a></td></tr>
-<tr class="separator:de/d06/structmsap__config__data__item__set__req__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:d6/db3/structmsap__config__data__item__set__cnf__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#d6/db3/structmsap__config__data__item__set__cnf__t">msap_config_data_item_set_cnf_t</a></td></tr>
-<tr class="separator:d6/db3/structmsap__config__data__item__set__cnf__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:d7/d6c/structmsap__config__data__item__get__req__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#d7/d6c/structmsap__config__data__item__get__req__t">msap_config_data_item_get_req_t</a></td></tr>
-<tr class="separator:d7/d6c/structmsap__config__data__item__get__req__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:d3/d34/structmsap__config__data__item__get__cnf__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#d3/d34/structmsap__config__data__item__get__cnf__t">msap_config_data_item_get_cnf_t</a></td></tr>
-<tr class="separator:d3/d34/structmsap__config__data__item__get__cnf__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:d7/d5e/structmsap__config__data__list__items__cnf__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#d7/d5e/structmsap__config__data__list__items__cnf__t">msap_config_data_list_items_cnf_t</a></td></tr>
-<tr class="separator:d7/d5e/structmsap__config__data__list__items__cnf__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:d5/d63/structmsap__config__data__list__items__req__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#d5/d63/structmsap__config__data__list__items__req__t">msap_config_data_list_items_req_t</a></td></tr>
-<tr class="separator:d5/d63/structmsap__config__data__list__items__req__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:db/d88/structmsap__config__data__item__ind__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#db/d88/structmsap__config__data__item__ind__t">msap_config_data_item_ind_t</a></td></tr>
-<tr class="separator:db/d88/structmsap__config__data__item__ind__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:d4/d04/unionframe__msap"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#d4/d04/unionframe__msap">frame_msap</a></td></tr>
 <tr class="separator:d4/d04/unionframe__msap"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -321,26 +286,6 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:a9f22311192eeb6de14455c27f0b6c924"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6979a08b71f61cbf60394fde24db18ed"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18ed">msap_config_data_item_set_e</a> { <br />
-&#160;&#160;<a class="el" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18eda44c95728afcb737abbc7d52909445611">MSAP_CONFIG_DATA_ITEM_SET_SUCCESS</a> = 0, 
-<a class="el" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18edad2ba7852aa6459819ddce1634babe00c">MSAP_CONFIG_DATA_ITEM_SET_INVALID_ROLE</a> = 1, 
-<a class="el" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18edadc516ccef642bad20962fe03273a0aad">MSAP_CONFIG_DATA_ITEM_SET_INVALID_ENDPOINT</a> = 2, 
-<a class="el" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18eda0aeb8591aab981df9c01488504c0f823">MSAP_CONFIG_DATA_ITEM_SET_OUT_OF_MEMORY</a> = 3, 
-<br />
-&#160;&#160;<a class="el" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18eda3268d22a26ff18809193b8b14ce6636c">MSAP_CONFIG_DATA_ITEM_SET_INVALID_CONTENT</a> = 4, 
-<a class="el" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18edaadfb3603f181b10ca30ea8a20bf67f9c">MSAP_CONFIG_DATA_ITEM_SET_NOT_SUPPORTED</a> = 5
-<br />
- }</td></tr>
-<tr class="separator:a6979a08b71f61cbf60394fde24db18ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af50b6408ede40fa73c1fa8f7659dbcaa"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaa">msap_config_data_item_get_e</a> { <a class="el" href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaaa848f1e36f57a6b01a2ade91e3248af98">MSAP_CONFIG_DATA_ITEM_GET_SUCCESS</a> = 0, 
-<a class="el" href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaaa9cab79c96bce21c0348b27c77f466184">MSAP_CONFIG_DATA_ITEM_GET_INVALID_ENDPOINT</a> = 1, 
-<a class="el" href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaaaf72aa8ef904e8e076ecb89ab56cb530a">MSAP_CONFIG_DATA_ITEM_GET_NOT_SUPPORTED</a> = 2
- }</td></tr>
-<tr class="separator:af50b6408ede40fa73c1fa8f7659dbcaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1510b361ab18c4b2b07fa6a9446a01f2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#a1510b361ab18c4b2b07fa6a9446a01f2">msap_config_data_list_items_e</a> { <a class="el" href="../../d8/d21/msap__frames_8h.html#a1510b361ab18c4b2b07fa6a9446a01f2acceb74b3efc7728ca84ae1311b61e8b4">MSAP_CONFIG_DATA_LIST_ITEMS_SUCCESS</a> = 0, 
-<a class="el" href="../../d8/d21/msap__frames_8h.html#a1510b361ab18c4b2b07fa6a9446a01f2a28bd5814743820a16214ab317c377126">MSAP_CONFIG_DATA_LIST_ITEMS_NOT_SUPPORTED</a> = 1
- }</td></tr>
-<tr class="separator:a1510b361ab18c4b2b07fa6a9446a01f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -359,14 +304,6 @@ Macros</h2></td></tr>
 <tr class="separator:aad83f15e91ca4740cdd7a5e303f5ba92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94e36c3b4d2769267941ee8522318a65"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#a94e36c3b4d2769267941ee8522318a65">FRAME_MSAP_SCRATCHPAD_BLOCK_READ_CNF_HEADER_SIZE</a>&#160;&#160;&#160;(sizeof(<a class="el" href="../../d8/d21/msap__frames_8h.html#de/dea/structmsap__scratchpad__block__read__cnf__t">msap_scratchpad_block_read_cnf_t</a>) - <a class="el" href="../../d8/d21/msap__frames_8h.html#aad83f15e91ca4740cdd7a5e303f5ba92">MSAP_SCRATCHPAD_BLOCK_READ_MAX_NUM_BYTES</a>)</td></tr>
 <tr class="separator:a94e36c3b4d2769267941ee8522318a65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1f8b5b91975877f71d5347700cf26ca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#ac1f8b5b91975877f71d5347700cf26ca">MSAP_NPD_PAYLOAD_MAX_LEN</a>&#160;&#160;&#160;80</td></tr>
-<tr class="separator:ac1f8b5b91975877f71d5347700cf26ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac54235dc419fa5fd4e952f11a9b197d3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#ac54235dc419fa5fd4e952f11a9b197d3">MSAP_CONFIG_DATA_ITEM_GET_HEADER_SIZE</a>&#160;&#160;&#160;(sizeof(<a class="el" href="../../d8/d21/msap__frames_8h.html#d3/d34/structmsap__config__data__item__get__cnf__t">msap_config_data_item_get_cnf_t</a>) - <a class="el" href="../../d8/d21/msap__frames_8h.html#ac1f8b5b91975877f71d5347700cf26ca">MSAP_NPD_PAYLOAD_MAX_LEN</a>)</td></tr>
-<tr class="separator:ac54235dc419fa5fd4e952f11a9b197d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f11d8fddbed10602ed5b8bf991c679a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#a1f11d8fddbed10602ed5b8bf991c679a">MSAP_CONFIG_DATA_LIST_ITEMS_MAX_NUM_ENDPOINTS</a>&#160;&#160;&#160;16</td></tr>
-<tr class="separator:a1f11d8fddbed10602ed5b8bf991c679a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd13e76aebf7466db215ae0864cebaab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/msap__frames_8h.html#afd13e76aebf7466db215ae0864cebaab">MSAP_CONFIG_DATA_LIST_ITEMS_HEADER_SIZE</a>&#160;&#160;&#160;(sizeof(<a class="el" href="../../d8/d21/msap__frames_8h.html#d7/d5e/structmsap__config__data__list__items__cnf__t">msap_config_data_list_items_cnf_t</a>) - sizeof(uint16_t) * <a class="el" href="../../d8/d21/msap__frames_8h.html#a1f11d8fddbed10602ed5b8bf991c679a">MSAP_CONFIG_DATA_LIST_ITEMS_MAX_NUM_ENDPOINTS</a>)</td></tr>
-<tr class="separator:afd13e76aebf7466db215ae0864cebaab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a8d7666ff0644df2ea150181acbfd86eb"></a>
@@ -1431,258 +1368,6 @@ result</td>
 
 </div>
 </div>
-<a name="de/d06/structmsap__config__data__item__set__req__t" id="de/d06/structmsap__config__data__item__set__req__t"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#de/d06/structmsap__config__data__item__set__req__t">&#9670;&nbsp;</a></span>msap_config_data_item_set_req_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct msap_config_data_item_set_req_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p>MSAP-CONFIG_DATA_ITEM_SET request frame </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00508">508</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Data Fields</th></tr>
-<tr><td class="fieldtype">
-<a id="af5bf14327592e9c90815a03a44ba8680"></a>uint16_t</td>
-<td class="fieldname">
-npd_endpoint</td>
-<td class="fielddoc">
-<p>Byte offset from the beginning of scratchpad memory </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a99d3749b2c06415c0b3dfde20f365295"></a>uint8_t</td>
-<td class="fieldname">
-npd_payload[80]</td>
-<td class="fielddoc">
-<p>Data </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="ac15595632fd2b28c0d0f7dd82dd96d08"></a>uint8_t</td>
-<td class="fieldname">
-npd_payload_len</td>
-<td class="fielddoc">
-<p>Number of bytes of data </p>
-</td></tr>
-</table>
-
-</div>
-</div>
-<a name="d6/db3/structmsap__config__data__item__set__cnf__t" id="d6/db3/structmsap__config__data__item__set__cnf__t"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#d6/db3/structmsap__config__data__item__set__cnf__t">&#9670;&nbsp;</a></span>msap_config_data_item_set_cnf_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct msap_config_data_item_set_cnf_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p>MSAP-CONFIG_DATA_ITEM_SET confirmation frame </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00537">537</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Data Fields</th></tr>
-<tr><td class="fieldtype">
-<a id="a556c80259568976b607ec50f8747d42a"></a>uint8_t</td>
-<td class="fieldname">
-result</td>
-<td class="fielddoc">
-<p>Set result: </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18ed">msap_config_data_item_set_e</a> </dd></dl>
-</td></tr>
-</table>
-
-</div>
-</div>
-<a name="d7/d6c/structmsap__config__data__item__get__req__t" id="d7/d6c/structmsap__config__data__item__get__req__t"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#d7/d6c/structmsap__config__data__item__get__req__t">&#9670;&nbsp;</a></span>msap_config_data_item_get_req_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct msap_config_data_item_get_req_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p>MSAP-CONFIG_DATA_ITEM_GET request frame </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00544">544</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Data Fields</th></tr>
-<tr><td class="fieldtype">
-<a id="af5bf14327592e9c90815a03a44ba8680"></a>uint16_t</td>
-<td class="fieldname">
-npd_endpoint</td>
-<td class="fielddoc">
-<p>NPD endpoint </p>
-</td></tr>
-</table>
-
-</div>
-</div>
-<a name="d3/d34/structmsap__config__data__item__get__cnf__t" id="d3/d34/structmsap__config__data__item__get__cnf__t"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#d3/d34/structmsap__config__data__item__get__cnf__t">&#9670;&nbsp;</a></span>msap_config_data_item_get_cnf_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct msap_config_data_item_get_cnf_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p>MSAP-CONFIG_DATA_ITEM_GET confirmation frame </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00566">566</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Data Fields</th></tr>
-<tr><td class="fieldtype">
-<a id="a99d3749b2c06415c0b3dfde20f365295"></a>uint8_t</td>
-<td class="fieldname">
-npd_payload[80]</td>
-<td class="fielddoc">
-<p>Data </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="ac15595632fd2b28c0d0f7dd82dd96d08"></a>uint8_t</td>
-<td class="fieldname">
-npd_payload_len</td>
-<td class="fielddoc">
-<p>Number of bytes of data </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a556c80259568976b607ec50f8747d42a"></a>uint8_t</td>
-<td class="fieldname">
-result</td>
-<td class="fielddoc">
-<p>Set result: </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaa">msap_config_data_item_get_e</a> </dd></dl>
-</td></tr>
-</table>
-
-</div>
-</div>
-<a name="d7/d5e/structmsap__config__data__list__items__cnf__t" id="d7/d5e/structmsap__config__data__list__items__cnf__t"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#d7/d5e/structmsap__config__data__list__items__cnf__t">&#9670;&nbsp;</a></span>msap_config_data_list_items_cnf_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct msap_config_data_list_items_cnf_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p>MSAP-CONFIG_DATA_LIST_ITEMS confirmation frame </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00592">592</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Data Fields</th></tr>
-<tr><td class="fieldtype">
-<a id="aeba916d616f59b2f9bd24313c169c33b"></a>uint8_t</td>
-<td class="fieldname">
-amount_endpoints</td>
-<td class="fielddoc">
-<p>Number of endpoints in the list </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a08da770b91b4540e0c7f71fe6d986a8c"></a>uint16_t</td>
-<td class="fieldname">
-endpoints[16]</td>
-<td class="fielddoc">
-<p>Endpoints at the node </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a556c80259568976b607ec50f8747d42a"></a>uint8_t</td>
-<td class="fieldname">
-result</td>
-<td class="fielddoc">
-<p>Set result: </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaa">msap_config_data_item_get_e</a> </dd></dl>
-</td></tr>
-</table>
-
-</div>
-</div>
-<a name="d5/d63/structmsap__config__data__list__items__req__t" id="d5/d63/structmsap__config__data__list__items__req__t"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#d5/d63/structmsap__config__data__list__items__req__t">&#9670;&nbsp;</a></span>msap_config_data_list_items_req_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct msap_config_data_list_items_req_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p>MSAP-CONFIG_DATA_LIST_ITEMS request frame </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00603">603</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Data Fields</th></tr>
-<tr><td class="fieldtype">
-<a id="a1a5aaa930940857f68f245eeb89506b5"></a>uint8_t</td>
-<td class="fieldname">
-command</td>
-<td class="fielddoc">
-<p>Command field. Reserved for future use </p>
-</td></tr>
-</table>
-
-</div>
-</div>
-<a name="db/d88/structmsap__config__data__item__ind__t" id="db/d88/structmsap__config__data__item__ind__t"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#db/d88/structmsap__config__data__item__ind__t">&#9670;&nbsp;</a></span>msap_config_data_item_ind_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct msap_config_data_item_ind_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p>MSAP-CONFIG_DATA_ITEM_IND indication frame </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00610">610</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Data Fields</th></tr>
-<tr><td class="fieldtype">
-<a id="af5bf14327592e9c90815a03a44ba8680"></a>uint16_t</td>
-<td class="fieldname">
-npd_endpoint</td>
-<td class="fielddoc">
-<p>NPD endpoint </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a99d3749b2c06415c0b3dfde20f365295"></a>uint8_t</td>
-<td class="fieldname">
-npd_payload[80]</td>
-<td class="fielddoc">
-<p>Data </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="ac15595632fd2b28c0d0f7dd82dd96d08"></a>uint8_t</td>
-<td class="fieldname">
-npd_payload_len</td>
-<td class="fielddoc">
-<p>Number of bytes of data </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a728d3d9f16d71b13ff793321294778fc"></a>uint8_t</td>
-<td class="fieldname">
-queued_indications</td>
-<td class="fielddoc">
-<p>Queued indications </p>
-</td></tr>
-</table>
-
-</div>
-</div>
 <a name="d4/d04/unionframe__msap" id="d4/d04/unionframe__msap"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#d4/d04/unionframe__msap">&#9670;&nbsp;</a></span>frame_msap</h2>
 
@@ -1695,51 +1380,9 @@ queued_indications</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00622">622</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00504">504</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
-<tr><td class="fieldtype">
-<a id="a447733f370d16a4278bae255516c08ee"></a><a class="el" href="../../d8/d21/msap__frames_8h.html#d3/d34/structmsap__config__data__item__get__cnf__t">msap_config_data_item_get_cnf_t</a></td>
-<td class="fieldname">
-config_data_item_get_cnf</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a82cd4e16d162a30182693ab6db49e524"></a><a class="el" href="../../d8/d21/msap__frames_8h.html#d7/d6c/structmsap__config__data__item__get__req__t">msap_config_data_item_get_req_t</a></td>
-<td class="fieldname">
-config_data_item_get_req</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a31b5c220321a207c6ec97989cf5f306b"></a><a class="el" href="../../d8/d21/msap__frames_8h.html#db/d88/structmsap__config__data__item__ind__t">msap_config_data_item_ind_t</a></td>
-<td class="fieldname">
-config_data_item_ind</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="afa4fdaa88108f8826bb96a25e2d1bf60"></a><a class="el" href="../../d8/d21/msap__frames_8h.html#d6/db3/structmsap__config__data__item__set__cnf__t">msap_config_data_item_set_cnf_t</a></td>
-<td class="fieldname">
-config_data_item_set_cnf</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="af156efc5c424ecb94382d93ddc391f17"></a><a class="el" href="../../d8/d21/msap__frames_8h.html#de/d06/structmsap__config__data__item__set__req__t">msap_config_data_item_set_req_t</a></td>
-<td class="fieldname">
-config_data_item_set_req</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a19cda34e652596fd9e51dba91509106b"></a><a class="el" href="../../d8/d21/msap__frames_8h.html#d7/d5e/structmsap__config__data__list__items__cnf__t">msap_config_data_list_items_cnf_t</a></td>
-<td class="fieldname">
-config_data_list_items_cnf</td>
-<td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a3feb47852da5eb893532ae8998dd1ff3"></a><a class="el" href="../../d8/d21/msap__frames_8h.html#d5/d63/structmsap__config__data__list__items__req__t">msap_config_data_list_items_req_t</a></td>
-<td class="fieldname">
-config_data_list_items_req</td>
-<td class="fielddoc">
-</td></tr>
 <tr><td class="fieldtype">
 <a id="a44da237d33e2e45cb68bab8eccc42556"></a><a class="el" href="../../d8/d21/msap__frames_8h.html#da/d2f/structmsap__sink__cost__read__cnf__t">msap_sink_cost_read_cnf_t</a></td>
 <td class="fieldname">
@@ -1979,102 +1622,6 @@ state_ind</td>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        MULTICAST_ADDRESS_AMOUNT * <span class="keyword">sizeof</span>(<a class="code" href="../../db/db1/waps__frames_8h.html#a816e5cc1d03a10a8bcfbd56fa8554b5e">w_addr_t</a>),</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <a class="code" href="../../d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8eea4faf690981d6fcb23694f9f586cce872">MSAP_ATTR_SCRATCHPAD_NUM_BYTES_SIZE</a> = 4,</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;} <a class="code" href="../../d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8ee">msap_attr_size_e</a>;</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="af50b6408ede40fa73c1fa8f7659dbcaa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af50b6408ede40fa73c1fa8f7659dbcaa">&#9670;&nbsp;</a></span>msap_config_data_item_get_e</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaa">msap_config_data_item_get_e</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Result of MSAP-CONFIG_DATA_ITEM_GET request </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af50b6408ede40fa73c1fa8f7659dbcaaa848f1e36f57a6b01a2ade91e3248af98"></a>MSAP_CONFIG_DATA_ITEM_GET_SUCCESS&#160;</td><td class="fielddoc"><p>Set request was successful </p>
-</td></tr>
-<tr><td class="fieldname"><a id="af50b6408ede40fa73c1fa8f7659dbcaaa9cab79c96bce21c0348b27c77f466184"></a>MSAP_CONFIG_DATA_ITEM_GET_INVALID_ENDPOINT&#160;</td><td class="fielddoc"><p>Error: cannot read config data: no config data item set or received for that endpoint </p>
-</td></tr>
-<tr><td class="fieldname"><a id="af50b6408ede40fa73c1fa8f7659dbcaaaf72aa8ef904e8e076ecb89ab56cb530a"></a>MSAP_CONFIG_DATA_ITEM_GET_NOT_SUPPORTED&#160;</td><td class="fielddoc"><p>Error: Feature not supported with this WM stack version </p>
-</td></tr>
-</table>
-
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00551">551</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;{</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;    <a class="code" href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaaa848f1e36f57a6b01a2ade91e3248af98">MSAP_CONFIG_DATA_ITEM_GET_SUCCESS</a> = 0,</div>
-<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;    <a class="code" href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaaa9cab79c96bce21c0348b27c77f466184">MSAP_CONFIG_DATA_ITEM_GET_INVALID_ENDPOINT</a> = 1,</div>
-<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;    <a class="code" href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaaaf72aa8ef904e8e076ecb89ab56cb530a">MSAP_CONFIG_DATA_ITEM_GET_NOT_SUPPORTED</a> = 2,</div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;} <a class="code" href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaa">msap_config_data_item_get_e</a>;</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a6979a08b71f61cbf60394fde24db18ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6979a08b71f61cbf60394fde24db18ed">&#9670;&nbsp;</a></span>msap_config_data_item_set_e</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18ed">msap_config_data_item_set_e</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Result of MSAP-CONFIG_DATA_ITEM_SET request </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6979a08b71f61cbf60394fde24db18eda44c95728afcb737abbc7d52909445611"></a>MSAP_CONFIG_DATA_ITEM_SET_SUCCESS&#160;</td><td class="fielddoc"><p>Set request was successful </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6979a08b71f61cbf60394fde24db18edad2ba7852aa6459819ddce1634babe00c"></a>MSAP_CONFIG_DATA_ITEM_SET_INVALID_ROLE&#160;</td><td class="fielddoc"><p>Error: cannot write config data: node is not a sink </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6979a08b71f61cbf60394fde24db18edadc516ccef642bad20962fe03273a0aad"></a>MSAP_CONFIG_DATA_ITEM_SET_INVALID_ENDPOINT&#160;</td><td class="fielddoc"><p>Error: cannot read config data: no config data item set or received for that endpoint </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6979a08b71f61cbf60394fde24db18eda0aeb8591aab981df9c01488504c0f823"></a>MSAP_CONFIG_DATA_ITEM_SET_OUT_OF_MEMORY&#160;</td><td class="fielddoc"><p>Error: out of memory </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6979a08b71f61cbf60394fde24db18eda3268d22a26ff18809193b8b14ce6636c"></a>MSAP_CONFIG_DATA_ITEM_SET_INVALID_CONTENT&#160;</td><td class="fielddoc"><p>Error: invalid content </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6979a08b71f61cbf60394fde24db18edaadfb3603f181b10ca30ea8a20bf67f9c"></a>MSAP_CONFIG_DATA_ITEM_SET_NOT_SUPPORTED&#160;</td><td class="fielddoc"><p>Error: Feature not supported </p>
-</td></tr>
-</table>
-
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00519">519</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;{</div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;    <a class="code" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18eda44c95728afcb737abbc7d52909445611">MSAP_CONFIG_DATA_ITEM_SET_SUCCESS</a> = 0,</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;    <a class="code" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18edad2ba7852aa6459819ddce1634babe00c">MSAP_CONFIG_DATA_ITEM_SET_INVALID_ROLE</a> = 1,</div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;    <a class="code" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18edadc516ccef642bad20962fe03273a0aad">MSAP_CONFIG_DATA_ITEM_SET_INVALID_ENDPOINT</a> = 2,</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;    <a class="code" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18eda0aeb8591aab981df9c01488504c0f823">MSAP_CONFIG_DATA_ITEM_SET_OUT_OF_MEMORY</a> = 3,</div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;    <a class="code" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18eda3268d22a26ff18809193b8b14ce6636c">MSAP_CONFIG_DATA_ITEM_SET_INVALID_CONTENT</a> = 4,</div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;    <a class="code" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18edaadfb3603f181b10ca30ea8a20bf67f9c">MSAP_CONFIG_DATA_ITEM_SET_NOT_SUPPORTED</a> = 5,</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;} <a class="code" href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18ed">msap_config_data_item_set_e</a>;</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a1510b361ab18c4b2b07fa6a9446a01f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1510b361ab18c4b2b07fa6a9446a01f2">&#9670;&nbsp;</a></span>msap_config_data_list_items_e</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="../../d8/d21/msap__frames_8h.html#a1510b361ab18c4b2b07fa6a9446a01f2">msap_config_data_list_items_e</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Result of MSAP-CONFIG_DATA_LIST_ITEMS request </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1510b361ab18c4b2b07fa6a9446a01f2acceb74b3efc7728ca84ae1311b61e8b4"></a>MSAP_CONFIG_DATA_LIST_ITEMS_SUCCESS&#160;</td><td class="fielddoc"><p>Set request was successful </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a1510b361ab18c4b2b07fa6a9446a01f2a28bd5814743820a16214ab317c377126"></a>MSAP_CONFIG_DATA_LIST_ITEMS_NOT_SUPPORTED&#160;</td><td class="fielddoc"><p>Error: Feature not supported </p>
-</td></tr>
-</table>
-
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00577">577</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;{</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;    <a class="code" href="../../d8/d21/msap__frames_8h.html#a1510b361ab18c4b2b07fa6a9446a01f2acceb74b3efc7728ca84ae1311b61e8b4">MSAP_CONFIG_DATA_LIST_ITEMS_SUCCESS</a> = 0,</div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;    <a class="code" href="../../d8/d21/msap__frames_8h.html#a1510b361ab18c4b2b07fa6a9446a01f2a28bd5814743820a16214ab317c377126">MSAP_CONFIG_DATA_LIST_ITEMS_NOT_SUPPORTED</a> = 1,</div>
-<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;} <a class="code" href="../../d8/d21/msap__frames_8h.html#a1510b361ab18c4b2b07fa6a9446a01f2">msap_config_data_list_items_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2533,57 +2080,6 @@ state_ind</td>
 
 </div>
 </div>
-<a id="ac54235dc419fa5fd4e952f11a9b197d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac54235dc419fa5fd4e952f11a9b197d3">&#9670;&nbsp;</a></span>MSAP_CONFIG_DATA_ITEM_GET_HEADER_SIZE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MSAP_CONFIG_DATA_ITEM_GET_HEADER_SIZE&#160;&#160;&#160;(sizeof(<a class="el" href="../../d8/d21/msap__frames_8h.html#d3/d34/structmsap__config__data__item__get__cnf__t">msap_config_data_item_get_cnf_t</a>) - <a class="el" href="../../d8/d21/msap__frames_8h.html#ac1f8b5b91975877f71d5347700cf26ca">MSAP_NPD_PAYLOAD_MAX_LEN</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Header size of MSAP-CONFIG_DATA_ITEM_GET confirmation frame </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00563">563</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
-
-</div>
-</div>
-<a id="afd13e76aebf7466db215ae0864cebaab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd13e76aebf7466db215ae0864cebaab">&#9670;&nbsp;</a></span>MSAP_CONFIG_DATA_LIST_ITEMS_HEADER_SIZE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MSAP_CONFIG_DATA_LIST_ITEMS_HEADER_SIZE&#160;&#160;&#160;(sizeof(<a class="el" href="../../d8/d21/msap__frames_8h.html#d7/d5e/structmsap__config__data__list__items__cnf__t">msap_config_data_list_items_cnf_t</a>) - sizeof(uint16_t) * <a class="el" href="../../d8/d21/msap__frames_8h.html#a1f11d8fddbed10602ed5b8bf991c679a">MSAP_CONFIG_DATA_LIST_ITEMS_MAX_NUM_ENDPOINTS</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Header size of <a class="el" href="../../d8/d21/msap__frames_8h.html#d7/d5e/structmsap__config__data__list__items__cnf__t">msap_config_data_list_items_cnf_t</a> </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00589">589</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
-
-</div>
-</div>
-<a id="a1f11d8fddbed10602ed5b8bf991c679a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f11d8fddbed10602ed5b8bf991c679a">&#9670;&nbsp;</a></span>MSAP_CONFIG_DATA_LIST_ITEMS_MAX_NUM_ENDPOINTS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MSAP_CONFIG_DATA_LIST_ITEMS_MAX_NUM_ENDPOINTS&#160;&#160;&#160;16</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Maximum number of endpoints in the list at <a class="el" href="../../d8/d21/msap__frames_8h.html#a08da770b91b4540e0c7f71fe6d986a8c">msap_config_data_list_items_cnf_t::endpoints</a> </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00586">586</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
-
-</div>
-</div>
 <a id="aa717101fb772efdc14220976746cb332"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa717101fb772efdc14220976746cb332">&#9670;&nbsp;</a></span>MSAP_MAX_NBORS</h2>
 
@@ -2598,23 +2094,6 @@ state_ind</td>
 <p>How many neighbors in single query </p>
 
 <p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00033">33</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
-
-</div>
-</div>
-<a id="ac1f8b5b91975877f71d5347700cf26ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1f8b5b91975877f71d5347700cf26ca">&#9670;&nbsp;</a></span>MSAP_NPD_PAYLOAD_MAX_LEN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MSAP_NPD_PAYLOAD_MAX_LEN&#160;&#160;&#160;80</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Maximum number of bytes in an NPD payload </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d8/d21/msap__frames_8h_source.html#l00505">505</a> of file <a class="el" href="../../d8/d21/msap__frames_8h_source.html">msap_frames.h</a>.</p>
 
 </div>
 </div>
@@ -2675,11 +2154,9 @@ state_ind</td>
 <div class="ttc" id="amsap__frames_8h_html_a57538830d27151139aad789ec2111d3cad4ffb6667bc3547625ea0bff36e38528"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a57538830d27151139aad789ec2111d3cad4ffb6667bc3547625ea0bff36e38528">MSAP_ATTR_ROUTE_COUNT</a></div><div class="ttdeci">@ MSAP_ATTR_ROUTE_COUNT</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00085">msap_frames.h:85</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_adcac49bfd7b8b23309a15712c3595e45a3aa7d5987f7fe547149f4dad4a2bdfea"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#adcac49bfd7b8b23309a15712c3595e45a3aa7d5987f7fe547149f4dad4a2bdfea">NEIGHBOR_IS_MEMBER</a></div><div class="ttdeci">@ NEIGHBOR_IS_MEMBER</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00048">msap_frames.h:48</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a8c86fd6b1c2dec688974e89920bf26cbaf1ffc25dd3acdfdcb1ca49ce9a94ed99"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a8c86fd6b1c2dec688974e89920bf26cbaf1ffc25dd3acdfdcb1ca49ce9a94ed99">MSAP_SCRATCHPAD_BLOCK_INVALID_DATA</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_BLOCK_INVALID_DATA</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00251">msap_frames.h:251</a></div></div>
-<div class="ttc" id="amsap__frames_8h_html_a1510b361ab18c4b2b07fa6a9446a01f2a28bd5814743820a16214ab317c377126"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a1510b361ab18c4b2b07fa6a9446a01f2a28bd5814743820a16214ab317c377126">MSAP_CONFIG_DATA_LIST_ITEMS_NOT_SUPPORTED</a></div><div class="ttdeci">@ MSAP_CONFIG_DATA_LIST_ITEMS_NOT_SUPPORTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00582">msap_frames.h:582</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_aa45e97d3cffc2f281aecbfbb890bf344a162cb22ed8847933ddf50594d14ce2c3"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#aa45e97d3cffc2f281aecbfbb890bf344a162cb22ed8847933ddf50594d14ce2c3">MSAP_SCRATCHPAD_ACTION_LEGACY</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_ACTION_LEGACY</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00422">msap_frames.h:422</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a8c86fd6b1c2dec688974e89920bf26cb"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a8c86fd6b1c2dec688974e89920bf26cb">msap_scratchpad_block_e</a></div><div class="ttdeci">msap_scratchpad_block_e</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00234">msap_frames.h:234</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a91180572bb2e9ea901310416c2f1c4b8a0c6c7dc2d4ee9c4bdb4b7d1e0b1bcc9f"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a91180572bb2e9ea901310416c2f1c4b8a0c6c7dc2d4ee9c4bdb4b7d1e0b1bcc9f">MSAP_SCRATCHPAD_TARGET_INVALID_VALUE</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_TARGET_INVALID_VALUE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00446">msap_frames.h:446</a></div></div>
-<div class="ttc" id="amsap__frames_8h_html_a1510b361ab18c4b2b07fa6a9446a01f2acceb74b3efc7728ca84ae1311b61e8b4"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a1510b361ab18c4b2b07fa6a9446a01f2acceb74b3efc7728ca84ae1311b61e8b4">MSAP_CONFIG_DATA_LIST_ITEMS_SUCCESS</a></div><div class="ttdeci">@ MSAP_CONFIG_DATA_LIST_ITEMS_SUCCESS</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00580">msap_frames.h:580</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a47c9febfb66ca4724d05a3a27c6db872a1bc913c9ee8c65f8fc6c19eb6d4fdcbc"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a47c9febfb66ca4724d05a3a27c6db872a1bc913c9ee8c65f8fc6c19eb6d4fdcbc">MSAP_SCRATCHPAD_START_INVALID_STATE</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_START_INVALID_STATE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00207">msap_frames.h:207</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a922e5d2a05c2b9ed810f8ce2985f6b91a5bc0f6e90437c083b45d3bcfb6e18112"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a922e5d2a05c2b9ed810f8ce2985f6b91a5bc0f6e90437c083b45d3bcfb6e18112">MSAP_SCAN_NBORS_INVALID_STATE</a></div><div class="ttdeci">@ MSAP_SCAN_NBORS_INVALID_STATE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00334">msap_frames.h:334</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a28ff6eb281df315981eaf95f2ac4b8eeaa42d4aa925c4c2d71246d4dd2cb9da25"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8eeaa42d4aa925c4c2d71246d4dd2cb9da25">MSAP_ATTR_SCRATCHPAD_BLOCK_MAX_SIZE</a></div><div class="ttdeci">@ MSAP_ATTR_SCRATCHPAD_BLOCK_MAX_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00112">msap_frames.h:112</a></div></div>
@@ -2689,13 +2166,11 @@ state_ind</td>
 <div class="ttc" id="amsap__frames_8h_html_a28ff6eb281df315981eaf95f2ac4b8eea75296002f5d6085c900d8f446513be8b"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8eea75296002f5d6085c900d8f446513be8b">MSAP_ATTR_CURRENT_AC_SIZE</a></div><div class="ttdeci">@ MSAP_ATTR_CURRENT_AC_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00111">msap_frames.h:111</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a2a22fdcf30e8833fee4f1ad6360f4aeba49c17dee2d19e72a8766b253c448943e"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a2a22fdcf30e8833fee4f1ad6360f4aeba49c17dee2d19e72a8766b253c448943e">MSAP_SCRATCHPAD_BOOTABLE_INVALID_STATE</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_BOOTABLE_INVALID_STATE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00282">msap_frames.h:282</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a9092aba1950d0beddf03eb64c7feeb54a15bfae84befb0860ff47183da87a2367"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a9092aba1950d0beddf03eb64c7feeb54a15bfae84befb0860ff47183da87a2367">MSAP_SLEEP_ACCESS_DENIED</a></div><div class="ttdeci">@ MSAP_SLEEP_ACCESS_DENIED</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00368">msap_frames.h:368</a></div></div>
-<div class="ttc" id="amsap__frames_8h_html_af50b6408ede40fa73c1fa8f7659dbcaa"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaa">msap_config_data_item_get_e</a></div><div class="ttdeci">msap_config_data_item_get_e</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00551">msap_frames.h:551</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a8c86fd6b1c2dec688974e89920bf26cbaddc79cc0f950a84e25dca7ea10f5c217"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a8c86fd6b1c2dec688974e89920bf26cbaddc79cc0f950a84e25dca7ea10f5c217">MSAP_SCRATCHPAD_BLOCK_COMPLETED_ERROR</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_BLOCK_COMPLETED_ERROR</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00241">msap_frames.h:241</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a8c86fd6b1c2dec688974e89920bf26cba39d81cdb7717e9a42f67384576d80f19"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a8c86fd6b1c2dec688974e89920bf26cba39d81cdb7717e9a42f67384576d80f19">MSAP_SCRATCHPAD_BLOCK_NOT_ONGOING</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_BLOCK_NOT_ONGOING</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00245">msap_frames.h:245</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a9f22311192eeb6de14455c27f0b6c924ae260dec8fe90c00363700c055ca05c90"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a9f22311192eeb6de14455c27f0b6c924ae260dec8fe90c00363700c055ca05c90">MSAP_SCRATCHPAD_BLOCK_READ_INVALID_STATE</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_BLOCK_READ_INVALID_STATE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00481">msap_frames.h:481</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_adcac49bfd7b8b23309a15712c3595e45a03ab1875224df70bd704ea714eb736b3"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#adcac49bfd7b8b23309a15712c3595e45a03ab1875224df70bd704ea714eb736b3">NEIGHBOR_IS_CLUSTER</a></div><div class="ttdeci">@ NEIGHBOR_IS_CLUSTER</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00050">msap_frames.h:50</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_aa45e97d3cffc2f281aecbfbb890bf344a46ce8e3f8bafb64fd71eed457eb6cd97"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#aa45e97d3cffc2f281aecbfbb890bf344a46ce8e3f8bafb64fd71eed457eb6cd97">MSAP_SCRATCHPAD_ACTION_PROPAGATE_ONLY</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_ACTION_PROPAGATE_ONLY</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00414">msap_frames.h:414</a></div></div>
-<div class="ttc" id="amsap__frames_8h_html_a6979a08b71f61cbf60394fde24db18eda0aeb8591aab981df9c01488504c0f823"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18eda0aeb8591aab981df9c01488504c0f823">MSAP_CONFIG_DATA_ITEM_SET_OUT_OF_MEMORY</a></div><div class="ttdeci">@ MSAP_CONFIG_DATA_ITEM_SET_OUT_OF_MEMORY</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00529">msap_frames.h:529</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a2a22fdcf30e8833fee4f1ad6360f4aeba52ff4294259ebfe5af0ddaf98f6367b5"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a2a22fdcf30e8833fee4f1ad6360f4aeba52ff4294259ebfe5af0ddaf98f6367b5">MSAP_SCRATCHPAD_BOOTABLE_NO_SCRATCHPAD</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_BOOTABLE_NO_SCRATCHPAD</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00283">msap_frames.h:283</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a28ff6eb281df315981eaf95f2ac4b8eea4faf690981d6fcb23694f9f586cce872"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8eea4faf690981d6fcb23694f9f586cce872">MSAP_ATTR_SCRATCHPAD_NUM_BYTES_SIZE</a></div><div class="ttdeci">@ MSAP_ATTR_SCRATCHPAD_NUM_BYTES_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00115">msap_frames.h:115</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a57538830d27151139aad789ec2111d3ca9805e8a3aec6511554313a0d6c6ce974"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a57538830d27151139aad789ec2111d3ca9805e8a3aec6511554313a0d6c6ce974">MSAP_ATTR_MCAST_GROUPS</a></div><div class="ttdeci">@ MSAP_ATTR_MCAST_GROUPS</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00095">msap_frames.h:95</a></div></div>
@@ -2713,16 +2188,13 @@ state_ind</td>
 <div class="ttc" id="amsap__frames_8h_html_a57538830d27151139aad789ec2111d3ca17871a91bca539a12050e4855a5ee985"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a57538830d27151139aad789ec2111d3ca17871a91bca539a12050e4855a5ee985">MSAP_ATTR_RESERVED_1</a></div><div class="ttdeci">@ MSAP_ATTR_RESERVED_1</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00092">msap_frames.h:92</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a47c9febfb66ca4724d05a3a27c6db872af5d025dfe235066998a5845667b82064"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a47c9febfb66ca4724d05a3a27c6db872af5d025dfe235066998a5845667b82064">MSAP_SCRATCHPAD_START_INVALID_SEQ</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_START_INVALID_SEQ</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00211">msap_frames.h:211</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a57538830d27151139aad789ec2111d3ca9b1f602b93681eb9969c4399a2d6eec5"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a57538830d27151139aad789ec2111d3ca9b1f602b93681eb9969c4399a2d6eec5">MSAP_ATTR_AC_LIMITS</a></div><div class="ttdeci">@ MSAP_ATTR_AC_LIMITS</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00087">msap_frames.h:87</a></div></div>
-<div class="ttc" id="amsap__frames_8h_html_af50b6408ede40fa73c1fa8f7659dbcaaa848f1e36f57a6b01a2ade91e3248af98"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaaa848f1e36f57a6b01a2ade91e3248af98">MSAP_CONFIG_DATA_ITEM_GET_SUCCESS</a></div><div class="ttdeci">@ MSAP_CONFIG_DATA_ITEM_GET_SUCCESS</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00554">msap_frames.h:554</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a922e5d2a05c2b9ed810f8ce2985f6b91a40e621348c33f7befd9a6512ea969045"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a922e5d2a05c2b9ed810f8ce2985f6b91a40e621348c33f7befd9a6512ea969045">MSAP_SCAN_NBORS_ACCESS_DENIED</a></div><div class="ttdeci">@ MSAP_SCAN_NBORS_ACCESS_DENIED</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00335">msap_frames.h:335</a></div></div>
-<div class="ttc" id="amsap__frames_8h_html_a6979a08b71f61cbf60394fde24db18edad2ba7852aa6459819ddce1634babe00c"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18edad2ba7852aa6459819ddce1634babe00c">MSAP_CONFIG_DATA_ITEM_SET_INVALID_ROLE</a></div><div class="ttdeci">@ MSAP_CONFIG_DATA_ITEM_SET_INVALID_ROLE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00524">msap_frames.h:524</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a57538830d27151139aad789ec2111d3ca5fc79edc566039543ea005731782d808"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a57538830d27151139aad789ec2111d3ca5fc79edc566039543ea005731782d808">MSAP_ATTR_AUTOSTART</a></div><div class="ttdeci">@ MSAP_ATTR_AUTOSTART</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00093">msap_frames.h:93</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a28ff6eb281df315981eaf95f2ac4b8eea128a29989b43cc21f513445f8f358a9e"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8eea128a29989b43cc21f513445f8f358a9e">MSAP_ATTR_ROUTE_COUNT_SIZE</a></div><div class="ttdeci">@ MSAP_ATTR_ROUTE_COUNT_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00107">msap_frames.h:107</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a3c6f535ce457259402fa8c5ade72e7c5a687555eb1cdd70da56d708fd1448df3b"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a3c6f535ce457259402fa8c5ade72e7c5a687555eb1cdd70da56d708fd1448df3b">MSAP_SCRATCHPAD_CLEAR_SUCCESS</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_CLEAR_SUCCESS</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00185">msap_frames.h:185</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a9f22311192eeb6de14455c27f0b6c924aa0771d2bd4382888f3d53fb9834757ac"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a9f22311192eeb6de14455c27f0b6c924aa0771d2bd4382888f3d53fb9834757ac">MSAP_SCRATCHPAD_BLOCK_READ_INVALID_NUM_BYTES</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_BLOCK_READ_INVALID_NUM_BYTES</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00485">msap_frames.h:485</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a28ff6eb281df315981eaf95f2ac4b8eea5f04d2a2101f924c8fd81ef59931216d"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8eea5f04d2a2101f924c8fd81ef59931216d">MSAP_ATTR_PDU_BUFF_CAP_SIZE</a></div><div class="ttdeci">@ MSAP_ATTR_PDU_BUFF_CAP_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00103">msap_frames.h:103</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a47c9febfb66ca4724d05a3a27c6db872"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a47c9febfb66ca4724d05a3a27c6db872">msap_scratchpad_start_e</a></div><div class="ttdeci">msap_scratchpad_start_e</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00202">msap_frames.h:202</a></div></div>
-<div class="ttc" id="amsap__frames_8h_html_a1510b361ab18c4b2b07fa6a9446a01f2"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a1510b361ab18c4b2b07fa6a9446a01f2">msap_config_data_list_items_e</a></div><div class="ttdeci">msap_config_data_list_items_e</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00577">msap_frames.h:577</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a28ff6eb281df315981eaf95f2ac4b8eea52dea064e6dc312eacdbcce8ff636b2f"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8eea52dea064e6dc312eacdbcce8ff636b2f">MSAP_ATTR_SYSTEM_TIME_SIZE</a></div><div class="ttdeci">@ MSAP_ATTR_SYSTEM_TIME_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00108">msap_frames.h:108</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a3c6f535ce457259402fa8c5ade72e7c5ab35362cecf50100d691e4f145ca7c4b8"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a3c6f535ce457259402fa8c5ade72e7c5ab35362cecf50100d691e4f145ca7c4b8">MSAP_SCRATCHPAD_CLEAR_ACCESS_DENIED</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_CLEAR_ACCESS_DENIED</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00189">msap_frames.h:189</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a9092aba1950d0beddf03eb64c7feeb54a0702657bc2642d17fdbbb840ada75906"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a9092aba1950d0beddf03eb64c7feeb54a0702657bc2642d17fdbbb840ada75906">MSAP_SLEEP_SUCCESS</a></div><div class="ttdeci">@ MSAP_SLEEP_SUCCESS</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00364">msap_frames.h:364</a></div></div>
@@ -2735,14 +2207,10 @@ state_ind</td>
 <div class="ttc" id="amsap__frames_8h_html_a2a22fdcf30e8833fee4f1ad6360f4aeb"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a2a22fdcf30e8833fee4f1ad6360f4aeb">msap_scratchpad_bootable_result_e</a></div><div class="ttdeci">msap_scratchpad_bootable_result_e</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00279">msap_frames.h:279</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a9f22311192eeb6de14455c27f0b6c924a572affc1c147b4d4ad72f12914770d50"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a9f22311192eeb6de14455c27f0b6c924a572affc1c147b4d4ad72f12914770d50">MSAP_SCRATCHPAD_BLOCK_READ_SUCCESS</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_BLOCK_READ_SUCCESS</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00479">msap_frames.h:479</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a28ff6eb281df315981eaf95f2ac4b8eea6f63f0ea3ef6eb36fa8e9ab9aadc2917"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8eea6f63f0ea3ef6eb36fa8e9ab9aadc2917">MSAP_ATTR_PDU_BUFF_USAGE_SIZE</a></div><div class="ttdeci">@ MSAP_ATTR_PDU_BUFF_USAGE_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00102">msap_frames.h:102</a></div></div>
-<div class="ttc" id="amsap__frames_8h_html_af50b6408ede40fa73c1fa8f7659dbcaaaf72aa8ef904e8e076ecb89ab56cb530a"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaaaf72aa8ef904e8e076ecb89ab56cb530a">MSAP_CONFIG_DATA_ITEM_GET_NOT_SUPPORTED</a></div><div class="ttdeci">@ MSAP_CONFIG_DATA_ITEM_GET_NOT_SUPPORTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00559">msap_frames.h:559</a></div></div>
-<div class="ttc" id="amsap__frames_8h_html_af50b6408ede40fa73c1fa8f7659dbcaaa9cab79c96bce21c0348b27c77f466184"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#af50b6408ede40fa73c1fa8f7659dbcaaa9cab79c96bce21c0348b27c77f466184">MSAP_CONFIG_DATA_ITEM_GET_INVALID_ENDPOINT</a></div><div class="ttdeci">@ MSAP_CONFIG_DATA_ITEM_GET_INVALID_ENDPOINT</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00557">msap_frames.h:557</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a57538830d27151139aad789ec2111d3c"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a57538830d27151139aad789ec2111d3c">msap_attr_e</a></div><div class="ttdeci">msap_attr_e</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00078">msap_frames.h:78</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_adcac49bfd7b8b23309a15712c3595e45a1b01567af18765d87487a1bc87bf272c"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#adcac49bfd7b8b23309a15712c3595e45a1b01567af18765d87487a1bc87bf272c">NEIGHBOR_IS_NEXT_HOP</a></div><div class="ttdeci">@ NEIGHBOR_IS_NEXT_HOP</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00046">msap_frames.h:46</a></div></div>
-<div class="ttc" id="amsap__frames_8h_html_a6979a08b71f61cbf60394fde24db18ed"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18ed">msap_config_data_item_set_e</a></div><div class="ttdeci">msap_config_data_item_set_e</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00519">msap_frames.h:519</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a28ff6eb281df315981eaf95f2ac4b8eeaba8aeae5d3ad375eff9d76c3660e8e22"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8eeaba8aeae5d3ad375eff9d76c3660e8e22">MSAP_ATTR_STACK_STATUS_SIZE</a></div><div class="ttdeci">@ MSAP_ATTR_STACK_STATUS_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00101">msap_frames.h:101</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a57538830d27151139aad789ec2111d3ca62730fd654efd5e37f5a6f3fde35e699"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a57538830d27151139aad789ec2111d3ca62730fd654efd5e37f5a6f3fde35e699">MSAP_ATTR_STACK_STATUS</a></div><div class="ttdeci">@ MSAP_ATTR_STACK_STATUS</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00081">msap_frames.h:81</a></div></div>
-<div class="ttc" id="amsap__frames_8h_html_a6979a08b71f61cbf60394fde24db18eda44c95728afcb737abbc7d52909445611"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18eda44c95728afcb737abbc7d52909445611">MSAP_CONFIG_DATA_ITEM_SET_SUCCESS</a></div><div class="ttdeci">@ MSAP_CONFIG_DATA_ITEM_SET_SUCCESS</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00522">msap_frames.h:522</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a9092aba1950d0beddf03eb64c7feeb54"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a9092aba1950d0beddf03eb64c7feeb54">msap_sleep_update_e</a></div><div class="ttdeci">msap_sleep_update_e</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00362">msap_frames.h:362</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_aa45e97d3cffc2f281aecbfbb890bf344a0f0d9c5ee19ecfaa0d43b298373337c6"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#aa45e97d3cffc2f281aecbfbb890bf344a0f0d9c5ee19ecfaa0d43b298373337c6">MSAP_SCRATCHPAD_ACTION_PROPAGATE_AND_PROCESS_WITH_DELAY</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_ACTION_PROPAGATE_AND_PROCESS_WITH_DELAY</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00419">msap_frames.h:419</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a57538830d27151139aad789ec2111d3ca9e45269f9531c3c5bbefcfa41bbd3108"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a57538830d27151139aad789ec2111d3ca9e45269f9531c3c5bbefcfa41bbd3108">MSAP_ATTR_SYSTEM_TIME</a></div><div class="ttdeci">@ MSAP_ATTR_SYSTEM_TIME</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00086">msap_frames.h:86</a></div></div>
@@ -2757,9 +2225,6 @@ state_ind</td>
 <div class="ttc" id="amsap__frames_8h_html_a9092aba1950d0beddf03eb64c7feeb54a0ded2771a839ea016c0cca00938d5ab9"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a9092aba1950d0beddf03eb64c7feeb54a0ded2771a839ea016c0cca00938d5ab9">MSAP_SLEEP_INVALID_ROLE</a></div><div class="ttdeci">@ MSAP_SLEEP_INVALID_ROLE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00366">msap_frames.h:366</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a2a22fdcf30e8833fee4f1ad6360f4aebaf2e53b50d805f8a5d67bb353528c0f04"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a2a22fdcf30e8833fee4f1ad6360f4aebaf2e53b50d805f8a5d67bb353528c0f04">MSAP_SCRATCHPAD_BOOTABLE_ACCESS_DENIED</a></div><div class="ttdeci">@ MSAP_SCRATCHPAD_BOOTABLE_ACCESS_DENIED</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00284">msap_frames.h:284</a></div></div>
 <div class="ttc" id="amsap__frames_8h_html_a57538830d27151139aad789ec2111d3cab03c34dc7c616c2eacdb573cec4805e8"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a57538830d27151139aad789ec2111d3cab03c34dc7c616c2eacdb573cec4805e8">MSAP_ATTR_AC_RANGE</a></div><div class="ttdeci">@ MSAP_ATTR_AC_RANGE</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00094">msap_frames.h:94</a></div></div>
-<div class="ttc" id="amsap__frames_8h_html_a6979a08b71f61cbf60394fde24db18edadc516ccef642bad20962fe03273a0aad"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18edadc516ccef642bad20962fe03273a0aad">MSAP_CONFIG_DATA_ITEM_SET_INVALID_ENDPOINT</a></div><div class="ttdeci">@ MSAP_CONFIG_DATA_ITEM_SET_INVALID_ENDPOINT</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00527">msap_frames.h:527</a></div></div>
-<div class="ttc" id="amsap__frames_8h_html_a6979a08b71f61cbf60394fde24db18edaadfb3603f181b10ca30ea8a20bf67f9c"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18edaadfb3603f181b10ca30ea8a20bf67f9c">MSAP_CONFIG_DATA_ITEM_SET_NOT_SUPPORTED</a></div><div class="ttdeci">@ MSAP_CONFIG_DATA_ITEM_SET_NOT_SUPPORTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00533">msap_frames.h:533</a></div></div>
-<div class="ttc" id="amsap__frames_8h_html_a6979a08b71f61cbf60394fde24db18eda3268d22a26ff18809193b8b14ce6636c"><div class="ttname"><a href="../../d8/d21/msap__frames_8h.html#a6979a08b71f61cbf60394fde24db18eda3268d22a26ff18809193b8b14ce6636c">MSAP_CONFIG_DATA_ITEM_SET_INVALID_CONTENT</a></div><div class="ttdeci">@ MSAP_CONFIG_DATA_ITEM_SET_INVALID_CONTENT</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d21/msap__frames_8h_source.html#l00531">msap_frames.h:531</a></div></div>
 <!-- HTML footer for doxygen 1.8.17-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

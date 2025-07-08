@@ -1,18 +1,10 @@
 var csap__frames_8h =
 [
-    [ "csap_attr_key_pair_t", "de/d59/csap__frames_8h.html#dd/d14/structcsap__attr__key__pair__t", [
-      [ "key_pair", "de/d59/csap__frames_8h.html#ad27516f71d552288eb1b4a7fb14d2ebe", null ],
-      [ "sequence_number", "de/d59/csap__frames_8h.html#a2ee05bf9e631381c7730c7f67b69e85b", null ]
-    ] ],
     [ "csap_reset_req_t", "de/d59/csap__frames_8h.html#d8/ded/structcsap__reset__req__t", [
       [ "reset_key", "de/d59/csap__frames_8h.html#af125038baebe2070b73a1b1716c4cf3e", null ]
     ] ],
     [ "frame_csap", "de/d59/csap__frames_8h.html#d5/d67/unionframe__csap", [
       [ "reset_req", "de/d59/csap__frames_8h.html#ab97cf99bcd004bd0fc4a2c31faa888cb", null ]
-    ] ],
-    [ "csap_attr_key_pair_t.key_pair", "de/d59/csap__frames_8h.html#d0/d72/structcsap__attr__key__pair__t_8key__pair", [
-      [ "authentication", "de/d59/csap__frames_8h.html#ae699ac5941191f56864eaf27f25b6670", null ],
-      [ "encryption", "de/d59/csap__frames_8h.html#afe98ae6191c860ccd84c4c1bd32be6b1", null ]
     ] ],
     [ "radio_channel_t", "de/d59/csap__frames_8h.html#a57d6b5c7c5454a8ffb6a4726a3c2ecdb", null ],
     [ "attribute_reset_result_e", "de/d59/csap__frames_8h.html#a33d9cfc3790b059813f4b55dfe2ce3dc", [
@@ -44,9 +36,7 @@ var csap__frames_8h =
       [ "CSAP_ATTR_APPCFG_MAX_SIZE", "de/d59/csap__frames_8h.html#ab94c0fc8c2b40fac43bfa24a682755b9a188b1c3dbfdff6396e8671338fcec3a3", null ],
       [ "CSAP_ATTR_HWMAGIC", "de/d59/csap__frames_8h.html#ab94c0fc8c2b40fac43bfa24a682755b9a2408a4b52ac084efd671ebbd0ed8c8b9", null ],
       [ "CSAP_ATTR_STACK_PROFILE", "de/d59/csap__frames_8h.html#ab94c0fc8c2b40fac43bfa24a682755b9ad29b6a59b4a4d5acd64e3380bbb94ed4", null ],
-      [ "CSAP_ATTR_RESERVED_1", "de/d59/csap__frames_8h.html#ab94c0fc8c2b40fac43bfa24a682755b9af96713e54d14c50f1248f32fd7bd5fc7", null ],
-      [ "CSAP_ATTR_NETWORK_KEY_PAIR", "de/d59/csap__frames_8h.html#ab94c0fc8c2b40fac43bfa24a682755b9ae9d0d22efd1a07a25acacbba9665e741", null ],
-      [ "CSAP_ATTR_MANAGEMENT_KEY_PAIR", "de/d59/csap__frames_8h.html#ab94c0fc8c2b40fac43bfa24a682755b9add21cfb527bb4a60f6bc37e7811581d6", null ]
+      [ "CSAP_ATTR_RESERVED_1", "de/d59/csap__frames_8h.html#ab94c0fc8c2b40fac43bfa24a682755b9af96713e54d14c50f1248f32fd7bd5fc7", null ]
     ] ],
     [ "csap_attr_size_e", "de/d59/csap__frames_8h.html#affa7f91e558c86a776e25a749277ecfb", [
       [ "CSAP_ATTR_NODE_ID_SIZE", "de/d59/csap__frames_8h.html#affa7f91e558c86a776e25a749277ecfba57f5fbfdf2454d22c6470364431d5e3d", null ],
@@ -73,8 +63,7 @@ var csap__frames_8h =
       [ "CSAP_ATTR_FEATURE_LOCK_KEY_SIZE", "de/d59/csap__frames_8h.html#affa7f91e558c86a776e25a749277ecfba0f6407745eabf0c496a791b736aee81f", null ],
       [ "CSAP_ATTR_RESERVED_CHANNELS_SIZE", "de/d59/csap__frames_8h.html#affa7f91e558c86a776e25a749277ecfba76fde50fc02ffc6cb6bcad177883ba94", null ],
       [ "CSAP_ATTR_RESERVED_1_SIZE", "de/d59/csap__frames_8h.html#affa7f91e558c86a776e25a749277ecfba5fbb0b0cda1085fc06f80b71e7daae59", null ],
-      [ "CSAP_ATTR_RESERVED_2_SIZE", "de/d59/csap__frames_8h.html#affa7f91e558c86a776e25a749277ecfba212ff1c537cbd4fed6c7628c769a5c45", null ],
-      [ "CSAP_ATTR_KEY_PAIR_SIZE", "de/d59/csap__frames_8h.html#affa7f91e558c86a776e25a749277ecfba0260eff7ab93d2a8b920d3b51a22b26f", null ]
+      [ "CSAP_ATTR_RESERVED_2_SIZE", "de/d59/csap__frames_8h.html#affa7f91e558c86a776e25a749277ecfba212ff1c537cbd4fed6c7628c769a5c45", null ]
     ] ],
     [ "csap_reset_e", "de/d59/csap__frames_8h.html#a6ab11144fff94c40dcaaaaa54df9ea13", [
       [ "CSAP_RESET_OK", "de/d59/csap__frames_8h.html#a6ab11144fff94c40dcaaaaa54df9ea13a49213d40f2a88ef51d834fea385b1c32", null ],

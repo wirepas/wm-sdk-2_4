@@ -17,13 +17,6 @@
 <script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-  /* @license-end */
-</script>
 <link rel="search" href="../../search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 <link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -54,33 +47,19 @@
 var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 /* @license-end */
 </script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="../../pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="../../annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li class="current"><a href="../../files.html"><span>Files</span></a></li>
-      <li><a href="../../examples.html"><span>Example&#160;applications</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-          <div class="left">
-            <form id="FSearchBox" action="../../search.html" method="get">
-              <img id="MSearchSelect" src="../../search/mag.png" alt=""/>
-              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
-                     onfocus="searchBox.OnSearchFieldFocus(true)" 
-                     onblur="searchBox.OnSearchFieldFocus(false)"/>
-            </form>
-          </div><div class="right"></div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="../../files.html"><span>File&#160;List</span></a></li>
-      <li><a href="../../globals.html"><span>Globals</span></a></li>
-    </ul>
-  </div>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,true,'search.html','Search');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -137,7 +116,7 @@ Typedefs</h2></td></tr>
 <tr class="memdesc:a602aad54057eaa2a5afb26888e9b1298"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set data sent tracking callback.  <a href="../../d6/d50/wms__data_8h.html#a602aad54057eaa2a5afb26888e9b1298">More...</a><br /></td></tr>
 <tr class="separator:a602aad54057eaa2a5afb26888e9b1298"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abcc8bb343266f3fc98d25590ed9a66a6"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80">app_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#abcc8bb343266f3fc98d25590ed9a66a6">app_lib_data_set_new_app_config_cb_f</a>) (<a class="el" href="../../d6/d50/wms__data_8h.html#aca1298154f7a3d7be77c64ca602639ed">app_lib_data_new_app_config_cb_f</a> cb)</td></tr>
-<tr class="memdesc:abcc8bb343266f3fc98d25590ed9a66a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the callback function to be called when new <code>appconfig</code> "app config data" is received.  <a href="../../d6/d50/wms__data_8h.html#abcc8bb343266f3fc98d25590ed9a66a6">More...</a><br /></td></tr>
+<tr class="memdesc:abcc8bb343266f3fc98d25590ed9a66a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the callback function to be called when new app config data is received.  <a href="../../d6/d50/wms__data_8h.html#abcc8bb343266f3fc98d25590ed9a66a6">More...</a><br /></td></tr>
 <tr class="separator:abcc8bb343266f3fc98d25590ed9a66a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab009dfe9504a81d9938b1d863d4a93db"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../d6/d50/wms__data_8h.html#d4/def/structapp__lib__data__data__size__t">app_lib_data_data_size_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#ab009dfe9504a81d9938b1d863d4a93db">app_lib_data_get_data_max_num_bytes_f</a>) (void)</td></tr>
 <tr class="memdesc:ab009dfe9504a81d9938b1d863d4a93db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the maximum number of bytes per data packet or data segment.  <a href="../../d6/d50/wms__data_8h.html#ab009dfe9504a81d9938b1d863d4a93db">More...</a><br /></td></tr>
@@ -155,35 +134,17 @@ Typedefs</h2></td></tr>
 <tr class="memdesc:abb2289fea975f61fe189f4310578c0df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allow or block reception The application may temporarily tell the stack to not call the reception data reception callbacks (set with service <a class="el" href="../../d6/d50/wms__data_8h.html#a108548eef01aa6b4e3db667ef3c1c780">lib_data-&gt;setDataReceivedCb()</a>), if an external interface is not responding, for example. The stack will then keep the received packets in its internal buffers until reception is allowed again.  <a href="../../d6/d50/wms__data_8h.html#abb2289fea975f61fe189f4310578c0df">More...</a><br /></td></tr>
 <tr class="separator:abb2289fea975f61fe189f4310578c0df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96f7b21d1f7992439c9526b3a4d27530"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5">app_lib_data_app_config_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#a96f7b21d1f7992439c9526b3a4d27530">app_lib_data_read_app_config_f</a>) (uint8_t *bytes, uint8_t *seq, uint16_t *interval)</td></tr>
-<tr class="memdesc:a96f7b21d1f7992439c9526b3a4d27530"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read <code>appconfig</code> "app config".  <a href="../../d6/d50/wms__data_8h.html#a96f7b21d1f7992439c9526b3a4d27530">More...</a><br /></td></tr>
+<tr class="memdesc:a96f7b21d1f7992439c9526b3a4d27530"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read app config.  <a href="../../d6/d50/wms__data_8h.html#a96f7b21d1f7992439c9526b3a4d27530">More...</a><br /></td></tr>
 <tr class="separator:a96f7b21d1f7992439c9526b3a4d27530"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37af27daa2e4777b89b13f2f8440b8b9"><td class="memItemLeft" align="right" valign="top">typedef size_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#a37af27daa2e4777b89b13f2f8440b8b9">app_lib_data_get_app_config_num_bytes_f</a>) (void)</td></tr>
-<tr class="memdesc:a37af27daa2e4777b89b13f2f8440b8b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get size of <code>appconfig</code> "app config".  <a href="../../d6/d50/wms__data_8h.html#a37af27daa2e4777b89b13f2f8440b8b9">More...</a><br /></td></tr>
+<tr class="memdesc:a37af27daa2e4777b89b13f2f8440b8b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get size of app config.  <a href="../../d6/d50/wms__data_8h.html#a37af27daa2e4777b89b13f2f8440b8b9">More...</a><br /></td></tr>
 <tr class="separator:a37af27daa2e4777b89b13f2f8440b8b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68d651aed3da98281a9e46f4145b4848"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5">app_lib_data_app_config_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#a68d651aed3da98281a9e46f4145b4848">app_lib_data_write_app_config_data_f</a>) (const uint8_t *bytes)</td></tr>
-<tr class="memdesc:a68d651aed3da98281a9e46f4145b4848"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write <code>appconfig</code> "app config DATA".  <a href="../../d6/d50/wms__data_8h.html#a68d651aed3da98281a9e46f4145b4848">More...</a><br /></td></tr>
+<tr class="memdesc:a68d651aed3da98281a9e46f4145b4848"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write app config DATA.  <a href="../../d6/d50/wms__data_8h.html#a68d651aed3da98281a9e46f4145b4848">More...</a><br /></td></tr>
 <tr class="separator:a68d651aed3da98281a9e46f4145b4848"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69ac79c096cae0e747496be4c681b53f"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25">app_lib_data_config_data_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#a69ac79c096cae0e747496be4c681b53f">app_lib_data_set_config_data_item_f</a>) (const <a class="el" href="../../d6/d50/wms__data_8h.html#d7/d76/structapp__lib__config__data__item__t">app_lib_config_data_item_t</a> *item)</td></tr>
-<tr class="memdesc:a69ac79c096cae0e747496be4c681b53f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the config data item of a specific endpoint.  <a href="../../d6/d50/wms__data_8h.html#a69ac79c096cae0e747496be4c681b53f">More...</a><br /></td></tr>
-<tr class="separator:a69ac79c096cae0e747496be4c681b53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af188f75bb6012b292b08e93771f5c371"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25">app_lib_data_config_data_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#af188f75bb6012b292b08e93771f5c371">app_lib_data_get_config_data_item_f</a>) (<a class="el" href="../../d6/d50/wms__data_8h.html#d7/d76/structapp__lib__config__data__item__t">app_lib_config_data_item_t</a> *item)</td></tr>
-<tr class="memdesc:af188f75bb6012b292b08e93771f5c371"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the config data item of a specific endpoint.  <a href="../../d6/d50/wms__data_8h.html#af188f75bb6012b292b08e93771f5c371">More...</a><br /></td></tr>
-<tr class="separator:af188f75bb6012b292b08e93771f5c371"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fee82cb0b37cc0069352dabe7ae025b"><td class="memItemLeft" align="right" valign="top">typedef uint8_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#a0fee82cb0b37cc0069352dabe7ae025b">app_lib_data_get_all_config_data_endpoints_f</a>) (uint16_t *endpoints, uint8_t max_items)</td></tr>
-<tr class="memdesc:a0fee82cb0b37cc0069352dabe7ae025b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all the config data endpoints.  <a href="../../d6/d50/wms__data_8h.html#a0fee82cb0b37cc0069352dabe7ae025b">More...</a><br /></td></tr>
-<tr class="separator:a0fee82cb0b37cc0069352dabe7ae025b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3b731e4b55dd49490913e17f2c7a197"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#af3b731e4b55dd49490913e17f2c7a197">app_lib_data_new_config_data_item_cb_f</a>) (const <a class="el" href="../../d6/d50/wms__data_8h.html#d7/d76/structapp__lib__config__data__item__t">app_lib_config_data_item_t</a> *item)</td></tr>
-<tr class="memdesc:af3b731e4b55dd49490913e17f2c7a197"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback to be notified when a new config data item is received.  <a href="../../d6/d50/wms__data_8h.html#af3b731e4b55dd49490913e17f2c7a197">More...</a><br /></td></tr>
-<tr class="separator:af3b731e4b55dd49490913e17f2c7a197"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82e2c31af97ae5b9ef38e1ef262589b8"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80">app_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#a82e2c31af97ae5b9ef38e1ef262589b8">app_lib_data_set_new_config_data_item_cb_f</a>) (<a class="el" href="../../d6/d50/wms__data_8h.html#af3b731e4b55dd49490913e17f2c7a197">app_lib_data_new_config_data_item_cb_f</a> cb)</td></tr>
-<tr class="memdesc:a82e2c31af97ae5b9ef38e1ef262589b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the callback function to be called when a new config data item is received.  <a href="../../d6/d50/wms__data_8h.html#a82e2c31af97ae5b9ef38e1ef262589b8">More...</a><br /></td></tr>
-<tr class="separator:a82e2c31af97ae5b9ef38e1ef262589b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1f635574fae483de32201368ec6b6d0"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5">app_lib_data_app_config_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#ab1f635574fae483de32201368ec6b6d0">app_lib_data_write_diagnostic_interval_f</a>) (uint16_t interval)</td></tr>
-<tr class="memdesc:ab1f635574fae483de32201368ec6b6d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write <code>appconfig</code> "Diagnostic interval".  <a href="../../d6/d50/wms__data_8h.html#ab1f635574fae483de32201368ec6b6d0">More...</a><br /></td></tr>
+<tr class="memdesc:ab1f635574fae483de32201368ec6b6d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write Diagnostic interval.  <a href="../../d6/d50/wms__data_8h.html#ab1f635574fae483de32201368ec6b6d0">More...</a><br /></td></tr>
 <tr class="separator:ab1f635574fae483de32201368ec6b6d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f74d7e82ce1454b1cccc0ec2031f460"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80">app_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#a9f74d7e82ce1454b1cccc0ec2031f460">app_lib_data_disable_boot_diagnostics_f</a>) (void)</td></tr>
-<tr class="memdesc:a9f74d7e82ce1454b1cccc0ec2031f460"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable power on boot diagnostics.  <a href="../../d6/d50/wms__data_8h.html#a9f74d7e82ce1454b1cccc0ec2031f460">More...</a><br /></td></tr>
-<tr class="separator:a9f74d7e82ce1454b1cccc0ec2031f460"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa25a094a9e377a22976a9c76b9eb66a6"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80">app_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#aa25a094a9e377a22976a9c76b9eb66a6">app_lib_data_set_local_mc_f</a>) (const <a class="el" href="../../d6/d50/wms__data_8h.html#db/d19/structapp__lib__data__local__mc__info__t">app_lib_data_local_mc_info_t</a> *info)</td></tr>
 <tr class="memdesc:aa25a094a9e377a22976a9c76b9eb66a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set local multicast functionality.  <a href="../../d6/d50/wms__data_8h.html#aa25a094a9e377a22976a9c76b9eb66a6">More...</a><br /></td></tr>
 <tr class="separator:aa25a094a9e377a22976a9c76b9eb66a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,9 +168,6 @@ Data Structures</h2></td></tr>
 <tr class="separator:d6/de0/structapp__lib__data__sent__status__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:d4/def/structapp__lib__data__data__size__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#d4/def/structapp__lib__data__data__size__t">app_lib_data_data_size_t</a></td></tr>
 <tr class="separator:d4/def/structapp__lib__data__data__size__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:d7/d76/structapp__lib__config__data__item__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#d7/d76/structapp__lib__config__data__item__t">app_lib_config_data_item_t</a></td></tr>
-<tr class="memdesc:d7/d76/structapp__lib__config__data__item__t"><td class="mdescLeft">&#160;</td><td class="mdescRight">Config Data Item information.  <a href="../../d6/d50/wms__data_8h.html#d7/d76/structapp__lib__config__data__item__t">More...</a><br /></td></tr>
-<tr class="separator:d7/d76/structapp__lib__config__data__item__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:db/d19/structapp__lib__data__local__mc__info__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#db/d19/structapp__lib__data__local__mc__info__t">app_lib_data_local_mc_info_t</a></td></tr>
 <tr class="memdesc:db/d19/structapp__lib__data__local__mc__info__t"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information on setting local multicast functionality. To be used with service <a class="el" href="../../d6/d50/wms__data_8h.html#aa25a094a9e377a22976a9c76b9eb66a6">lib_data-&gt;setLocalMulticastInfo()</a>.  <a href="../../d6/d50/wms__data_8h.html#db/d19/structapp__lib__data__local__mc__info__t">More...</a><br /></td></tr>
 <tr class="separator:db/d19/structapp__lib__data__local__mc__info__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -271,8 +229,7 @@ Enumerations</h2></td></tr>
 <a class="el" href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5acb59466353d5324cffe17afa496844c4">APP_LIB_DATA_APP_CONFIG_RES_INVALID_SEQ</a> = 3, 
 <br />
 &#160;&#160;<a class="el" href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5af4dc7da81f898934f9127869aacd37b0">APP_LIB_DATA_APP_CONFIG_RES_INVALID_INTERVAL</a> = 4, 
-<a class="el" href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5a99898fcc462142af4e21f8e834681218">APP_LIB_DATA_APP_CONFIG_RES_INVALID_NULL_POINTER</a> = 5, 
-<a class="el" href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5adbcc40e86ac543c8c36562e344909b07">APP_LIB_DATA_APP_CONFIG_RES_OUT_OF_MEMORY</a> = 6
+<a class="el" href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5a99898fcc462142af4e21f8e834681218">APP_LIB_DATA_APP_CONFIG_RES_INVALID_NULL_POINTER</a> = 5
 <br />
  }</td></tr>
 <tr class="memdesc:af4e3fdf65e16c2dc9ae1aa415d541bb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Result of the app config.  <a href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5">More...</a><br /></td></tr>
@@ -282,22 +239,6 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a932d5f262cc8230a48f61471df3918d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fragmentation mode. Use to specify if reassembly is done by stack or by application itself.  <a href="../../d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7">More...</a><br /></td></tr>
 <tr class="separator:a932d5f262cc8230a48f61471df3918d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae04e4cc31e68561b6ce5f0bcaea25e25"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25">app_lib_data_config_data_res_e</a> { <br />
-&#160;&#160;<a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25ab60e02552d6ee46d8ab1c55e59fff153">APP_LIB_DATA_CONFIG_DATA_RES_SUCCESS</a> = 0, 
-<a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a493bd2a4f4f03c04a357ce25aeefc5cc">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_ROLE</a> = 1, 
-<a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25aec1c50c85765aa6632cc9be3b805d44e">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_ENDPOINT</a> = 2, 
-<a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a2b275a24da3fa9a2a4b9b0408204365f">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_NULL_POINTER</a> = 3, 
-<br />
-&#160;&#160;<a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a177f00f63f33dbac9dcdb6192f6feeea">APP_LIB_DATA_CONFIG_DATA_RES_OUT_OF_MEMORY</a> = 4, 
-<a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25ab5865c4c2e801b918dc144a4b5a0c871">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_CONTENT</a> = 5, 
-<a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a03b3b0f03ac1c6df45f7cc16ffddbf10">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_INPUT</a> = 6, 
-<a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a2b29759b95fa241123b44eaebfad6e25">APP_LIB_DATA_CONFIG_DATA_RES_NOT_SUPPORTED</a> = 7, 
-<br />
-&#160;&#160;<a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a8fd4d7f109a911b219c04cc9be1c3baf">APP_LIB_DATA_CONFIG_DATA_RES_INTERNAL_ERROR</a> = 8
-<br />
- }</td></tr>
-<tr class="memdesc:ae04e4cc31e68561b6ce5f0bcaea25e25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Result of the config data item.  <a href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25">More...</a><br /></td></tr>
-<tr class="separator:ae04e4cc31e68561b6ce5f0bcaea25e25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -305,7 +246,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:a443fb0b86da06d9d1d72b6638e2fff98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Library symbolic name <br  />
   <a href="../../d6/d50/wms__data_8h.html#a443fb0b86da06d9d1d72b6638e2fff98">More...</a><br /></td></tr>
 <tr class="separator:a443fb0b86da06d9d1d72b6638e2fff98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a137d61eb26723cafd60696afd00ba0f2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#a137d61eb26723cafd60696afd00ba0f2">APP_LIB_DATA_VERSION</a>&#160;&#160;&#160;0x211</td></tr>
+<tr class="memitem:a137d61eb26723cafd60696afd00ba0f2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#a137d61eb26723cafd60696afd00ba0f2">APP_LIB_DATA_VERSION</a>&#160;&#160;&#160;0x20D</td></tr>
 <tr class="memdesc:a137d61eb26723cafd60696afd00ba0f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum supported library version.  <a href="../../d6/d50/wms__data_8h.html#a137d61eb26723cafd60696afd00ba0f2">More...</a><br /></td></tr>
 <tr class="separator:a137d61eb26723cafd60696afd00ba0f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a2e44ccee2f7e4393d38f9072bd1841"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d50/wms__data_8h.html#a6a2e44ccee2f7e4393d38f9072bd1841">APP_LIB_DATA_NO_TRACKING_ID</a>&#160;&#160;&#160;(<a class="el" href="../../d6/d50/wms__data_8h.html#a3a8535cade8b081cfee20f0f4b9b0e65">app_lib_data_tracking_id_t</a>)(-1)</td></tr>
@@ -345,7 +286,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>If reception is not allowed and there is buffered data, calling this function with a parameter of true will cause the reception callback to be called right away </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00646">646</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00648">648</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -372,7 +313,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d6/d50/wms__data_8h.html#ad3aa19c96da7da312cd8fe99ea34554b">app_lib_data_receive_res_e</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00402">402</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00404">404</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -397,66 +338,7 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00414">414</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
-
-</div>
-</div>
-<a id="a9f74d7e82ce1454b1cccc0ec2031f460"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f74d7e82ce1454b1cccc0ec2031f460">&#9670;&nbsp;</a></span>app_lib_data_disable_boot_diagnostics_f</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80">app_res_e</a>(* app_lib_data_disable_boot_diagnostics_f) (void)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Disable power on boot diagnostics. </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80aeea5339a84921debd191e0052d94e023">APP_RES_UNSPECIFIED_ERROR</a> if the boot diagnostics have already been disabled, or were created already.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>In a network where many devices are powered on at the same time it can be useful to disable power on boot diagnostics to avoid network congestion, the stack will then not send power on boot diagnostics packets.</dd></dl>
-<p>This function must be called at bootup of the device before the stack is started. It will prevent power on boot diagnostics to be sent. If the function is called after the boot diagnostics packet has already been sent, call will return <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80aeea5339a84921debd191e0052d94e023">APP_RES_UNSPECIFIED_ERROR</a>. Also if called multiple times, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80aeea5339a84921debd191e0052d94e023">APP_RES_UNSPECIFIED_ERROR</a> is returned as well.</p>
-<p>Consider asserting APP_RES_OK in test code.</p>
-<p>Example: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> App_init(<span class="keyword">const</span> <a class="code" href="../../da/dbb/wms__app_8h.html#d6/d81/structapp__global__functions__t">app_global_functions_t</a>* functions)</div>
-<div class="line">{</div>
-<div class="line">     lib_data-&gt;disableBootDiagnostics();</div>
-<div class="line">     <span class="comment">// start the stack</span></div>
-<div class="line">     lib_state-&gt;startStack();</div>
-<div class="line">}</div>
-</div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00919">919</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
-
-</div>
-</div>
-<a id="a0fee82cb0b37cc0069352dabe7ae025b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0fee82cb0b37cc0069352dabe7ae025b">&#9670;&nbsp;</a></span>app_lib_data_get_all_config_data_endpoints_f</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef uint8_t(* app_lib_data_get_all_config_data_endpoints_f) (uint16_t *endpoints, uint8_t max_items)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get all the config data endpoints. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">endpoints</td><td>Preallocated array of endpoints stored in the node with at least <code>max_items</code> items. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">max_items</td><td>Maximum number of endpoints that can be retrieved</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Number of retrieved endpoints</dd></dl>
-<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#define MAX_ITEMS 6</span></div>
-<div class="line"> </div>
-<div class="line">uint16_t endpoints[MAX_ITEMS];</div>
-<div class="line"> </div>
-<div class="line">uint8_t amount_endpoints = lib_data-&gt;getAllConfigDataEndpoints(endpoints, MAX_ITEMS);</div>
-</div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00831">831</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00416">416</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -472,42 +354,11 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get size of <code>appconfig</code> "app config". </p>
+<p>Get size of app config. </p>
 <dl class="section return"><dt>Returns</dt><dd>App config size in bytes</dd></dl>
 <p>Example of use: </p><div class="fragment"><div class="line"><span class="keywordtype">size_t</span> app_config_size = lib_data-&gt;getAppConfigNumBytes();</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00685">685</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
-
-</div>
-</div>
-<a id="af188f75bb6012b292b08e93771f5c371"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af188f75bb6012b292b08e93771f5c371">&#9670;&nbsp;</a></span>app_lib_data_get_config_data_item_f</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25">app_lib_data_config_data_res_e</a>(* app_lib_data_get_config_data_item_f) (<a class="el" href="../../d6/d50/wms__data_8h.html#d7/d76/structapp__lib__config__data__item__t">app_lib_config_data_item_t</a> *item)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the config data item of a specific endpoint. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">item</td><td>Pointer to the config data item information where it is written. <a class="el" href="../../d6/d50/wms__data_8h.html#a3eb60371888da20c911c2062091ac81e">app_lib_config_data_item_t::bytes</a> must be a valid pointer to a buffer and <a class="el" href="../../d6/d50/wms__data_8h.html#a09294ef650c9488fa9cc94e0704e91b5">app_lib_config_data_item_t::endpoint</a> must contain the endpoint to retrieve <a class="el" href="../../d6/d50/wms__data_8h.html#ab2b3adeb2a67e656ff030b56727fd0ac">app_lib_config_data_item_t::length</a> will be set based on the retrieved data.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25ab60e02552d6ee46d8ab1c55e59fff153">APP_LIB_DATA_CONFIG_DATA_RES_SUCCESS</a> if successful. See <a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25">app_lib_data_config_data_res_e</a> for other result codes.</dd></dl>
-<p>Example: </p><div class="fragment"><div class="line">uint8_t config_data_payload[<a class="code" href="../../d6/d50/wms__data_8h.html#ad30da92f672d77497c900d927d198359">APP_LIB_DATA_MAX_APP_CONFIG_NUM_BYTES</a>];</div>
-<div class="line"><a class="code" href="../../d6/d50/wms__data_8h.html#d7/d76/structapp__lib__config__data__item__t">app_lib_config_data_item_t</a> config_data_item = {</div>
-<div class="line">     .<a class="code" href="../../d6/d50/wms__data_8h.html#a3eb60371888da20c911c2062091ac81e">bytes</a>    = config_data_payload,</div>
-<div class="line">     .endpoint = 0x01,</div>
-<div class="line">};</div>
-<div class="line">lib_data-&gt;getConfigDataItem(&amp;config_data_item);</div>
-</div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00809">809</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00687">687</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -529,7 +380,7 @@ Macros</h2></td></tr>
 <div class="line">max_lengths = lib_data-&gt;getDataMaxNumBytes();</div>
 </div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>Maximum size of data packet in bytes </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00550">550</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00552">552</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -551,7 +402,7 @@ Macros</h2></td></tr>
 </div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>Total number of data packets that can be buffered </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>When packets are send with <a class="el" href="../../d6/d50/wms__data_8h.html#a9ae6095889898db72257eeca385eee7b">lib_data-&gt;sendData()</a> without tracking (tracking_id == <a class="el" href="../../d6/d50/wms__data_8h.html#a6a2e44ccee2f7e4393d38f9072bd1841">APP_LIB_DATA_NO_TRACKING_ID</a>), there are plenty of more buffers available than with tracking enabled. For tracking enabled, there is only 16 buffers available. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00573">573</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00575">575</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -580,7 +431,7 @@ Macros</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if stack is running, otherwise <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80acf4d6254abe9760ec1ad9403b4af6cdc">APP_RES_INVALID_STACK_STATE</a> </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>When packets are send with <a class="el" href="../../d6/d50/wms__data_8h.html#a9ae6095889898db72257eeca385eee7b">lib_data-&gt;sendData()</a> without tracking (tracking_id == <a class="el" href="../../d6/d50/wms__data_8h.html#a6a2e44ccee2f7e4393d38f9072bd1841">APP_LIB_DATA_NO_TRACKING_ID</a>), there are plenty of more buffers available than with tracking enabled. For tracking enabled, there is only 16 buffers available. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00602">602</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00604">604</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -608,33 +459,7 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00433">433</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
-
-</div>
-</div>
-<a id="af3b731e4b55dd49490913e17f2c7a197"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3b731e4b55dd49490913e17f2c7a197">&#9670;&nbsp;</a></span>app_lib_data_new_config_data_item_cb_f</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void(* app_lib_data_new_config_data_item_cb_f) (const <a class="el" href="../../d6/d50/wms__data_8h.html#d7/d76/structapp__lib__config__data__item__t">app_lib_config_data_item_t</a> *item)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Callback to be notified when a new config data item is received. </p>
-<p>New config data item callback is called whenever a new config data item is received and when the node first joins a network. There is no return value from the callback.</p>
-<p>The application sets a new app config callback by calling <a class="el" href="../../d6/d50/wms__data_8h.html#af3b731e4b55dd49490913e17f2c7a197">lib_data-&gt;setConfigDataItemReceivedCb()</a>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">item</td><td>New config data item </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00846">846</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00435">435</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -650,7 +475,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Read <code>appconfig</code> "app config". </p>
+<p>Read app config. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">bytes</td><td>Pointer to a buffer for app config data </td></tr>
@@ -667,7 +492,7 @@ Macros</h2></td></tr>
 <div class="line">                        &amp;appconfig_seq,</div>
 <div class="line">                        &amp;appconfig_interval);</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00671">671</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00673">673</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -685,7 +510,7 @@ Macros</h2></td></tr>
 
 <p>Send data. </p>
 <p>The packet to send is represented as <a class="el" href="../../d6/d50/wms__data_8h.html#d7/d10/structapp__lib__data__to__send__t">app_lib_data_to_send_t</a> struct.</p>
-<p>Example: See example application <code>custom_app/app.c</code> "custom_app"</p>
+<p>Example: See example application <a class="el" href="../../db/d83/custom_app_2app_8c-example.html">custom_app</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>Data to send </td></tr>
@@ -694,45 +519,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164acf63322bd1c34794b230e2120116cfbb">APP_LIB_DATA_SEND_RES_SUCCESS</a> means that data was accepted for sending. See <a class="el" href="../../d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164">app_lib_data_send_res_e</a> for other result codes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00619">619</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
-
-</div>
-</div>
-<a id="a69ac79c096cae0e747496be4c681b53f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69ac79c096cae0e747496be4c681b53f">&#9670;&nbsp;</a></span>app_lib_data_set_config_data_item_f</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25">app_lib_data_config_data_res_e</a>(* app_lib_data_set_config_data_item_f) (const <a class="el" href="../../d6/d50/wms__data_8h.html#d7/d76/structapp__lib__config__data__item__t">app_lib_config_data_item_t</a> *item)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set the config data item of a specific endpoint. </p>
-<dl class="section note"><dt>Note</dt><dd>If this function is called with length 0, the item is removed. </dd>
-<dd>
-There is a maximum amount of items that can be set. </dd>
-<dd>
-If the item is already set, it is overwritten.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">item</td><td>Pointer to the config data item information</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25ab60e02552d6ee46d8ab1c55e59fff153">APP_LIB_DATA_CONFIG_DATA_RES_SUCCESS</a> if successful. See <a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25">app_lib_data_config_data_res_e</a> for other result codes.</dd></dl>
-<p>Example: </p><div class="fragment"><div class="line">uint8_t config_data_payload[<a class="code" href="../../d6/d50/wms__data_8h.html#ad30da92f672d77497c900d927d198359">APP_LIB_DATA_MAX_APP_CONFIG_NUM_BYTES</a>];</div>
-<div class="line"><a class="code" href="../../d6/d50/wms__data_8h.html#d7/d76/structapp__lib__config__data__item__t">app_lib_config_data_item_t</a> config_data_item = {</div>
-<div class="line">     .<a class="code" href="../../d6/d50/wms__data_8h.html#a3eb60371888da20c911c2062091ac81e">bytes</a>    = config_data_payload,</div>
-<div class="line">     .endpoint = 0x01,</div>
-<div class="line">     .length   = <a class="code" href="../../d6/d50/wms__data_8h.html#ad30da92f672d77497c900d927d198359">APP_LIB_DATA_MAX_APP_CONFIG_NUM_BYTES</a>,</div>
-<div class="line">};</div>
-<div class="line"> </div>
-<div class="line">lib_data-&gt;setConfigDataItem(&amp;config_data_item);</div>
-</div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00784">784</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00621">621</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -750,7 +537,7 @@ If the item is already set, it is overwritten.</dd></dl>
 
 <p>Set data reception callback. </p>
 <p>Set the callback function to be called when new data is received (unicast, multicast or broadcast)). If NULL is passed, the callback is disabled.</p>
-<p>Example on use. Application handles destination <code>endpoint</code> "endpoint" of 12 as incoming data and triggers temperature measurement. </p><div class="fragment"><div class="line"><span class="preprocessor">#define GET_TEMPERATURE_EP  12</span></div>
+<p>Example on use. Application handles destination endpoint of 12 as incoming data and triggers temperature measurement. </p><div class="fragment"><div class="line"><span class="preprocessor">#define GET_TEMPERATURE_EP  12</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">static</span> <a class="code" href="../../d6/d50/wms__data_8h.html#ad3aa19c96da7da312cd8fe99ea34554b">app_lib_data_receive_res_e</a> dataReceivedCb(</div>
 <div class="line">    <span class="keyword">const</span> <a class="code" href="../../d6/d50/wms__data_8h.html#d7/df3/structapp__lib__data__received__t">app_lib_data_received_t</a> * data)</div>
@@ -780,7 +567,7 @@ If the item is already set, it is overwritten.</dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, always <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00477">477</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00479">479</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -819,7 +606,7 @@ If the item is already set, it is overwritten.</dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, always <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00508">508</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00510">510</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -844,7 +631,7 @@ If the item is already set, it is overwritten.</dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if mode is accepted. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00967">967</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00790">790</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -870,7 +657,7 @@ If the item is already set, it is overwritten.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if value is fine. <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> or <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a3003711bc2e65045853433dacc324767">APP_RES_INVALID_VALUE</a> if hops left value is too large to be represented</dd></dl>
 <p>Local multicast is the feature where propagation of multicast packets shall be limited when reaching outside target multicast group. This will decrease propagation of the packet in such areas, decreasing caused traffic load to network. When packet reaches device which does not belong to target multicast group, propagation of the packet is limited to amount of hops left defined in <code>info</code>. When packet is transmitted inside target multicast group, propagation is not affected. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00959">959</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00782">782</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -886,8 +673,8 @@ If the item is already set, it is overwritten.</dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Set the callback function to be called when new <code>appconfig</code> "app config data" is received. </p>
-<p>Example: see example application <code>appconfig_app/app.c</code> "appconfig_app"</p>
+<p>Set the callback function to be called when new app config data is received. </p>
+<p>Example: see example application appconfig_app</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cb</td><td>The function to be executed, or NULL to unset </td></tr>
@@ -896,32 +683,7 @@ If the item is already set, it is overwritten.</dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, always <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00522">522</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
-
-</div>
-</div>
-<a id="a82e2c31af97ae5b9ef38e1ef262589b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82e2c31af97ae5b9ef38e1ef262589b8">&#9670;&nbsp;</a></span>app_lib_data_set_new_config_data_item_cb_f</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80">app_res_e</a>(* app_lib_data_set_new_config_data_item_cb_f) (<a class="el" href="../../d6/d50/wms__data_8h.html#af3b731e4b55dd49490913e17f2c7a197">app_lib_data_new_config_data_item_cb_f</a> cb)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set the callback function to be called when a new config data item is received. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cb</td><td>The function to be executed, or NULL to unset </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Result code, always <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00858">858</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00524">524</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -959,7 +721,7 @@ In order for this to be activate, flag <a class="el" href="../../d6/d50/wms__dat
       </table>
 </div><div class="memdoc">
 
-<p>Write <code>appconfig</code> "app config DATA". </p>
+<p>Write app config DATA. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">bytes</td><td>Pointer to app config data to write. The format can be decided by the application.</td></tr>
@@ -972,7 +734,7 @@ In order for this to be activate, flag <a class="el" href="../../d6/d50/wms__dat
 <div class="line"> </div>
 <div class="line">lib_data-&gt;writeAppConfigData(&amp;appconfig[0]);</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00713">713</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00715">715</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -988,7 +750,7 @@ In order for this to be activate, flag <a class="el" href="../../d6/d50/wms__dat
       </table>
 </div><div class="memdoc">
 
-<p>Write <code>appconfig</code> "Diagnostic interval". </p>
+<p>Write Diagnostic interval. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">interval</td><td>Diagnostic data transmission interval in seconds, i.e. how often the nodes on the network should send diagnostic PDUs. If the value is 0, diagnostic data transmission is disabled. Valid values are: 0 (default), 30, 60, 120, 300, 600 and 1800.</td></tr>
@@ -999,7 +761,7 @@ In order for this to be activate, flag <a class="el" href="../../d6/d50/wms__dat
 <dl class="section note"><dt>Note</dt><dd>It is recommended that the diagnostic interval is not written too often, as new configuration is always written to the non- volatile memory of the sink and disseminated to the network. This can cause unnecessary wearing of the memory with devices that need to use the program memory to store persistent variables and unnecessary load to the network.</dd></dl>
 <p>Example: </p><div class="fragment"><div class="line">lib_data-&gt;writeDiagnosticInterval(30);</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00885">885</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00742">742</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -1017,7 +779,7 @@ In order for this to be activate, flag <a class="el" href="../../d6/d50/wms__dat
 </div><div class="memdoc">
 <div class="textblock"><p>Fragmentation information. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00268">268</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00266">266</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1061,7 +823,7 @@ packet_id</td>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d1/dac/basic_interrupt_2app_8c-example.html#_a8">basic_interrupt/app.c</a>, <a class="el" href="../../d7/d1c/ble_scanner_2app_8c-example.html#_a3">ble_scanner/app.c</a>, <a class="el" href="../../d3/d63/ble_tx_2app_8c-example.html#_a2">ble_tx/app.c</a>, <a class="el" href="../../db/d83/custom_app_2app_8c-example.html#_a14">custom_app/app.c</a>, and <a class="el" href="../../d5/d87/shared_data_2app_8c-example.html#_a0">shared_data/app.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00285">285</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00283">283</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1076,14 +838,14 @@ bytes</td>
 <td class="fieldname">
 delay</td>
 <td class="fielddoc">
-<p>End-to-end transmission delay, in 1 / 128 of seconds. </p>
+<p>End-to-end transmission delay, in 1 / 128 of seconds. This also includes the value set in the delay field for <a class="el" href="../../d6/d50/wms__data_8h.html#a9ae6095889898db72257eeca385eee7b">lib_data-&gt;sendData</a> </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a0f8aed67bf2e6c76349d586acea37d29"></a>uint32_t</td>
 <td class="fieldname">
 delay_hp</td>
 <td class="fielddoc">
-<p>End-to-end transmission delay, in 1 / 1024 of seconds. </p>
+<p>End-to-end transmission delay, in 1 / 1024 of seconds. This also includes the value set in the delay field for <a class="el" href="../../d6/d50/wms__data_8h.html#a9ae6095889898db72257eeca385eee7b">lib_data-&gt;sendData</a> </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="abe388560a25c7690c48b6f3e20a32278"></a><a class="el" href="../../da/dbb/wms__app_8h.html#ad019ddac3feea21ca0548bced1c9e501">app_addr_t</a></td>
@@ -1097,7 +859,7 @@ dest_address</td>
 <td class="fieldname">
 dest_endpoint</td>
 <td class="fielddoc">
-<p>Destination <code>endpoint</code> "endpoint" of packet </p>
+<p>Destination endpoint of packet </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="ab0ea5f225230b3ec14f6485d01ce7c72"></a><a class="el" href="../../d6/d50/wms__data_8h.html#db/d5a/structapp__lib__data__fragment__t">app_lib_data_fragment_t</a> *</td>
@@ -1153,7 +915,7 @@ src_address</td>
 <td class="fieldname">
 src_endpoint</td>
 <td class="fielddoc">
-<p>Source <code>endpoint</code> "endpoint" of packet </p>
+<p>Source endpoint of packet </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a72a96ade6a01c9bd107a0977b6a3059c"></a>int8_t</td>
@@ -1181,7 +943,7 @@ tx_power</td>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/dd1/appconfig_2app_8c-example.html#_a0">appconfig/app.c</a>, <a class="el" href="../../d1/dac/basic_interrupt_2app_8c-example.html#_a0">basic_interrupt/app.c</a>, <a class="el" href="../../d7/d1c/ble_scanner_2app_8c-example.html#_a10">ble_scanner/app.c</a>, <a class="el" href="../../d3/d63/ble_tx_2app_8c-example.html#_a3">ble_tx/app.c</a>, <a class="el" href="../../db/d83/custom_app_2app_8c-example.html#_a0">custom_app/app.c</a>, <a class="el" href="../../da/d90/ruuvi_evk_2app_8c-example.html#_a20">ruuvi_evk/app.c</a>, and <a class="el" href="../../d5/d87/shared_data_2app_8c-example.html#_a19">shared_data/app.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00329">329</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00331">331</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1203,7 +965,7 @@ dest_address</td>
 <td class="fieldname">
 dest_endpoint</td>
 <td class="fielddoc">
-<p>Destination <code>endpoint</code> "endpoint" of packet </p>
+<p>Destination endpoint of packet </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="aa2585d779da0ab21273a8d92de9a0ebe"></a>uint8_t</td>
@@ -1245,7 +1007,7 @@ qos</td>
 <td class="fieldname">
 src_endpoint</td>
 <td class="fielddoc">
-<p>Source <code>endpoint</code> "endpoint" of packet </p>
+<p>Source endpoint of packet </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a7f43082a8111a69a9189426ea4fb9987"></a><a class="el" href="../../d6/d50/wms__data_8h.html#a3a8535cade8b081cfee20f0f4b9b0e65">app_lib_data_tracking_id_t</a></td>
@@ -1274,7 +1036,7 @@ tracking_id</td>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d5/d87/shared_data_2app_8c-example.html#_a5">shared_data/app.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00366">366</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00368">368</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1289,7 +1051,7 @@ dest_address</td>
 <td class="fieldname">
 dest_endpoint</td>
 <td class="fielddoc">
-<p>Destination <code>endpoint</code> "endpoint" of packet </p>
+<p>Destination endpoint of packet </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a39f101eb4be9d5ac0ec9ad59778252bf"></a>uint32_t</td>
@@ -1303,7 +1065,7 @@ queue_time</td>
 <td class="fieldname">
 src_endpoint</td>
 <td class="fielddoc">
-<p>Source <code>endpoint</code> "endpoint" of packet </p>
+<p>Source endpoint of packet </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a7960f9c558f9ee2c3d4a8fdea096fb56"></a>bool</td>
@@ -1335,7 +1097,7 @@ tracking_id</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00524">524</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00526">526</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1356,47 +1118,6 @@ max_fragment_size</td>
 
 </div>
 </div>
-<a name="d7/d76/structapp__lib__config__data__item__t" id="d7/d76/structapp__lib__config__data__item__t"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#d7/d76/structapp__lib__config__data__item__t">&#9670;&nbsp;</a></span>app_lib_config_data_item_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct app_lib_config_data_item_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p>Config Data Item information. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00748">748</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Data Fields</th></tr>
-<tr><td class="fieldtype">
-<a id="a3eb60371888da20c911c2062091ac81e"></a>uint8_t *</td>
-<td class="fieldname">
-bytes</td>
-<td class="fielddoc">
-<p>Pointer to the payload </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a09294ef650c9488fa9cc94e0704e91b5"></a>uint16_t</td>
-<td class="fieldname">
-endpoint</td>
-<td class="fielddoc">
-<p>Config data endpoint </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="ab2b3adeb2a67e656ff030b56727fd0ac"></a>uint8_t</td>
-<td class="fieldname">
-length</td>
-<td class="fielddoc">
-<p>Payload length in bytes </p>
-</td></tr>
-</table>
-
-</div>
-</div>
 <a name="db/d19/structapp__lib__data__local__mc__info__t" id="db/d19/structapp__lib__data__local__mc__info__t"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#db/d19/structapp__lib__data__local__mc__info__t">&#9670;&nbsp;</a></span>app_lib_data_local_mc_info_t</h2>
 
@@ -1410,7 +1131,7 @@ length</td>
 </div><div class="memdoc">
 <div class="textblock"><p>Information on setting local multicast functionality. To be used with service <a class="el" href="../../d6/d50/wms__data_8h.html#aa25a094a9e377a22976a9c76b9eb66a6">lib_data-&gt;setLocalMulticastInfo()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00933">933</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00756">756</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1436,7 +1157,7 @@ Amount of hops left set when multicast packet goes out of target multicast group
 </div><div class="memdoc">
 <div class="textblock"><p>List of library services. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00972">972</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00795">795</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1446,31 +1167,10 @@ allowReception</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a59885a666a8aa9aafbe024b23b5ed20c"></a><a class="el" href="../../d6/d50/wms__data_8h.html#a9f74d7e82ce1454b1cccc0ec2031f460">app_lib_data_disable_boot_diagnostics_f</a></td>
-<td class="fieldname">
-disableBootDiagnostics</td>
-<td class="fielddoc">
-<p>Disable sending of boot diagnostics </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a9419d79ad8e7da463f6b1a11a203b822"></a><a class="el" href="../../d6/d50/wms__data_8h.html#a0fee82cb0b37cc0069352dabe7ae025b">app_lib_data_get_all_config_data_endpoints_f</a></td>
-<td class="fieldname">
-getAllConfigDataEndpoints</td>
-<td class="fielddoc">
-<p>Get all Config Data items </p>
-</td></tr>
-<tr><td class="fieldtype">
 <a id="a7880d731b35d4859af5cc03e532a5ee2"></a><a class="el" href="../../d6/d50/wms__data_8h.html#a37af27daa2e4777b89b13f2f8440b8b9">app_lib_data_get_app_config_num_bytes_f</a></td>
 <td class="fieldname">
 getAppConfigNumBytes</td>
 <td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="aa39b901d7e7bf3f03ee7a1d6352ac6cc"></a><a class="el" href="../../d6/d50/wms__data_8h.html#af188f75bb6012b292b08e93771f5c371">app_lib_data_get_config_data_item_f</a></td>
-<td class="fieldname">
-getConfigDataItem</td>
-<td class="fielddoc">
-<p>Get a Config Data item </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="af48d20fb67cf4c7e4815f8b37ee2f097"></a><a class="el" href="../../d6/d50/wms__data_8h.html#ab009dfe9504a81d9938b1d863d4a93db">app_lib_data_get_data_max_num_bytes_f</a></td>
@@ -1501,20 +1201,6 @@ readAppConfig</td>
 <td class="fieldname">
 sendData</td>
 <td class="fielddoc">
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a7d56d9ee01771509b42593e7b22f6009"></a><a class="el" href="../../d6/d50/wms__data_8h.html#a69ac79c096cae0e747496be4c681b53f">app_lib_data_set_config_data_item_f</a></td>
-<td class="fieldname">
-setConfigDataItem</td>
-<td class="fielddoc">
-<p>Set a Config Data item </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a94f6a0b50a71c26420803c29f80cae78"></a><a class="el" href="../../d6/d50/wms__data_8h.html#a82e2c31af97ae5b9ef38e1ef262589b8">app_lib_data_set_new_config_data_item_cb_f</a></td>
-<td class="fieldname">
-setConfigDataItemReceivedCb</td>
-<td class="fielddoc">
-<p>Set a new Config Data item callback </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a13489e95ff4f3593662f9d65b5239a85"></a><a class="el" href="../../d6/d50/wms__data_8h.html#a108548eef01aa6b4e3db667ef3c1c780">app_lib_data_set_data_received_cb_f</a></td>
@@ -1590,8 +1276,6 @@ writeDiagnosticInterval</td>
 </td></tr>
 <tr><td class="fieldname"><a id="af4e3fdf65e16c2dc9ae1aa415d541bb5a99898fcc462142af4e21f8e834681218"></a>APP_LIB_DATA_APP_CONFIG_RES_INVALID_NULL_POINTER&#160;</td><td class="fielddoc"><p>Error: invalid NULL pointer parameter </p>
 </td></tr>
-<tr><td class="fieldname"><a id="af4e3fdf65e16c2dc9ae1aa415d541bb5adbcc40e86ac543c8c36562e344909b07"></a>APP_LIB_DATA_APP_CONFIG_RES_OUT_OF_MEMORY&#160;</td><td class="fielddoc"><p>Error: out of memory </p>
-</td></tr>
 </table>
 
 <p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00210">210</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
@@ -1602,58 +1286,7 @@ writeDiagnosticInterval</td>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5acb59466353d5324cffe17afa496844c4">APP_LIB_DATA_APP_CONFIG_RES_INVALID_SEQ</a>          = 3,</div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5af4dc7da81f898934f9127869aacd37b0">APP_LIB_DATA_APP_CONFIG_RES_INVALID_INTERVAL</a>     = 4,</div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5a99898fcc462142af4e21f8e834681218">APP_LIB_DATA_APP_CONFIG_RES_INVALID_NULL_POINTER</a> = 5,</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5adbcc40e86ac543c8c36562e344909b07">APP_LIB_DATA_APP_CONFIG_RES_OUT_OF_MEMORY</a>        = 6,</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;} <a class="code" href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5">app_lib_data_app_config_res_e</a>;</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="ae04e4cc31e68561b6ce5f0bcaea25e25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae04e4cc31e68561b6ce5f0bcaea25e25">&#9670;&nbsp;</a></span>app_lib_data_config_data_res_e</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25">app_lib_data_config_data_res_e</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Result of the config data item. </p>
-<p>A result code returned from <a class="el" href="../../d6/d50/wms__data_8h.html#a69ac79c096cae0e747496be4c681b53f">lib_data-&gt;setConfigDataItem()</a> and for <a class="el" href="../../d6/d50/wms__data_8h.html#af188f75bb6012b292b08e93771f5c371">lib_data-&gt;getConfigDataItem()</a> </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae04e4cc31e68561b6ce5f0bcaea25e25ab60e02552d6ee46d8ab1c55e59fff153"></a>APP_LIB_DATA_CONFIG_DATA_RES_SUCCESS&#160;</td><td class="fielddoc"><p>Reading or writing the config data item was successful </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ae04e4cc31e68561b6ce5f0bcaea25e25a493bd2a4f4f03c04a357ce25aeefc5cc"></a>APP_LIB_DATA_CONFIG_DATA_RES_INVALID_ROLE&#160;</td><td class="fielddoc"><p>Error: cannot write config data: node is not a sink </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ae04e4cc31e68561b6ce5f0bcaea25e25aec1c50c85765aa6632cc9be3b805d44e"></a>APP_LIB_DATA_CONFIG_DATA_RES_INVALID_ENDPOINT&#160;</td><td class="fielddoc"><p>Error: cannot read config data: no config data item set or received for that endpoint </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ae04e4cc31e68561b6ce5f0bcaea25e25a2b275a24da3fa9a2a4b9b0408204365f"></a>APP_LIB_DATA_CONFIG_DATA_RES_INVALID_NULL_POINTER&#160;</td><td class="fielddoc"><p>Error: invalid NULL pointer parameter </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ae04e4cc31e68561b6ce5f0bcaea25e25a177f00f63f33dbac9dcdb6192f6feeea"></a>APP_LIB_DATA_CONFIG_DATA_RES_OUT_OF_MEMORY&#160;</td><td class="fielddoc"><p>Error: out of memory </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ae04e4cc31e68561b6ce5f0bcaea25e25ab5865c4c2e801b918dc144a4b5a0c871"></a>APP_LIB_DATA_CONFIG_DATA_RES_INVALID_CONTENT&#160;</td><td class="fielddoc"><p>Error: invalid config data content </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ae04e4cc31e68561b6ce5f0bcaea25e25a03b3b0f03ac1c6df45f7cc16ffddbf10"></a>APP_LIB_DATA_CONFIG_DATA_RES_INVALID_INPUT&#160;</td><td class="fielddoc"><p>Error: invalid input or function arguments </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ae04e4cc31e68561b6ce5f0bcaea25e25a2b29759b95fa241123b44eaebfad6e25"></a>APP_LIB_DATA_CONFIG_DATA_RES_NOT_SUPPORTED&#160;</td><td class="fielddoc"><p>Error: feature is not supported </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ae04e4cc31e68561b6ce5f0bcaea25e25a8fd4d7f109a911b219c04cc9be1c3baf"></a>APP_LIB_DATA_CONFIG_DATA_RES_INTERNAL_ERROR&#160;</td><td class="fielddoc"><p>Error: unable to access non-volatile memory </p>
-</td></tr>
-</table>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00722">722</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;{</div>
-<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25ab60e02552d6ee46d8ab1c55e59fff153">APP_LIB_DATA_CONFIG_DATA_RES_SUCCESS</a> = 0,</div>
-<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a493bd2a4f4f03c04a357ce25aeefc5cc">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_ROLE</a> = 1,</div>
-<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25aec1c50c85765aa6632cc9be3b805d44e">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_ENDPOINT</a> = 2,</div>
-<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a2b275a24da3fa9a2a4b9b0408204365f">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_NULL_POINTER</a> = 3,</div>
-<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a177f00f63f33dbac9dcdb6192f6feeea">APP_LIB_DATA_CONFIG_DATA_RES_OUT_OF_MEMORY</a> = 4,</div>
-<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25ab5865c4c2e801b918dc144a4b5a0c871">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_CONTENT</a> = 5,</div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a03b3b0f03ac1c6df45f7cc16ffddbf10">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_INPUT</a> = 6,</div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a2b29759b95fa241123b44eaebfad6e25">APP_LIB_DATA_CONFIG_DATA_RES_NOT_SUPPORTED</a> = 7,</div>
-<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a8fd4d7f109a911b219c04cc9be1c3baf">APP_LIB_DATA_CONFIG_DATA_RES_INTERNAL_ERROR</a> = 8,</div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;} <a class="code" href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25">app_lib_data_config_data_res_e</a>;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;} <a class="code" href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5">app_lib_data_app_config_res_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1678,11 +1311,11 @@ writeDiagnosticInterval</td>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00236">236</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;{</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7a535d7c4d38642b8aa436bbbbc3c09752">APP_LIB_DATA_FRAGMENTED_MODE_ENABLED</a> = 0,</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7a50464eb84fffa32bc5439f9845ed2043">APP_LIB_DATA_FRAGMENTED_MODE_DISABLED</a>  = 1,</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;} <a class="code" href="../../d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7">app_lib_data_fragmented_mode_e</a>;</div>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00234">234</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;{</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7a535d7c4d38642b8aa436bbbbc3c09752">APP_LIB_DATA_FRAGMENTED_MODE_ENABLED</a> = 0,</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <a class="code" href="../../d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7a50464eb84fffa32bc5439f9845ed2043">APP_LIB_DATA_FRAGMENTED_MODE_DISABLED</a>  = 1,</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;} <a class="code" href="../../d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7">app_lib_data_fragmented_mode_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1820,7 +1453,7 @@ writeDiagnosticInterval</td>
 </td></tr>
 <tr><td class="fieldname"><a id="ab53b6510f8ecb4a1621c905c15855164ae41182cc2dfd9f1a9ebeb455665c2efb"></a>APP_LIB_DATA_SEND_RES_INVALID_TRACKING_ID&#160;</td><td class="fielddoc"><p>Tracking ID already in use or invalid ID </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ab53b6510f8ecb4a1621c905c15855164a16ff7dbaabef087694510f484c88d725"></a>APP_LIB_DATA_SEND_RES_RESERVED_ENDPOINT&#160;</td><td class="fielddoc"><p>Error: one of the <code>endpoint</code> "endpoints" is invalid, reserved for stack internal use </p>
+<tr><td class="fieldname"><a id="ab53b6510f8ecb4a1621c905c15855164a16ff7dbaabef087694510f484c88d725"></a>APP_LIB_DATA_SEND_RES_RESERVED_ENDPOINT&#160;</td><td class="fielddoc"><p>Error: one of the endpoints is invalid, reserved for stack internal use </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ab53b6510f8ecb4a1621c905c15855164ad596c53ca64be97c5a4ea740c27cd2e8"></a>APP_LIB_DATA_SEND_RES_ACCESS_DENIED&#160;</td><td class="fielddoc"><p>Error: data sending is forbidden, either:</p><ul>
 <li>Disabled by feature lock bits</li>
@@ -1870,7 +1503,7 @@ writeDiagnosticInterval</td>
 
 <p>Dedicated value to disable local multicast functionality. To be used with service <a class="el" href="../../d6/d50/wms__data_8h.html#aa25a094a9e377a22976a9c76b9eb66a6">lib_data-&gt;setLocalMulticastInfo()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00926">926</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00749">749</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -1951,7 +1584,7 @@ writeDiagnosticInterval</td>
 <p>This macro declares special value represented in hops- field of <a class="el" href="../../d6/d50/wms__data_8h.html#d7/df3/structapp__lib__data__received__t">app_lib_data_received_t</a> structure when device has been unable to determine the hop count.</p>
 <p>Used in data reception callback functions set with services <a class="el" href="../../d6/d50/wms__data_8h.html#a108548eef01aa6b4e3db667ef3c1c780">lib_data-&gt;setDataReceivedCb()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00263">263</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00261">261</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -1962,7 +1595,7 @@ writeDiagnosticInterval</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define APP_LIB_DATA_VERSION&#160;&#160;&#160;0x211</td>
+          <td class="memname">#define APP_LIB_DATA_VERSION&#160;&#160;&#160;0x20D</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1977,13 +1610,11 @@ writeDiagnosticInterval</td>
 </div><!-- doc-content -->
 <div class="ttc" id="awms__data_8h_html_ab53b6510f8ecb4a1621c905c15855164abc148375192b9cd13d5a3733def48cf6"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164abc148375192b9cd13d5a3733def48cf6">APP_LIB_DATA_SEND_RES_OUT_OF_MEMORY</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_RES_OUT_OF_MEMORY</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00152">wms_data.h:152</a></div></div>
 <div class="ttc" id="awms__data_8h_html_a45089cc0ed8195699c2cb52c160e9b44a7cf3634804cb75b3c58960b082d8852f"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#a45089cc0ed8195699c2cb52c160e9b44a7cf3634804cb75b3c58960b082d8852f">APP_LIB_DATA_SEND_FLAG_TRACK</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_FLAG_TRACK</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00104">wms_data.h:104</a></div></div>
-<div class="ttc" id="awms__data_8h_html_d6/de0/structapp__lib__data__sent__status__t"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#d6/de0/structapp__lib__data__sent__status__t">app_lib_data_sent_status_t</a></div><div class="ttdoc">Struct to tracking callback function.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00366">wms_data.h:366</a></div></div>
-<div class="ttc" id="awms__data_8h_html_ae04e4cc31e68561b6ce5f0bcaea25e25a03b3b0f03ac1c6df45f7cc16ffddbf10"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a03b3b0f03ac1c6df45f7cc16ffddbf10">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_INPUT</a></div><div class="ttdeci">@ APP_LIB_DATA_CONFIG_DATA_RES_INVALID_INPUT</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00738">wms_data.h:738</a></div></div>
+<div class="ttc" id="awms__data_8h_html_d6/de0/structapp__lib__data__sent__status__t"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#d6/de0/structapp__lib__data__sent__status__t">app_lib_data_sent_status_t</a></div><div class="ttdoc">Struct to tracking callback function.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00368">wms_data.h:368</a></div></div>
 <div class="ttc" id="awms__data_8h_html_ab53b6510f8ecb4a1621c905c15855164"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164">app_lib_data_send_res_e</a></div><div class="ttdeci">app_lib_data_send_res_e</div><div class="ttdoc">A result code returned from lib_data-&gt;sendData().</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00141">wms_data.h:141</a></div></div>
 <div class="ttc" id="awms__data_8h_html_af4e3fdf65e16c2dc9ae1aa415d541bb5aafb56658f9fc3bb9be090aff91b10188"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5aafb56658f9fc3bb9be090aff91b10188">APP_LIB_DATA_APP_CONFIG_RES_INVALID_ROLE</a></div><div class="ttdeci">@ APP_LIB_DATA_APP_CONFIG_RES_INVALID_ROLE</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00215">wms_data.h:215</a></div></div>
 <div class="ttc" id="awms__data_8h_html_aa03fbf2cdb28616e79aca69710c8b134"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#aa03fbf2cdb28616e79aca69710c8b134">app_lib_data_qos_e</a></div><div class="ttdeci">app_lib_data_qos_e</div><div class="ttdoc">Data quality of service class. Used when sending and receiving data packets.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00085">wms_data.h:85</a></div></div>
 <div class="ttc" id="awms__data_8h_html_af4e3fdf65e16c2dc9ae1aa415d541bb5acb59466353d5324cffe17afa496844c4"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5acb59466353d5324cffe17afa496844c4">APP_LIB_DATA_APP_CONFIG_RES_INVALID_SEQ</a></div><div class="ttdeci">@ APP_LIB_DATA_APP_CONFIG_RES_INVALID_SEQ</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00220">wms_data.h:220</a></div></div>
-<div class="ttc" id="awms__data_8h_html_ae04e4cc31e68561b6ce5f0bcaea25e25a2b29759b95fa241123b44eaebfad6e25"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a2b29759b95fa241123b44eaebfad6e25">APP_LIB_DATA_CONFIG_DATA_RES_NOT_SUPPORTED</a></div><div class="ttdeci">@ APP_LIB_DATA_CONFIG_DATA_RES_NOT_SUPPORTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00740">wms_data.h:740</a></div></div>
 <div class="ttc" id="awms__data_8h_html_a45089cc0ed8195699c2cb52c160e9b44a47e2006b3eeca185dd7a7b3c8f30b3b4"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#a45089cc0ed8195699c2cb52c160e9b44a47e2006b3eeca185dd7a7b3c8f30b3b4">APP_LIB_DATA_SEND_FLAG_UNACK_CSMA_CA</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_FLAG_UNACK_CSMA_CA</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00124">wms_data.h:124</a></div></div>
 <div class="ttc" id="awms__data_8h_html_a45089cc0ed8195699c2cb52c160e9b44ae86b1e4b05d9060a29b8ee79dcb2e78e"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#a45089cc0ed8195699c2cb52c160e9b44ae86b1e4b05d9060a29b8ee79dcb2e78e">APP_LIB_DATA_SEND_NW_CH_ONLY</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_NW_CH_ONLY</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00131">wms_data.h:131</a></div></div>
 <div class="ttc" id="awms__data_8h_html_ab53b6510f8ecb4a1621c905c15855164ac49f54856cdbf8930b84161cc079c722"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164ac49f54856cdbf8930b84161cc079c722">APP_LIB_DATA_SEND_RES_INVALID_QOS</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_RES_INVALID_QOS</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00148">wms_data.h:148</a></div></div>
@@ -1992,11 +1623,9 @@ writeDiagnosticInterval</td>
 <div class="ttc" id="awms__data_8h_html_ab53b6510f8ecb4a1621c905c15855164a5a4b7dbb7517d5f7d85930d66b035fc5"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164a5a4b7dbb7517d5f7d85930d66b035fc5">APP_LIB_DATA_SEND_RES_INVALID_DEST_ADDRESS</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_RES_INVALID_DEST_ADDRESS</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00157">wms_data.h:157</a></div></div>
 <div class="ttc" id="awms__data_8h_html_ad30da92f672d77497c900d927d198359"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ad30da92f672d77497c900d927d198359">APP_LIB_DATA_MAX_APP_CONFIG_NUM_BYTES</a></div><div class="ttdeci">#define APP_LIB_DATA_MAX_APP_CONFIG_NUM_BYTES</div><div class="ttdoc">size of app config</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00075">wms_data.h:75</a></div></div>
 <div class="ttc" id="awms__data_8h_html_af4e3fdf65e16c2dc9ae1aa415d541bb5"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5">app_lib_data_app_config_res_e</a></div><div class="ttdeci">app_lib_data_app_config_res_e</div><div class="ttdoc">Result of the app config.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00210">wms_data.h:210</a></div></div>
-<div class="ttc" id="awms__data_8h_html_ae04e4cc31e68561b6ce5f0bcaea25e25a493bd2a4f4f03c04a357ce25aeefc5cc"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a493bd2a4f4f03c04a357ce25aeefc5cc">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_ROLE</a></div><div class="ttdeci">@ APP_LIB_DATA_CONFIG_DATA_RES_INVALID_ROLE</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00727">wms_data.h:727</a></div></div>
-<div class="ttc" id="awms__data_8h_html_d4/def/structapp__lib__data__data__size__t"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#d4/def/structapp__lib__data__data__size__t">app_lib_data_data_size_t</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00524">wms_data.h:524</a></div></div>
+<div class="ttc" id="awms__data_8h_html_d4/def/structapp__lib__data__data__size__t"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#d4/def/structapp__lib__data__data__size__t">app_lib_data_data_size_t</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00526">wms_data.h:526</a></div></div>
 <div class="ttc" id="awms__data_8h_html_ad3aa19c96da7da312cd8fe99ea34554ba5eb2a589b49f72b477f0cbf5deba552a"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ad3aa19c96da7da312cd8fe99ea34554ba5eb2a589b49f72b477f0cbf5deba552a">APP_LIB_DATA_RECEIVE_RES_HANDLED</a></div><div class="ttdeci">@ APP_LIB_DATA_RECEIVE_RES_HANDLED</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00192">wms_data.h:192</a></div></div>
 <div class="ttc" id="awms__data_8h_html_ab53b6510f8ecb4a1621c905c15855164a16ff7dbaabef087694510f484c88d725"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164a16ff7dbaabef087694510f484c88d725">APP_LIB_DATA_SEND_RES_RESERVED_ENDPOINT</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_RES_RESERVED_ENDPOINT</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00167">wms_data.h:167</a></div></div>
-<div class="ttc" id="awms__data_8h_html_ae04e4cc31e68561b6ce5f0bcaea25e25a8fd4d7f109a911b219c04cc9be1c3baf"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a8fd4d7f109a911b219c04cc9be1c3baf">APP_LIB_DATA_CONFIG_DATA_RES_INTERNAL_ERROR</a></div><div class="ttdeci">@ APP_LIB_DATA_CONFIG_DATA_RES_INTERNAL_ERROR</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00742">wms_data.h:742</a></div></div>
 <div class="ttc" id="awms__data_8h_html_ab53b6510f8ecb4a1621c905c15855164a27b70a7629e5e66acef1ea9aefbfa05f"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164a27b70a7629e5e66acef1ea9aefbfa05f">APP_LIB_DATA_SEND_RES_INVALID_FRAGMENT_INFO</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_RES_INVALID_FRAGMENT_INFO</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00178">wms_data.h:178</a></div></div>
 <div class="ttc" id="awms__data_8h_html_a45089cc0ed8195699c2cb52c160e9b44"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#a45089cc0ed8195699c2cb52c160e9b44">app_lib_data_send_flags_e</a></div><div class="ttdeci">app_lib_data_send_flags_e</div><div class="ttdoc">Flags to use with lib_data-&gt;sendData().</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00097">wms_data.h:97</a></div></div>
 <div class="ttc" id="awms__data_8h_html_a45089cc0ed8195699c2cb52c160e9b44ae34413735d0131281ab205f434f604d4"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#a45089cc0ed8195699c2cb52c160e9b44ae34413735d0131281ab205f434f604d4">APP_LIB_DATA_SEND_FRAGMENTED_PACKET</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_FRAGMENTED_PACKET</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00134">wms_data.h:134</a></div></div>
@@ -2010,29 +1639,20 @@ writeDiagnosticInterval</td>
 <div class="ttc" id="awms__data_8h_html_ab53b6510f8ecb4a1621c905c15855164a17ae3452dfa545699fe3e5da293ba8f7"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164a17ae3452dfa545699fe3e5da293ba8f7">APP_LIB_DATA_SEND_RES_INVALID_STACK_STATE</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_RES_INVALID_STACK_STATE</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00146">wms_data.h:146</a></div></div>
 <div class="ttc" id="awms__data_8h_html_af4e3fdf65e16c2dc9ae1aa415d541bb5aff1d36228852aef7252f370bb39bdc01"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5aff1d36228852aef7252f370bb39bdc01">APP_LIB_DATA_APP_CONFIG_RES_INVALID_APP_CONFIG</a></div><div class="ttdeci">@ APP_LIB_DATA_APP_CONFIG_RES_INVALID_APP_CONFIG</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00218">wms_data.h:218</a></div></div>
 <div class="ttc" id="awms__app_8h_html_d6/d81/structapp__global__functions__t"><div class="ttname"><a href="../../da/dbb/wms__app_8h.html#d6/d81/structapp__global__functions__t">app_global_functions_t</a></div><div class="ttdoc">List of global functions, passed to App_entrypoint()</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dbb/wms__app_8h_source.html#l00157">wms_app.h:157</a></div></div>
-<div class="ttc" id="awms__data_8h_html_ae04e4cc31e68561b6ce5f0bcaea25e25a2b275a24da3fa9a2a4b9b0408204365f"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a2b275a24da3fa9a2a4b9b0408204365f">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_NULL_POINTER</a></div><div class="ttdeci">@ APP_LIB_DATA_CONFIG_DATA_RES_INVALID_NULL_POINTER</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00732">wms_data.h:732</a></div></div>
 <div class="ttc" id="awms__data_8h_html_ab53b6510f8ecb4a1621c905c15855164afd6a35958698f159339268ac3c173d0b"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164afd6a35958698f159339268ac3c173d0b">APP_LIB_DATA_SEND_RES_INVALID_FLAGS</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_RES_INVALID_FLAGS</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00150">wms_data.h:150</a></div></div>
 <div class="ttc" id="awms__data_8h_html_aa03fbf2cdb28616e79aca69710c8b134a2c19a7699397df7b39155e4711bb762e"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#aa03fbf2cdb28616e79aca69710c8b134a2c19a7699397df7b39155e4711bb762e">APP_LIB_DATA_QOS_HIGH</a></div><div class="ttdeci">@ APP_LIB_DATA_QOS_HIGH</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00091">wms_data.h:91</a></div></div>
-<div class="ttc" id="awms__data_8h_html_af4e3fdf65e16c2dc9ae1aa415d541bb5adbcc40e86ac543c8c36562e344909b07"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5adbcc40e86ac543c8c36562e344909b07">APP_LIB_DATA_APP_CONFIG_RES_OUT_OF_MEMORY</a></div><div class="ttdeci">@ APP_LIB_DATA_APP_CONFIG_RES_OUT_OF_MEMORY</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00226">wms_data.h:226</a></div></div>
-<div class="ttc" id="awms__data_8h_html_ae04e4cc31e68561b6ce5f0bcaea25e25ab5865c4c2e801b918dc144a4b5a0c871"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25ab5865c4c2e801b918dc144a4b5a0c871">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_CONTENT</a></div><div class="ttdeci">@ APP_LIB_DATA_CONFIG_DATA_RES_INVALID_CONTENT</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00736">wms_data.h:736</a></div></div>
 <div class="ttc" id="awms__data_8h_html_a45089cc0ed8195699c2cb52c160e9b44a4ca3b9e595b765bec22c43c744bbf5b8"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#a45089cc0ed8195699c2cb52c160e9b44a4ca3b9e595b765bec22c43c744bbf5b8">APP_LIB_DATA_SEND_SET_HOP_LIMITING</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_SET_HOP_LIMITING</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00116">wms_data.h:116</a></div></div>
-<div class="ttc" id="awms__data_8h_html_d7/df3/structapp__lib__data__received__t"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#d7/df3/structapp__lib__data__received__t">app_lib_data_received_t</a></div><div class="ttdoc">Struct passed to data reception callback functions.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00285">wms_data.h:285</a></div></div>
-<div class="ttc" id="awms__data_8h_html_a932d5f262cc8230a48f61471df3918d7"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7">app_lib_data_fragmented_mode_e</a></div><div class="ttdeci">app_lib_data_fragmented_mode_e</div><div class="ttdoc">Fragmentation mode. Use to specify if reassembly is done by stack or by application itself.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00236">wms_data.h:236</a></div></div>
-<div class="ttc" id="awms__data_8h_html_a932d5f262cc8230a48f61471df3918d7a535d7c4d38642b8aa436bbbbc3c09752"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7a535d7c4d38642b8aa436bbbbc3c09752">APP_LIB_DATA_FRAGMENTED_MODE_ENABLED</a></div><div class="ttdeci">@ APP_LIB_DATA_FRAGMENTED_MODE_ENABLED</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00241">wms_data.h:241</a></div></div>
-<div class="ttc" id="awms__data_8h_html_d7/d76/structapp__lib__config__data__item__t"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#d7/d76/structapp__lib__config__data__item__t">app_lib_config_data_item_t</a></div><div class="ttdoc">Config Data Item information.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00748">wms_data.h:748</a></div></div>
-<div class="ttc" id="awms__data_8h_html_ae04e4cc31e68561b6ce5f0bcaea25e25aec1c50c85765aa6632cc9be3b805d44e"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25aec1c50c85765aa6632cc9be3b805d44e">APP_LIB_DATA_CONFIG_DATA_RES_INVALID_ENDPOINT</a></div><div class="ttdeci">@ APP_LIB_DATA_CONFIG_DATA_RES_INVALID_ENDPOINT</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00730">wms_data.h:730</a></div></div>
+<div class="ttc" id="awms__data_8h_html_d7/df3/structapp__lib__data__received__t"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#d7/df3/structapp__lib__data__received__t">app_lib_data_received_t</a></div><div class="ttdoc">Struct passed to data reception callback functions.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00283">wms_data.h:283</a></div></div>
+<div class="ttc" id="awms__data_8h_html_a932d5f262cc8230a48f61471df3918d7"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7">app_lib_data_fragmented_mode_e</a></div><div class="ttdeci">app_lib_data_fragmented_mode_e</div><div class="ttdoc">Fragmentation mode. Use to specify if reassembly is done by stack or by application itself.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00234">wms_data.h:234</a></div></div>
+<div class="ttc" id="awms__data_8h_html_a932d5f262cc8230a48f61471df3918d7a535d7c4d38642b8aa436bbbbc3c09752"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7a535d7c4d38642b8aa436bbbbc3c09752">APP_LIB_DATA_FRAGMENTED_MODE_ENABLED</a></div><div class="ttdeci">@ APP_LIB_DATA_FRAGMENTED_MODE_ENABLED</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00239">wms_data.h:239</a></div></div>
 <div class="ttc" id="awms__data_8h_html_af4e3fdf65e16c2dc9ae1aa415d541bb5af4dc7da81f898934f9127869aacd37b0"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5af4dc7da81f898934f9127869aacd37b0">APP_LIB_DATA_APP_CONFIG_RES_INVALID_INTERVAL</a></div><div class="ttdeci">@ APP_LIB_DATA_APP_CONFIG_RES_INVALID_INTERVAL</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00222">wms_data.h:222</a></div></div>
 <div class="ttc" id="awms__data_8h_html_ab53b6510f8ecb4a1621c905c15855164af05f747dc0888b454ed1b6b2e2ed8fe7"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164af05f747dc0888b454ed1b6b2e2ed8fe7">APP_LIB_DATA_SEND_RES_UNINITIALIZED</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_RES_UNINITIALIZED</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00176">wms_data.h:176</a></div></div>
 <div class="ttc" id="awms__data_8h_html_ad3aa19c96da7da312cd8fe99ea34554ba982c231319cbb17347b7a0964988b855"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ad3aa19c96da7da312cd8fe99ea34554ba982c231319cbb17347b7a0964988b855">APP_LIB_DATA_RECEIVE_RES_NOT_FOR_APP</a></div><div class="ttdeci">@ APP_LIB_DATA_RECEIVE_RES_NOT_FOR_APP</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00195">wms_data.h:195</a></div></div>
-<div class="ttc" id="awms__data_8h_html_ae04e4cc31e68561b6ce5f0bcaea25e25ab60e02552d6ee46d8ab1c55e59fff153"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25ab60e02552d6ee46d8ab1c55e59fff153">APP_LIB_DATA_CONFIG_DATA_RES_SUCCESS</a></div><div class="ttdeci">@ APP_LIB_DATA_CONFIG_DATA_RES_SUCCESS</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00725">wms_data.h:725</a></div></div>
 <div class="ttc" id="awms__data_8h_html_ab53b6510f8ecb4a1621c905c15855164acf63322bd1c34794b230e2120116cfbb"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164acf63322bd1c34794b230e2120116cfbb">APP_LIB_DATA_SEND_RES_SUCCESS</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_RES_SUCCESS</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00144">wms_data.h:144</a></div></div>
-<div class="ttc" id="awms__data_8h_html_ae04e4cc31e68561b6ce5f0bcaea25e25a177f00f63f33dbac9dcdb6192f6feeea"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a177f00f63f33dbac9dcdb6192f6feeea">APP_LIB_DATA_CONFIG_DATA_RES_OUT_OF_MEMORY</a></div><div class="ttdeci">@ APP_LIB_DATA_CONFIG_DATA_RES_OUT_OF_MEMORY</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00734">wms_data.h:734</a></div></div>
 <div class="ttc" id="awms__data_8h_html_ab53b6510f8ecb4a1621c905c15855164a3a6a3061dbc007dbd45d957fe0ed0baf"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164a3a6a3061dbc007dbd45d957fe0ed0baf">APP_LIB_DATA_SEND_RES_INVALID_NUM_BYTES</a></div><div class="ttdeci">@ APP_LIB_DATA_SEND_RES_INVALID_NUM_BYTES</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00159">wms_data.h:159</a></div></div>
 <div class="ttc" id="awms__data_8h_html_aa03fbf2cdb28616e79aca69710c8b134a50d99e5f118f1d4293ef31094831678f"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#aa03fbf2cdb28616e79aca69710c8b134a50d99e5f118f1d4293ef31094831678f">APP_LIB_DATA_QOS_NORMAL</a></div><div class="ttdeci">@ APP_LIB_DATA_QOS_NORMAL</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00088">wms_data.h:88</a></div></div>
 <div class="ttc" id="awms__data_8h_html_af4e3fdf65e16c2dc9ae1aa415d541bb5a3237bc91d2d3122da0b4f8323e8a8993"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5a3237bc91d2d3122da0b4f8323e8a8993">APP_LIB_DATA_APP_CONFIG_RES_SUCCESS</a></div><div class="ttdeci">@ APP_LIB_DATA_APP_CONFIG_RES_SUCCESS</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00213">wms_data.h:213</a></div></div>
-<div class="ttc" id="awms__data_8h_html_a3eb60371888da20c911c2062091ac81e"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#a3eb60371888da20c911c2062091ac81e">app_lib_config_data_item_t::bytes</a></div><div class="ttdeci">uint8_t * bytes</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00751">wms_data.h:751</a></div></div>
-<div class="ttc" id="awms__data_8h_html_ae04e4cc31e68561b6ce5f0bcaea25e25"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25">app_lib_data_config_data_res_e</a></div><div class="ttdeci">app_lib_data_config_data_res_e</div><div class="ttdoc">Result of the config data item.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00722">wms_data.h:722</a></div></div>
-<div class="ttc" id="awms__data_8h_html_a932d5f262cc8230a48f61471df3918d7a50464eb84fffa32bc5439f9845ed2043"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7a50464eb84fffa32bc5439f9845ed2043">APP_LIB_DATA_FRAGMENTED_MODE_DISABLED</a></div><div class="ttdeci">@ APP_LIB_DATA_FRAGMENTED_MODE_DISABLED</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00249">wms_data.h:249</a></div></div>
+<div class="ttc" id="awms__data_8h_html_a932d5f262cc8230a48f61471df3918d7a50464eb84fffa32bc5439f9845ed2043"><div class="ttname"><a href="../../d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7a50464eb84fffa32bc5439f9845ed2043">APP_LIB_DATA_FRAGMENTED_MODE_DISABLED</a></div><div class="ttdeci">@ APP_LIB_DATA_FRAGMENTED_MODE_DISABLED</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d50/wms__data_8h_source.html#l00247">wms_data.h:247</a></div></div>
 <!-- HTML footer for doxygen 1.8.17-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -17,13 +17,6 @@
 <script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-  /* @license-end */
-</script>
 <link rel="search" href="../../search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 <link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -54,33 +47,19 @@
 var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 /* @license-end */
 </script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="../../pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="../../annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li class="current"><a href="../../files.html"><span>Files</span></a></li>
-      <li><a href="../../examples.html"><span>Example&#160;applications</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-          <div class="left">
-            <form id="FSearchBox" action="../../search.html" method="get">
-              <img id="MSearchSelect" src="../../search/mag.png" alt=""/>
-              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
-                     onfocus="searchBox.OnSearchFieldFocus(true)" 
-                     onblur="searchBox.OnSearchFieldFocus(false)"/>
-            </form>
-          </div><div class="right"></div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="../../files.html"><span>File&#160;List</span></a></li>
-      <li><a href="../../globals.html"><span>Globals</span></a></li>
-    </ul>
-  </div>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,true,'search.html','Search');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -117,9 +96,6 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a981d6e69d029513017f86838e4489cca"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#a981d6e69d029513017f86838e4489cca">provisioning_joining_end_cb_f</a>) (<a class="el" href="../../d0/dae/provisioning_8h.html#a6d4b29ca58ea67e8612eeb1556ffe853">provisioning_res_e</a> result)</td></tr>
 <tr class="memdesc:a981d6e69d029513017f86838e4489cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">The end joining callback. This function is called at the end of the joining process.  <a href="../../d9/d27/provisioning__int_8h.html#a981d6e69d029513017f86838e4489cca">More...</a><br /></td></tr>
 <tr class="separator:a981d6e69d029513017f86838e4489cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4990f992824d56f9c04b18bfb356a98"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6">provisioning_ret_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#ab4990f992824d56f9c04b18bfb356a98">provisioning_start_cb_f</a>) (void)</td></tr>
-<tr class="memdesc:ab4990f992824d56f9c04b18bfb356a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provisioning start callback.  <a href="../../d9/d27/provisioning__int_8h.html#ab4990f992824d56f9c04b18bfb356a98">More...</a><br /></td></tr>
-<tr class="separator:ab4990f992824d56f9c04b18bfb356a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -135,15 +111,6 @@ Functions</h2></td></tr>
 <tr class="memitem:adb47ea8d6d90902c7003476250b0813d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6">provisioning_ret_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#adb47ea8d6d90902c7003476250b0813d">Provisioning_Joining_stop</a> (void)</td></tr>
 <tr class="memdesc:adb47ea8d6d90902c7003476250b0813d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the joining process.  <a href="../../d9/d27/provisioning__int_8h.html#adb47ea8d6d90902c7003476250b0813d">More...</a><br /></td></tr>
 <tr class="separator:adb47ea8d6d90902c7003476250b0813d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a693577a6b2a62de646a16b9aa1bcd2a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6">provisioning_ret_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#a693577a6b2a62de646a16b9aa1bcd2a9">Provisioning_Failsafe_init</a> (const <a class="el" href="../../d9/d27/provisioning__int_8h.html#dd/dd7/structprovisioning__failsafe__conf__t">provisioning_failsafe_conf_t</a> *conf)</td></tr>
-<tr class="memdesc:a693577a6b2a62de646a16b9aa1bcd2a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the failsafe module.  <a href="../../d9/d27/provisioning__int_8h.html#a693577a6b2a62de646a16b9aa1bcd2a9">More...</a><br /></td></tr>
-<tr class="separator:a693577a6b2a62de646a16b9aa1bcd2a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3744e7894d5d7f7be61adad0aa904f57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6">provisioning_ret_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#a3744e7894d5d7f7be61adad0aa904f57">Provisioning_Failsafe_start</a> (void)</td></tr>
-<tr class="memdesc:a3744e7894d5d7f7be61adad0aa904f57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start failsafe.  <a href="../../d9/d27/provisioning__int_8h.html#a3744e7894d5d7f7be61adad0aa904f57">More...</a><br /></td></tr>
-<tr class="separator:a3744e7894d5d7f7be61adad0aa904f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38fe15b3f774dcb5f1fb6da5ac1f0c86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6">provisioning_ret_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#a38fe15b3f774dcb5f1fb6da5ac1f0c86">Provisioning_Failsafe_stop</a> (void)</td></tr>
-<tr class="memdesc:a38fe15b3f774dcb5f1fb6da5ac1f0c86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop failsafe.  <a href="../../d9/d27/provisioning__int_8h.html#a38fe15b3f774dcb5f1fb6da5ac1f0c86">More...</a><br /></td></tr>
-<tr class="separator:a38fe15b3f774dcb5f1fb6da5ac1f0c86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
@@ -165,9 +132,6 @@ Data Structures</h2></td></tr>
 <tr class="memitem:de/dac/structprovisioning__joining__conf__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#de/dac/structprovisioning__joining__conf__t">provisioning_joining_conf_t</a></td></tr>
 <tr class="memdesc:de/dac/structprovisioning__joining__conf__t"><td class="mdescLeft">&#160;</td><td class="mdescRight">This structure holds the joining node parameters.  <a href="../../d9/d27/provisioning__int_8h.html#de/dac/structprovisioning__joining__conf__t">More...</a><br /></td></tr>
 <tr class="separator:de/dac/structprovisioning__joining__conf__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:dd/dd7/structprovisioning__failsafe__conf__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#dd/dd7/structprovisioning__failsafe__conf__t">provisioning_failsafe_conf_t</a></td></tr>
-<tr class="memdesc:dd/dd7/structprovisioning__failsafe__conf__t"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure to hold failsafe parameters.  <a href="../../d9/d27/provisioning__int_8h.html#dd/dd7/structprovisioning__failsafe__conf__t">More...</a><br /></td></tr>
-<tr class="separator:dd/dd7/structprovisioning__failsafe__conf__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:d6/d15/unionpdu__prov__t_8____unnamed____"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#d6/d15/unionpdu__prov__t_8____unnamed____">pdu_prov_t.__unnamed__</a></td></tr>
 <tr class="separator:d6/d15/unionpdu__prov__t_8____unnamed____"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -181,10 +145,6 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a9c062e96b8a51d81a67313b6b66d7471">PROV_DATA_ID_NODE_ADDR</a> = 4, 
 <a class="el" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a4f41a683db426dac2beabf560f9d261d">PROV_DATA_ID_NODE_ROLE</a> = 5, 
-<a class="el" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a03fd02db9136d91cdb509f9ed302ba07">PROV_DATA_ID_NET_KEY_SEQ</a> = 6, 
-<a class="el" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a3c72798ed8e5531bc70f0a4fdf65af21">PROV_DATA_ID_MGMT_ENC_KEY</a> = 7, 
-<br />
-&#160;&#160;<a class="el" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2ad3d06dc3d9f95b868020030aed11434f">PROV_DATA_ID_MGMT_AUTH_KEY</a> = 8, 
 <a class="el" href="../../dc/d1b/rtc_8h.html#aee542072e8ed4c6421604a90538f9dc2a48d8e55630c25eacd43229f49680ebf1">RTC_ID_TIMESTAMP</a> = 0, 
 <a class="el" href="../../dc/d1b/rtc_8h.html#aee542072e8ed4c6421604a90538f9dc2a4a3f2add8548db9b69ec808237fee449">RTC_ID_TIMEZONE_OFFSET</a> = 1
 <br />
@@ -206,7 +166,11 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a2c3cec32ea98ef20751da98b95620fad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#a2c3cec32ea98ef20751da98b95620fad">PROV_PDU_SIZE</a>&#160;&#160;&#160;135</td></tr>
+<tr class="memitem:ade41d7ab55b09133259e5c7aed281669"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#ade41d7ab55b09133259e5c7aed281669">PROV_DOWNLINK_EP</a>&#160;&#160;&#160;255</td></tr>
+<tr class="separator:ade41d7ab55b09133259e5c7aed281669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae763d12de434915bdbc28a006c8f0f0b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#ae763d12de434915bdbc28a006c8f0f0b">PROV_UPLINK_EP</a>&#160;&#160;&#160;246</td></tr>
+<tr class="separator:ae763d12de434915bdbc28a006c8f0f0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c3cec32ea98ef20751da98b95620fad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#a2c3cec32ea98ef20751da98b95620fad">PROV_PDU_SIZE</a>&#160;&#160;&#160;102</td></tr>
 <tr class="separator:a2c3cec32ea98ef20751da98b95620fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bbe260eae473972ce70506a8289d3cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#a1bbe260eae473972ce70506a8289d3cb">PROV_CTR_SIZE</a>&#160;&#160;&#160;2</td></tr>
 <tr class="separator:a1bbe260eae473972ce70506a8289d3cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -222,10 +186,14 @@ Macros</h2></td></tr>
 <tr class="separator:aed6081d8eeb4c3fe1ee5c414bedb1543"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7073c38c1c8c8cab2b7f50e7276fd30f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#a7073c38c1c8c8cab2b7f50e7276fd30f">JOINING_NETWORK_ADDRESS</a>&#160;&#160;&#160;0x9E4ADC</td></tr>
 <tr class="separator:a7073c38c1c8c8cab2b7f50e7276fd30f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2595c42081ee2c54f2f5ed759f63cb29"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#a2595c42081ee2c54f2f5ed759f63cb29">JOINING_NETWORK_CHANNEL</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a2595c42081ee2c54f2f5ed759f63cb29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae19e8f09c8e1332a19e469df4a6cd747"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#ae19e8f09c8e1332a19e469df4a6cd747">JOINING_RX_TIMEOUT</a>&#160;&#160;&#160;600</td></tr>
 <tr class="separator:ae19e8f09c8e1332a19e469df4a6cd747"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b390550c4b141e9a2cc2fe73713aa8e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#a9b390550c4b141e9a2cc2fe73713aa8e">JOINING_TX_INTERVAL</a>&#160;&#160;&#160;500</td></tr>
 <tr class="separator:a9b390550c4b141e9a2cc2fe73713aa8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d6b76683aa52206f24bd915a42a0bc1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/provisioning__int_8h.html#a0d6b76683aa52206f24bd915a42a0bc1">JOINING_BEACON_TYPE</a>&#160;&#160;&#160;0x647650fb</td></tr>
+<tr class="separator:a0d6b76683aa52206f24bd915a42a0bc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a981d6e69d029513017f86838e4489cca"></a>
@@ -248,26 +216,7 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00186">186</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
-
-</div>
-</div>
-<a id="ab4990f992824d56f9c04b18bfb356a98"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4990f992824d56f9c04b18bfb356a98">&#9670;&nbsp;</a></span>provisioning_start_cb_f</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6">provisioning_ret_e</a>(* provisioning_start_cb_f) (void)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Provisioning start callback. </p>
-<dl class="section return"><dt>Returns</dt><dd>Result of start call </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00205">205</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00170">170</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 
 </div>
 </div>
@@ -307,77 +256,6 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6a07bd8a0d138f700e67947a3550de61c9">PROV_RET_OK</a> if config is valid. See <a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6">provisioning_ret_e</a> for other return codes. </dd></dl>
-
-</div>
-</div>
-<a id="a693577a6b2a62de646a16b9aa1bcd2a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a693577a6b2a62de646a16b9aa1bcd2a9">&#9670;&nbsp;</a></span>Provisioning_Failsafe_init()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6">provisioning_ret_e</a> Provisioning_Failsafe_init </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../d9/d27/provisioning__int_8h.html#dd/dd7/structprovisioning__failsafe__conf__t">provisioning_failsafe_conf_t</a> *&#160;</td>
-          <td class="paramname"><em>conf</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initialize the failsafe module. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">conf</td><td>Failsafe configuration </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6a07bd8a0d138f700e67947a3550de61c9">PROV_RET_OK</a> if success. See <a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6">provisioning_ret_e</a> for other return codes. </dd></dl>
-
-</div>
-</div>
-<a id="a3744e7894d5d7f7be61adad0aa904f57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3744e7894d5d7f7be61adad0aa904f57">&#9670;&nbsp;</a></span>Provisioning_Failsafe_start()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6">provisioning_ret_e</a> Provisioning_Failsafe_start </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Start failsafe. </p>
-<dl class="section note"><dt>Note</dt><dd>Failsafe state machine task will be started </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6a07bd8a0d138f700e67947a3550de61c9">PROV_RET_OK</a> if success. See <a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6">provisioning_ret_e</a> for other return codes. </dd></dl>
-
-</div>
-</div>
-<a id="a38fe15b3f774dcb5f1fb6da5ac1f0c86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38fe15b3f774dcb5f1fb6da5ac1f0c86">&#9670;&nbsp;</a></span>Provisioning_Failsafe_stop()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6">provisioning_ret_e</a> Provisioning_Failsafe_stop </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Stop failsafe. </p>
-<dl class="section note"><dt>Note</dt><dd>Failsafe task will be stopped, callbacks and tasks freed </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6a07bd8a0d138f700e67947a3550de61c9">PROV_RET_OK</a> if success. See <a class="el" href="../../d0/dae/provisioning_8h.html#a0f5bfd9ec0327dadfd77b7982129c4a6">provisioning_ret_e</a> for other return codes. </dd></dl>
 
 </div>
 </div>
@@ -469,7 +347,7 @@ Stop is not immediate, run_state_machine function must be scheduled first (typ. 
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00112">112</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00098">98</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -506,7 +384,7 @@ type</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00119">119</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00105">105</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -528,9 +406,9 @@ pdu_header</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="afa447fc38a39b7e53420348eb0b037cb"></a>uint8_t</td>
+<a id="acfcc9795732f1e037c26591b586cf673"></a>uint8_t</td>
 <td class="fieldname">
-uid[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/da2/structpdu__prov__hdr__t">pdu_prov_hdr_t</a>) - 1 - <a class="el" href="../../d3/dbf/aessw_8h.html#a62fa045ed57a00da8edc3abb63012a7e">AES_128_KEY_BLOCK_SIZE</a>]</td>
+uid[102 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/da2/structpdu__prov__hdr__t">pdu_prov_hdr_t</a>) - 1 - <a class="el" href="../../d3/dbf/aessw_8h.html#a62fa045ed57a00da8edc3abb63012a7e">AES_128_KEY_BLOCK_SIZE</a>]</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -549,7 +427,7 @@ uid[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00128">128</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00114">114</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -559,9 +437,9 @@ counter</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="acad63f1823c8fd103b713537d7dd05de"></a>uint8_t</td>
+<a id="a1c9cfc9584ab417b2167b7b1f308279a"></a>uint8_t</td>
 <td class="fieldname">
-data[135 -(sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/da2/structpdu__prov__hdr__t">pdu_prov_hdr_t</a>)+1+2) - 5]</td>
+data[102 -(sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/da2/structpdu__prov__hdr__t">pdu_prov_hdr_t</a>)+1+2) - 5]</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -592,7 +470,7 @@ pdu_header</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00139">139</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00125">125</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -617,7 +495,7 @@ pdu_header</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00144">144</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00130">130</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -648,11 +526,11 @@ pdu_header</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00150">150</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00136">136</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="aed4e55667e59da01b3f7051b4021570f"></a>union <a class="el" href="../../d9/d27/provisioning__int_8h.html#d6/d15/unionpdu__prov__t_8____unnamed____">pdu_prov_t</a></td>
+<a id="ab0daaca799eaab027e902145da2a03fa"></a>union <a class="el" href="../../d9/d27/provisioning__int_8h.html#d6/d15/unionpdu__prov__t_8____unnamed____">pdu_prov_t</a></td>
 <td class="fieldname">
 __unnamed__</td>
 <td class="fielddoc">
@@ -698,7 +576,7 @@ start</td>
 </div><div class="memdoc">
 <div class="textblock"><p>This structure holds the provisioning data parameters. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00166">166</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00152">152</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -721,13 +599,6 @@ end_cb</td>
 length</td>
 <td class="fielddoc">
 <p>length of provisioning buffer. </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a7e5575b2266da23e0d9a5dff2da9881a"></a>uint8_t</td>
-<td class="fieldname">
-method</td>
-<td class="fielddoc">
-<p>method used in provisioning. </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a8266866409a052c5a93851b6e1462be6"></a><a class="el" href="../../d0/dae/provisioning_8h.html#a71475822eccf80767909e0e5a23147b6">provisioning_user_data_cb_f</a></td>
@@ -753,7 +624,7 @@ user_data_cb</td>
 </div><div class="memdoc">
 <div class="textblock"><p>This structure holds the joining node parameters. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00191">191</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00175">175</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -781,40 +652,6 @@ nb_retry</td>
 
 </div>
 </div>
-<a name="dd/dd7/structprovisioning__failsafe__conf__t" id="dd/dd7/structprovisioning__failsafe__conf__t"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#dd/dd7/structprovisioning__failsafe__conf__t">&#9670;&nbsp;</a></span>provisioning_failsafe_conf_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct provisioning_failsafe_conf_t</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p>Structure to hold failsafe parameters. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00210">210</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Data Fields</th></tr>
-<tr><td class="fieldtype">
-<a id="a59f22fa682febf284ef3f2b4c3bba9ba"></a><a class="el" href="../../d9/d27/provisioning__int_8h.html#ab4990f992824d56f9c04b18bfb356a98">provisioning_start_cb_f</a></td>
-<td class="fieldname">
-start_cb</td>
-<td class="fielddoc">
-<p>Start provisioning callback. </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="abb358cc4b726cfab5b40ae7a1e2043d1"></a>uint16_t</td>
-<td class="fieldname">
-timeout_sec</td>
-<td class="fielddoc">
-<p>Wait timeout in seconds. </p>
-</td></tr>
-</table>
-
-</div>
-</div>
 <a name="d6/d15/unionpdu__prov__t_8____unnamed____" id="d6/d15/unionpdu__prov__t_8____unnamed____"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#d6/d15/unionpdu__prov__t_8____unnamed____">&#9670;&nbsp;</a></span>pdu_prov_t.__unnamed__</h2>
 
@@ -827,7 +664,7 @@ timeout_sec</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00152">152</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00138">138</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -837,9 +674,9 @@ pdu_header</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="ae12f159dd97810557789fd4c692eee02"></a>uint8_t</td>
+<a id="acf274162a953ecc81bacc813f868e068"></a>uint8_t</td>
 <td class="fieldname">
-pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/da2/structpdu__prov__hdr__t">pdu_prov_hdr_t</a>)]</td>
+pld[102 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/da2/structpdu__prov__hdr__t">pdu_prov_hdr_t</a>)]</td>
 <td class="fielddoc">
 </td></tr>
 </table>
@@ -865,13 +702,13 @@ pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
 <tr><td class="fieldname"><a id="a4c5433f6c7469e1fb5f632108c842a50a402d488900e12b93cb15ce5cafcc36a8"></a>PROV_NACK_TYPE_INVALID_KEY_IDX&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00104">104</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;{</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50a2cba05c782fc3dbe873a21b649969e71">PROV_NACK_TYPE_NOT_AUTHORIZED</a> = 0,</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50ac24089a0ea15a397afe110f2aec3fc93">PROV_NACK_TYPE_METHOD_NOT_SUPPORTED</a> = 1,</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50a2654f6b40271b6969c610b1985782107">PROV_NACK_TYPE_INVALID_DATA</a> = 2,</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50a402d488900e12b93cb15ce5cafcc36a8">PROV_NACK_TYPE_INVALID_KEY_IDX</a> = 3</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;} <a class="code" href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50">prov_nack_type_e</a>;</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00090">90</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;{</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50a2cba05c782fc3dbe873a21b649969e71">PROV_NACK_TYPE_NOT_AUTHORIZED</a> = 0,</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50ac24089a0ea15a397afe110f2aec3fc93">PROV_NACK_TYPE_METHOD_NOT_SUPPORTED</a> = 1,</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50a2654f6b40271b6969c610b1985782107">PROV_NACK_TYPE_INVALID_DATA</a> = 2,</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50a402d488900e12b93cb15ce5cafcc36a8">PROV_NACK_TYPE_INVALID_KEY_IDX</a> = 3</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;} <a class="code" href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50">prov_nack_type_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -893,13 +730,13 @@ pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
 <tr><td class="fieldname"><a id="ac0d2a1048fb0ab7520ecb4d7df8e8ea6a835a63dd517a816fc0a8aec8ca52c6e8"></a>PROV_PACKET_TYPE_NACK&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00096">96</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;{</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6a724a9c86ab4b79ad4b371a49a53cf9e3">PROV_PACKET_TYPE_START</a> = 1,</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6a385dc26988f6424d4f77dd48a850b234">PROV_PACKET_TYPE_DATA</a> = 2,</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6adec6283fda62418a4411be44eba55ead">PROV_PACKET_TYPE_DATA_ACK</a> = 3,</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6a835a63dd517a816fc0a8aec8ca52c6e8">PROV_PACKET_TYPE_NACK</a> = 4</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;} <a class="code" href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6">prov_packet_type_e</a>;</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00082">82</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6a724a9c86ab4b79ad4b371a49a53cf9e3">PROV_PACKET_TYPE_START</a> = 1,</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6a385dc26988f6424d4f77dd48a850b234">PROV_PACKET_TYPE_DATA</a> = 2,</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6adec6283fda62418a4411be44eba55ead">PROV_PACKET_TYPE_DATA_ACK</a> = 3,</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6a835a63dd517a816fc0a8aec8ca52c6e8">PROV_PACKET_TYPE_NACK</a> = 4</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;} <a class="code" href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6">prov_packet_type_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -916,7 +753,6 @@ pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
 </div><div class="memdoc">
 
 <p>List of Wirepas Ids for CBOR encoded provisioning data. </p>
-<p>A value for the joining type field., Allows to identify provisioning proxy nodes. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aee542072e8ed4c6421604a90538f9dc2a25cd2ac46704486ba6a437b0a52c2f5f"></a>PROV_DATA_ID_ENC_KEY&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aee542072e8ed4c6421604a90538f9dc2a735fcad6c04bd53564143f658bf050ca"></a>PROV_DATA_ID_AUTH_KEY&#160;</td><td class="fielddoc"></td></tr>
@@ -924,25 +760,19 @@ pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
 <tr><td class="fieldname"><a id="aee542072e8ed4c6421604a90538f9dc2acdef30ff0f3ffd783c7f35560b01a003"></a>PROV_DATA_ID_NET_CHAN&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aee542072e8ed4c6421604a90538f9dc2a9c062e96b8a51d81a67313b6b66d7471"></a>PROV_DATA_ID_NODE_ADDR&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aee542072e8ed4c6421604a90538f9dc2a4f41a683db426dac2beabf560f9d261d"></a>PROV_DATA_ID_NODE_ROLE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aee542072e8ed4c6421604a90538f9dc2a03fd02db9136d91cdb509f9ed302ba07"></a>PROV_DATA_ID_NET_KEY_SEQ&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aee542072e8ed4c6421604a90538f9dc2a3c72798ed8e5531bc70f0a4fdf65af21"></a>PROV_DATA_ID_MGMT_ENC_KEY&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aee542072e8ed4c6421604a90538f9dc2ad3d06dc3d9f95b868020030aed11434f"></a>PROV_DATA_ID_MGMT_AUTH_KEY&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aee542072e8ed4c6421604a90538f9dc2a48d8e55630c25eacd43229f49680ebf1"></a>RTC_ID_TIMESTAMP&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aee542072e8ed4c6421604a90538f9dc2a4a3f2add8548db9b69ec808237fee449"></a>RTC_ID_TIMEZONE_OFFSET&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00084">84</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;             {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a25cd2ac46704486ba6a437b0a52c2f5f">PROV_DATA_ID_ENC_KEY</a> = 0,</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a735fcad6c04bd53564143f658bf050ca">PROV_DATA_ID_AUTH_KEY</a> = 1,</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a02b2e581c486872a11d019e24b7a8123">PROV_DATA_ID_NET_ADDR</a> = 2,</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2acdef30ff0f3ffd783c7f35560b01a003">PROV_DATA_ID_NET_CHAN</a> = 3,</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a9c062e96b8a51d81a67313b6b66d7471">PROV_DATA_ID_NODE_ADDR</a> = 4,</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a4f41a683db426dac2beabf560f9d261d">PROV_DATA_ID_NODE_ROLE</a> = 5,</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a03fd02db9136d91cdb509f9ed302ba07">PROV_DATA_ID_NET_KEY_SEQ</a> = 6,</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a3c72798ed8e5531bc70f0a4fdf65af21">PROV_DATA_ID_MGMT_ENC_KEY</a> = 7,</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2ad3d06dc3d9f95b868020030aed11434f">PROV_DATA_ID_MGMT_AUTH_KEY</a> = 8</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;} <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2">provisioning_data_ids_e</a>;</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00072">72</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a25cd2ac46704486ba6a437b0a52c2f5f">PROV_DATA_ID_ENC_KEY</a> = 0,</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a735fcad6c04bd53564143f658bf050ca">PROV_DATA_ID_AUTH_KEY</a> = 1,</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a02b2e581c486872a11d019e24b7a8123">PROV_DATA_ID_NET_ADDR</a> = 2,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2acdef30ff0f3ffd783c7f35560b01a003">PROV_DATA_ID_NET_CHAN</a> = 3,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a9c062e96b8a51d81a67313b6b66d7471">PROV_DATA_ID_NODE_ADDR</a> = 4,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a4f41a683db426dac2beabf560f9d261d">PROV_DATA_ID_NODE_ROLE</a> = 5</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;} <a class="code" href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2">provisioning_data_ids_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -960,7 +790,24 @@ pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
 </div><div class="memdoc">
 <p>Encryption key offset in Key buffer. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00041">41</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00032">32</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+
+</div>
+</div>
+<a id="a0d6b76683aa52206f24bd915a42a0bc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d6b76683aa52206f24bd915a42a0bc1">&#9670;&nbsp;</a></span>JOINING_BEACON_TYPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define JOINING_BEACON_TYPE&#160;&#160;&#160;0x647650fb</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A value for the joining type field., Allows to identify provisioning proxy nodes. </p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00069">69</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 
 </div>
 </div>
@@ -977,7 +824,24 @@ pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
 </div><div class="memdoc">
 <p>Network address for sending and receiving joining beacons </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00055">55</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00046">46</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+
+</div>
+</div>
+<a id="a2595c42081ee2c54f2f5ed759f63cb29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2595c42081ee2c54f2f5ed759f63cb29">&#9670;&nbsp;</a></span>JOINING_NETWORK_CHANNEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define JOINING_NETWORK_CHANNEL&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Network channel for sending and receiving joining beacons </p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00054">54</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 
 </div>
 </div>
@@ -992,9 +856,9 @@ pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Network channel for sending and receiving joining beacons Time to scan for joining beacons, in milliseconds. <a class="el" href="../../d9/d27/provisioning__int_8h.html#ae19e8f09c8e1332a19e469df4a6cd747">JOINING_RX_TIMEOUT</a> and <a class="el" href="../../d9/d27/provisioning__int_8h.html#a9b390550c4b141e9a2cc2fe73713aa8e">JOINING_TX_INTERVAL</a> needs to be modified accordingly. </p>
+<p>Time to scan for joining beacons, in milliseconds. <a class="el" href="../../d9/d27/provisioning__int_8h.html#ae19e8f09c8e1332a19e469df4a6cd747">JOINING_RX_TIMEOUT</a> and <a class="el" href="../../d9/d27/provisioning__int_8h.html#a9b390550c4b141e9a2cc2fe73713aa8e">JOINING_TX_INTERVAL</a> needs to be modified accordingly. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00068">68</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00061">61</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 
 </div>
 </div>
@@ -1011,7 +875,7 @@ pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
 </div><div class="memdoc">
 <p>Interval to send joining beacons, in milliseconds </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00071">71</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00064">64</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 
 </div>
 </div>
@@ -1028,7 +892,7 @@ pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
 </div><div class="memdoc">
 <p>Size of the counter used in AES CTR mode encryption. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00035">35</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00026">26</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 
 </div>
 </div>
@@ -1045,7 +909,7 @@ pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
 </div><div class="memdoc">
 <p>Maximum User Specific Id in Cbor provisioning buffer (range [128:255]). </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00052">52</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00043">43</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 
 </div>
 </div>
@@ -1062,7 +926,7 @@ pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
 </div><div class="memdoc">
 <p>Minimum User Specific Id in Cbor provisioning buffer (range [128:255]). </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00049">49</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00040">40</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 
 </div>
 </div>
@@ -1079,7 +943,24 @@ pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
 </div><div class="memdoc">
 <p>Offset of the data in the provisioning DATA packet. pdu_prov_hdr(6) + key_index(1) + counter(2) </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00046">46</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00037">37</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+
+</div>
+</div>
+<a id="ade41d7ab55b09133259e5c7aed281669"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade41d7ab55b09133259e5c7aed281669">&#9670;&nbsp;</a></span>PROV_DOWNLINK_EP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PROV_DOWNLINK_EP&#160;&#160;&#160;255</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Provisioning downlink endpoint. </p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00018">18</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 
 </div>
 </div>
@@ -1096,7 +977,7 @@ pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
 </div><div class="memdoc">
 <p>Size of MIC in DATA packet if secured method is used. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00038">38</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00029">29</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 
 </div>
 </div>
@@ -1107,38 +988,52 @@ pld[135 - sizeof(<a class="el" href="../../d9/d27/provisioning__int_8h.html#d5/d
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define PROV_PDU_SIZE&#160;&#160;&#160;135</td>
+          <td class="memname">#define PROV_PDU_SIZE&#160;&#160;&#160;102</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Maximum size of a packet payload. Needed for buffer size definitions. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00032">32</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00023">23</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
+
+</div>
+</div>
+<a id="ae763d12de434915bdbc28a006c8f0f0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae763d12de434915bdbc28a006c8f0f0b">&#9670;&nbsp;</a></span>PROV_UPLINK_EP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PROV_UPLINK_EP&#160;&#160;&#160;246</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Provisioning uplink endpoint. </p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/d27/provisioning__int_8h_source.html#l00020">20</a> of file <a class="el" href="../../d9/d27/provisioning__int_8h_source.html">provisioning_int.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aprovisioning__int_8h_html_a4c5433f6c7469e1fb5f632108c842a50"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50">prov_nack_type_e</a></div><div class="ttdeci">prov_nack_type_e</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00104">provisioning_int.h:104</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2a03fd02db9136d91cdb509f9ed302ba07"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a03fd02db9136d91cdb509f9ed302ba07">PROV_DATA_ID_NET_KEY_SEQ</a></div><div class="ttdeci">@ PROV_DATA_ID_NET_KEY_SEQ</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00091">provisioning_int.h:91</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_ac0d2a1048fb0ab7520ecb4d7df8e8ea6a835a63dd517a816fc0a8aec8ca52c6e8"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6a835a63dd517a816fc0a8aec8ca52c6e8">PROV_PACKET_TYPE_NACK</a></div><div class="ttdeci">@ PROV_PACKET_TYPE_NACK</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00101">provisioning_int.h:101</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2a3c72798ed8e5531bc70f0a4fdf65af21"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a3c72798ed8e5531bc70f0a4fdf65af21">PROV_DATA_ID_MGMT_ENC_KEY</a></div><div class="ttdeci">@ PROV_DATA_ID_MGMT_ENC_KEY</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00092">provisioning_int.h:92</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2a4f41a683db426dac2beabf560f9d261d"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a4f41a683db426dac2beabf560f9d261d">PROV_DATA_ID_NODE_ROLE</a></div><div class="ttdeci">@ PROV_DATA_ID_NODE_ROLE</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00090">provisioning_int.h:90</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_a4c5433f6c7469e1fb5f632108c842a50a2654f6b40271b6969c610b1985782107"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50a2654f6b40271b6969c610b1985782107">PROV_NACK_TYPE_INVALID_DATA</a></div><div class="ttdeci">@ PROV_NACK_TYPE_INVALID_DATA</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00108">provisioning_int.h:108</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2a735fcad6c04bd53564143f658bf050ca"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a735fcad6c04bd53564143f658bf050ca">PROV_DATA_ID_AUTH_KEY</a></div><div class="ttdeci">@ PROV_DATA_ID_AUTH_KEY</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00086">provisioning_int.h:86</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2">provisioning_data_ids_e</a></div><div class="ttdeci">provisioning_data_ids_e</div><div class="ttdoc">List of Wirepas Ids for CBOR encoded provisioning data.</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00084">provisioning_int.h:84</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_a4c5433f6c7469e1fb5f632108c842a50ac24089a0ea15a397afe110f2aec3fc93"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50ac24089a0ea15a397afe110f2aec3fc93">PROV_NACK_TYPE_METHOD_NOT_SUPPORTED</a></div><div class="ttdeci">@ PROV_NACK_TYPE_METHOD_NOT_SUPPORTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00107">provisioning_int.h:107</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_ac0d2a1048fb0ab7520ecb4d7df8e8ea6"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6">prov_packet_type_e</a></div><div class="ttdeci">prov_packet_type_e</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00096">provisioning_int.h:96</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2acdef30ff0f3ffd783c7f35560b01a003"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2acdef30ff0f3ffd783c7f35560b01a003">PROV_DATA_ID_NET_CHAN</a></div><div class="ttdeci">@ PROV_DATA_ID_NET_CHAN</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00088">provisioning_int.h:88</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_a4c5433f6c7469e1fb5f632108c842a50a402d488900e12b93cb15ce5cafcc36a8"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50a402d488900e12b93cb15ce5cafcc36a8">PROV_NACK_TYPE_INVALID_KEY_IDX</a></div><div class="ttdeci">@ PROV_NACK_TYPE_INVALID_KEY_IDX</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00109">provisioning_int.h:109</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_ac0d2a1048fb0ab7520ecb4d7df8e8ea6a385dc26988f6424d4f77dd48a850b234"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6a385dc26988f6424d4f77dd48a850b234">PROV_PACKET_TYPE_DATA</a></div><div class="ttdeci">@ PROV_PACKET_TYPE_DATA</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00099">provisioning_int.h:99</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_a4c5433f6c7469e1fb5f632108c842a50a2cba05c782fc3dbe873a21b649969e71"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50a2cba05c782fc3dbe873a21b649969e71">PROV_NACK_TYPE_NOT_AUTHORIZED</a></div><div class="ttdeci">@ PROV_NACK_TYPE_NOT_AUTHORIZED</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00106">provisioning_int.h:106</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_ac0d2a1048fb0ab7520ecb4d7df8e8ea6a724a9c86ab4b79ad4b371a49a53cf9e3"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6a724a9c86ab4b79ad4b371a49a53cf9e3">PROV_PACKET_TYPE_START</a></div><div class="ttdeci">@ PROV_PACKET_TYPE_START</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00098">provisioning_int.h:98</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2a02b2e581c486872a11d019e24b7a8123"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a02b2e581c486872a11d019e24b7a8123">PROV_DATA_ID_NET_ADDR</a></div><div class="ttdeci">@ PROV_DATA_ID_NET_ADDR</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00087">provisioning_int.h:87</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2a25cd2ac46704486ba6a437b0a52c2f5f"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a25cd2ac46704486ba6a437b0a52c2f5f">PROV_DATA_ID_ENC_KEY</a></div><div class="ttdeci">@ PROV_DATA_ID_ENC_KEY</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00085">provisioning_int.h:85</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2a9c062e96b8a51d81a67313b6b66d7471"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a9c062e96b8a51d81a67313b6b66d7471">PROV_DATA_ID_NODE_ADDR</a></div><div class="ttdeci">@ PROV_DATA_ID_NODE_ADDR</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00089">provisioning_int.h:89</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2ad3d06dc3d9f95b868020030aed11434f"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2ad3d06dc3d9f95b868020030aed11434f">PROV_DATA_ID_MGMT_AUTH_KEY</a></div><div class="ttdeci">@ PROV_DATA_ID_MGMT_AUTH_KEY</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00093">provisioning_int.h:93</a></div></div>
-<div class="ttc" id="aprovisioning__int_8h_html_ac0d2a1048fb0ab7520ecb4d7df8e8ea6adec6283fda62418a4411be44eba55ead"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6adec6283fda62418a4411be44eba55ead">PROV_PACKET_TYPE_DATA_ACK</a></div><div class="ttdeci">@ PROV_PACKET_TYPE_DATA_ACK</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00100">provisioning_int.h:100</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_a4c5433f6c7469e1fb5f632108c842a50"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50">prov_nack_type_e</a></div><div class="ttdeci">prov_nack_type_e</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00090">provisioning_int.h:90</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_ac0d2a1048fb0ab7520ecb4d7df8e8ea6a835a63dd517a816fc0a8aec8ca52c6e8"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6a835a63dd517a816fc0a8aec8ca52c6e8">PROV_PACKET_TYPE_NACK</a></div><div class="ttdeci">@ PROV_PACKET_TYPE_NACK</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00087">provisioning_int.h:87</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2a4f41a683db426dac2beabf560f9d261d"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a4f41a683db426dac2beabf560f9d261d">PROV_DATA_ID_NODE_ROLE</a></div><div class="ttdeci">@ PROV_DATA_ID_NODE_ROLE</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00079">provisioning_int.h:79</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_a4c5433f6c7469e1fb5f632108c842a50a2654f6b40271b6969c610b1985782107"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50a2654f6b40271b6969c610b1985782107">PROV_NACK_TYPE_INVALID_DATA</a></div><div class="ttdeci">@ PROV_NACK_TYPE_INVALID_DATA</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00094">provisioning_int.h:94</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2a735fcad6c04bd53564143f658bf050ca"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a735fcad6c04bd53564143f658bf050ca">PROV_DATA_ID_AUTH_KEY</a></div><div class="ttdeci">@ PROV_DATA_ID_AUTH_KEY</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00075">provisioning_int.h:75</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2">provisioning_data_ids_e</a></div><div class="ttdeci">provisioning_data_ids_e</div><div class="ttdoc">List of Wirepas Ids for CBOR encoded provisioning data.</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00072">provisioning_int.h:72</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_a4c5433f6c7469e1fb5f632108c842a50ac24089a0ea15a397afe110f2aec3fc93"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50ac24089a0ea15a397afe110f2aec3fc93">PROV_NACK_TYPE_METHOD_NOT_SUPPORTED</a></div><div class="ttdeci">@ PROV_NACK_TYPE_METHOD_NOT_SUPPORTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00093">provisioning_int.h:93</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_ac0d2a1048fb0ab7520ecb4d7df8e8ea6"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6">prov_packet_type_e</a></div><div class="ttdeci">prov_packet_type_e</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00082">provisioning_int.h:82</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2acdef30ff0f3ffd783c7f35560b01a003"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2acdef30ff0f3ffd783c7f35560b01a003">PROV_DATA_ID_NET_CHAN</a></div><div class="ttdeci">@ PROV_DATA_ID_NET_CHAN</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00077">provisioning_int.h:77</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_a4c5433f6c7469e1fb5f632108c842a50a402d488900e12b93cb15ce5cafcc36a8"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50a402d488900e12b93cb15ce5cafcc36a8">PROV_NACK_TYPE_INVALID_KEY_IDX</a></div><div class="ttdeci">@ PROV_NACK_TYPE_INVALID_KEY_IDX</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00095">provisioning_int.h:95</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_ac0d2a1048fb0ab7520ecb4d7df8e8ea6a385dc26988f6424d4f77dd48a850b234"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6a385dc26988f6424d4f77dd48a850b234">PROV_PACKET_TYPE_DATA</a></div><div class="ttdeci">@ PROV_PACKET_TYPE_DATA</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00085">provisioning_int.h:85</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_a4c5433f6c7469e1fb5f632108c842a50a2cba05c782fc3dbe873a21b649969e71"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#a4c5433f6c7469e1fb5f632108c842a50a2cba05c782fc3dbe873a21b649969e71">PROV_NACK_TYPE_NOT_AUTHORIZED</a></div><div class="ttdeci">@ PROV_NACK_TYPE_NOT_AUTHORIZED</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00092">provisioning_int.h:92</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_ac0d2a1048fb0ab7520ecb4d7df8e8ea6a724a9c86ab4b79ad4b371a49a53cf9e3"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6a724a9c86ab4b79ad4b371a49a53cf9e3">PROV_PACKET_TYPE_START</a></div><div class="ttdeci">@ PROV_PACKET_TYPE_START</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00084">provisioning_int.h:84</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2a02b2e581c486872a11d019e24b7a8123"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a02b2e581c486872a11d019e24b7a8123">PROV_DATA_ID_NET_ADDR</a></div><div class="ttdeci">@ PROV_DATA_ID_NET_ADDR</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00076">provisioning_int.h:76</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2a25cd2ac46704486ba6a437b0a52c2f5f"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a25cd2ac46704486ba6a437b0a52c2f5f">PROV_DATA_ID_ENC_KEY</a></div><div class="ttdeci">@ PROV_DATA_ID_ENC_KEY</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00074">provisioning_int.h:74</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_aee542072e8ed4c6421604a90538f9dc2a9c062e96b8a51d81a67313b6b66d7471"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a9c062e96b8a51d81a67313b6b66d7471">PROV_DATA_ID_NODE_ADDR</a></div><div class="ttdeci">@ PROV_DATA_ID_NODE_ADDR</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00078">provisioning_int.h:78</a></div></div>
+<div class="ttc" id="aprovisioning__int_8h_html_ac0d2a1048fb0ab7520ecb4d7df8e8ea6adec6283fda62418a4411be44eba55ead"><div class="ttname"><a href="../../d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6adec6283fda62418a4411be44eba55ead">PROV_PACKET_TYPE_DATA_ACK</a></div><div class="ttdeci">@ PROV_PACKET_TYPE_DATA_ACK</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d27/provisioning__int_8h_source.html#l00086">provisioning_int.h:86</a></div></div>
 <!-- HTML footer for doxygen 1.8.17-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

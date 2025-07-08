@@ -17,13 +17,6 @@
 <script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-  /* @license-end */
-</script>
 <link rel="search" href="../../search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 <link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -54,33 +47,19 @@
 var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 /* @license-end */
 </script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="../../pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="../../annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li class="current"><a href="../../files.html"><span>Files</span></a></li>
-      <li><a href="../../examples.html"><span>Example&#160;applications</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-          <div class="left">
-            <form id="FSearchBox" action="../../search.html" method="get">
-              <img id="MSearchSelect" src="../../search/mag.png" alt=""/>
-              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
-                     onfocus="searchBox.OnSearchFieldFocus(true)" 
-                     onblur="searchBox.OnSearchFieldFocus(false)"/>
-            </form>
-          </div><div class="right"></div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="../../files.html"><span>File&#160;List</span></a></li>
-      <li><a href="../../globals.html"><span>Globals</span></a></li>
-    </ul>
-  </div>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,true,'search.html','Search');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -171,15 +150,6 @@ Macros</h2></td></tr>
 <tr class="memitem:a94e6401c9e46b35182d9dbbce6b99be5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">LOG</a>(level,  fmt, ...)</td></tr>
 <tr class="memdesc:a94e6401c9e46b35182d9dbbce6b99be5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a log message if its severity is lower or equal to DEBUG_LOG_MAX_LEVEL.  <a href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">More...</a><br /></td></tr>
 <tr class="separator:a94e6401c9e46b35182d9dbbce6b99be5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad0ba517f6ba41ca750a26340b91ec85"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd9/debug__log_8h.html#aad0ba517f6ba41ca750a26340b91ec85">LOGE</a>(fmt, ...)&#160;&#160;&#160;<a class="el" href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">LOG</a>(<a class="el" href="../../dd/dd9/debug__log_8h.html#a80fe8a6a673728cc8d8b2a90742b46b7">LVL_ERROR</a>, fmt __VA_OPT__(,) __VA_ARGS__)</td></tr>
-<tr class="memdesc:aad0ba517f6ba41ca750a26340b91ec85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set of macros that avoid to pass the full log level.  <a href="../../dd/dd9/debug__log_8h.html#aad0ba517f6ba41ca750a26340b91ec85">More...</a><br /></td></tr>
-<tr class="separator:aad0ba517f6ba41ca750a26340b91ec85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f332d50cbb255285411ff250e6da404"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd9/debug__log_8h.html#a7f332d50cbb255285411ff250e6da404">LOGW</a>(fmt, ...)&#160;&#160;&#160;<a class="el" href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">LOG</a>(<a class="el" href="../../dd/dd9/debug__log_8h.html#a1d4a3484bd8cc446ae5c98205275d019">LVL_WARNING</a>, fmt __VA_OPT__(,) __VA_ARGS__)</td></tr>
-<tr class="separator:a7f332d50cbb255285411ff250e6da404"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92abf411d2087c8985085d430336626c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd9/debug__log_8h.html#a92abf411d2087c8985085d430336626c">LOGI</a>(fmt, ...)&#160;&#160;&#160;<a class="el" href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">LOG</a>(<a class="el" href="../../dd/dd9/debug__log_8h.html#a589372d7f7cc36183e6c19752a7df474">LVL_INFO</a>, fmt __VA_OPT__(,) __VA_ARGS__)</td></tr>
-<tr class="separator:a92abf411d2087c8985085d430336626c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48bbf993b1b3c921f9576776376abd2b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd9/debug__log_8h.html#a48bbf993b1b3c921f9576776376abd2b">LOGD</a>(fmt, ...)&#160;&#160;&#160;<a class="el" href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">LOG</a>(<a class="el" href="../../dd/dd9/debug__log_8h.html#a2325454fac7906237ece595f2f257083">LVL_DEBUG</a>, fmt __VA_OPT__(,) __VA_ARGS__)</td></tr>
-<tr class="separator:a48bbf993b1b3c921f9576776376abd2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0666e007be537f1dd48e75b4abc0f53a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd9/debug__log_8h.html#a0666e007be537f1dd48e75b4abc0f53a">LOG_BUFFER</a>(level,  buffer,  size)</td></tr>
 <tr class="memdesc:a0666e007be537f1dd48e75b4abc0f53a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a buffer if its severity is lower or equal to DEBUG_LOG_MAX_LEVEL.  <a href="../../dd/dd9/debug__log_8h.html#a0666e007be537f1dd48e75b4abc0f53a">More...</a><br /></td></tr>
 <tr class="separator:a0666e007be537f1dd48e75b4abc0f53a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -218,7 +188,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00115">115</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00116">116</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
@@ -234,7 +204,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00113">113</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00114">114</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
@@ -250,7 +220,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00114">114</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00115">115</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
@@ -346,7 +316,7 @@ Macros</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/dde/aes_2app_8c-example.html#a2">aes/app.c</a>, <a class="el" href="../../d0/dd1/appconfig_2app_8c-example.html#a14">appconfig/app.c</a>, <a class="el" href="../../d7/d1c/ble_scanner_2app_8c-example.html#a4">ble_scanner/app.c</a>, <a class="el" href="../../db/d83/custom_app_2app_8c-example.html#a15">custom_app/app.c</a>, <a class="el" href="../../d2/d7a/positioning_app_2app_8c-example.html#a1">positioning_app/app.c</a>, <a class="el" href="../../d5/da9/provisioning_joining_node_2app_8c-example.html#a0">provisioning_joining_node/app.c</a>, <a class="el" href="../../db/d30/provisioning_proxy_2app_8c-example.html#a12">provisioning_proxy/app.c</a>, <a class="el" href="../../d6/da1/scheduler_2app_8c-example.html#a12">scheduler/app.c</a>, <a class="el" href="../../d5/d87/shared_data_2app_8c-example.html#a6">shared_data/app.c</a>, and <a class="el" href="../../dc/d2d/tinycbor_2app_8c-example.html#a5">tinycbor/app.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00173">173</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00175">175</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
@@ -383,7 +353,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">{ \</div>
 <div class="line">    if(((uint8_t) level) &lt;= ((uint8_t) <a class="code" href="../../dd/dd9/debug__log_8h.html#a72bcabdafa09d831b8653ad5351deff9">DEBUG_LOG_MAX_LEVEL</a>)) { \</div>
-<div class="line">        for (uint16_t i = 0; i &lt; size; i++) \</div>
+<div class="line">        for (uint8_t i = 0; i &lt; size; i++) \</div>
 <div class="line">        { \</div>
 <div class="line">            Print_Log(<span class="stringliteral">&quot;%02X &quot;</span>, buffer[i]); \</div>
 <div class="line">            if ((i &amp; 0xF) == 0xF &amp;&amp; i != (uint8_t)(size-1)) \</div>
@@ -391,7 +361,7 @@ Macros</h2></td></tr>
 <div class="line">                Print_Log(<span class="stringliteral">&quot;\n&quot;</span>); \</div>
 <div class="line">            } \</div>
 <div class="line">        } \</div>
-<div class="line">        Print_Log(<span class="stringliteral">&quot;\n&quot;</span>); \</div>
+<div class="line">    Print_Log(<span class="stringliteral">&quot;\n&quot;</span>); \</div>
 <div class="line">    } \</div>
 <div class="line">}</div>
 </div><!-- fragment -->
@@ -407,7 +377,7 @@ Macros</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/dde/aes_2app_8c-example.html#a7">aes/app.c</a>, <a class="el" href="../../d5/da9/provisioning_joining_node_2app_8c-example.html#a2">provisioning_joining_node/app.c</a>, and <a class="el" href="../../dc/d2d/tinycbor_2app_8c-example.html#a14">tinycbor/app.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00206">206</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00196">196</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
@@ -445,7 +415,7 @@ Macros</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../dc/d2d/tinycbor_2app_8c-example.html#a31">tinycbor/app.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00226">226</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00216">216</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
@@ -467,135 +437,6 @@ Macros</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00066">66</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
-
-</div>
-</div>
-<a id="a48bbf993b1b3c921f9576776376abd2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48bbf993b1b3c921f9576776376abd2b">&#9670;&nbsp;</a></span>LOGD</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOGD</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">fmt, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">LOG</a>(<a class="el" href="../../dd/dd9/debug__log_8h.html#a2325454fac7906237ece595f2f257083">LVL_DEBUG</a>, fmt __VA_OPT__(,) __VA_ARGS__)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00194">194</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
-
-</div>
-</div>
-<a id="aad0ba517f6ba41ca750a26340b91ec85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad0ba517f6ba41ca750a26340b91ec85">&#9670;&nbsp;</a></span>LOGE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOGE</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">fmt, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">LOG</a>(<a class="el" href="../../dd/dd9/debug__log_8h.html#a80fe8a6a673728cc8d8b2a90742b46b7">LVL_ERROR</a>, fmt __VA_OPT__(,) __VA_ARGS__)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set of macros that avoid to pass the full log level. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">fmt</td><td>Format of the log </td></tr>
-    <tr><td class="paramname">...</td><td>The list of parameters </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00191">191</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
-
-</div>
-</div>
-<a id="a92abf411d2087c8985085d430336626c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92abf411d2087c8985085d430336626c">&#9670;&nbsp;</a></span>LOGI</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOGI</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">fmt, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">LOG</a>(<a class="el" href="../../dd/dd9/debug__log_8h.html#a589372d7f7cc36183e6c19752a7df474">LVL_INFO</a>, fmt __VA_OPT__(,) __VA_ARGS__)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00193">193</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
-
-</div>
-</div>
-<a id="a7f332d50cbb255285411ff250e6da404"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f332d50cbb255285411ff250e6da404">&#9670;&nbsp;</a></span>LOGW</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOGW</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">fmt, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">LOG</a>(<a class="el" href="../../dd/dd9/debug__log_8h.html#a1d4a3484bd8cc446ae5c98205275d019">LVL_WARNING</a>, fmt __VA_OPT__(,) __VA_ARGS__)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00192">192</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
@@ -834,7 +675,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00151">151</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00152">152</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
@@ -850,7 +691,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00152">152</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00153">153</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
@@ -870,7 +711,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00142">142</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00143">143</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
@@ -886,7 +727,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00159">159</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00160">160</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
@@ -902,7 +743,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00160">160</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00161">161</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
@@ -918,7 +759,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00122">122</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00123">123</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
@@ -934,7 +775,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00134">134</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00135">135</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
@@ -950,25 +791,25 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00135">135</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dd9/debug__log_8h_source.html#l00136">136</a> of file <a class="el" href="../../dd/dd9/debug__log_8h_source.html">debug_log.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="adebug__log_8h_html_a589372d7f7cc36183e6c19752a7df474"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a589372d7f7cc36183e6c19752a7df474">LVL_INFO</a></div><div class="ttdeci">#define LVL_INFO</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00083">debug_log.h:83</a></div></div>
-<div class="ttc" id="adebug__log_8h_html_a20565bed13c2754f77b945f740831dbc"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a20565bed13c2754f77b945f740831dbc">S_MOD_NAME_PREFIX</a></div><div class="ttdeci">#define S_MOD_NAME_PREFIX</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00122">debug_log.h:122</a></div></div>
-<div class="ttc" id="adebug__log_8h_html_a889870716dd3e84c1bd6c8a64a6c2249"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a889870716dd3e84c1bd6c8a64a6c2249">S_TIME_SUFFIX</a></div><div class="ttdeci">#define S_TIME_SUFFIX</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00135">debug_log.h:135</a></div></div>
-<div class="ttc" id="adebug__log_8h_html_ac6bb6d46dae9a8cfb912c9744d23c328"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#ac6bb6d46dae9a8cfb912c9744d23c328">S_LINE_SUFFIX</a></div><div class="ttdeci">#define S_LINE_SUFFIX</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00160">debug_log.h:160</a></div></div>
-<div class="ttc" id="adebug__log_8h_html_af9aff8d7864c02bddd354ce28035bc7a"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#af9aff8d7864c02bddd354ce28035bc7a">S_LEVEL_PREFIX</a></div><div class="ttdeci">#define S_LEVEL_PREFIX(level)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00142">debug_log.h:142</a></div></div>
+<div class="ttc" id="adebug__log_8h_html_a20565bed13c2754f77b945f740831dbc"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a20565bed13c2754f77b945f740831dbc">S_MOD_NAME_PREFIX</a></div><div class="ttdeci">#define S_MOD_NAME_PREFIX</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00123">debug_log.h:123</a></div></div>
+<div class="ttc" id="adebug__log_8h_html_a889870716dd3e84c1bd6c8a64a6c2249"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a889870716dd3e84c1bd6c8a64a6c2249">S_TIME_SUFFIX</a></div><div class="ttdeci">#define S_TIME_SUFFIX</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00136">debug_log.h:136</a></div></div>
+<div class="ttc" id="adebug__log_8h_html_ac6bb6d46dae9a8cfb912c9744d23c328"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#ac6bb6d46dae9a8cfb912c9744d23c328">S_LINE_SUFFIX</a></div><div class="ttdeci">#define S_LINE_SUFFIX</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00161">debug_log.h:161</a></div></div>
+<div class="ttc" id="adebug__log_8h_html_af9aff8d7864c02bddd354ce28035bc7a"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#af9aff8d7864c02bddd354ce28035bc7a">S_LEVEL_PREFIX</a></div><div class="ttdeci">#define S_LEVEL_PREFIX(level)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00143">debug_log.h:143</a></div></div>
 <div class="ttc" id="adebug__log_8h_html_a72bcabdafa09d831b8653ad5351deff9"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a72bcabdafa09d831b8653ad5351deff9">DEBUG_LOG_MAX_LEVEL</a></div><div class="ttdeci">#define DEBUG_LOG_MAX_LEVEL</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00076">debug_log.h:76</a></div></div>
-<div class="ttc" id="adebug__log_8h_html_a130541a8328e6d3757ac79c5120bb3a6"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a130541a8328e6d3757ac79c5120bb3a6">S_FUNCTION_PREFIX</a></div><div class="ttdeci">#define S_FUNCTION_PREFIX</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00151">debug_log.h:151</a></div></div>
+<div class="ttc" id="adebug__log_8h_html_a130541a8328e6d3757ac79c5120bb3a6"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a130541a8328e6d3757ac79c5120bb3a6">S_FUNCTION_PREFIX</a></div><div class="ttdeci">#define S_FUNCTION_PREFIX</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00152">debug_log.h:152</a></div></div>
 <div class="ttc" id="adebug__log_8h_html_a2325454fac7906237ece595f2f257083"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a2325454fac7906237ece595f2f257083">LVL_DEBUG</a></div><div class="ttdeci">#define LVL_DEBUG</div><div class="ttdoc">Macros to define several log levels: Debug, Info, Warning, Error.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00082">debug_log.h:82</a></div></div>
 <div class="ttc" id="adebug__log_8h_html_a062ce2496c8e47adec91c0d11744a7a7"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a062ce2496c8e47adec91c0d11744a7a7">LOG_INIT</a></div><div class="ttdeci">#define LOG_INIT()</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00066">debug_log.h:66</a></div></div>
-<div class="ttc" id="adebug__log_8h_html_a447dcfed6381f72ed603a7208e3c5305"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a447dcfed6381f72ed603a7208e3c5305">S_FUNCTION_SUFFIX</a></div><div class="ttdeci">#define S_FUNCTION_SUFFIX</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00152">debug_log.h:152</a></div></div>
-<div class="ttc" id="adebug__log_8h_html_a94e6401c9e46b35182d9dbbce6b99be5"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">LOG</a></div><div class="ttdeci">#define LOG(level, fmt,...)</div><div class="ttdoc">Print a log message if its severity is lower or equal to DEBUG_LOG_MAX_LEVEL.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00173">debug_log.h:173</a></div></div>
-<div class="ttc" id="adebug__log_8h_html_ac0b5502963775791390c4f0a883e23b8"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#ac0b5502963775791390c4f0a883e23b8">S_TIME_PREFIX</a></div><div class="ttdeci">#define S_TIME_PREFIX</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00134">debug_log.h:134</a></div></div>
-<div class="ttc" id="adebug__log_8h_html_a8003802afd36cdc53d319bff716aba9a"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a8003802afd36cdc53d319bff716aba9a">S_LINE_PREFIX</a></div><div class="ttdeci">#define S_LINE_PREFIX</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00159">debug_log.h:159</a></div></div>
+<div class="ttc" id="adebug__log_8h_html_a447dcfed6381f72ed603a7208e3c5305"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a447dcfed6381f72ed603a7208e3c5305">S_FUNCTION_SUFFIX</a></div><div class="ttdeci">#define S_FUNCTION_SUFFIX</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00153">debug_log.h:153</a></div></div>
+<div class="ttc" id="adebug__log_8h_html_a94e6401c9e46b35182d9dbbce6b99be5"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">LOG</a></div><div class="ttdeci">#define LOG(level, fmt,...)</div><div class="ttdoc">Print a log message if its severity is lower or equal to DEBUG_LOG_MAX_LEVEL.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00175">debug_log.h:175</a></div></div>
+<div class="ttc" id="adebug__log_8h_html_ac0b5502963775791390c4f0a883e23b8"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#ac0b5502963775791390c4f0a883e23b8">S_TIME_PREFIX</a></div><div class="ttdeci">#define S_TIME_PREFIX</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00135">debug_log.h:135</a></div></div>
+<div class="ttc" id="adebug__log_8h_html_a8003802afd36cdc53d319bff716aba9a"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a8003802afd36cdc53d319bff716aba9a">S_LINE_PREFIX</a></div><div class="ttdeci">#define S_LINE_PREFIX</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00160">debug_log.h:160</a></div></div>
 <div class="ttc" id="adebug__log_8h_html_a2854280604946b2415b21c2d8d127633"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a2854280604946b2415b21c2d8d127633">FLUSH_DELAY_MS</a></div><div class="ttdeci">#define FLUSH_DELAY_MS</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00105">debug_log.h:105</a></div></div>
 <!-- HTML footer for doxygen 1.8.17-->
 <!-- start footer part -->

@@ -17,13 +17,6 @@
 <script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-  /* @license-end */
-</script>
 <link rel="search" href="../../search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 <link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -54,33 +47,19 @@
 var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 /* @license-end */
 </script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="../../pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="../../annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li class="current"><a href="../../files.html"><span>Files</span></a></li>
-      <li><a href="../../examples.html"><span>Example&#160;applications</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-          <div class="left">
-            <form id="FSearchBox" action="../../search.html" method="get">
-              <img id="MSearchSelect" src="../../search/mag.png" alt=""/>
-              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
-                     onfocus="searchBox.OnSearchFieldFocus(true)" 
-                     onblur="searchBox.OnSearchFieldFocus(false)"/>
-            </form>
-          </div><div class="right"></div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="../../files.html"><span>File&#160;List</span></a></li>
-      <li><a href="../../globals.html"><span>Globals</span></a></li>
-    </ul>
-  </div>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,true,'search.html','Search');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -158,7 +137,7 @@ Typedefs</h2></td></tr>
 <tr class="memdesc:a61feb96e0a7184cc92deb87a8c4ff73d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get route information.  <a href="../../d4/d27/wms__state_8h.html#a61feb96e0a7184cc92deb87a8c4ff73d">More...</a><br /></td></tr>
 <tr class="separator:a61feb96e0a7184cc92deb87a8c4ff73d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedc5487434ea12d2ce490c0c630651ab"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80">app_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d27/wms__state_8h.html#aedc5487434ea12d2ce490c0c630651ab">app_lib_state_scan_stop_f</a>) (void)</td></tr>
-<tr class="memdesc:aedc5487434ea12d2ce490c0c630651ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops an ongoing scan operation before it has ended.  <a href="../../d4/d27/wms__state_8h.html#aedc5487434ea12d2ce490c0c630651ab">More...</a><br /></td></tr>
+<tr class="memdesc:aedc5487434ea12d2ce490c0c630651ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops ongoing scan operation before ended.  <a href="../../d4/d27/wms__state_8h.html#aedc5487434ea12d2ce490c0c630651ab">More...</a><br /></td></tr>
 <tr class="separator:aedc5487434ea12d2ce490c0c630651ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34d5c81f582579bdef141e4f1a691aa6"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80">app_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d27/wms__state_8h.html#a34d5c81f582579bdef141e4f1a691aa6">app_lib_state_get_install_quality_f</a>) (<a class="el" href="../../d4/d27/wms__state_8h.html#d8/de6/structapp__lib__state__install__quality__t">app_lib_state_install_quality_t</a> *qual_out)</td></tr>
 <tr class="memdesc:a34d5c81f582579bdef141e4f1a691aa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read installation quality, <a class="el" href="../../d4/d27/wms__state_8h.html#d8/de6/structapp__lib__state__install__quality__t">app_lib_state_install_quality_t</a>.  <a href="../../d4/d27/wms__state_8h.html#a34d5c81f582579bdef141e4f1a691aa6">More...</a><br /></td></tr>
@@ -260,8 +239,7 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a207707c7375de73337cc043e165f89ac">APP_LIB_STATE_STACK_EVENT_SCRAT_XFER_STARTED</a> = 4, 
 <a class="el" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a59ce8b938d65a7c8f254c12b2f9e404f">APP_LIB_STATE_STACK_EVENT_SCRAT_XFER_STOPPED</a> = 5, 
-<a class="el" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a3b8e841e8bfd0202894dde4d6c762569">APP_LIB_STATE_STACK_EVENT_ROUTE_CHANGED</a> = 6, 
-<a class="el" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a725b0212bed5b0109c1882957cbb3231">APP_LIB_STATE_STACK_EVENT_CON_FALLBCK</a> = 7
+<a class="el" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a3b8e841e8bfd0202894dde4d6c762569">APP_LIB_STATE_STACK_EVENT_ROUTE_CHANGED</a> = 6
 <br />
  }</td></tr>
 <tr class="memdesc:ab8e78bf991f825121530014fef8b8383"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of event generated by the stack when registering to <a class="el" href="d4/d27/wms__state_8h.html#ab8c691757f7e9b507deef94faf0da3d4">app_lib_state_set_stack_event_cb_f</a>.  <a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383">More...</a><br /></td></tr>
@@ -272,7 +250,7 @@ Macros</h2></td></tr>
 <tr class="memitem:ad42c937f109dd38844dd4a6a65a3b4d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d27/wms__state_8h.html#ad42c937f109dd38844dd4a6a65a3b4d5">APP_LIB_STATE_NAME</a>&#160;&#160;&#160;0x02f9c165</td></tr>
 <tr class="memdesc:ad42c937f109dd38844dd4a6a65a3b4d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Library symbolic name.  <a href="../../d4/d27/wms__state_8h.html#ad42c937f109dd38844dd4a6a65a3b4d5">More...</a><br /></td></tr>
 <tr class="separator:ad42c937f109dd38844dd4a6a65a3b4d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7970435ad6c9d729f2c1b8aa7a0c6720"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d27/wms__state_8h.html#a7970435ad6c9d729f2c1b8aa7a0c6720">APP_LIB_STATE_VERSION</a>&#160;&#160;&#160;0x20F</td></tr>
+<tr class="memitem:a7970435ad6c9d729f2c1b8aa7a0c6720"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d27/wms__state_8h.html#a7970435ad6c9d729f2c1b8aa7a0c6720">APP_LIB_STATE_VERSION</a>&#160;&#160;&#160;0x20E</td></tr>
 <tr class="memdesc:a7970435ad6c9d729f2c1b8aa7a0c6720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum supported library version.  <a href="../../d4/d27/wms__state_8h.html#a7970435ad6c9d729f2c1b8aa7a0c6720">More...</a><br /></td></tr>
 <tr class="separator:a7970435ad6c9d729f2c1b8aa7a0c6720"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad57d94677d6e5717f3ca6e411c2a2d8c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d27/wms__state_8h.html#ad57d94677d6e5717f3ca6e411c2a2d8c">APP_LIB_STATE_INVALID_ROUTE_COST</a>&#160;&#160;&#160;UINT8_MAX</td></tr>
@@ -307,7 +285,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80acf4d6254abe9760ec1ad9403b4af6cdc">APP_RES_INVALID_STACK_STATE</a> if stack not running </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00407">407</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00403">403</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -326,7 +304,7 @@ Macros</h2></td></tr>
 <p>Query cluster channel (i.e. operating channel) currently in use. </p>
 <dl class="section return"><dt>Returns</dt><dd>Cluster channel in use </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00625">625</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00613">613</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -351,7 +329,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>APP_RES_OK if value was read OK </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00618">618</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00606">606</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -386,7 +364,7 @@ Macros</h2></td></tr>
 <div class="line">...</div>
 <div class="line">lib_state-&gt;getNbors(&amp;nbors_list);</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00533">533</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00527">527</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -411,7 +389,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00590">590</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00584">584</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -438,7 +416,7 @@ Macros</h2></td></tr>
 <p>Example: </p><div class="fragment"><div class="line">uint8_t current_cost;</div>
 <div class="line">lib_state-&gt;getSinkCost(&amp;current_cost);</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00558">558</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00552">552</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -460,7 +438,7 @@ Macros</h2></td></tr>
 <p>Example: </p><div class="fragment"><div class="line"><a class="code" href="../../d4/d27/wms__state_8h.html#ab534305bdd66195140b3f750b9fdf21d">app_lib_state_stack_state_e</a> state;</div>
 <div class="line">state = lib_state-&gt;getStackState();</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00397">397</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00393">393</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -484,7 +462,7 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00334">334</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00330">330</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -536,7 +514,7 @@ List of event may evolve in future. To write forward compatible code callback mu
 <div class="line">    lib_state-&gt;setOnStackEventCb(on_stack_event_cb);</div>
 <div class="line">...</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00479">479</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00473">473</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -552,26 +530,11 @@ List of event may evolve in future. To write forward compatible code callback mu
       </table>
 </div><div class="memdoc">
 
-<p>Stops an ongoing scan operation before it has ended. </p>
-<dl class="section note"><dt>Note</dt><dd>This can only be done on <a class="el" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aafbafd13358d2b8d35f940ae8ff8ffe4">advertisers</a> and <a class="el" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aaf3a79d23b26fc4ef8d6d572b272218b">LE subnodes</a> (without autorole). </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>One of the following values:<ul>
-<li><a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a><ul>
-<li>scan operation was stopped successfully</li>
-</ul>
-</li>
-<li><a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a2e0fd18ec0f8ae18c72ebdf838235cb3">APP_RES_INVALID_CONFIGURATION</a><ul>
-<li>device is not <a class="el" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aafbafd13358d2b8d35f940ae8ff8ffe4">APP_LIB_SETTINGS_ROLE_ADVERTISER</a> or <a class="el" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aaf3a79d23b26fc4ef8d6d572b272218b">APP_LIB_SETTINGS_ROLE_SUBNODE_LE</a></li>
-</ul>
-</li>
-<li><a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80acf4d6254abe9760ec1ad9403b4af6cdc">APP_RES_INVALID_STACK_STATE</a><ul>
-<li>stack is not running</li>
-</ul>
-</li>
-</ul>
-</dd></dl>
-<p>This service aborts an ongoing scan operation started with <a class="el" href="../../d4/d27/wms__state_8h.html#a3f005b84b93e45bc27baf71fef5d9320">lib_state-&gt;startScanNbors()</a>. </p>
+<p>Stops ongoing scan operation before ended. </p>
+<dl class="section return"><dt>Returns</dt><dd>Normally <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a>. <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a2e0fd18ec0f8ae18c72ebdf838235cb3">APP_RES_INVALID_CONFIGURATION</a> if device is not <a class="el" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aafbafd13358d2b8d35f940ae8ff8ffe4">APP_LIB_SETTINGS_ROLE_ADVERTISER</a> nor APP_LIB_SETTINGS_ROLE_SUBNODE, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a55bc4f48f8714c3e5c515e3de50ffe88">APP_RES_RESOURCE_UNAVAILABLE</a> if memory has ran out, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80acf4d6254abe9760ec1ad9403b4af6cdc">APP_RES_INVALID_STACK_STATE</a> if stack is not running.</dd></dl>
+<p>This service aborts ongoing scan operation started with <a class="el" href="../../d4/d27/wms__state_8h.html#a3f005b84b93e45bc27baf71fef5d9320">lib_state-&gt;startScanNbors()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00609">609</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00597">597</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -596,7 +559,7 @@ List of event may evolve in future. To write forward compatible code callback mu
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, always <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00542">542</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00536">536</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -623,7 +586,7 @@ List of event may evolve in future. To write forward compatible code callback mu
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a2e0fd18ec0f8ae18c72ebdf838235cb3">APP_RES_INVALID_CONFIGURATION</a> if node is not a sink</dd></dl>
 <p>Example on use: </p><div class="fragment"><div class="line">lib_state-&gt;setSinkCost(8);</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00579">579</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00573">573</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -647,7 +610,7 @@ List of event may evolve in future. To write forward compatible code callback mu
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00488">488</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00482">482</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -668,7 +631,7 @@ List of event may evolve in future. To write forward compatible code callback mu
 <dl class="section return"><dt>Returns</dt><dd>Result code, always <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> unless stack is not running when <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80acf4d6254abe9760ec1ad9403b4af6cdc">APP_RES_INVALID_STACK_STATE</a> is returned.</dd></dl>
 <p>Example: </p><div class="fragment"><div class="line">lib_state-&gt;startScanNbors();</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00507">507</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00501">501</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -685,7 +648,7 @@ List of event may evolve in future. To write forward compatible code callback mu
 </div><div class="memdoc">
 
 <p>Start the stack. </p>
-<p>This is most commonly used in the end of the <code>app_init</code> "App_init()" function to start the radio operation.</p>
+<p>This is most commonly used in the end of the <a class="el" href="../../de/d7a/how_to_develop.html#app_init">App_init()</a> function to start the radio operation.</p>
 <p>Example:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> App_init(<span class="keyword">const</span> <a class="code" href="../../da/dbb/wms__app_8h.html#d6/d81/structapp__global__functions__t">app_global_functions_t</a> * functions)</div>
 <div class="line">{</div>
@@ -696,7 +659,7 @@ List of event may evolve in future. To write forward compatible code callback mu
 </div><!-- fragment --><p>In order to start, the stack needs minimum of four following attributes to be configured: <a class="el" href="../../df/d62/wms__settings_8h.html#a09516bdd3d13abeb4d4079192b578854">device role</a>, <a class="el" href="../../df/d62/wms__settings_8h.html#a4c35bcdd1644b59a98529937c3094abf">device address</a>, <a class="el" href="../../df/d62/wms__settings_8h.html#abca39c19cef78a886f8c1fb67620e8bc">network address</a> and <a class="el" href="../../df/d62/wms__settings_8h.html#a12647b79ac8fd2cffb2f4ab481896f93">network channel</a>. These attributes can be set by the application thanks to the Single-MCU API during the initialization step. Device role, network address and network channel can be hardcoded in the application image.</p>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00364">364</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00360">360</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -719,7 +682,7 @@ List of event may evolve in future. To write forward compatible code callback mu
 This function never returns</dd></dl>
 <p>Example: </p><div class="fragment"><div class="line">lib_state-&gt;stopStack();</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00382">382</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00378">378</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 
 </div>
 </div>
@@ -897,12 +860,6 @@ is_ll</td>
 <td class="fielddoc">
 Device is LL. </td></tr>
 <tr><td class="fieldtype">
-<a id="a8a097fe4bfb986d17ec46c1d26265185"></a>bool</td>
-<td class="fieldname">
-is_secured</td>
-<td class="fielddoc">
-This beacon is secured with encryption. </td></tr>
-<tr><td class="fieldtype">
 <a id="a6149885080d7e0559447dcbccedcfe3b"></a>bool</td>
 <td class="fieldname">
 is_sink</td>
@@ -949,7 +906,7 @@ Type of beacon <a class="el" href="../../d4/d27/wms__state_8h.html#a56dba5ba5a60
 </div><div class="memdoc">
 <div class="textblock"><dl class="section note"><dt>Note</dt><dd>This struct is deprecated in Wirepas Mesh version 5.2.0 and later. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00236">236</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00232">232</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -983,7 +940,7 @@ hops_left</td>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/d90/ruuvi_evk_2app_8c-example.html#_a16">ruuvi_evk/app.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00245">245</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00241">241</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1039,7 +996,7 @@ state</td>
 <div class="textblock"><p>Installation quality information. Contains information about the nodes installation location i.e. its quality indicated by a numeric value, as well as error codes if something is wrong with the location. </p>
 <p>For more detailed information about the value(s) presented here, see application note about installation quality API, document reference: <a href="https://developer.wirepas.com/support/solutions/articles/77000498319-radio-installation-quality-api-application-note">https://developer.wirepas.com/support/solutions/articles/77000498319-radio-installation-quality-api-application-note</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00285">285</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00281">281</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1073,7 +1030,7 @@ quality</td>
 </div><div class="memdoc">
 <div class="textblock"><p>Information on started scan. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00311">311</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00307">307</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1099,7 +1056,7 @@ scan_type</td>
 </div><div class="memdoc">
 <div class="textblock"><p>Information on neighbor scan. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00320">320</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00316">316</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1131,7 +1088,7 @@ scan_type</td>
 </div><div class="memdoc">
 <div class="textblock"><p>List of library functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00630">630</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00618">618</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1252,21 +1209,18 @@ stopStack</td>
 </td></tr>
 <tr><td class="fieldname"><a id="ab8e78bf991f825121530014fef8b8383a3b8e841e8bfd0202894dde4d6c762569"></a>APP_LIB_STATE_STACK_EVENT_ROUTE_CHANGED&#160;</td><td class="fielddoc"><p>Route has changed. Param = pointer to <a class="el" href="../../d4/d27/wms__state_8h.html#d3/d74/structapp__lib__state__route__info__t">app_lib_state_route_info_t</a> </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ab8e78bf991f825121530014fef8b8383a725b0212bed5b0109c1882957cbb3231"></a>APP_LIB_STATE_STACK_EVENT_CON_FALLBCK&#160;</td><td class="fielddoc"><p>Connection fallback mechanism triggered </p>
-</td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00414">414</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;{</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383adbc4d8fbcd364fc468daaaa0e7bd3fe3">APP_LIB_STATE_STACK_EVENT_STACK_STOPPED</a> = 0,</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383acad3be091c547c6b3833ebfefa84a7f5">APP_LIB_STATE_STACK_EVENT_STACK_STARTED</a> = 1,</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a4999a87fcd498faedbd3a4542b2bb1a3">APP_LIB_STATE_STACK_EVENT_SCAN_STARTED</a> = 2,</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383aa9d4311700732a557a5f0fa9d1ec9746">APP_LIB_STATE_STACK_EVENT_SCAN_STOPPED</a> = 3,</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a207707c7375de73337cc043e165f89ac">APP_LIB_STATE_STACK_EVENT_SCRAT_XFER_STARTED</a> = 4,</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a59ce8b938d65a7c8f254c12b2f9e404f">APP_LIB_STATE_STACK_EVENT_SCRAT_XFER_STOPPED</a> = 5,</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a3b8e841e8bfd0202894dde4d6c762569">APP_LIB_STATE_STACK_EVENT_ROUTE_CHANGED</a> = 6,</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a725b0212bed5b0109c1882957cbb3231">APP_LIB_STATE_STACK_EVENT_CON_FALLBCK</a> = 7  </div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;} <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383">app_lib_stack_event_e</a>;</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00410">410</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;{</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383adbc4d8fbcd364fc468daaaa0e7bd3fe3">APP_LIB_STATE_STACK_EVENT_STACK_STOPPED</a> = 0,</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383acad3be091c547c6b3833ebfefa84a7f5">APP_LIB_STATE_STACK_EVENT_STACK_STARTED</a> = 1,</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a4999a87fcd498faedbd3a4542b2bb1a3">APP_LIB_STATE_STACK_EVENT_SCAN_STARTED</a> = 2,</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383aa9d4311700732a557a5f0fa9d1ec9746">APP_LIB_STATE_STACK_EVENT_SCAN_STOPPED</a> = 3,</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a207707c7375de73337cc043e165f89ac">APP_LIB_STATE_STACK_EVENT_SCRAT_XFER_STARTED</a> = 4,</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a59ce8b938d65a7c8f254c12b2f9e404f">APP_LIB_STATE_STACK_EVENT_SCRAT_XFER_STOPPED</a> = 5,</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a3b8e841e8bfd0202894dde4d6c762569">APP_LIB_STATE_STACK_EVENT_ROUTE_CHANGED</a> = 6,</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;} <a class="code" href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383">app_lib_stack_event_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1438,14 +1392,14 @@ stopStack</td>
 <tr><td class="fieldname"><a id="abdb207e11a6bcc7bc7f2d30124bdb3a3ae9a042ce29617adae1c6414bca32562f"></a>SCAN_TYPE_STACK_ORIGINATED&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00299">299</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;{</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="comment">// Scan originated by application (by using call @ref</span></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="comment">// app_lib_state_start_scan_nbors_f &quot;lib_state-&gt;startScanNbors()&quot;)</span></div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#abdb207e11a6bcc7bc7f2d30124bdb3a3a804573aa3dd49efad3334d1c3e1bc968">SCAN_TYPE_APP_ORIGINATED</a> = 0x00,</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <span class="comment">// Scan originated by stack</span></div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#abdb207e11a6bcc7bc7f2d30124bdb3a3ae9a042ce29617adae1c6414bca32562f">SCAN_TYPE_STACK_ORIGINATED</a> = 0x01,</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;} <a class="code" href="../../d4/d27/wms__state_8h.html#abdb207e11a6bcc7bc7f2d30124bdb3a3">app_lib_state_scan_type_e</a>;</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00295">295</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;{</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <span class="comment">// Scan originated by application (by using call @ref</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <span class="comment">// app_lib_state_start_scan_nbors_f &quot;lib_state-&gt;startScanNbors()&quot;)</span></div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#abdb207e11a6bcc7bc7f2d30124bdb3a3a804573aa3dd49efad3334d1c3e1bc968">SCAN_TYPE_APP_ORIGINATED</a> = 0x00,</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="comment">// Scan originated by stack</span></div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#abdb207e11a6bcc7bc7f2d30124bdb3a3ae9a042ce29617adae1c6414bca32562f">SCAN_TYPE_STACK_ORIGINATED</a> = 0x01,</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;} <a class="code" href="../../d4/d27/wms__state_8h.html#abdb207e11a6bcc7bc7f2d30124bdb3a3">app_lib_state_scan_type_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1519,13 +1473,13 @@ stopStack</td>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00263">263</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;{</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0a27fb09d41acaf5211198f56d7ab1afb4">APP_LIB_STATE_INSTALL_QUALITY_ERROR_NONE</a>    = 0x00,</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0a990548448b0df1484ad0acf51e132d41">APP_LIB_STATE_INSTALL_QUALITY_ERROR_NOROUTE</a> = 0x01,</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0aaa729cf0e8aaa1714ebe105ca4667853">APP_LIB_STATE_INSTALL_QUALITY_ERROR_NONBORS</a> = 0x02,</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0a848c12f7292bceb2da102d6ed65ee886">APP_LIB_STATE_INSTALL_QUALITY_ERROR_BADRSSI</a> = 0x04,</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;} <a class="code" href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0">install_quality_error_code_e</a>;</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/d27/wms__state_8h_source.html#l00259">259</a> of file <a class="el" href="../../d4/d27/wms__state_8h_source.html">wms_state.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;{</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0a27fb09d41acaf5211198f56d7ab1afb4">APP_LIB_STATE_INSTALL_QUALITY_ERROR_NONE</a>    = 0x00,</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0a990548448b0df1484ad0acf51e132d41">APP_LIB_STATE_INSTALL_QUALITY_ERROR_NOROUTE</a> = 0x01,</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0aaa729cf0e8aaa1714ebe105ca4667853">APP_LIB_STATE_INSTALL_QUALITY_ERROR_NONBORS</a> = 0x02,</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <a class="code" href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0a848c12f7292bceb2da102d6ed65ee886">APP_LIB_STATE_INSTALL_QUALITY_ERROR_BADRSSI</a> = 0x04,</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;} <a class="code" href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0">install_quality_error_code_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1610,7 +1564,7 @@ stopStack</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define APP_LIB_STATE_VERSION&#160;&#160;&#160;0x20F</td>
+          <td class="memname">#define APP_LIB_STATE_VERSION&#160;&#160;&#160;0x20E</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1626,17 +1580,17 @@ stopStack</td>
 <div class="ttc" id="awms__state_8h_html_ab534305bdd66195140b3f750b9fdf21da1820eef823041dac0a6fe4431f034ecc"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab534305bdd66195140b3f750b9fdf21da1820eef823041dac0a6fe4431f034ecc">APP_LIB_STATE_NETWORK_ADDRESS_NOT_SET</a></div><div class="ttdeci">@ APP_LIB_STATE_NETWORK_ADDRESS_NOT_SET</div><div class="ttdoc">Network address is not set.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00168">wms_state.h:168</a></div></div>
 <div class="ttc" id="awms__state_8h_html_ab534305bdd66195140b3f750b9fdf21dabbfa64aabfea60355a76a056d4b7926a"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab534305bdd66195140b3f750b9fdf21dabbfa64aabfea60355a76a056d4b7926a">APP_LIB_STATE_ROLE_NOT_SET</a></div><div class="ttdeci">@ APP_LIB_STATE_ROLE_NOT_SET</div><div class="ttdoc">Node role is not set.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00170">wms_state.h:170</a></div></div>
 <div class="ttc" id="adebug__log_8h_html_a589372d7f7cc36183e6c19752a7df474"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a589372d7f7cc36183e6c19752a7df474">LVL_INFO</a></div><div class="ttdeci">#define LVL_INFO</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00083">debug_log.h:83</a></div></div>
-<div class="ttc" id="awms__state_8h_html_a1aacad76e7b6b7d5cb49f25b23c1df67"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a1aacad76e7b6b7d5cb49f25b23c1df67">app_lib_state_neighbor_scan_info_t::scan_type</a></div><div class="ttdeci">app_lib_state_scan_type_e scan_type</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00323">wms_state.h:323</a></div></div>
+<div class="ttc" id="awms__state_8h_html_a1aacad76e7b6b7d5cb49f25b23c1df67"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a1aacad76e7b6b7d5cb49f25b23c1df67">app_lib_state_neighbor_scan_info_t::scan_type</a></div><div class="ttdeci">app_lib_state_scan_type_e scan_type</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00319">wms_state.h:319</a></div></div>
 <div class="ttc" id="awms__state_8h_html_a56dba5ba5a60c45f2340fcdd3b6f7279"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a56dba5ba5a60c45f2340fcdd3b6f7279">app_lib_state_beacon_type_e</a></div><div class="ttdeci">app_lib_state_beacon_type_e</div><div class="ttdoc">Type for beacons, passed in app_lib_state_beacon_rx_t.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00189">wms_state.h:189</a></div></div>
 <div class="ttc" id="awms__state_8h_html_a2dc70e8eb3a0f15da5b9f9a44805fc01af6aa5411b85b3d879c251d433a1d8f56"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a2dc70e8eb3a0f15da5b9f9a44805fc01af6aa5411b85b3d879c251d433a1d8f56">APP_LIB_STATE_NEIGHBOR_IS_CLUSTER</a></div><div class="ttdeci">@ APP_LIB_STATE_NEIGHBOR_IS_CLUSTER</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00067">wms_state.h:67</a></div></div>
 <div class="ttc" id="awms__state_8h_html_ae829d4242b3afe89f01822fe660b62b7a26113ac18cb4f59d9ba0fa0c9119adcc"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ae829d4242b3afe89f01822fe660b62b7a26113ac18cb4f59d9ba0fa0c9119adcc">APP_LIB_STATE_SCAN_NBORS_ALL</a></div><div class="ttdeci">@ APP_LIB_STATE_SCAN_NBORS_ALL</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00092">wms_state.h:92</a></div></div>
-<div class="ttc" id="awms__state_8h_html_a1438e2e7daaeeee267bab40c2ab9baa0a990548448b0df1484ad0acf51e132d41"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0a990548448b0df1484ad0acf51e132d41">APP_LIB_STATE_INSTALL_QUALITY_ERROR_NOROUTE</a></div><div class="ttdeci">@ APP_LIB_STATE_INSTALL_QUALITY_ERROR_NOROUTE</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00268">wms_state.h:268</a></div></div>
-<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383a207707c7375de73337cc043e165f89ac"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a207707c7375de73337cc043e165f89ac">APP_LIB_STATE_STACK_EVENT_SCRAT_XFER_STARTED</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_SCRAT_XFER_STARTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00426">wms_state.h:426</a></div></div>
-<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383acad3be091c547c6b3833ebfefa84a7f5"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383acad3be091c547c6b3833ebfefa84a7f5">APP_LIB_STATE_STACK_EVENT_STACK_STARTED</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_STACK_STARTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00419">wms_state.h:419</a></div></div>
-<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383a59ce8b938d65a7c8f254c12b2f9e404f"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a59ce8b938d65a7c8f254c12b2f9e404f">APP_LIB_STATE_STACK_EVENT_SCRAT_XFER_STOPPED</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_SCRAT_XFER_STOPPED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00428">wms_state.h:428</a></div></div>
-<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383">app_lib_stack_event_e</a></div><div class="ttdeci">app_lib_stack_event_e</div><div class="ttdoc">List of event generated by the stack when registering to app_lib_state_set_stack_event_cb_f.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00414">wms_state.h:414</a></div></div>
+<div class="ttc" id="awms__state_8h_html_a1438e2e7daaeeee267bab40c2ab9baa0a990548448b0df1484ad0acf51e132d41"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0a990548448b0df1484ad0acf51e132d41">APP_LIB_STATE_INSTALL_QUALITY_ERROR_NOROUTE</a></div><div class="ttdeci">@ APP_LIB_STATE_INSTALL_QUALITY_ERROR_NOROUTE</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00264">wms_state.h:264</a></div></div>
+<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383a207707c7375de73337cc043e165f89ac"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a207707c7375de73337cc043e165f89ac">APP_LIB_STATE_STACK_EVENT_SCRAT_XFER_STARTED</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_SCRAT_XFER_STARTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00422">wms_state.h:422</a></div></div>
+<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383acad3be091c547c6b3833ebfefa84a7f5"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383acad3be091c547c6b3833ebfefa84a7f5">APP_LIB_STATE_STACK_EVENT_STACK_STARTED</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_STACK_STARTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00415">wms_state.h:415</a></div></div>
+<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383a59ce8b938d65a7c8f254c12b2f9e404f"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a59ce8b938d65a7c8f254c12b2f9e404f">APP_LIB_STATE_STACK_EVENT_SCRAT_XFER_STOPPED</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_SCRAT_XFER_STOPPED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00424">wms_state.h:424</a></div></div>
+<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383">app_lib_stack_event_e</a></div><div class="ttdeci">app_lib_stack_event_e</div><div class="ttdoc">List of event generated by the stack when registering to app_lib_state_set_stack_event_cb_f.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00410">wms_state.h:410</a></div></div>
 <div class="ttc" id="awms__state_8h_html_ab534305bdd66195140b3f750b9fdf21da480e1999349ac7782a0983cf87565855"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab534305bdd66195140b3f750b9fdf21da480e1999349ac7782a0983cf87565855">APP_LIB_STATE_STOPPED</a></div><div class="ttdeci">@ APP_LIB_STATE_STOPPED</div><div class="ttdoc">Stack is stopped.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00166">wms_state.h:166</a></div></div>
-<div class="ttc" id="awms__state_8h_html_abdb207e11a6bcc7bc7f2d30124bdb3a3"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#abdb207e11a6bcc7bc7f2d30124bdb3a3">app_lib_state_scan_type_e</a></div><div class="ttdeci">app_lib_state_scan_type_e</div><div class="ttdoc">Types of scans.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00299">wms_state.h:299</a></div></div>
+<div class="ttc" id="awms__state_8h_html_abdb207e11a6bcc7bc7f2d30124bdb3a3"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#abdb207e11a6bcc7bc7f2d30124bdb3a3">app_lib_state_scan_type_e</a></div><div class="ttdeci">app_lib_state_scan_type_e</div><div class="ttdoc">Types of scans.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00295">wms_state.h:295</a></div></div>
 <div class="ttc" id="awms__state_8h_html_a2dc70e8eb3a0f15da5b9f9a44805fc01a7e85991ebcbff20b19727da8bd6611f7"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a2dc70e8eb3a0f15da5b9f9a44805fc01a7e85991ebcbff20b19727da8bd6611f7">APP_LIB_STATE_NEIGHBOR_IS_NEXT_HOP</a></div><div class="ttdeci">@ APP_LIB_STATE_NEIGHBOR_IS_NEXT_HOP</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00063">wms_state.h:63</a></div></div>
 <div class="ttc" id="awms__state_8h_html_ace5c9edfc6921d0e4c30fcd3f6307466aae2a91846078cd9c9cb6771b21727440"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ace5c9edfc6921d0e4c30fcd3f6307466aae2a91846078cd9c9cb6771b21727440">APP_LIB_STATE_DIRADV_SUPPORTED</a></div><div class="ttdeci">@ APP_LIB_STATE_DIRADV_SUPPORTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00078">wms_state.h:78</a></div></div>
 <div class="ttc" id="awms__state_8h_html_ace5c9edfc6921d0e4c30fcd3f6307466a0cc839c8af5aaa6274cda0fe613edd03"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ace5c9edfc6921d0e4c30fcd3f6307466a0cc839c8af5aaa6274cda0fe613edd03">APP_LIB_STATE_DIRADV_NOT_SUPPORTED</a></div><div class="ttdeci">@ APP_LIB_STATE_DIRADV_NOT_SUPPORTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00080">wms_state.h:80</a></div></div>
@@ -1645,35 +1599,34 @@ stopStack</td>
 <div class="ttc" id="awms__state_8h_html_ace5c9edfc6921d0e4c30fcd3f6307466"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ace5c9edfc6921d0e4c30fcd3f6307466">app_lib_state_diradv_support_e</a></div><div class="ttdeci">app_lib_state_diradv_support_e</div><div class="ttdoc">Support type for directed advertiser, i.e. does neighbor support sending directed advertiser packets ...</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00074">wms_state.h:74</a></div></div>
 <div class="ttc" id="awms__state_8h_html_ae829d4242b3afe89f01822fe660b62b7"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ae829d4242b3afe89f01822fe660b62b7">app_lib_state_scan_nbors_type_e</a></div><div class="ttdeci">app_lib_state_scan_nbors_type_e</div><div class="ttdoc">Scan neighbor type to specify the scans that trigger the callback.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00089">wms_state.h:89</a></div></div>
 <div class="ttc" id="awms__state_8h_html_ab534305bdd66195140b3f750b9fdf21dab3f2f3f400130619e71f1790296841b8"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab534305bdd66195140b3f750b9fdf21dab3f2f3f400130619e71f1790296841b8">APP_LIB_STATE_STARTED</a></div><div class="ttdeci">@ APP_LIB_STATE_STARTED</div><div class="ttdoc">Stack is started.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00165">wms_state.h:165</a></div></div>
-<div class="ttc" id="awms__state_8h_html_abdb207e11a6bcc7bc7f2d30124bdb3a3a804573aa3dd49efad3334d1c3e1bc968"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#abdb207e11a6bcc7bc7f2d30124bdb3a3a804573aa3dd49efad3334d1c3e1bc968">SCAN_TYPE_APP_ORIGINATED</a></div><div class="ttdeci">@ SCAN_TYPE_APP_ORIGINATED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00303">wms_state.h:303</a></div></div>
-<div class="ttc" id="awms__state_8h_html_a1438e2e7daaeeee267bab40c2ab9baa0aaa729cf0e8aaa1714ebe105ca4667853"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0aaa729cf0e8aaa1714ebe105ca4667853">APP_LIB_STATE_INSTALL_QUALITY_ERROR_NONBORS</a></div><div class="ttdeci">@ APP_LIB_STATE_INSTALL_QUALITY_ERROR_NONBORS</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00270">wms_state.h:270</a></div></div>
+<div class="ttc" id="awms__state_8h_html_abdb207e11a6bcc7bc7f2d30124bdb3a3a804573aa3dd49efad3334d1c3e1bc968"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#abdb207e11a6bcc7bc7f2d30124bdb3a3a804573aa3dd49efad3334d1c3e1bc968">SCAN_TYPE_APP_ORIGINATED</a></div><div class="ttdeci">@ SCAN_TYPE_APP_ORIGINATED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00299">wms_state.h:299</a></div></div>
+<div class="ttc" id="awms__state_8h_html_a1438e2e7daaeeee267bab40c2ab9baa0aaa729cf0e8aaa1714ebe105ca4667853"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0aaa729cf0e8aaa1714ebe105ca4667853">APP_LIB_STATE_INSTALL_QUALITY_ERROR_NONBORS</a></div><div class="ttdeci">@ APP_LIB_STATE_INSTALL_QUALITY_ERROR_NONBORS</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00266">wms_state.h:266</a></div></div>
 <div class="ttc" id="awms__state_8h_html_d2/d8b/structapp__lib__state__nbor__list__t"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#d2/d8b/structapp__lib__state__nbor__list__t">app_lib_state_nbor_list_t</a></div><div class="ttdoc">Neighbors list definition.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00150">wms_state.h:150</a></div></div>
-<div class="ttc" id="awms__state_8h_html_a1438e2e7daaeeee267bab40c2ab9baa0"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0">install_quality_error_code_e</a></div><div class="ttdeci">install_quality_error_code_e</div><div class="ttdoc">Error codes for installation quality, if an error code is active, corrective action regarding the ins...</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00263">wms_state.h:263</a></div></div>
+<div class="ttc" id="awms__state_8h_html_a1438e2e7daaeeee267bab40c2ab9baa0"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0">install_quality_error_code_e</a></div><div class="ttdeci">install_quality_error_code_e</div><div class="ttdoc">Error codes for installation quality, if an error code is active, corrective action regarding the ins...</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00259">wms_state.h:259</a></div></div>
 <div class="ttc" id="awms__state_8h_html_ab534305bdd66195140b3f750b9fdf21da36109220a35bfbdbc48576de86dddd0d"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab534305bdd66195140b3f750b9fdf21da36109220a35bfbdbc48576de86dddd0d">APP_LIB_STATE_NODE_ADDRESS_NOT_SET</a></div><div class="ttdeci">@ APP_LIB_STATE_NODE_ADDRESS_NOT_SET</div><div class="ttdoc">Node address is not set.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00167">wms_state.h:167</a></div></div>
-<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383a725b0212bed5b0109c1882957cbb3231"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a725b0212bed5b0109c1882957cbb3231">APP_LIB_STATE_STACK_EVENT_CON_FALLBCK</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_CON_FALLBCK</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00432">wms_state.h:432</a></div></div>
 <div class="ttc" id="awms__state_8h_html_a512a55293699bdd367478f021aa13c6a"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a512a55293699bdd367478f021aa13c6a">app_lib_state_route_state_e</a></div><div class="ttdeci">app_lib_state_route_state_e</div><div class="ttdoc">Route state.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00179">wms_state.h:179</a></div></div>
-<div class="ttc" id="awms__state_8h_html_d8/d77/structapp__lib__state__neighbor__scan__info__t"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#d8/d77/structapp__lib__state__neighbor__scan__info__t">app_lib_state_neighbor_scan_info_t</a></div><div class="ttdoc">Information on neighbor scan.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00320">wms_state.h:320</a></div></div>
+<div class="ttc" id="awms__state_8h_html_d8/d77/structapp__lib__state__neighbor__scan__info__t"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#d8/d77/structapp__lib__state__neighbor__scan__info__t">app_lib_state_neighbor_scan_info_t</a></div><div class="ttdoc">Information on neighbor scan.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00316">wms_state.h:316</a></div></div>
 <div class="ttc" id="awms__state_8h_html_ace5c9edfc6921d0e4c30fcd3f6307466a787fd4d5568a72da95fefed9efb49d27"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ace5c9edfc6921d0e4c30fcd3f6307466a787fd4d5568a72da95fefed9efb49d27">APP_LIB_STATE_DIRADV_UNKNOWN</a></div><div class="ttdeci">@ APP_LIB_STATE_DIRADV_UNKNOWN</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00083">wms_state.h:83</a></div></div>
 <div class="ttc" id="awms__state_8h_html_a2a7b7d438e30f610f3e562f99bedb55e"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a2a7b7d438e30f610f3e562f99bedb55e">app_lib_state_nbor_list_t::number_nbors</a></div><div class="ttdeci">uint32_t number_nbors</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00155">wms_state.h:155</a></div></div>
 <div class="ttc" id="awms__state_8h_html_a512a55293699bdd367478f021aa13c6aa733d37f4e3ad3314eca05bb02ec6a8ad"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a512a55293699bdd367478f021aa13c6aa733d37f4e3ad3314eca05bb02ec6a8ad">APP_LIB_STATE_ROUTE_STATE_INVALID</a></div><div class="ttdeci">@ APP_LIB_STATE_ROUTE_STATE_INVALID</div><div class="ttdoc">No next hop / route.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00181">wms_state.h:181</a></div></div>
 <div class="ttc" id="awms__state_8h_html_a2dc70e8eb3a0f15da5b9f9a44805fc01"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a2dc70e8eb3a0f15da5b9f9a44805fc01">app_lib_state_nbor_type_e</a></div><div class="ttdeci">app_lib_state_nbor_type_e</div><div class="ttdoc">Neighbor type.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00059">wms_state.h:59</a></div></div>
 <div class="ttc" id="awms__state_8h_html_ab534305bdd66195140b3f750b9fdf21daeb831b237a2f5894a8556220cf8cee1a"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab534305bdd66195140b3f750b9fdf21daeb831b237a2f5894a8556220cf8cee1a">APP_LIB_STATE_APP_CONFIG_DATA_NOT_SET</a></div><div class="ttdeci">@ APP_LIB_STATE_APP_CONFIG_DATA_NOT_SET</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00171">wms_state.h:171</a></div></div>
-<div class="ttc" id="adebug__log_8h_html_a94e6401c9e46b35182d9dbbce6b99be5"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">LOG</a></div><div class="ttdeci">#define LOG(level, fmt,...)</div><div class="ttdoc">Print a log message if its severity is lower or equal to DEBUG_LOG_MAX_LEVEL.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00173">debug_log.h:173</a></div></div>
+<div class="ttc" id="adebug__log_8h_html_a94e6401c9e46b35182d9dbbce6b99be5"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">LOG</a></div><div class="ttdeci">#define LOG(level, fmt,...)</div><div class="ttdoc">Print a log message if its severity is lower or equal to DEBUG_LOG_MAX_LEVEL.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00175">debug_log.h:175</a></div></div>
 <div class="ttc" id="awms__state_8h_html_ae829d4242b3afe89f01822fe660b62b7a8bad4deb7660820ff7dbfdd36a87e675"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ae829d4242b3afe89f01822fe660b62b7a8bad4deb7660820ff7dbfdd36a87e675">APP_LIB_STATE_SCAN_NBORS_ONLY_REQUESTED</a></div><div class="ttdeci">@ APP_LIB_STATE_SCAN_NBORS_ONLY_REQUESTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00095">wms_state.h:95</a></div></div>
 <div class="ttc" id="awms__state_8h_html_a56dba5ba5a60c45f2340fcdd3b6f7279a1cbda5f8f60ab4b52257122148a94b16"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a56dba5ba5a60c45f2340fcdd3b6f7279a1cbda5f8f60ab4b52257122148a94b16">APP_LIB_STATE_BEACON_TYPE_CB</a></div><div class="ttdeci">@ APP_LIB_STATE_BEACON_TYPE_CB</div><div class="ttdoc">Cluster beacon.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00192">wms_state.h:192</a></div></div>
 <div class="ttc" id="awms__state_8h_html_a512a55293699bdd367478f021aa13c6aa504a1c158c8ee70e7c2f55d73b36b201"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a512a55293699bdd367478f021aa13c6aa504a1c158c8ee70e7c2f55d73b36b201">APP_LIB_STATE_ROUTE_STATE_PENDING</a></div><div class="ttdeci">@ APP_LIB_STATE_ROUTE_STATE_PENDING</div><div class="ttdoc">Acquiring next hop / route.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00182">wms_state.h:182</a></div></div>
 <div class="ttc" id="awms__state_8h_html_ab534305bdd66195140b3f750b9fdf21da47e47f83a0bdfd800c41a61474025d0e"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab534305bdd66195140b3f750b9fdf21da47e47f83a0bdfd800c41a61474025d0e">APP_LIB_STATE_NETWORK_CHANNEL_NOT_SET</a></div><div class="ttdeci">@ APP_LIB_STATE_NETWORK_CHANNEL_NOT_SET</div><div class="ttdoc">Network channel is not set.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00169">wms_state.h:169</a></div></div>
-<div class="ttc" id="awms__state_8h_html_af6b1fef28954e41d75acf35f76bc8d39"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#af6b1fef28954e41d75acf35f76bc8d39">app_lib_state_neighbor_scan_info_t::complete</a></div><div class="ttdeci">bool complete</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00325">wms_state.h:325</a></div></div>
-<div class="ttc" id="awms__state_8h_html_abdb207e11a6bcc7bc7f2d30124bdb3a3ae9a042ce29617adae1c6414bca32562f"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#abdb207e11a6bcc7bc7f2d30124bdb3a3ae9a042ce29617adae1c6414bca32562f">SCAN_TYPE_STACK_ORIGINATED</a></div><div class="ttdeci">@ SCAN_TYPE_STACK_ORIGINATED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00305">wms_state.h:305</a></div></div>
+<div class="ttc" id="awms__state_8h_html_af6b1fef28954e41d75acf35f76bc8d39"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#af6b1fef28954e41d75acf35f76bc8d39">app_lib_state_neighbor_scan_info_t::complete</a></div><div class="ttdeci">bool complete</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00321">wms_state.h:321</a></div></div>
+<div class="ttc" id="awms__state_8h_html_abdb207e11a6bcc7bc7f2d30124bdb3a3ae9a042ce29617adae1c6414bca32562f"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#abdb207e11a6bcc7bc7f2d30124bdb3a3ae9a042ce29617adae1c6414bca32562f">SCAN_TYPE_STACK_ORIGINATED</a></div><div class="ttdeci">@ SCAN_TYPE_STACK_ORIGINATED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00301">wms_state.h:301</a></div></div>
 <div class="ttc" id="awms__state_8h_html_a56dba5ba5a60c45f2340fcdd3b6f7279aa9ea15ec52506e425d96d427e2502ca3"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a56dba5ba5a60c45f2340fcdd3b6f7279aa9ea15ec52506e425d96d427e2502ca3">APP_LIB_STATE_BEACON_TYPE_NB</a></div><div class="ttdeci">@ APP_LIB_STATE_BEACON_TYPE_NB</div><div class="ttdoc">Network beacon.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00191">wms_state.h:191</a></div></div>
-<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383a4999a87fcd498faedbd3a4542b2bb1a3"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a4999a87fcd498faedbd3a4542b2bb1a3">APP_LIB_STATE_STACK_EVENT_SCAN_STARTED</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_SCAN_STARTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00421">wms_state.h:421</a></div></div>
+<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383a4999a87fcd498faedbd3a4542b2bb1a3"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a4999a87fcd498faedbd3a4542b2bb1a3">APP_LIB_STATE_STACK_EVENT_SCAN_STARTED</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_SCAN_STARTED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00417">wms_state.h:417</a></div></div>
 <div class="ttc" id="awms__state_8h_html_ab534305bdd66195140b3f750b9fdf21d"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab534305bdd66195140b3f750b9fdf21d">app_lib_state_stack_state_e</a></div><div class="ttdeci">app_lib_state_stack_state_e</div><div class="ttdoc">Stack state flags.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00163">wms_state.h:163</a></div></div>
 <div class="ttc" id="awms__state_8h_html_d1/db3/structapp__lib__state__nbor__info__t"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#d1/db3/structapp__lib__state__nbor__info__t">app_lib_state_nbor_info_t</a></div><div class="ttdoc">Neighbors info definition.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00101">wms_state.h:101</a></div></div>
-<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383adbc4d8fbcd364fc468daaaa0e7bd3fe3"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383adbc4d8fbcd364fc468daaaa0e7bd3fe3">APP_LIB_STATE_STACK_EVENT_STACK_STOPPED</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_STACK_STOPPED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00417">wms_state.h:417</a></div></div>
-<div class="ttc" id="awms__state_8h_html_a1438e2e7daaeeee267bab40c2ab9baa0a27fb09d41acaf5211198f56d7ab1afb4"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0a27fb09d41acaf5211198f56d7ab1afb4">APP_LIB_STATE_INSTALL_QUALITY_ERROR_NONE</a></div><div class="ttdeci">@ APP_LIB_STATE_INSTALL_QUALITY_ERROR_NONE</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00266">wms_state.h:266</a></div></div>
-<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383aa9d4311700732a557a5f0fa9d1ec9746"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383aa9d4311700732a557a5f0fa9d1ec9746">APP_LIB_STATE_STACK_EVENT_SCAN_STOPPED</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_SCAN_STOPPED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00423">wms_state.h:423</a></div></div>
-<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383a3b8e841e8bfd0202894dde4d6c762569"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a3b8e841e8bfd0202894dde4d6c762569">APP_LIB_STATE_STACK_EVENT_ROUTE_CHANGED</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_ROUTE_CHANGED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00430">wms_state.h:430</a></div></div>
-<div class="ttc" id="awms__state_8h_html_a1438e2e7daaeeee267bab40c2ab9baa0a848c12f7292bceb2da102d6ed65ee886"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0a848c12f7292bceb2da102d6ed65ee886">APP_LIB_STATE_INSTALL_QUALITY_ERROR_BADRSSI</a></div><div class="ttdeci">@ APP_LIB_STATE_INSTALL_QUALITY_ERROR_BADRSSI</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00272">wms_state.h:272</a></div></div>
+<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383adbc4d8fbcd364fc468daaaa0e7bd3fe3"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383adbc4d8fbcd364fc468daaaa0e7bd3fe3">APP_LIB_STATE_STACK_EVENT_STACK_STOPPED</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_STACK_STOPPED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00413">wms_state.h:413</a></div></div>
+<div class="ttc" id="awms__state_8h_html_a1438e2e7daaeeee267bab40c2ab9baa0a27fb09d41acaf5211198f56d7ab1afb4"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0a27fb09d41acaf5211198f56d7ab1afb4">APP_LIB_STATE_INSTALL_QUALITY_ERROR_NONE</a></div><div class="ttdeci">@ APP_LIB_STATE_INSTALL_QUALITY_ERROR_NONE</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00262">wms_state.h:262</a></div></div>
+<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383aa9d4311700732a557a5f0fa9d1ec9746"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383aa9d4311700732a557a5f0fa9d1ec9746">APP_LIB_STATE_STACK_EVENT_SCAN_STOPPED</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_SCAN_STOPPED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00419">wms_state.h:419</a></div></div>
+<div class="ttc" id="awms__state_8h_html_ab8e78bf991f825121530014fef8b8383a3b8e841e8bfd0202894dde4d6c762569"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a3b8e841e8bfd0202894dde4d6c762569">APP_LIB_STATE_STACK_EVENT_ROUTE_CHANGED</a></div><div class="ttdeci">@ APP_LIB_STATE_STACK_EVENT_ROUTE_CHANGED</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00426">wms_state.h:426</a></div></div>
+<div class="ttc" id="awms__state_8h_html_a1438e2e7daaeeee267bab40c2ab9baa0a848c12f7292bceb2da102d6ed65ee886"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a1438e2e7daaeeee267bab40c2ab9baa0a848c12f7292bceb2da102d6ed65ee886">APP_LIB_STATE_INSTALL_QUALITY_ERROR_BADRSSI</a></div><div class="ttdeci">@ APP_LIB_STATE_INSTALL_QUALITY_ERROR_BADRSSI</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00268">wms_state.h:268</a></div></div>
 <div class="ttc" id="awms__state_8h_html_a512a55293699bdd367478f021aa13c6aae131b8523ae385c533f3a1801f4458cb"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a512a55293699bdd367478f021aa13c6aae131b8523ae385c533f3a1801f4458cb">APP_LIB_STATE_ROUTE_STATE_VALID</a></div><div class="ttdeci">@ APP_LIB_STATE_ROUTE_STATE_VALID</div><div class="ttdoc">Valid next hop / route.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00183">wms_state.h:183</a></div></div>
 <div class="ttc" id="awms__state_8h_html_a2dc70e8eb3a0f15da5b9f9a44805fc01a83defa796d19c363d6206839543bcefd"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a2dc70e8eb3a0f15da5b9f9a44805fc01a83defa796d19c363d6206839543bcefd">APP_LIB_STATE_NEIGHBOR_IS_MEMBER</a></div><div class="ttdeci">@ APP_LIB_STATE_NEIGHBOR_IS_MEMBER</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00065">wms_state.h:65</a></div></div>
 <!-- HTML footer for doxygen 1.8.17-->

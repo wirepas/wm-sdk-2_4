@@ -1,6 +1,6 @@
 var api_8h =
 [
-    [ "__attribute", "dc/d65/api_8h.html#a23a300b67191d141114334b94a36a05c", null ],
+    [ "__attribute", "dc/d65/api_8h.html#a152f2eae7155c569fd03b65a55373318", null ],
     [ "API_Open", "dc/d65/api_8h.html#abea8e1483d9fe0c251a2027a34422031", null ],
     [ "Ble_beaconRx_isStarted", "dc/d65/api_8h.html#a82a067faa70b77f40c2915b9608250a1", null ],
     [ "Ble_beaconRx_setRxCb", "dc/d65/api_8h.html#a2e381ff8e6034b26dc82ca0e9109c7c1", null ],

@@ -17,13 +17,6 @@
 <script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-  /* @license-end */
-</script>
 <link rel="search" href="../../search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 <link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -54,33 +47,19 @@
 var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 /* @license-end */
 </script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="../../pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="../../annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li class="current"><a href="../../files.html"><span>Files</span></a></li>
-      <li><a href="../../examples.html"><span>Example&#160;applications</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-          <div class="left">
-            <form id="FSearchBox" action="../../search.html" method="get">
-              <img id="MSearchSelect" src="../../search/mag.png" alt=""/>
-              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
-                     onfocus="searchBox.OnSearchFieldFocus(true)" 
-                     onblur="searchBox.OnSearchFieldFocus(false)"/>
-            </form>
-          </div><div class="right"></div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="../../files.html"><span>File&#160;List</span></a></li>
-      <li><a href="../../globals.html"><span>Globals</span></a></li>
-    </ul>
-  </div>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,true,'search.html','Search');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -110,7 +89,7 @@ $(document).ready(function(){initNavTree('dd/dcb/wms__sleep_8h.html','../../'); 
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The Non-Router Long Sleep (NRLS) Library is used to sleep Wirepas Mesh stack for time periods. Once waking-up from the sleep, Wirepas Mesh stack wakes up from the sleep without system reset. During Wirepas Mesh stack sleep, Single-MCU application can be running using the libraries which does not have dependency to Wirepas Mesh stack functionalities. Before entering to NRLS sleep, Wirepas Mesh stack needs to be running.</p>
-<p>Non-Router Long Sleep libraries can be used with Wirepas Mesh stack which is configured to be running as Non-Router mode without any role extensions ( <code>APP_LIB_SETTINGS_ROLE_SUBNODE</code> in <code>app_lib_settings_base_role_e</code> and <code>APP_LIB_SETTINGS_ROLE_FLAG_RESV</code> in <code>app_lib_settings_flag_role_e</code>). Any other <code>app_lib_settings_base_role_e</code> and <code>app_lib_settings_flag_role_e</code> definitions do not allow to use NRLS functionality.</p>
+<p>Non-Router Long Sleep libraries can be used with Wirepas Mesh stack which is configured to be running as Non-Router mode without any role extensions (APP_LIB_SETTINGS_ROLE_SUBNODE in app_lib_settings_base_role_e and APP_LIB_SETTINGS_ROLE_FLAG_RESV in app_lib_settings_flag_role_e). Any other app_lib_settings_base_role_e and app_lib_settings_flag_role_e definitions do not allow to use NRLS functionality.</p>
 <p>Library services are accessed via <a class="el" href="../../dd/dcb/wms__sleep_8h.html#d1/d14/structapp__lib__sleep__t">lib_sleep</a> handle. </p>
 
 <p class="definition">Definition in file <a class="el" href="../../dd/dcb/wms__sleep_8h_source.html">wms_sleep.h</a>.</p>
@@ -345,7 +324,7 @@ Sleep starts when device has disconnected to network. In addition to appconfig w
 </div><div class="memdoc">
 
 <p>Callback called when stack starts sleep. </p>
-<p>Used with <code>app_lib_sleep_sleep_callback_f</code> "lib_sleep-&gt;setOnsleepCb()" service </p>
+<p>Used with lib_sleep-&gt;setOnsleepCb() service </p>
 
 <p class="definition">Definition at line <a class="el" href="../../dd/dcb/wms__sleep_8h_source.html#l00162">162</a> of file <a class="el" href="../../dd/dcb/wms__sleep_8h_source.html">wms_sleep.h</a>.</p>
 

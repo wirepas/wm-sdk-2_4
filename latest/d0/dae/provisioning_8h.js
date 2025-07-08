@@ -13,7 +13,6 @@ var provisioning_8h =
       [ "key_len", "d0/dae/provisioning_8h.html#a81d756c926cde8076992a83a9b3ea657", null ],
       [ "method", "d0/dae/provisioning_8h.html#a48dec63fd92dae89290086645d742c3c", null ],
       [ "nb_retry", "d0/dae/provisioning_8h.html#a72a68e887d8dbfa82ae858c119c0358a", null ],
-      [ "p_key_mgmt_config", "d0/dae/provisioning_8h.html#a0d19284e791c685d56a0fe039b44dae5", null ],
       [ "timeout_s", "d0/dae/provisioning_8h.html#a6bbdc22c98ba6c8730c29079fe1186ea", null ],
       [ "uid", "d0/dae/provisioning_8h.html#a3a99cfe78c523405f5bb8026164b9cd3", null ],
       [ "uid_len", "d0/dae/provisioning_8h.html#aaafb88cf67feff33c82ca5c25908d010", null ],
@@ -41,8 +40,7 @@ var provisioning_8h =
     [ "provisioning_method_e", "d0/dae/provisioning_8h.html#ac27601a4f3f8b1b11e8eba070f6ced1b", [
       [ "PROV_METHOD_UNSECURED", "d0/dae/provisioning_8h.html#ac27601a4f3f8b1b11e8eba070f6ced1ba7d08ecc7c1f194272e2e64f1cbdd0486", null ],
       [ "PROV_METHOD_SECURED", "d0/dae/provisioning_8h.html#ac27601a4f3f8b1b11e8eba070f6ced1badd480848ff77e8753cf79687991db316", null ],
-      [ "PROV_METHOD_EXTENDED_UID", "d0/dae/provisioning_8h.html#ac27601a4f3f8b1b11e8eba070f6ced1ba7fe5b0de01782c89f92a996b0c5868cf", null ],
-      [ "PROV_METHOD_KEY_MGMT", "d0/dae/provisioning_8h.html#ac27601a4f3f8b1b11e8eba070f6ced1ba89489ff66927c014d7f578e7ac5e6d64", null ]
+      [ "PROV_METHOD_EXTENDED_UID", "d0/dae/provisioning_8h.html#ac27601a4f3f8b1b11e8eba070f6ced1ba7fe5b0de01782c89f92a996b0c5868cf", null ]
     ] ],
     [ "provisioning_res_e", "d0/dae/provisioning_8h.html#a6d4b29ca58ea67e8612eeb1556ffe853", [
       [ "PROV_RES_SUCCESS", "d0/dae/provisioning_8h.html#a6d4b29ca58ea67e8612eeb1556ffe853a1dffa35a099bc1dea325ca0f11f45645", null ],

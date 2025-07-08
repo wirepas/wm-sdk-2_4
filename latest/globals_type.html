@@ -17,13 +17,6 @@
 <script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-  /* @license-end */
-</script>
 <link rel="search" href="search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -54,63 +47,19 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 /* @license-end */
 </script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Example&#160;applications</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-          <div class="left">
-            <form id="FSearchBox" action="search.html" method="get">
-              <img id="MSearchSelect" src="search/mag.png" alt=""/>
-              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
-                     onfocus="searchBox.OnSearchFieldFocus(true)" 
-                     onblur="searchBox.OnSearchFieldFocus(false)"/>
-            </form>
-          </div><div class="right"></div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li class="current"><a href="globals.html"><span>Globals</span></a></li>
-    </ul>
-  </div>
-  <div id="navrow3" class="tabs2">
-    <ul class="tablist">
-      <li><a href="globals.html"><span>All</span></a></li>
-      <li><a href="globals_func.html"><span>Functions</span></a></li>
-      <li><a href="globals_vars.html"><span>Variables</span></a></li>
-      <li class="current"><a href="globals_type.html"><span>Typedefs</span></a></li>
-      <li><a href="globals_enum.html"><span>Enumerations</span></a></li>
-      <li><a href="globals_eval.html"><span>Enumerator</span></a></li>
-      <li><a href="globals_defs.html"><span>Macros</span></a></li>
-    </ul>
-  </div>
-  <div id="navrow4" class="tabs3">
-    <ul class="tablist">
-      <li class="current"><a href="globals_type.html#index_a"><span>a</span></a></li>
-      <li><a href="globals_type_b.html#index_b"><span>b</span></a></li>
-      <li><a href="globals_type_c.html#index_c"><span>c</span></a></li>
-      <li><a href="globals_type_e.html#index_e"><span>e</span></a></li>
-      <li><a href="globals_type_g.html#index_g"><span>g</span></a></li>
-      <li><a href="globals_type_h.html#index_h"><span>h</span></a></li>
-      <li><a href="globals_type_i.html#index_i"><span>i</span></a></li>
-      <li><a href="globals_type_l.html#index_l"><span>l</span></a></li>
-      <li><a href="globals_type_n.html#index_n"><span>n</span></a></li>
-      <li><a href="globals_type_o.html#index_o"><span>o</span></a></li>
-      <li><a href="globals_type_p.html#index_p"><span>p</span></a></li>
-      <li><a href="globals_type_r.html#index_r"><span>r</span></a></li>
-      <li><a href="globals_type_s.html#index_s"><span>s</span></a></li>
-      <li><a href="globals_type_t.html#index_t"><span>t</span></a></li>
-      <li><a href="globals_type_w.html#index_w"><span>w</span></a></li>
-    </ul>
-  </div>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,true,'search.html','Search');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -192,17 +141,8 @@ $(document).ready(function(){initNavTree('globals_type.html',''); initResizable(
 <li>app_lib_data_data_sent_cb_f
 : <a class="el" href="d6/d50/wms__data_8h.html#ad4532c2af19fb5161fd44dd3d806be38">wms_data.h</a>
 </li>
-<li>app_lib_data_disable_boot_diagnostics_f
-: <a class="el" href="d6/d50/wms__data_8h.html#a9f74d7e82ce1454b1cccc0ec2031f460">wms_data.h</a>
-</li>
-<li>app_lib_data_get_all_config_data_endpoints_f
-: <a class="el" href="d6/d50/wms__data_8h.html#a0fee82cb0b37cc0069352dabe7ae025b">wms_data.h</a>
-</li>
 <li>app_lib_data_get_app_config_num_bytes_f
 : <a class="el" href="d6/d50/wms__data_8h.html#a37af27daa2e4777b89b13f2f8440b8b9">wms_data.h</a>
-</li>
-<li>app_lib_data_get_config_data_item_f
-: <a class="el" href="d6/d50/wms__data_8h.html#af188f75bb6012b292b08e93771f5c371">wms_data.h</a>
 </li>
 <li>app_lib_data_get_data_max_num_bytes_f
 : <a class="el" href="d6/d50/wms__data_8h.html#ab009dfe9504a81d9938b1d863d4a93db">wms_data.h</a>
@@ -216,17 +156,11 @@ $(document).ready(function(){initNavTree('globals_type.html',''); initResizable(
 <li>app_lib_data_new_app_config_cb_f
 : <a class="el" href="d6/d50/wms__data_8h.html#aca1298154f7a3d7be77c64ca602639ed">wms_data.h</a>
 </li>
-<li>app_lib_data_new_config_data_item_cb_f
-: <a class="el" href="d6/d50/wms__data_8h.html#af3b731e4b55dd49490913e17f2c7a197">wms_data.h</a>
-</li>
 <li>app_lib_data_read_app_config_f
 : <a class="el" href="d6/d50/wms__data_8h.html#a96f7b21d1f7992439c9526b3a4d27530">wms_data.h</a>
 </li>
 <li>app_lib_data_send_data_f
 : <a class="el" href="d6/d50/wms__data_8h.html#a9ae6095889898db72257eeca385eee7b">wms_data.h</a>
-</li>
-<li>app_lib_data_set_config_data_item_f
-: <a class="el" href="d6/d50/wms__data_8h.html#a69ac79c096cae0e747496be4c681b53f">wms_data.h</a>
 </li>
 <li>app_lib_data_set_data_received_cb_f
 : <a class="el" href="d6/d50/wms__data_8h.html#a108548eef01aa6b4e3db667ef3c1c780">wms_data.h</a>
@@ -242,9 +176,6 @@ $(document).ready(function(){initNavTree('globals_type.html',''); initResizable(
 </li>
 <li>app_lib_data_set_new_app_config_cb_f
 : <a class="el" href="d6/d50/wms__data_8h.html#abcc8bb343266f3fc98d25590ed9a66a6">wms_data.h</a>
-</li>
-<li>app_lib_data_set_new_config_data_item_cb_f
-: <a class="el" href="d6/d50/wms__data_8h.html#a82e2c31af97ae5b9ef38e1ef262589b8">wms_data.h</a>
 </li>
 <li>app_lib_data_tracking_id_t
 : <a class="el" href="d6/d50/wms__data_8h.html#a3a8535cade8b081cfee20f0f4b9b0e65">wms_data.h</a>
@@ -378,9 +309,6 @@ $(document).ready(function(){initNavTree('globals_type.html',''); initResizable(
 <li>app_lib_otap_write_f
 : <a class="el" href="df/d99/wms__otap_8h.html#a4ddcacb42e945d34f805fc347d5ccc12">wms_otap.h</a>
 </li>
-<li>app_lib_radio_cfg_band_setup_f
-: <a class="el" href="d8/da1/wms__radio__config_8h.html#acbfc9353034bfaefb71368ccadfbbda9">wms_radio_config.h</a>
-</li>
 <li>app_lib_radio_cfg_fem_cmd_cb_f
 : <a class="el" href="d8/da1/wms__radio__config_8h.html#a2a04457fc78ab5db9339cfa5eafdc8d5">wms_radio_config.h</a>
 </li>
@@ -395,21 +323,6 @@ $(document).ready(function(){initNavTree('globals_type.html',''); initResizable(
 </li>
 <li>app_lib_radio_cfg_power_setup_f
 : <a class="el" href="d8/da1/wms__radio__config_8h.html#a240178b3846089db5606a4485c2cc99a">wms_radio_config.h</a>
-</li>
-<li>app_lib_secure_storage_delete_record_f
-: <a class="el" href="dc/d82/wms__secure__storage_8h.html#ade4e047f715d234814f6dc2d50b6adf2">wms_secure_storage.h</a>
-</li>
-<li>app_lib_secure_storage_init_area_f
-: <a class="el" href="dc/d82/wms__secure__storage_8h.html#a2fe889e62ac1e9c1a22336e341d93cfa">wms_secure_storage.h</a>
-</li>
-<li>app_lib_secure_storage_read_record_f
-: <a class="el" href="dc/d82/wms__secure__storage_8h.html#a9dfd0bd205e46d7a64a36f17d0c709f1">wms_secure_storage.h</a>
-</li>
-<li>app_lib_secure_storage_record_tag_t
-: <a class="el" href="dc/d82/wms__secure__storage_8h.html#a240da97fe327cab98f51c403607e81da">wms_secure_storage.h</a>
-</li>
-<li>app_lib_secure_storage_write_record_f
-: <a class="el" href="dc/d82/wms__secure__storage_8h.html#acb64497df375d374aa17640f817523df">wms_secure_storage.h</a>
 </li>
 <li>app_lib_settings_get_ac_range_f
 : <a class="el" href="df/d62/wms__settings_8h.html#a81ceb0e7dd252eca631602fa78a00993">wms_settings.h</a>
@@ -444,9 +357,6 @@ $(document).ready(function(){initNavTree('globals_type.html',''); initResizable(
 <li>app_lib_settings_get_node_role_f
 : <a class="el" href="df/d62/wms__settings_8h.html#a85051b080d2238659543ef3c52b33b29">wms_settings.h</a>
 </li>
-<li>app_lib_settings_get_node_uid_cb_f
-: <a class="el" href="df/d62/wms__settings_8h.html#a6fd469623e2c768122c9034e1d2aeb0f">wms_settings.h</a>
-</li>
 <li>app_lib_settings_get_offline_scan_f
 : <a class="el" href="df/d62/wms__settings_8h.html#a6d8eec95d47e093aeca48dd4ecab3451">wms_settings.h</a>
 </li>
@@ -468,17 +378,11 @@ $(document).ready(function(){initNavTree('globals_type.html',''); initResizable(
 <li>app_lib_settings_is_valid_node_role_f
 : <a class="el" href="df/d62/wms__settings_8h.html#ab0d387c21ebd3cd12fa25e7d44561fb0">wms_settings.h</a>
 </li>
-<li>app_lib_settings_key_management_config_f
-: <a class="el" href="df/d62/wms__settings_8h.html#aade490b8661f267de1a302242b7afdf9">wms_settings.h</a>
-</li>
 <li>app_lib_settings_net_addr_t
 : <a class="el" href="df/d62/wms__settings_8h.html#a69db270642a7b444986c801131fcbd66">wms_settings.h</a>
 </li>
 <li>app_lib_settings_net_channel_t
 : <a class="el" href="df/d62/wms__settings_8h.html#af0559e67154ec6b6dc9c34ccad540861">wms_settings.h</a>
-</li>
-<li>app_lib_settings_register_node_uid_cb_f
-: <a class="el" href="df/d62/wms__settings_8h.html#aa3247ba7514f8dc52ec66e3a868af923">wms_settings.h</a>
 </li>
 <li>app_lib_settings_reset_all_f
 : <a class="el" href="df/d62/wms__settings_8h.html#a140d39369516a938d1348ac86e65e0a2">wms_settings.h</a>
@@ -601,22 +505,22 @@ $(document).ready(function(){initNavTree('globals_type.html',''); initResizable(
 : <a class="el" href="d4/d75/wms__storage_8h.html#a4b5cf252701e4faee39fbc81e3386c62">wms_storage.h</a>
 </li>
 <li>app_lib_system_clear_pending_fast_app_irq_f
-: <a class="el" href="df/d6b/wms__system_8h.html#af5d491f03b4efa69487be0a7d24ce6f9">wms_system.h</a>
+: <a class="el" href="df/d6b/wms__system_8h.html#a78d8ae0139ed4a5617d5fd7ac5feadd2">wms_system.h</a>
 </li>
 <li>app_lib_system_disable_app_irq_f
-: <a class="el" href="df/d6b/wms__system_8h.html#a6af5e19d5cb4b5a304fda524ceb3963f">wms_system.h</a>
+: <a class="el" href="df/d6b/wms__system_8h.html#ae871f054c8d6cf9441d1c2a362efdd1d">wms_system.h</a>
 </li>
 <li>app_lib_system_disable_deep_sleep
 : <a class="el" href="df/d6b/wms__system_8h.html#a8e2cb074dc572f44ebc7a615ebfd6a07">wms_system.h</a>
 </li>
 <li>app_lib_system_enable_app_irq_f
-: <a class="el" href="df/d6b/wms__system_8h.html#a495ed489fe3f2798e0e8ea3e97613925">wms_system.h</a>
+: <a class="el" href="df/d6b/wms__system_8h.html#aba69b45321bbdf1ae6def106715d8f53">wms_system.h</a>
 </li>
 <li>app_lib_system_enable_app_irq_with_handler_f
-: <a class="el" href="df/d6b/wms__system_8h.html#a87c4cf1d5da280010817d89268efc528">wms_system.h</a>
+: <a class="el" href="df/d6b/wms__system_8h.html#a350a09c1934fdd3217523f328e2ed833">wms_system.h</a>
 </li>
 <li>app_lib_system_enable_fast_app_irq_f
-: <a class="el" href="df/d6b/wms__system_8h.html#a5105827cbb9754763eb96a7fcd30ad9f">wms_system.h</a>
+: <a class="el" href="df/d6b/wms__system_8h.html#abcd8e635b24b98636060c1385e637c8d">wms_system.h</a>
 </li>
 <li>app_lib_system_enter_critical_section_f
 : <a class="el" href="df/d6b/wms__system_8h.html#a5ba9aa0bc74144cd4ba0590021549eae">wms_system.h</a>
@@ -635,6 +539,9 @@ $(document).ready(function(){initNavTree('globals_type.html',''); initResizable(
 </li>
 <li>app_lib_system_periodic_cb_f
 : <a class="el" href="df/d6b/wms__system_8h.html#a02052ff659d623710fa0733a82a110b4">wms_system.h</a>
+</li>
+<li>app_lib_system_register_app_irq_table_f
+: <a class="el" href="df/d6b/wms__system_8h.html#a24c6d7cb04fc971ae8d60c2e51ea5cd7">wms_system.h</a>
 </li>
 <li>app_lib_system_set_periodic_cb_f
 : <a class="el" href="df/d6b/wms__system_8h.html#a3bbe9181ed7a154eb9d2baf96f337701">wms_system.h</a>
