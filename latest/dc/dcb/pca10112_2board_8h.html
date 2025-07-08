@@ -17,6 +17,13 @@
 <script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+  /* @license-end */
+</script>
 <link rel="search" href="../../search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 <link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -47,19 +54,33 @@
 var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="../../menudata.js"></script>
-<script type="text/javascript" src="../../menu.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('../../',true,true,'search.html','Search');
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="../../pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="../../annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="../../files.html"><span>Files</span></a></li>
+      <li><a href="../../examples.html"><span>Example&#160;applications</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+          <div class="left">
+            <form id="FSearchBox" action="../../search.html" method="get">
+              <img id="MSearchSelect" src="../../search/mag.png" alt=""/>
+              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
+                     onfocus="searchBox.OnSearchFieldFocus(true)" 
+                     onblur="searchBox.OnSearchFieldFocus(false)"/>
+            </form>
+          </div><div class="right"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>File&#160;List</span></a></li>
+      <li><a href="../../globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -610,7 +631,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md5"></a>
+<h2><a class="anchor" id="autotoc_md4"></a>
 NRF_P0  SW_pin  PCA10112       Notes (recommended usage)</h2>
 <p>P0.00 0 [XTAL 32k] P0.01 1 [XTAL 32k] P0.02 2 gpio/AIN0 (low freq) P0.03 3 gpio/AIN1 (low freq) P0.04 4 gpio/AIN2 P0.05 5 UART_RTS P0.06 6 UART_TX P0.07 7 UART_CTS P0.08 8 UART_RX P0.09 9 gpio/NFC1 (low freq) P0.10 10 gpio/NFC2 (low freq) P0.11 11 gpio/nBUTTON1 P0.12 12 gpio/nBUTTON2 P0.13 13 gpio/nLED1 P0.14 14 gpio/nLED2 P0.15 15 gpio/nLED3 P0.16 16 gpio/nLED4 P0.17 17 gpio/FEM_MODE P0.18 18 nRESET P0.19 19 gpio/FEM_RXEN P0.20 20 gpio/FEM_ANTSEL P0.21 21 gpio/FEM_CS P0.22 22 gpio/FEM_TXEN P0.23 23 gpio/FEM_PDN P0.24 24 gpio/nBUTTON3 P0.25 25 gpio/nBUTTON4 P0.26 26 gpio P0.27 27 gpio P0.28 28 gpio/AIN4 (low freq) P0.29 29 gpio/AIN5 (low freq) P0.30 30 gpio/AIN6 (low freq) P0.31 31 gpio/AIN7 (low freq)</p>
 <p>NRF_P1: P1.00 32 gpio/SWO P1.01 33 gpio (low freq) P1.02 34 gpio (low freq) P1.03 35 gpio (low freq) P1.04 36 gpio (low freq) P1.05 37 gpio (low freq) P1.06 38 gpio (low freq) P1.07 39 gpio (low freq) P1.08 40 gpio P1.09 41 gpio P1.10 42 gpio (low freq) P1.11 43 gpio (low freq) P1.12 44 gpio (low freq) P1.13 45 FEM_MISO (low freq) P1.14 46 FEM_MOSI (low freq) P1.15 47 FEM_CLK (low freq) </p>

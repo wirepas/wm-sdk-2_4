@@ -17,6 +17,13 @@
 <script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+  /* @license-end */
+</script>
 <link rel="search" href="search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -47,19 +54,71 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('',true,true,'search.html','Search');
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Example&#160;applications</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+          <div class="left">
+            <form id="FSearchBox" action="search.html" method="get">
+              <img id="MSearchSelect" src="search/mag.png" alt=""/>
+              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
+                     onfocus="searchBox.OnSearchFieldFocus(true)" 
+                     onblur="searchBox.OnSearchFieldFocus(false)"/>
+            </form>
+          </div><div class="right"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li class="current"><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li class="current"><a href="globals.html"><span>All</span></a></li>
+      <li><a href="globals_func.html"><span>Functions</span></a></li>
+      <li><a href="globals_vars.html"><span>Variables</span></a></li>
+      <li><a href="globals_type.html"><span>Typedefs</span></a></li>
+      <li><a href="globals_enum.html"><span>Enumerations</span></a></li>
+      <li><a href="globals_eval.html"><span>Enumerator</span></a></li>
+      <li><a href="globals_defs.html"><span>Macros</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="globals.html#index__5F"><span>_</span></a></li>
+      <li><a href="globals_a.html#index_a"><span>a</span></a></li>
+      <li class="current"><a href="globals_b.html#index_b"><span>b</span></a></li>
+      <li><a href="globals_c.html#index_c"><span>c</span></a></li>
+      <li><a href="globals_d.html#index_d"><span>d</span></a></li>
+      <li><a href="globals_e.html#index_e"><span>e</span></a></li>
+      <li><a href="globals_f.html#index_f"><span>f</span></a></li>
+      <li><a href="globals_g.html#index_g"><span>g</span></a></li>
+      <li><a href="globals_h.html#index_h"><span>h</span></a></li>
+      <li><a href="globals_i.html#index_i"><span>i</span></a></li>
+      <li><a href="globals_j.html#index_j"><span>j</span></a></li>
+      <li><a href="globals_l.html#index_l"><span>l</span></a></li>
+      <li><a href="globals_m.html#index_m"><span>m</span></a></li>
+      <li><a href="globals_n.html#index_n"><span>n</span></a></li>
+      <li><a href="globals_o.html#index_o"><span>o</span></a></li>
+      <li><a href="globals_p.html#index_p"><span>p</span></a></li>
+      <li><a href="globals_q.html#index_q"><span>q</span></a></li>
+      <li><a href="globals_r.html#index_r"><span>r</span></a></li>
+      <li><a href="globals_s.html#index_s"><span>s</span></a></li>
+      <li><a href="globals_t.html#index_t"><span>t</span></a></li>
+      <li><a href="globals_u.html#index_u"><span>u</span></a></li>
+      <li><a href="globals_v.html#index_v"><span>v</span></a></li>
+      <li><a href="globals_w.html#index_w"><span>w</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -96,9 +155,6 @@ $(document).ready(function(){initNavTree('globals_b.html',''); initResizable(); 
 <li>BITFIELD_T_SIZE
 : <a class="el" href="d3/dbc/bitfield_8h.html#aae5168de0d3c3284b95052fe5b4c4c2c">bitfield.h</a>
 </li>
-<li>bl_debug_flow_f
-: <a class="el" href="dd/d2c/bl__interface_8h.html#acec18c818f1dbd8deb3f68545ccc136b">bl_interface.h</a>
-</li>
 <li>bl_hardware_getCapabilities_f
 : <a class="el" href="dd/d2c/bl__interface_8h.html#abe48ebab96082c5c01ce0138b04ea55e">bl_interface.h</a>
 </li>
@@ -110,6 +166,9 @@ $(document).ready(function(){initNavTree('globals_b.html',''); initResizable(); 
 </li>
 <li>BL_MEM_AREA_TYPE_BOOTLOADER
 : <a class="el" href="dd/d2c/bl__interface_8h.html#a827b71e6d5cdcaa075983c98ddc7563da154df4370ce1d216531e69893a307807">bl_interface.h</a>
+</li>
+<li>BL_MEM_AREA_TYPE_MODEMDELTAFW
+: <a class="el" href="dd/d2c/bl__interface_8h.html#a827b71e6d5cdcaa075983c98ddc7563da9201be259944386a54e31d6ee5ccd574">bl_interface.h</a>
 </li>
 <li>BL_MEM_AREA_TYPE_MODEMFW
 : <a class="el" href="dd/d2c/bl__interface_8h.html#a827b71e6d5cdcaa075983c98ddc7563da36cba8d8d256bf7b87e7ee18bc4d898e">bl_interface.h</a>
@@ -219,6 +278,18 @@ $(document).ready(function(){initNavTree('globals_b.html',''); initResizable(); 
 <li>BL_SCRAT_IS_VALID
 : <a class="el" href="dd/d2c/bl__interface_8h.html#a5a648cb2d7d4e0e4b98ef5a5463b453aa2203300604771cbe808ee9fd420b1427">bl_interface.h</a>
 </li>
+<li>BL_SCRAT_MODEM_FILE_TYPE_DELTA_IMAGE
+: <a class="el" href="dd/d2c/bl__interface_8h.html#a47563e507911f3a052d8171f90e93742a205ed9bb3c67fbe573a4594cc9c09826">bl_interface.h</a>
+</li>
+<li>bl_scrat_modem_file_type_e
+: <a class="el" href="dd/d2c/bl__interface_8h.html#a47563e507911f3a052d8171f90e93742">bl_interface.h</a>
+</li>
+<li>BL_SCRAT_MODEM_FILE_TYPE_FULL_IMAGE
+: <a class="el" href="dd/d2c/bl__interface_8h.html#a47563e507911f3a052d8171f90e93742a261ba3b4b8ff92d70b2a6f9fc51610d0">bl_interface.h</a>
+</li>
+<li>BL_SCRAT_MODEM_FILE_TYPE_INVALID
+: <a class="el" href="dd/d2c/bl__interface_8h.html#a47563e507911f3a052d8171f90e93742a32d7e2c5f5e71837168b48cef685185d">bl_interface.h</a>
+</li>
 <li>bl_scrat_read_f
 : <a class="el" href="dd/d2c/bl__interface_8h.html#a340ed48afb839a9e8fe28106e805503a">bl_interface.h</a>
 </li>
@@ -298,10 +369,7 @@ $(document).ready(function(){initNavTree('globals_b.html',''); initResizable(); 
 : <a class="el" href="df/d27/bgm220-ek4314a_2board_8h.html#a154e4a912cfa2fbec72aeba6b69e18ab">board.h</a>
 </li>
 <li>BOARD_BUTTON_INTERNAL_PULL
-: <a class="el" href="d2/dee/silabs__brd4312a_2board_8h.html#a8f91fc44ad1f0b5ab77c76564145318a">board.h</a>
-</li>
-<li>BOARD_EXT_MEM_CTRL
-: <a class="el" href="d0/d5e/pca10090__nrf52840_2board_8h.html#a48a79139fa3d81ae5caaba24adbb518a">board.h</a>
+: <a class="el" href="d5/d0c/silabs__brd2601b_2board_8h.html#a8f91fc44ad1f0b5ab77c76564145318a">board.h</a>
 </li>
 <li>BOARD_FEM_ANTSEL_PIN
 : <a class="el" href="dc/dcb/pca10112_2board_8h.html#a2891cab9140b1b7c9e01045a62b2db10">board.h</a>
@@ -376,7 +444,7 @@ $(document).ready(function(){initNavTree('globals_b.html',''); initResizable(); 
 : <a class="el" href="d5/d0c/silabs__brd2601b_2board_8h.html#a69ab691c2ca1dc3e0a0c5e741d2e2248">board.h</a>
 </li>
 <li>BOARD_GPIO_ID_LED_R
-: <a class="el" href="d1/df6/nrf52832__mdk__v2_2board_8h.html#ac3ef35915e549c2285bb1868719f971f">board.h</a>
+: <a class="el" href="d3/d8f/tbsense2_2board_8h.html#ac3ef35915e549c2285bb1868719f971f">board.h</a>
 </li>
 <li>BOARD_GPIO_ID_LED_RED
 : <a class="el" href="d5/d0c/silabs__brd2601b_2board_8h.html#aac25f34d171f79260b6a2d03aa2bc76b">board.h</a>
@@ -391,10 +459,10 @@ $(document).ready(function(){initNavTree('globals_b.html',''); initResizable(); 
 : <a class="el" href="d6/d74/silabs__brd4184a_2board_8h.html#af3a22056866caf4155af0caaccb790b4">board.h</a>
 </li>
 <li>BOARD_GPIO_ID_UART_IRQ
-: <a class="el" href="d3/d2c/pca10056_2board_8h.html#aec9d6daae15d7aa523eb194fdc70e4ee">board.h</a>
+: <a class="el" href="d9/df8/efr32__template_2board_8h.html#aec9d6daae15d7aa523eb194fdc70e4ee">board.h</a>
 </li>
 <li>BOARD_GPIO_ID_USART_WAKEUP
-: <a class="el" href="d8/d1d/pan1780_2board_8h.html#af13dc52a09bbe5d8c6005e98907172e5">board.h</a>
+: <a class="el" href="d3/d2c/pca10056_2board_8h.html#af13dc52a09bbe5d8c6005e98907172e5">board.h</a>
 </li>
 <li>BOARD_GPIO_ID_VCOM_ENABLE
 : <a class="el" href="dc/d8f/silabs__brd4180b_2board_8h.html#a12d506a408dd897291a1f9fb01424928">board.h</a>
@@ -403,7 +471,7 @@ $(document).ready(function(){initNavTree('globals_b.html',''); initResizable(); 
 : <a class="el" href="df/d27/bgm220-ek4314a_2board_8h.html#a433cf3a73ae6b00dde08e7a245b4a2ec">board.h</a>
 </li>
 <li>BOARD_I2C_GPIO_PORT
-: <a class="el" href="d5/d0c/silabs__brd2601b_2board_8h.html#ad040f55332feda958e433ae2c1f5bcd5">board.h</a>
+: <a class="el" href="d3/d8f/tbsense2_2board_8h.html#ad040f55332feda958e433ae2c1f5bcd5">board.h</a>
 </li>
 <li>BOARD_I2C_MICS_ENABLE
 : <a class="el" href="d5/d0c/silabs__brd2601b_2board_8h.html#a661518df4b0d83b761f72a08b850226c">board.h</a>
@@ -412,7 +480,7 @@ $(document).ready(function(){initNavTree('globals_b.html',''); initResizable(); 
 : <a class="el" href="d5/d0c/silabs__brd2601b_2board_8h.html#acb2895a9dbda55c7842898cd59a419ea">board.h</a>
 </li>
 <li>BOARD_I2C_ROUTELOC_SDALOC
-: <a class="el" href="d3/d8f/tbsense2_2board_8h.html#a5352ae70f167d76a644efea761ef0d95">board.h</a>
+: <a class="el" href="d5/d0c/silabs__brd2601b_2board_8h.html#a5352ae70f167d76a644efea761ef0d95">board.h</a>
 </li>
 <li>BOARD_I2C_SCL_PIN
 : <a class="el" href="d5/d0c/silabs__brd2601b_2board_8h.html#a23ceec4235fc4b415f54343cf96ad269">board.h</a>
@@ -430,7 +498,7 @@ $(document).ready(function(){initNavTree('globals_b.html',''); initResizable(); 
 : <a class="el" href="df/d27/bgm220-ek4314a_2board_8h.html#a43341ad5e17bb5d20c1e528bce7d6133">board.h</a>
 </li>
 <li>BOARD_LED_ID_LIST
-: <a class="el" href="dc/dcb/pca10112_2board_8h.html#a96e3cca1c7fe33c02f7805cd3de699d0">board.h</a>
+: <a class="el" href="df/d1a/silabs__brd4181b_2board_8h.html#a96e3cca1c7fe33c02f7805cd3de699d0">board.h</a>
 </li>
 <li>BOARD_LED_PIN_LIST
 : <a class="el" href="d9/df8/efr32__template_2board_8h.html#a8eefc53de69e1aea7376f76b67c6052a">board.h</a>
@@ -457,13 +525,13 @@ $(document).ready(function(){initNavTree('globals_b.html',''); initResizable(); 
 : <a class="el" href="d5/d0c/silabs__brd2601b_2board_8h.html#ae322ffd425d8162755086c539ed6d131">board.h</a>
 </li>
 <li>BOARD_SPI_MOSI_PIN
-: <a class="el" href="d5/d0c/silabs__brd2601b_2board_8h.html#a0622d9cfd7f26d43d48855a1b83ed1d2">board.h</a>
+: <a class="el" href="d9/d3f/ruuvitag_2board_8h.html#a0622d9cfd7f26d43d48855a1b83ed1d2">board.h</a>
 </li>
 <li>BOARD_SPI_MOSI_PORT
 : <a class="el" href="d5/d0c/silabs__brd2601b_2board_8h.html#a8661716464487b3cfb742e7e3fd30344">board.h</a>
 </li>
 <li>BOARD_SPI_SCK_PIN
-: <a class="el" href="d9/d3f/ruuvitag_2board_8h.html#ad42584f70b63de114f7302fa5308753d">board.h</a>
+: <a class="el" href="de/de7/promistel__rpi__hat_2board_8h.html#ad42584f70b63de114f7302fa5308753d">board.h</a>
 </li>
 <li>BOARD_SPI_SCKL_PIN
 : <a class="el" href="d5/d0c/silabs__brd2601b_2board_8h.html#addd4af1c16ff89363a001e1674da5ee1">board.h</a>
@@ -475,19 +543,19 @@ $(document).ready(function(){initNavTree('globals_b.html',''); initResizable(); 
 : <a class="el" href="d5/d0c/silabs__brd2601b_2board_8h.html#a4dc1591839629d3fe2587cd721e8f288">board.h</a>
 </li>
 <li>BOARD_USART_CTS_PIN
-: <a class="el" href="d5/d29/ublox__b204_2board_8h.html#a73ea4f5228391904dcf748e08f98a172">board.h</a>
+: <a class="el" href="dc/dcb/pca10112_2board_8h.html#a73ea4f5228391904dcf748e08f98a172">board.h</a>
 </li>
 <li>BOARD_USART_FORCE_BAUDRATE
 : <a class="el" href="d5/d0c/silabs__brd2601b_2board_8h.html#a23a94977182c1741d2ddb5c205858514">board.h</a>
 </li>
 <li>BOARD_USART_ID
-: <a class="el" href="d9/df8/efr32__template_2board_8h.html#a8c090fdc29940fd44b204eb07bf3ff15">board.h</a>
+: <a class="el" href="d7/d07/silabs__brd4187c_2board_8h.html#a8c090fdc29940fd44b204eb07bf3ff15">board.h</a>
 </li>
 <li>BOARD_USART_ROUTELOC_RXLOC
-: <a class="el" href="dd/ddd/silabs__brd4254a_2board_8h.html#a81158c22051a8d55513e9fffb3a571a5">board.h</a>
+: <a class="el" href="d9/df8/efr32__template_2board_8h.html#a81158c22051a8d55513e9fffb3a571a5">board.h</a>
 </li>
 <li>BOARD_USART_ROUTELOC_TXLOC
-: <a class="el" href="d3/d8f/tbsense2_2board_8h.html#a890277116f59d930b90361c247375c6f">board.h</a>
+: <a class="el" href="d9/df8/efr32__template_2board_8h.html#a890277116f59d930b90361c247375c6f">board.h</a>
 </li>
 <li>BOARD_USART_RTS_PIN
 : <a class="el" href="d8/d1d/pan1780_2board_8h.html#a0af72e93971553bc01429840dbcede95">board.h</a>
@@ -496,19 +564,19 @@ $(document).ready(function(){initNavTree('globals_b.html',''); initResizable(); 
 : <a class="el" href="d2/dee/silabs__brd4312a_2board_8h.html#a29ae5883a2b90d5dd60552e78fa1a639">board.h</a>
 </li>
 <li>BOARD_USART_RX_PORT
-: <a class="el" href="dd/ddf/silabs__brd2703a_2board_8h.html#a79f46a4c0b6a09dcf8249d0b607a0443">board.h</a>
+: <a class="el" href="dc/d8f/silabs__brd4180b_2board_8h.html#a79f46a4c0b6a09dcf8249d0b607a0443">board.h</a>
 </li>
 <li>BOARD_USART_TX_PIN
-: <a class="el" href="d9/da7/wuerth__261101102_2board_8h.html#ac5c54565e5266fd2bf7f9b8bace2ae9c">board.h</a>
+: <a class="el" href="d6/d74/silabs__brd4184a_2board_8h.html#ac5c54565e5266fd2bf7f9b8bace2ae9c">board.h</a>
 </li>
 <li>BOARD_USART_TX_PORT
-: <a class="el" href="dc/d8f/silabs__brd4180b_2board_8h.html#a8837c77894bac16ee3808054916ad695">board.h</a>
+: <a class="el" href="d9/df8/efr32__template_2board_8h.html#a8837c77894bac16ee3808054916ad695">board.h</a>
 </li>
 <li>Break
 : <a class="el" href="d9/d2c/cborinternal__p_8h.html#a8d7056f42637468688b461d7bb3e5125a54957cf47b2c20cda66ae848d2b3aacb">cborinternal_p.h</a>
 </li>
 <li>BreakByte
-: <a class="el" href="d9/d2c/cborinternal__p_8h.html#abc5c98fcc1211af2b80116dd6e0a035da9910e2b0e02d0de33e20b45b4eb642d1">cborinternal_p.h</a>
+: <a class="el" href="d9/d2c/cborinternal__p_8h.html#a16af7b253440dadd46a80a4b9fddba4da9910e2b0e02d0de33e20b45b4eb642d1">cborinternal_p.h</a>
 </li>
 <li>button_event_e
 : <a class="el" href="d7/d0e/button_8h.html#a4e97005308962643f6d98e25de373ebe">button.h</a>

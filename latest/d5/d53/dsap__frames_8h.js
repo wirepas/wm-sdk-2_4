@@ -1,7 +1,7 @@
 var dsap__frames_8h =
 [
     [ "dsap_data_tx_req_t", "d5/d53/dsap__frames_8h.html#d1/d60/structdsap__data__tx__req__t", [
-      [ "apdu", "d5/d53/dsap__frames_8h.html#a95acf85a002812b264572970adc2f033", null ],
+      [ "apdu", "d5/d53/dsap__frames_8h.html#a12485c03a8e7cec7e4e50522b3e7c15c", null ],
       [ "apdu_id", "d5/d53/dsap__frames_8h.html#af8d2e29d5309f0a20febcfbe40848f47", null ],
       [ "apdu_len", "d5/d53/dsap__frames_8h.html#a57bac7aac120827b00605f108362c128", null ],
       [ "dst_addr", "d5/d53/dsap__frames_8h.html#a62135be23077738ceeac25bd112d6755", null ],
@@ -11,7 +11,7 @@ var dsap__frames_8h =
       [ "tx_opts", "d5/d53/dsap__frames_8h.html#ad35cab9ac558c322115f7bb21ceb13aa", null ]
     ] ],
     [ "dsap_data_tx_tt_req_t", "d5/d53/dsap__frames_8h.html#d6/d81/structdsap__data__tx__tt__req__t", [
-      [ "apdu", "d5/d53/dsap__frames_8h.html#a95acf85a002812b264572970adc2f033", null ],
+      [ "apdu", "d5/d53/dsap__frames_8h.html#a12485c03a8e7cec7e4e50522b3e7c15c", null ],
       [ "apdu_id", "d5/d53/dsap__frames_8h.html#af8d2e29d5309f0a20febcfbe40848f47", null ],
       [ "apdu_len", "d5/d53/dsap__frames_8h.html#a57bac7aac120827b00605f108362c128", null ],
       [ "dst_addr", "d5/d53/dsap__frames_8h.html#a62135be23077738ceeac25bd112d6755", null ],
@@ -22,7 +22,7 @@ var dsap__frames_8h =
       [ "tx_opts", "d5/d53/dsap__frames_8h.html#ad35cab9ac558c322115f7bb21ceb13aa", null ]
     ] ],
     [ "dsap_data_tx_frag_req_t", "d5/d53/dsap__frames_8h.html#db/d71/structdsap__data__tx__frag__req__t", [
-      [ "apdu", "d5/d53/dsap__frames_8h.html#a95acf85a002812b264572970adc2f033", null ],
+      [ "apdu", "d5/d53/dsap__frames_8h.html#a12485c03a8e7cec7e4e50522b3e7c15c", null ],
       [ "apdu_id", "d5/d53/dsap__frames_8h.html#af8d2e29d5309f0a20febcfbe40848f47", null ],
       [ "apdu_len", "d5/d53/dsap__frames_8h.html#a57bac7aac120827b00605f108362c128", null ],
       [ "dst_addr", "d5/d53/dsap__frames_8h.html#a62135be23077738ceeac25bd112d6755", null ],
@@ -35,7 +35,7 @@ var dsap__frames_8h =
       [ "tx_opts", "d5/d53/dsap__frames_8h.html#ad35cab9ac558c322115f7bb21ceb13aa", null ]
     ] ],
     [ "dsap_data_rx_ind_t", "d5/d53/dsap__frames_8h.html#dc/d07/structdsap__data__rx__ind__t", [
-      [ "apdu", "d5/d53/dsap__frames_8h.html#a95acf85a002812b264572970adc2f033", null ],
+      [ "apdu", "d5/d53/dsap__frames_8h.html#a12485c03a8e7cec7e4e50522b3e7c15c", null ],
       [ "apdu_len", "d5/d53/dsap__frames_8h.html#a57bac7aac120827b00605f108362c128", null ],
       [ "delay", "d5/d53/dsap__frames_8h.html#a458421a43d4f6dc515faf427bf579d00", null ],
       [ "dst_addr", "d5/d53/dsap__frames_8h.html#a62135be23077738ceeac25bd112d6755", null ],
@@ -46,7 +46,7 @@ var dsap__frames_8h =
       [ "src_endpoint", "d5/d53/dsap__frames_8h.html#a29c1d371b8223440e07c87704e14ecaf", null ]
     ] ],
     [ "dsap_data_rx_frag_ind_t", "d5/d53/dsap__frames_8h.html#dc/d3f/structdsap__data__rx__frag__ind__t", [
-      [ "apdu", "d5/d53/dsap__frames_8h.html#a95acf85a002812b264572970adc2f033", null ],
+      [ "apdu", "d5/d53/dsap__frames_8h.html#a12485c03a8e7cec7e4e50522b3e7c15c", null ],
       [ "apdu_len", "d5/d53/dsap__frames_8h.html#a57bac7aac120827b00605f108362c128", null ],
       [ "delay", "d5/d53/dsap__frames_8h.html#a458421a43d4f6dc515faf427bf579d00", null ],
       [ "dst_addr", "d5/d53/dsap__frames_8h.html#a62135be23077738ceeac25bd112d6755", null ],
@@ -109,7 +109,6 @@ var dsap__frames_8h =
       [ "DSAP_TX_RESV_EP", "d5/d53/dsap__frames_8h.html#a8a3baf1570a5da61fc9ec82982cd1d0ea599eca7fc36d0e9507ae9048dbdeee33", null ],
       [ "DSAP_TX_ACCESS_DENIED", "d5/d53/dsap__frames_8h.html#a8a3baf1570a5da61fc9ec82982cd1d0eaa1cf436a8897e0555b8a514614fd7ca2", null ]
     ] ],
-    [ "APDU_MAX_SIZE", "d5/d53/dsap__frames_8h.html#a5818355c4c254d012e8e3a449e954fcf", null ],
     [ "DSAP_FRAG_LAST_FLAG_MASK", "d5/d53/dsap__frames_8h.html#aee465bd36cc6d9d17410bc4b8df869a4", null ],
     [ "DSAP_FRAG_LENGTH_MASK", "d5/d53/dsap__frames_8h.html#a5e02fcf82e33b7010ffd3e8ff076b400", null ],
     [ "FRAME_DSAP_DATA_RX_FRAG_IND_HEADER_SIZE", "d5/d53/dsap__frames_8h.html#adfb55bddcb98f2c34bc2935b97f22e61", null ],

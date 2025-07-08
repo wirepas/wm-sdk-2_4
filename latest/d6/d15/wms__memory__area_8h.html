@@ -17,6 +17,13 @@
 <script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+  /* @license-end */
+</script>
 <link rel="search" href="../../search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 <link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -47,19 +54,33 @@
 var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="../../menudata.js"></script>
-<script type="text/javascript" src="../../menu.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('../../',true,true,'search.html','Search');
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="../../pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="../../annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="../../files.html"><span>Files</span></a></li>
+      <li><a href="../../examples.html"><span>Example&#160;applications</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+          <div class="left">
+            <form id="FSearchBox" action="../../search.html" method="get">
+              <img id="MSearchSelect" src="../../search/mag.png" alt=""/>
+              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
+                     onfocus="searchBox.OnSearchFieldFocus(true)" 
+                     onblur="searchBox.OnSearchFieldFocus(false)"/>
+            </form>
+          </div><div class="right"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>File&#160;List</span></a></li>
+      <li><a href="../../globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -140,7 +161,8 @@ Enumerations</h2></td></tr>
 <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76aeaad5d1e5a494e240f5508a6d253c086">APP_LIB_MEM_AREA_RES_NODRIVER</a> = 3, 
 <br />
 &#160;&#160;<a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a15b1563bc64559a7df2717d52dd1ef8f">APP_LIB_MEM_AREA_RES_PARAM</a> = 4, 
-<a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a62df140ce20fd6d26fa1a6a1fa922a46">APP_LIB_MEM_AREA_RES_INVALID_AREA</a> = 5
+<a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a62df140ce20fd6d26fa1a6a1fa922a46">APP_LIB_MEM_AREA_RES_INVALID_AREA</a> = 5, 
+<a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a51ad5a220adb43422186dbae13c1bd27">APP_LIB_MEM_AREA_RES_INVALID_TAG</a> = 6
 <br />
  }</td></tr>
 <tr class="memdesc:a62543d9eae159f7880972e769d50ce76"><td class="mdescLeft">&#160;</td><td class="mdescRight">memory area operations result  <a href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76">More...</a><br /></td></tr>
@@ -160,7 +182,7 @@ Macros</h2></td></tr>
 <tr class="memitem:a02a505bb325f6965bfe2687164655941"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d15/wms__memory__area_8h.html#a02a505bb325f6965bfe2687164655941">APP_LIB_MEMORY_AREA_VERSION</a>&#160;&#160;&#160;0x200</td></tr>
 <tr class="memdesc:a02a505bb325f6965bfe2687164655941"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum supported library version.  <a href="../../d6/d15/wms__memory__area_8h.html#a02a505bb325f6965bfe2687164655941">More...</a><br /></td></tr>
 <tr class="separator:a02a505bb325f6965bfe2687164655941"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab228cd865a10afde0631594abfeb36eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d15/wms__memory__area_8h.html#ab228cd865a10afde0631594abfeb36eb">APP_LIB_MEM_AREA_MAX_AREAS</a>&#160;&#160;&#160;8</td></tr>
+<tr class="memitem:ab228cd865a10afde0631594abfeb36eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d15/wms__memory__area_8h.html#ab228cd865a10afde0631594abfeb36eb">APP_LIB_MEM_AREA_MAX_AREAS</a>&#160;&#160;&#160;16</td></tr>
 <tr class="memdesc:ab228cd865a10afde0631594abfeb36eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of areas that can defined in the bootloader.  <a href="../../d6/d15/wms__memory__area_8h.html#ab228cd865a10afde0631594abfeb36eb">More...</a><br /></td></tr>
 <tr class="separator:ab228cd865a10afde0631594abfeb36eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -187,7 +209,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae76a4ac79b97b823a3a83fbaebd479b1">APP_LIB_MEM_AREA_RES_OK</a> if successful. See <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76">app_lib_mem_area_res_e</a> for other result codes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00236">236</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00230">230</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
 
 </div>
 </div>
@@ -213,7 +235,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00249">249</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00242">242</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
 
 </div>
 </div>
@@ -231,7 +253,7 @@ Macros</h2></td></tr>
 
 <p>Memory Area id definition. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00061">61</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00063">63</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
 
 </div>
 </div>
@@ -256,7 +278,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true: driver is busy, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00223">223</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00218">218</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
 
 </div>
 </div>
@@ -284,7 +306,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae76a4ac79b97b823a3a83fbaebd479b1">APP_LIB_MEM_AREA_RES_OK</a> if successful. See <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76">app_lib_mem_area_res_e</a> for other result codes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00212">212</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00207">207</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
 
 </div>
 </div>
@@ -313,7 +335,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae76a4ac79b97b823a3a83fbaebd479b1">APP_LIB_MEM_AREA_RES_OK</a> if successful. See <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76">app_lib_mem_area_res_e</a> for other result codes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00159">159</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00160">160</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
 
 </div>
 </div>
@@ -343,7 +365,7 @@ Macros</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Depending on flash chipset 1 byte write are not possible. Parameters <code>to</code> and <code>amount</code> must be aligned on write_alignement field of <a class="el" href="../../d6/d15/wms__memory__area_8h.html#d2/d90/structapp__lib__mem__area__flash__info__t">app_lib_mem_area_flash_info_t</a>. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae76a4ac79b97b823a3a83fbaebd479b1">APP_LIB_MEM_AREA_RES_OK</a> if successful. See <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76">app_lib_mem_area_res_e</a> for other result codes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00188">188</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00186">186</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
 
 </div>
 </div>
@@ -362,7 +384,7 @@ Macros</h2></td></tr>
 <div class="textblock"><p>Information on flash peripheral. </p>
 <p>The structure containing flash topology and timings returned by the <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a657c3609457e933b99086f7a32201171">lib_memory_area-&gt;getAreaInfo()</a> function </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00083">83</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00085">85</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -453,7 +475,7 @@ write_page_size</td>
 <div class="textblock"><p>memory area information </p>
 <p>The structure containing memory area information returned by the <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a657c3609457e933b99086f7a32201171">lib_memory_area-&gt;getAreaInfo()</a> function </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00126">126</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00128">128</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -508,7 +530,7 @@ type</td>
 </div><div class="memdoc">
 <div class="textblock"><p>List of library functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00255">255</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00248">248</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -578,17 +600,20 @@ startWrite</td>
 </td></tr>
 <tr><td class="fieldname"><a id="a62543d9eae159f7880972e769d50ce76a62df140ce20fd6d26fa1a6a1fa922a46"></a>APP_LIB_MEM_AREA_RES_INVALID_AREA&#160;</td><td class="fielddoc"><p>Area doesn't exist </p>
 </td></tr>
+<tr><td class="fieldname"><a id="a62543d9eae159f7880972e769d50ce76a51ad5a220adb43422186dbae13c1bd27"></a>APP_LIB_MEM_AREA_RES_INVALID_TAG&#160;</td><td class="fielddoc"><p>Record with tag doesn't exist (secure storage library only) </p>
+</td></tr>
 </table>
 
 <p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00036">36</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
 <div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae76a4ac79b97b823a3a83fbaebd479b1">APP_LIB_MEM_AREA_RES_OK</a>        = 0,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a4eaf622eb2d99e0fdcf56f95973e60aa">APP_LIB_MEM_AREA_RES_ERROR</a>     = 1,</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae11aa2c4b44350b2a86415b11feff294">APP_LIB_MEM_AREA_RES_BUSY</a>      = 2,</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76aeaad5d1e5a494e240f5508a6d253c086">APP_LIB_MEM_AREA_RES_NODRIVER</a>  = 3,</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a15b1563bc64559a7df2717d52dd1ef8f">APP_LIB_MEM_AREA_RES_PARAM</a>     = 4,</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a62df140ce20fd6d26fa1a6a1fa922a46">APP_LIB_MEM_AREA_RES_INVALID_AREA</a>  = 5,</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;} <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76">app_lib_mem_area_res_e</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae76a4ac79b97b823a3a83fbaebd479b1">APP_LIB_MEM_AREA_RES_OK</a> = 0,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a4eaf622eb2d99e0fdcf56f95973e60aa">APP_LIB_MEM_AREA_RES_ERROR</a> = 1,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae11aa2c4b44350b2a86415b11feff294">APP_LIB_MEM_AREA_RES_BUSY</a> = 2,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76aeaad5d1e5a494e240f5508a6d253c086">APP_LIB_MEM_AREA_RES_NODRIVER</a> = 3,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a15b1563bc64559a7df2717d52dd1ef8f">APP_LIB_MEM_AREA_RES_PARAM</a> = 4,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a62df140ce20fd6d26fa1a6a1fa922a46">APP_LIB_MEM_AREA_RES_INVALID_AREA</a> = 5,</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a51ad5a220adb43422186dbae13c1bd27">APP_LIB_MEM_AREA_RES_INVALID_TAG</a> = 6,</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;} <a class="code" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76">app_lib_mem_area_res_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -613,11 +638,11 @@ startWrite</td>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00069">69</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#acbc43eb76d51f02f1e66b4c5452e41deacdf7609377c5ea0ef03be6c17d8da2cd">APP_LIB_MEM_AREA_TYPE_APPLICATION</a> = 0,</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#acbc43eb76d51f02f1e66b4c5452e41dea5dcc5a52ca3487a7770d00f95cc5c3e5">APP_LIB_MEM_AREA_TYPE_USER</a>        = 1,</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;} <a class="code" href="../../d6/d15/wms__memory__area_8h.html#acbc43eb76d51f02f1e66b4c5452e41de">app_lib_mem_area_type_e</a>;</div>
+<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00071">71</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#acbc43eb76d51f02f1e66b4c5452e41deacdf7609377c5ea0ef03be6c17d8da2cd">APP_LIB_MEM_AREA_TYPE_APPLICATION</a> = 0,</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="../../d6/d15/wms__memory__area_8h.html#acbc43eb76d51f02f1e66b4c5452e41dea5dcc5a52ca3487a7770d00f95cc5c3e5">APP_LIB_MEM_AREA_TYPE_USER</a> = 1,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;} <a class="code" href="../../d6/d15/wms__memory__area_8h.html#acbc43eb76d51f02f1e66b4c5452e41de">app_lib_mem_area_type_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -629,7 +654,7 @@ startWrite</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define APP_LIB_MEM_AREA_MAX_AREAS&#160;&#160;&#160;8</td>
+          <td class="memname">#define APP_LIB_MEM_AREA_MAX_AREAS&#160;&#160;&#160;16</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -637,7 +662,7 @@ startWrite</td>
 <p>Maximum number of areas that can defined in the bootloader. </p>
 <p>Used as a absolute maximum value for <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a72258ac26c05aa7ee74ebc505eb917bf">app_lib_mem_area_id_t</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00058">58</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html#l00060">60</a> of file <a class="el" href="../../d6/d15/wms__memory__area_8h_source.html">wms_memory_area.h</a>.</p>
 
 </div>
 </div>
@@ -680,13 +705,14 @@ startWrite</td>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="awms__memory__area_8h_html_acbc43eb76d51f02f1e66b4c5452e41dea5dcc5a52ca3487a7770d00f95cc5c3e5"><div class="ttname"><a href="../../d6/d15/wms__memory__area_8h.html#acbc43eb76d51f02f1e66b4c5452e41dea5dcc5a52ca3487a7770d00f95cc5c3e5">APP_LIB_MEM_AREA_TYPE_USER</a></div><div class="ttdeci">@ APP_LIB_MEM_AREA_TYPE_USER</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d15/wms__memory__area_8h_source.html#l00074">wms_memory_area.h:74</a></div></div>
-<div class="ttc" id="awms__memory__area_8h_html_acbc43eb76d51f02f1e66b4c5452e41deacdf7609377c5ea0ef03be6c17d8da2cd"><div class="ttname"><a href="../../d6/d15/wms__memory__area_8h.html#acbc43eb76d51f02f1e66b4c5452e41deacdf7609377c5ea0ef03be6c17d8da2cd">APP_LIB_MEM_AREA_TYPE_APPLICATION</a></div><div class="ttdeci">@ APP_LIB_MEM_AREA_TYPE_APPLICATION</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d15/wms__memory__area_8h_source.html#l00072">wms_memory_area.h:72</a></div></div>
+<div class="ttc" id="awms__memory__area_8h_html_acbc43eb76d51f02f1e66b4c5452e41dea5dcc5a52ca3487a7770d00f95cc5c3e5"><div class="ttname"><a href="../../d6/d15/wms__memory__area_8h.html#acbc43eb76d51f02f1e66b4c5452e41dea5dcc5a52ca3487a7770d00f95cc5c3e5">APP_LIB_MEM_AREA_TYPE_USER</a></div><div class="ttdeci">@ APP_LIB_MEM_AREA_TYPE_USER</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d15/wms__memory__area_8h_source.html#l00076">wms_memory_area.h:76</a></div></div>
+<div class="ttc" id="awms__memory__area_8h_html_a62543d9eae159f7880972e769d50ce76a51ad5a220adb43422186dbae13c1bd27"><div class="ttname"><a href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a51ad5a220adb43422186dbae13c1bd27">APP_LIB_MEM_AREA_RES_INVALID_TAG</a></div><div class="ttdeci">@ APP_LIB_MEM_AREA_RES_INVALID_TAG</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d15/wms__memory__area_8h_source.html#l00052">wms_memory_area.h:52</a></div></div>
+<div class="ttc" id="awms__memory__area_8h_html_acbc43eb76d51f02f1e66b4c5452e41deacdf7609377c5ea0ef03be6c17d8da2cd"><div class="ttname"><a href="../../d6/d15/wms__memory__area_8h.html#acbc43eb76d51f02f1e66b4c5452e41deacdf7609377c5ea0ef03be6c17d8da2cd">APP_LIB_MEM_AREA_TYPE_APPLICATION</a></div><div class="ttdeci">@ APP_LIB_MEM_AREA_TYPE_APPLICATION</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d15/wms__memory__area_8h_source.html#l00074">wms_memory_area.h:74</a></div></div>
 <div class="ttc" id="awms__memory__area_8h_html_a62543d9eae159f7880972e769d50ce76a15b1563bc64559a7df2717d52dd1ef8f"><div class="ttname"><a href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a15b1563bc64559a7df2717d52dd1ef8f">APP_LIB_MEM_AREA_RES_PARAM</a></div><div class="ttdeci">@ APP_LIB_MEM_AREA_RES_PARAM</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d15/wms__memory__area_8h_source.html#l00048">wms_memory_area.h:48</a></div></div>
 <div class="ttc" id="awms__memory__area_8h_html_a62543d9eae159f7880972e769d50ce76aeaad5d1e5a494e240f5508a6d253c086"><div class="ttname"><a href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76aeaad5d1e5a494e240f5508a6d253c086">APP_LIB_MEM_AREA_RES_NODRIVER</a></div><div class="ttdeci">@ APP_LIB_MEM_AREA_RES_NODRIVER</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d15/wms__memory__area_8h_source.html#l00046">wms_memory_area.h:46</a></div></div>
 <div class="ttc" id="awms__memory__area_8h_html_a62543d9eae159f7880972e769d50ce76ae11aa2c4b44350b2a86415b11feff294"><div class="ttname"><a href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae11aa2c4b44350b2a86415b11feff294">APP_LIB_MEM_AREA_RES_BUSY</a></div><div class="ttdeci">@ APP_LIB_MEM_AREA_RES_BUSY</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d15/wms__memory__area_8h_source.html#l00044">wms_memory_area.h:44</a></div></div>
 <div class="ttc" id="awms__memory__area_8h_html_a62543d9eae159f7880972e769d50ce76ae76a4ac79b97b823a3a83fbaebd479b1"><div class="ttname"><a href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae76a4ac79b97b823a3a83fbaebd479b1">APP_LIB_MEM_AREA_RES_OK</a></div><div class="ttdeci">@ APP_LIB_MEM_AREA_RES_OK</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d15/wms__memory__area_8h_source.html#l00039">wms_memory_area.h:39</a></div></div>
-<div class="ttc" id="awms__memory__area_8h_html_acbc43eb76d51f02f1e66b4c5452e41de"><div class="ttname"><a href="../../d6/d15/wms__memory__area_8h.html#acbc43eb76d51f02f1e66b4c5452e41de">app_lib_mem_area_type_e</a></div><div class="ttdeci">app_lib_mem_area_type_e</div><div class="ttdoc">Lists the types of areas accessible from application side.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d15/wms__memory__area_8h_source.html#l00069">wms_memory_area.h:69</a></div></div>
+<div class="ttc" id="awms__memory__area_8h_html_acbc43eb76d51f02f1e66b4c5452e41de"><div class="ttname"><a href="../../d6/d15/wms__memory__area_8h.html#acbc43eb76d51f02f1e66b4c5452e41de">app_lib_mem_area_type_e</a></div><div class="ttdeci">app_lib_mem_area_type_e</div><div class="ttdoc">Lists the types of areas accessible from application side.</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d15/wms__memory__area_8h_source.html#l00071">wms_memory_area.h:71</a></div></div>
 <div class="ttc" id="awms__memory__area_8h_html_a62543d9eae159f7880972e769d50ce76a4eaf622eb2d99e0fdcf56f95973e60aa"><div class="ttname"><a href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a4eaf622eb2d99e0fdcf56f95973e60aa">APP_LIB_MEM_AREA_RES_ERROR</a></div><div class="ttdeci">@ APP_LIB_MEM_AREA_RES_ERROR</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d15/wms__memory__area_8h_source.html#l00042">wms_memory_area.h:42</a></div></div>
 <div class="ttc" id="awms__memory__area_8h_html_a62543d9eae159f7880972e769d50ce76a62df140ce20fd6d26fa1a6a1fa922a46"><div class="ttname"><a href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a62df140ce20fd6d26fa1a6a1fa922a46">APP_LIB_MEM_AREA_RES_INVALID_AREA</a></div><div class="ttdeci">@ APP_LIB_MEM_AREA_RES_INVALID_AREA</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d15/wms__memory__area_8h_source.html#l00050">wms_memory_area.h:50</a></div></div>
 <div class="ttc" id="awms__memory__area_8h_html_a62543d9eae159f7880972e769d50ce76"><div class="ttname"><a href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76">app_lib_mem_area_res_e</a></div><div class="ttdeci">app_lib_mem_area_res_e</div><div class="ttdoc">memory area operations result</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d15/wms__memory__area_8h_source.html#l00036">wms_memory_area.h:36</a></div></div>

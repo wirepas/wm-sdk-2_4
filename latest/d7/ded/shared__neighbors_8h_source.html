@@ -17,6 +17,13 @@
 <script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+  /* @license-end */
+</script>
 <link rel="search" href="../../search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 <link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -47,19 +54,33 @@
 var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="../../menudata.js"></script>
-<script type="text/javascript" src="../../menu.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('../../',true,true,'search.html','Search');
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="../../pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="../../annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="../../files.html"><span>Files</span></a></li>
+      <li><a href="../../examples.html"><span>Example&#160;applications</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+          <div class="left">
+            <form id="FSearchBox" action="../../search.html" method="get">
+              <img id="MSearchSelect" src="../../search/mag.png" alt=""/>
+              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
+                     onfocus="searchBox.OnSearchFieldFocus(true)" 
+                     onblur="searchBox.OnSearchFieldFocus(false)"/>
+            </form>
+          </div><div class="right"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>File&#160;List</span></a></li>
+      <li><a href="../../globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -104,7 +125,7 @@ $(document).ready(function(){initNavTree('d7/ded/shared__neighbors_8h_source.htm
 </div><!-- doc-content -->
 <div class="ttc" id="awms__app_8h_html_a4d380466f2a9f6432a6abcabf44c8e80"><div class="ttname"><a href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80">app_res_e</a></div><div class="ttdeci">app_res_e</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dbb/wms__app_8h_source.html#l00201">wms_app.h:201</a></div></div>
 <div class="ttc" id="ashared__neighbors_8h_html_a005f16fc05b1aac1c98e5f599f7105c6"><div class="ttname"><a href="../../d7/ded/shared__neighbors_8h.html#a005f16fc05b1aac1c98e5f599f7105c6">Shared_Neighbors_init</a></div><div class="ttdeci">app_res_e Shared_Neighbors_init(void)</div><div class="ttdoc">Initialize the shared neighbors library.</div></div>
-<div class="ttc" id="awms__state_8h_html_a782056251116f37a1ee0f731d2cfd864"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a782056251116f37a1ee0f731d2cfd864">app_lib_state_on_beacon_cb_f</a></div><div class="ttdeci">void(* app_lib_state_on_beacon_cb_f)(const app_lib_state_beacon_rx_t *beacon)</div><div class="ttdoc">Function type for a beacon reception callback.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00330">wms_state.h:330</a></div></div>
+<div class="ttc" id="awms__state_8h_html_a782056251116f37a1ee0f731d2cfd864"><div class="ttname"><a href="../../d4/d27/wms__state_8h.html#a782056251116f37a1ee0f731d2cfd864">app_lib_state_on_beacon_cb_f</a></div><div class="ttdeci">void(* app_lib_state_on_beacon_cb_f)(const app_lib_state_beacon_rx_t *beacon)</div><div class="ttdoc">Function type for a beacon reception callback.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d27/wms__state_8h_source.html#l00334">wms_state.h:334</a></div></div>
 <div class="ttc" id="ashared__neighbors_8h_html_a4483daa9f68f16b8e9f28f29b28c4234"><div class="ttname"><a href="../../d7/ded/shared__neighbors_8h.html#a4483daa9f68f16b8e9f28f29b28c4234">Shared_Neighbors_removeBeaconCb</a></div><div class="ttdeci">app_res_e Shared_Neighbors_removeBeaconCb(uint16_t cb_id)</div><div class="ttdoc">Remove a received beacon item from the list. Removed item fields are all set to 0.</div></div>
 <div class="ttc" id="ashared__neighbors_8h_html_ae3b599c00841249a4dd8c9709cce087b"><div class="ttname"><a href="../../d7/ded/shared__neighbors_8h.html#ae3b599c00841249a4dd8c9709cce087b">Shared_Neighbors_addOnBeaconCb</a></div><div class="ttdeci">app_res_e Shared_Neighbors_addOnBeaconCb(app_lib_state_on_beacon_cb_f cb_scanned_neighbor, uint16_t *cb_id)</div><div class="ttdoc">Add a new callback about beacon received.</div></div>
 <div class="ttc" id="aapi_8h_html"><div class="ttname"><a href="../../dc/d65/api_8h.html">api.h</a></div></div>

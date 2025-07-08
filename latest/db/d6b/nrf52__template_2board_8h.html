@@ -17,6 +17,13 @@
 <script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+  /* @license-end */
+</script>
 <link rel="search" href="../../search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 <link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -47,19 +54,33 @@
 var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="../../menudata.js"></script>
-<script type="text/javascript" src="../../menu.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('../../',true,true,'search.html','Search');
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="../../pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="../../annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="../../files.html"><span>Files</span></a></li>
+      <li><a href="../../examples.html"><span>Example&#160;applications</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+          <div class="left">
+            <form id="FSearchBox" action="../../search.html" method="get">
+              <img id="MSearchSelect" src="../../search/mag.png" alt=""/>
+              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
+                     onfocus="searchBox.OnSearchFieldFocus(true)" 
+                     onblur="searchBox.OnSearchFieldFocus(false)"/>
+            </form>
+          </div><div class="right"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>File&#160;List</span></a></li>
+      <li><a href="../../globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -100,10 +121,10 @@ Macros</h2></td></tr>
 <tr class="memdesc:a29ae5883a2b90d5dd60552e78fa1a639"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reception pin number.  <a href="../../db/d6b/nrf52__template_2board_8h.html#a29ae5883a2b90d5dd60552e78fa1a639">More...</a><br /></td></tr>
 <tr class="separator:a29ae5883a2b90d5dd60552e78fa1a639"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73ea4f5228391904dcf748e08f98a172"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d6b/nrf52__template_2board_8h.html#a73ea4f5228391904dcf748e08f98a172">BOARD_USART_CTS_PIN</a>&#160;&#160;&#160;7</td></tr>
-<tr class="memdesc:a73ea4f5228391904dcf748e08f98a172"><td class="mdescLeft">&#160;</td><td class="mdescRight">CTS pin number, for USE_USART_HW_FLOW_CONTROL.  <a href="../../db/d6b/nrf52__template_2board_8h.html#a73ea4f5228391904dcf748e08f98a172">More...</a><br /></td></tr>
+<tr class="memdesc:a73ea4f5228391904dcf748e08f98a172"><td class="mdescLeft">&#160;</td><td class="mdescRight">CTS pin number, for using USART HW flow control.  <a href="../../db/d6b/nrf52__template_2board_8h.html#a73ea4f5228391904dcf748e08f98a172">More...</a><br /></td></tr>
 <tr class="separator:a73ea4f5228391904dcf748e08f98a172"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0af72e93971553bc01429840dbcede95"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d6b/nrf52__template_2board_8h.html#a0af72e93971553bc01429840dbcede95">BOARD_USART_RTS_PIN</a>&#160;&#160;&#160;5</td></tr>
-<tr class="memdesc:a0af72e93971553bc01429840dbcede95"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTS pin number, for USE_USART_HW_FLOW_CONTROL.  <a href="../../db/d6b/nrf52__template_2board_8h.html#a0af72e93971553bc01429840dbcede95">More...</a><br /></td></tr>
+<tr class="memdesc:a0af72e93971553bc01429840dbcede95"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTS pin number, for using USART HW flow control.  <a href="../../db/d6b/nrf52__template_2board_8h.html#a0af72e93971553bc01429840dbcede95">More...</a><br /></td></tr>
 <tr class="separator:a0af72e93971553bc01429840dbcede95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a433cf3a73ae6b00dde08e7a245b4a2ec"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d6b/nrf52__template_2board_8h.html#a433cf3a73ae6b00dde08e7a245b4a2ec">BOARD_GPIO_PIN_LIST</a></td></tr>
 <tr class="memdesc:a433cf3a73ae6b00dde08e7a245b4a2ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIO definitions.  <a href="../../db/d6b/nrf52__template_2board_8h.html#a433cf3a73ae6b00dde08e7a245b4a2ec">More...</a><br /></td></tr>
@@ -449,7 +470,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>CTS pin number, for USE_USART_HW_FLOW_CONTROL. </p>
+<p>CTS pin number, for using USART HW flow control. </p>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d6b/nrf52__template_2board_8h_source.html#l00031">31</a> of file <a class="el" href="../../db/d6b/nrf52__template_2board_8h_source.html">board.h</a>.</p>
 
@@ -467,7 +488,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>RTS pin number, for USE_USART_HW_FLOW_CONTROL. </p>
+<p>RTS pin number, for using USART HW flow control. </p>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d6b/nrf52__template_2board_8h_source.html#l00035">35</a> of file <a class="el" href="../../db/d6b/nrf52__template_2board_8h_source.html">board.h</a>.</p>
 

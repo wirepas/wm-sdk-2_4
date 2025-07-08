@@ -17,6 +17,13 @@
 <script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+  /* @license-end */
+</script>
 <link rel="search" href="search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -47,19 +54,67 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('',true,true,'search.html','Search');
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Example&#160;applications</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+          <div class="left">
+            <form id="FSearchBox" action="search.html" method="get">
+              <img id="MSearchSelect" src="search/mag.png" alt=""/>
+              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
+                     onfocus="searchBox.OnSearchFieldFocus(true)" 
+                     onblur="searchBox.OnSearchFieldFocus(false)"/>
+            </form>
+          </div><div class="right"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li class="current"><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li><a href="globals.html"><span>All</span></a></li>
+      <li><a href="globals_func.html"><span>Functions</span></a></li>
+      <li><a href="globals_vars.html"><span>Variables</span></a></li>
+      <li><a href="globals_type.html"><span>Typedefs</span></a></li>
+      <li><a href="globals_enum.html"><span>Enumerations</span></a></li>
+      <li class="current"><a href="globals_eval.html"><span>Enumerator</span></a></li>
+      <li><a href="globals_defs.html"><span>Macros</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li class="current"><a href="globals_eval.html#index_a"><span>a</span></a></li>
+      <li><a href="globals_eval_b.html#index_b"><span>b</span></a></li>
+      <li><a href="globals_eval_c.html#index_c"><span>c</span></a></li>
+      <li><a href="globals_eval_d.html#index_d"><span>d</span></a></li>
+      <li><a href="globals_eval_e.html#index_e"><span>e</span></a></li>
+      <li><a href="globals_eval_f.html#index_f"><span>f</span></a></li>
+      <li><a href="globals_eval_g.html#index_g"><span>g</span></a></li>
+      <li><a href="globals_eval_h.html#index_h"><span>h</span></a></li>
+      <li><a href="globals_eval_i.html#index_i"><span>i</span></a></li>
+      <li><a href="globals_eval_l.html#index_l"><span>l</span></a></li>
+      <li><a href="globals_eval_m.html#index_m"><span>m</span></a></li>
+      <li><a href="globals_eval_n.html#index_n"><span>n</span></a></li>
+      <li><a href="globals_eval_p.html#index_p"><span>p</span></a></li>
+      <li><a href="globals_eval_r.html#index_r"><span>r</span></a></li>
+      <li><a href="globals_eval_s.html#index_s"><span>s</span></a></li>
+      <li><a href="globals_eval_t.html#index_t"><span>t</span></a></li>
+      <li><a href="globals_eval_u.html#index_u"><span>u</span></a></li>
+      <li><a href="globals_eval_v.html#index_v"><span>v</span></a></li>
+      <li><a href="globals_eval_w.html#index_w"><span>w</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -144,8 +199,38 @@ $(document).ready(function(){initNavTree('globals_eval.html',''); initResizable(
 <li>APP_LIB_DATA_APP_CONFIG_RES_INVALID_SEQ
 : <a class="el" href="d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5acb59466353d5324cffe17afa496844c4">wms_data.h</a>
 </li>
+<li>APP_LIB_DATA_APP_CONFIG_RES_OUT_OF_MEMORY
+: <a class="el" href="d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5adbcc40e86ac543c8c36562e344909b07">wms_data.h</a>
+</li>
 <li>APP_LIB_DATA_APP_CONFIG_RES_SUCCESS
 : <a class="el" href="d6/d50/wms__data_8h.html#af4e3fdf65e16c2dc9ae1aa415d541bb5a3237bc91d2d3122da0b4f8323e8a8993">wms_data.h</a>
+</li>
+<li>APP_LIB_DATA_CONFIG_DATA_RES_INTERNAL_ERROR
+: <a class="el" href="d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a8fd4d7f109a911b219c04cc9be1c3baf">wms_data.h</a>
+</li>
+<li>APP_LIB_DATA_CONFIG_DATA_RES_INVALID_CONTENT
+: <a class="el" href="d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25ab5865c4c2e801b918dc144a4b5a0c871">wms_data.h</a>
+</li>
+<li>APP_LIB_DATA_CONFIG_DATA_RES_INVALID_ENDPOINT
+: <a class="el" href="d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25aec1c50c85765aa6632cc9be3b805d44e">wms_data.h</a>
+</li>
+<li>APP_LIB_DATA_CONFIG_DATA_RES_INVALID_INPUT
+: <a class="el" href="d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a03b3b0f03ac1c6df45f7cc16ffddbf10">wms_data.h</a>
+</li>
+<li>APP_LIB_DATA_CONFIG_DATA_RES_INVALID_NULL_POINTER
+: <a class="el" href="d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a2b275a24da3fa9a2a4b9b0408204365f">wms_data.h</a>
+</li>
+<li>APP_LIB_DATA_CONFIG_DATA_RES_INVALID_ROLE
+: <a class="el" href="d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a493bd2a4f4f03c04a357ce25aeefc5cc">wms_data.h</a>
+</li>
+<li>APP_LIB_DATA_CONFIG_DATA_RES_NOT_SUPPORTED
+: <a class="el" href="d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a2b29759b95fa241123b44eaebfad6e25">wms_data.h</a>
+</li>
+<li>APP_LIB_DATA_CONFIG_DATA_RES_OUT_OF_MEMORY
+: <a class="el" href="d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25a177f00f63f33dbac9dcdb6192f6feeea">wms_data.h</a>
+</li>
+<li>APP_LIB_DATA_CONFIG_DATA_RES_SUCCESS
+: <a class="el" href="d6/d50/wms__data_8h.html#ae04e4cc31e68561b6ce5f0bcaea25e25ab60e02552d6ee46d8ab1c55e59fff153">wms_data.h</a>
 </li>
 <li>APP_LIB_DATA_FRAGMENTED_MODE_DISABLED
 : <a class="el" href="d6/d50/wms__data_8h.html#a932d5f262cc8230a48f61471df3918d7a50464eb84fffa32bc5439f9845ed2043">wms_data.h</a>
@@ -252,6 +337,9 @@ $(document).ready(function(){initNavTree('globals_eval.html',''); initResizable(
 <li>APP_LIB_MEM_AREA_RES_INVALID_AREA
 : <a class="el" href="d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a62df140ce20fd6d26fa1a6a1fa922a46">wms_memory_area.h</a>
 </li>
+<li>APP_LIB_MEM_AREA_RES_INVALID_TAG
+: <a class="el" href="d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a51ad5a220adb43422186dbae13c1bd27">wms_memory_area.h</a>
+</li>
 <li>APP_LIB_MEM_AREA_RES_NODRIVER
 : <a class="el" href="d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76aeaad5d1e5a494e240f5508a6d253c086">wms_memory_area.h</a>
 </li>
@@ -332,6 +420,21 @@ $(document).ready(function(){initNavTree('globals_eval.html',''); initResizable(
 </li>
 <li>APP_LIB_RADIO_CFG_FEM_TX_ON
 : <a class="el" href="d8/da1/wms__radio__config_8h.html#a198f7a8d83d5a6f34a323d2ca02000e9a78d188b1383f7987f286d5c7495fd015">wms_radio_config.h</a>
+</li>
+<li>APP_LIB_SECURE_STORAGE_CMD_ERASE
+: <a class="el" href="dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6acfc0ea3e793d1d227a777549ab068d36">wms_secure_storage.h</a>
+</li>
+<li>APP_LIB_SECURE_STORAGE_CMD_INIT
+: <a class="el" href="dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6a74f14bdbc6a7446e273ccabfe7ea5ad7">wms_secure_storage.h</a>
+</li>
+<li>APP_LIB_SECURE_STORAGE_CMD_NO_INIT
+: <a class="el" href="dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6ab1c9e2946f3115041871ed8debd6fc38">wms_secure_storage.h</a>
+</li>
+<li>APP_LIB_SECURE_STORAGE_RECORD_FLAG_NO_AUTH
+: <a class="el" href="dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dffacbb361c87d0a8558e9dd975da9ccca4e">wms_secure_storage.h</a>
+</li>
+<li>APP_LIB_SECURE_STORAGE_RECORD_FLAG_NO_ENCRYPT
+: <a class="el" href="dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dffa28d1a10b9db2e90580ae4a50ae1548c1">wms_secure_storage.h</a>
 </li>
 <li>APP_LIB_SETTINGS_ROLE_ADVERTISER
 : <a class="el" href="df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aafbafd13358d2b8d35f940ae8ff8ffe4">wms_settings.h</a>
@@ -438,6 +541,9 @@ $(document).ready(function(){initNavTree('globals_eval.html',''); initResizable(
 <li>APP_LIB_STATE_SCAN_NBORS_ONLY_REQUESTED
 : <a class="el" href="d4/d27/wms__state_8h.html#ae829d4242b3afe89f01822fe660b62b7a8bad4deb7660820ff7dbfdd36a87e675">wms_state.h</a>
 </li>
+<li>APP_LIB_STATE_STACK_EVENT_CON_FALLBCK
+: <a class="el" href="d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a725b0212bed5b0109c1882957cbb3231">wms_state.h</a>
+</li>
 <li>APP_LIB_STATE_STACK_EVENT_ROUTE_CHANGED
 : <a class="el" href="d4/d27/wms__state_8h.html#ab8e78bf991f825121530014fef8b8383a3b8e841e8bfd0202894dde4d6c762569">wms_state.h</a>
 </li>
@@ -477,6 +583,9 @@ $(document).ready(function(){initNavTree('globals_eval.html',''); initResizable(
 <li>APP_LIB_SYSTEM_HARDWARE_MAGIC_EFR32XG12_512
 : <a class="el" href="df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594ac962d9ced5d8b7771a19795b9f9034aa">wms_system.h</a>
 </li>
+<li>APP_LIB_SYSTEM_HARDWARE_MAGIC_EFR32XG13
+: <a class="el" href="df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a5c05e8f4e8d77c95c01bfb4014accf18">wms_system.h</a>
+</li>
 <li>APP_LIB_SYSTEM_HARDWARE_MAGIC_EFR32XG21
 : <a class="el" href="df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a7f19392bb7901d7af8492a6b519e2675">wms_system.h</a>
 </li>
@@ -486,6 +595,9 @@ $(document).ready(function(){initNavTree('globals_eval.html',''); initResizable(
 <li>APP_LIB_SYSTEM_HARDWARE_MAGIC_EFR32XG23
 : <a class="el" href="df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a58c8384ede4a19708b31d73b4d72c07b">wms_system.h</a>
 </li>
+<li>APP_LIB_SYSTEM_HARDWARE_MAGIC_EFR32XG24
+: <a class="el" href="df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594ad3d440c1eef7778f20055adbd478201d">wms_system.h</a>
+</li>
 <li>APP_LIB_SYSTEM_HARDWARE_MAGIC_NRF52832
 : <a class="el" href="df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594acc64a90813e2f3f673456ec86461116e">wms_system.h</a>
 </li>
@@ -494,6 +606,12 @@ $(document).ready(function(){initNavTree('globals_eval.html',''); initResizable(
 </li>
 <li>APP_LIB_SYSTEM_HARDWARE_MAGIC_NRF52840
 : <a class="el" href="df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a71fe09a953fbdab35fe2951401be7652">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_HARDWARE_MAGIC_NRF54L
+: <a class="el" href="df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a725748061aac083b35604971d46b20a3">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_HARDWARE_MAGIC_NRF9120
+: <a class="el" href="df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594ae36b51df878caf13a2d89eb7aa01c561">wms_system.h</a>
 </li>
 <li>APP_LIB_SYSTEM_HARDWARE_MAGIC_NRF9160
 : <a class="el" href="df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594abee9a04bf05c0fe49e18b6acd31a35d9">wms_system.h</a>
@@ -513,8 +631,95 @@ $(document).ready(function(){initNavTree('globals_eval.html',''); initResizable(
 <li>APP_LIB_SYSTEM_HARDWARE_RESERVED_5
 : <a class="el" href="df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a2e3aa4ec90f724602681bab84f7d8134">wms_system.h</a>
 </li>
-<li>APP_LIB_SYSTEM_HARDWARE_RESERVED_8
-: <a class="el" href="df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a085628232895b79168b9b80759cbf8f3">wms_system.h</a>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_10_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0eab95da7ce946796d1a1c64ff65e08ba5f">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_11_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea6a3acde2f4f82e091fda1a9a9401fed3">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_12_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea5e3b942be41d394444a63ca706018754">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_13_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea2d1f7abb9dbdf8e9de536fa699b727a2">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_14_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea9b3b41a0796747b8146b64268e2848fb">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_15_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea0cc8d47bfeeca8f685514a501856623e">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_16_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0eafbf3f8a0760af50282d273fbcefd267b">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_17_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0eaafcb764c0886c8220e7a7e03e97178c7">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_18_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea9437323c63f7fb20003dfabaeaaba572">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_19_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea997278ceb7730f4fbae8deb4f5d3a8a8">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_20_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea47a0e459b70c0be1823bc6b0da114906">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_21_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea48c015a30a9dc67f6c339ee5b3f6bc8f">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_22_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea852ff0bdc916772ed6b422a58e127dff">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_23_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0eadc5b16d8781b126f3d829b0c0dbbbe84">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_24_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0eab686488803f066a530b7b0ece58f276c">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_25_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea2b4e79aa49df70b385d19388f7737aea">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_26_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0eac5a8195d3697de0a9f50f3052c7d6122">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_27_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea4382a8c80042b48e7e10d8a0eba2593c">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_28_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0eafaa9b357376e5f4c4929f9098391ee0a">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_29_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0eacf109858bbaf7887d825f3f7b8c82c6c">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_2_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea93e4104aa0237fec1b88fd96ec44d75c">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_30_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea88d0653f7a2be7de805a15462a34563a">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_3_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0eaebaf0372d3dfef87820a87aa37933564">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_5_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ead0529a9c4ed2497067f2d93e0ca32f8a">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_6_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0eabb539ec73b9bcd4724133ef86583cfa4">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_7_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0eac7e5aeb117d40a9076eba31c877c9ffd">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_BAND_8_RESERVED
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea84481c1f2c22d271ba257dbc52b7c1eb">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_TS_103_874_2_BAND_1
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ead2af21235b60c96d277c5a9fcb32afa1">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_TS_103_874_2_BAND_4
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea645e9ec8446ae1510e4661d56abf4c27">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_DECT_TS_103_874_2_BAND_9
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0eacb7f4ed45b50d03f6601ff433e3ec7c2">wms_system.h</a>
 </li>
 <li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_ISM_24GHZ
 : <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea20514d0c6e77309d46a6e892bf2106db">wms_system.h</a>
@@ -543,11 +748,11 @@ $(document).ready(function(){initNavTree('globals_eval.html',''); initResizable(
 <li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_RESERVED_7
 : <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ead7f6d937a827b50509492da485d52113">wms_system.h</a>
 </li>
-<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_RESERVED_8
-: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea64bbab8be2d97d689649352b8a8299cf">wms_system.h</a>
-</li>
 <li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_RESERVED_9
 : <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0eaa61f7f005af5be88132dfbc09d278d02">wms_system.h</a>
+</li>
+<li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_SUB_INDIA865
+: <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0eac467dc8f89ea2db89df966e4055027d4">wms_system.h</a>
 </li>
 <li>APP_LIB_SYSTEM_PROTOCOL_PROFILE_UNKNOWN
 : <a class="el" href="df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea9433a78e29e71439e678523be52234aa">wms_system.h</a>
@@ -609,11 +814,62 @@ $(document).ready(function(){initNavTree('globals_eval.html',''); initResizable(
 <li>APP_SCHEDULER_RES_TOO_LONG_EXECUTION_TIME
 : <a class="el" href="dd/ddc/app__scheduler_8h.html#a245a7f2a478b72e2d4a43b3c18676ab3a1a251b4654f34c2cb742c8bbdd32917c">app_scheduler.h</a>
 </li>
+<li>APP_SCHEDULER_RES_TOO_SHORT_EXECUTION_TIME
+: <a class="el" href="dd/ddc/app__scheduler_8h.html#a245a7f2a478b72e2d4a43b3c18676ab3aa03b13c1fe3c4229d3a06d94d682c700">app_scheduler.h</a>
+</li>
 <li>APP_SCHEDULER_RES_UNINITIALIZED
 : <a class="el" href="dd/ddc/app__scheduler_8h.html#a245a7f2a478b72e2d4a43b3c18676ab3a1adad39d5503458efeddef8b98527cc4">app_scheduler.h</a>
 </li>
 <li>APP_SCHEDULER_RES_UNKNOWN_TASK
 : <a class="el" href="dd/ddc/app__scheduler_8h.html#a245a7f2a478b72e2d4a43b3c18676ab3a1f4e0e040fb54d5088d0b57570eebcb0">app_scheduler.h</a>
+</li>
+<li>APP_SECURE_STORAGE_NO_AUTH
+: <a class="el" href="d2/da8/app__secure__storage_8h.html#a07cd45900dfbd46cfc3a036569e6d4dfa0ec876fc3fc446ccbbdbf901c6ace5d2">app_secure_storage.h</a>
+</li>
+<li>APP_SECURE_STORAGE_NO_ENCRYPT
+: <a class="el" href="d2/da8/app__secure__storage_8h.html#a07cd45900dfbd46cfc3a036569e6d4dfa4dbe9f7ae6a4f95713c6f9ec78550efa">app_secure_storage.h</a>
+</li>
+<li>APP_SECURE_STORAGE_RES_BUSY
+: <a class="el" href="d2/da8/app__secure__storage_8h.html#a8439f1c5810d6119fa833689ce904b5bac788afa13af3ef6622cf8d98358ad006">app_secure_storage.h</a>
+</li>
+<li>APP_SECURE_STORAGE_RES_ERROR
+: <a class="el" href="d2/da8/app__secure__storage_8h.html#a8439f1c5810d6119fa833689ce904b5bac939c18dc24ec6f71e301dbbab224386">app_secure_storage.h</a>
+</li>
+<li>APP_SECURE_STORAGE_RES_INVALID_AREA
+: <a class="el" href="d2/da8/app__secure__storage_8h.html#a8439f1c5810d6119fa833689ce904b5ba94c58ddbd65bc9c78ebff42bdf21769a">app_secure_storage.h</a>
+</li>
+<li>APP_SECURE_STORAGE_RES_INVALID_TAG
+: <a class="el" href="d2/da8/app__secure__storage_8h.html#a8439f1c5810d6119fa833689ce904b5ba09f08368361d2c8ebc0f112e579ba4f7">app_secure_storage.h</a>
+</li>
+<li>APP_SECURE_STORAGE_RES_NODRIVER
+: <a class="el" href="d2/da8/app__secure__storage_8h.html#a8439f1c5810d6119fa833689ce904b5baccbd8694ba37138802fda6f1819eff2c">app_secure_storage.h</a>
+</li>
+<li>APP_SECURE_STORAGE_RES_OK
+: <a class="el" href="d2/da8/app__secure__storage_8h.html#a8439f1c5810d6119fa833689ce904b5ba85c6ab141af77613a70c461301284849">app_secure_storage.h</a>
+</li>
+<li>APP_SECURE_STORAGE_RES_PARAM
+: <a class="el" href="d2/da8/app__secure__storage_8h.html#a8439f1c5810d6119fa833689ce904b5bafa14792c7e315bbffef8cedfae720912">app_secure_storage.h</a>
+</li>
+<li>APP_SETUP_RES_ERASE_ERROR
+: <a class="el" href="d4/d4f/app__setup_8h.html#aa9ff7fc26fe8cf1d0950768687be8d8da085d9762a0b437b5100ed94f7d66b11b">app_setup.h</a>
+</li>
+<li>APP_SETUP_RES_ERROR
+: <a class="el" href="d4/d4f/app__setup_8h.html#aa9ff7fc26fe8cf1d0950768687be8d8da8e727e7d99ee406a43858aa87c8fbc82">app_setup.h</a>
+</li>
+<li>APP_SETUP_RES_INVALID_DATA
+: <a class="el" href="d4/d4f/app__setup_8h.html#aa9ff7fc26fe8cf1d0950768687be8d8da5589f5911b2077abfaa2855d1636a78e">app_setup.h</a>
+</li>
+<li>APP_SETUP_RES_INVALID_VERSION
+: <a class="el" href="d4/d4f/app__setup_8h.html#aa9ff7fc26fe8cf1d0950768687be8d8da624a0ae2bb0055bb05f9471beb554228">app_setup.h</a>
+</li>
+<li>APP_SETUP_RES_NO_APP_PERSISTENT
+: <a class="el" href="d4/d4f/app__setup_8h.html#aa9ff7fc26fe8cf1d0950768687be8d8da234c0d1fc0fbd6dabbdd2bf88a781ba6">app_setup.h</a>
+</li>
+<li>APP_SETUP_RES_NO_DATA
+: <a class="el" href="d4/d4f/app__setup_8h.html#aa9ff7fc26fe8cf1d0950768687be8d8da252d52a3c2f4877d1a35c8befe96d680">app_setup.h</a>
+</li>
+<li>APP_SETUP_RES_OK
+: <a class="el" href="d4/d4f/app__setup_8h.html#aa9ff7fc26fe8cf1d0950768687be8d8daea84d43251a473a39d4ceb87ecdc35bd">app_setup.h</a>
 </li>
 <li>ArrayType
 : <a class="el" href="d9/d2c/cborinternal__p_8h.html#a58af37618f95513c8889bfd211b6167ea1a61178bfe6eb8f88743e31e8ca00bac">cborinternal_p.h</a>

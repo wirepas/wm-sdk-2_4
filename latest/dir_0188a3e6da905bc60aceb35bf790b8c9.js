@@ -10,6 +10,7 @@ var dir_0188a3e6da905bc60aceb35bf790b8c9 =
     [ "wms_memory_area.h", "d6/d15/wms__memory__area_8h.html", "d6/d15/wms__memory__area_8h" ],
     [ "wms_otap.h", "df/d99/wms__otap_8h.html", "df/d99/wms__otap_8h" ],
     [ "wms_radio_config.h", "d8/da1/wms__radio__config_8h.html", "d8/da1/wms__radio__config_8h" ],
+    [ "wms_secure_storage.h", "dc/d82/wms__secure__storage_8h.html", "dc/d82/wms__secure__storage_8h" ],
     [ "wms_settings.h", "df/d62/wms__settings_8h.html", "df/d62/wms__settings_8h" ],
     [ "wms_sleep.h", "dd/dcb/wms__sleep_8h.html", "dd/dcb/wms__sleep_8h" ],
     [ "wms_state.h", "d4/d27/wms__state_8h.html", "d4/d27/wms__state_8h" ],

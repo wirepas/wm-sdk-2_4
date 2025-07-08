@@ -17,6 +17,13 @@
 <script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+  /* @license-end */
+</script>
 <link rel="search" href="../../search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 <link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -47,19 +54,33 @@
 var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="../../menudata.js"></script>
-<script type="text/javascript" src="../../menu.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('../../',true,true,'search.html','Search');
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="../../pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="../../annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="../../files.html"><span>Files</span></a></li>
+      <li><a href="../../examples.html"><span>Example&#160;applications</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+          <div class="left">
+            <form id="FSearchBox" action="../../search.html" method="get">
+              <img id="MSearchSelect" src="../../search/mag.png" alt=""/>
+              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
+                     onfocus="searchBox.OnSearchFieldFocus(true)" 
+                     onblur="searchBox.OnSearchFieldFocus(false)"/>
+            </form>
+          </div><div class="right"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>File&#160;List</span></a></li>
+      <li><a href="../../globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -100,7 +121,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a14b7fb11b87d3040893ec0286bc12cf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize all USART blocks Enables peripheral clocks and disables peripherals for the duration of the initialization procedure. Clears all internal variables: Callback handlers Transfer busy flags After the initialization procedure is complete, it enables all peripherals, but leaves peripheral clocks disabled.  <a href="../../d3/dfa/mcu_2hal__api_2usart_8h.html#a14b7fb11b87d3040893ec0286bc12cf3">More...</a><br /></td></tr>
 <tr class="separator:a14b7fb11b87d3040893ec0286bc12cf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8dc813ca33189c1c6d0766442690e9c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dfa/mcu_2hal__api_2usart_8h.html#a8dc813ca33189c1c6d0766442690e9c3">Usart_setEnabled</a> (bool enabled)</td></tr>
-<tr class="memdesc:a8dc813ca33189c1c6d0766442690e9c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable USART.  <a href="../../d3/dfa/mcu_2hal__api_2usart_8h.html#a8dc813ca33189c1c6d0766442690e9c3">More...</a><br /></td></tr>
+<tr class="memdesc:a8dc813ca33189c1c6d0766442690e9c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable USART Enables or disables USART clock and configures GPIO pins.  <a href="../../d3/dfa/mcu_2hal__api_2usart_8h.html#a8dc813ca33189c1c6d0766442690e9c3">More...</a><br /></td></tr>
 <tr class="separator:a8dc813ca33189c1c6d0766442690e9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ff346e7122cdf26cac4526c1c533120"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dfa/mcu_2hal__api_2usart_8h.html#a9ff346e7122cdf26cac4526c1c533120">Usart_receiverOn</a> (void)</td></tr>
 <tr class="memdesc:a9ff346e7122cdf26cac4526c1c533120"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable USART Receiver.  <a href="../../d3/dfa/mcu_2hal__api_2usart_8h.html#a9ff346e7122cdf26cac4526c1c533120">More...</a><br /></td></tr>
@@ -115,7 +136,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:aa606d5d6bcf4809457649469636d4d7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a buffer to USART.  <a href="../../d3/dfa/mcu_2hal__api_2usart_8h.html#aa606d5d6bcf4809457649469636d4d7f">More...</a><br /></td></tr>
 <tr class="separator:aa606d5d6bcf4809457649469636d4d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af055e364f7897ba3a45efe3bab94fa65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dfa/mcu_2hal__api_2usart_8h.html#af055e364f7897ba3a45efe3bab94fa65">Usart_enableReceiver</a> (<a class="el" href="../../d3/dfa/mcu_2hal__api_2usart_8h.html#ae09c6e0da85cc67c6dc6a9310ca50bdf">serial_rx_callback_f</a> callback)</td></tr>
-<tr class="memdesc:af055e364f7897ba3a45efe3bab94fa65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable UART receiver Set callback handlers for character RX event Enables interrupt source and event, and the input pin.  <a href="../../d3/dfa/mcu_2hal__api_2usart_8h.html#af055e364f7897ba3a45efe3bab94fa65">More...</a><br /></td></tr>
+<tr class="memdesc:af055e364f7897ba3a45efe3bab94fa65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable UART receiver Set callback handler for character RX event Enables interrupt source and event, and the input pin.  <a href="../../d3/dfa/mcu_2hal__api_2usart_8h.html#af055e364f7897ba3a45efe3bab94fa65">More...</a><br /></td></tr>
 <tr class="separator:af055e364f7897ba3a45efe3bab94fa65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ad1e0a6da127ddfdbfdc0ae2fae65d9"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dfa/mcu_2hal__api_2usart_8h.html#a6ad1e0a6da127ddfdbfdc0ae2fae65d9">Usart_getMTUSize</a> (void)</td></tr>
 <tr class="memdesc:a6ad1e0a6da127ddfdbfdc0ae2fae65d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the maximum transmission unit in bytes for the USART (= maximum length of a single message)  <a href="../../d3/dfa/mcu_2hal__api_2usart_8h.html#a6ad1e0a6da127ddfdbfdc0ae2fae65d9">More...</a><br /></td></tr>
@@ -166,10 +187,13 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enable UART receiver Set callback handlers for character RX event Enables interrupt source and event, and the input pin. </p>
+<p>Enable UART receiver Set callback handler for character RX event Enables interrupt source and event, and the input pin. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>Usart_init called.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This function should be called after Usart_init and before calling Usart_setEnabled.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">callback</td><td>Callback function for a character rx event Can be NULL, which clears the callback and disables IRQ </td></tr>
+    <tr><td class="paramname">callback</td><td>Callback function for a character rx event <pre class="fragment">     Can be NULL, which clears the callback and disables IRQ
+</pre> </td></tr>
   </table>
   </dd>
 </dl>
@@ -292,6 +316,8 @@ Enumerations</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enable USART Receiver. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>Usart_setEnabled is called. <br  />
+ </dd></dl>
 
 </div>
 </div>
@@ -350,7 +376,8 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enable or disable USART. </p>
+<p>Enable or disable USART Enables or disables USART clock and configures GPIO pins. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>Usart_enableReceiver is called.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">enabled</td><td>True, if USART should be enabled </td></tr>
