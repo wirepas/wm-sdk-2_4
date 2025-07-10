@@ -40,6 +40,7 @@ var bl__interface_8h =
       [ "length", "dd/d2c/bl__interface_8h.html#aebb70c2aab3407a9f05334c47131a43b", null ],
       [ "modem_fw_data", "dd/d2c/bl__interface_8h.html#a7c68edb7cd013f0568212be69aad75ba", null ],
       [ "modem_fw_length", "dd/d2c/bl__interface_8h.html#a49bae84d4572f8a790ac41b2c9a657a7", null ],
+      [ "modem_fw_type", "dd/d2c/bl__interface_8h.html#a49c952c08096e3abf60613fea2a81c12", null ],
       [ "seq", "dd/d2c/bl__interface_8h.html#a3f47451edd2274525a52e40f4e26c399", null ],
       [ "status", "dd/d2c/bl__interface_8h.html#ade20423e91627f07e610924cb0081623", null ],
       [ "type", "dd/d2c/bl__interface_8h.html#ad44b615021ed3ccb734fcaf583ef4a03", null ]
@@ -74,17 +75,13 @@ var bl__interface_8h =
     [ "hardware_services_t", "dd/d2c/bl__interface_8h.html#d2/df4/structhardware__services__t", [
       [ "getCapabilities", "dd/d2c/bl__interface_8h.html#a49f14c4635dc9b9119bf282836ee37ab", null ]
     ] ],
-    [ "dflow_services_t", "dd/d2c/bl__interface_8h.html#d1/da4/structdflow__services__t", [
-      [ "debug_flow", "dd/d2c/bl__interface_8h.html#aa935032b94222326937025d59bfea038", null ]
-    ] ],
     [ "bl_interface_t", "dd/d2c/bl__interface_8h.html#db/d6f/structbl__interface__t", [
-      [ "dflow_services_p", "dd/d2c/bl__interface_8h.html#a1bd23d97b4537e3359556dcc7675af03", null ],
+      [ "dflow_services_p", "dd/d2c/bl__interface_8h.html#a7783da916a95514371426ed233fa6224", null ],
       [ "hardware_services_p", "dd/d2c/bl__interface_8h.html#add76fdce6b9e5d271858db5c0e77d762", null ],
       [ "memory_area_services_p", "dd/d2c/bl__interface_8h.html#a31cf9805894e88c65d6ec0611d8d10e4", null ],
       [ "scratchpad_services_p", "dd/d2c/bl__interface_8h.html#a618c3916d715a1709848abadfb64bd21", null ],
       [ "version", "dd/d2c/bl__interface_8h.html#acd99bb05ca015e7d74448acb1deba7ca", null ]
     ] ],
-    [ "bl_debug_flow_f", "dd/d2c/bl__interface_8h.html#acec18c818f1dbd8deb3f68545ccc136b", null ],
     [ "bl_memory_area_getAreaHeader_f", "dd/d2c/bl__interface_8h.html#a9aee550ac0d15d2569c2090e8786dd17", null ],
     [ "bl_memory_area_getAreaInfo_f", "dd/d2c/bl__interface_8h.html#a5fb3900f9b422fb576ff07a737a1de66", null ],
     [ "bl_memory_area_getAreaList_f", "dd/d2c/bl__interface_8h.html#a2a0621cceb3524809381675f1403429c", null ],
@@ -120,7 +117,13 @@ var bl__interface_8h =
       [ "BL_MEM_AREA_TYPE_PERSISTENT", "dd/d2c/bl__interface_8h.html#a827b71e6d5cdcaa075983c98ddc7563dad173a9da687288900137f0504eec1e78", null ],
       [ "BL_MEM_AREA_TYPE_SCRATCHPAD", "dd/d2c/bl__interface_8h.html#a827b71e6d5cdcaa075983c98ddc7563da8f99c8c5cb79e89fc6a5820446db2790", null ],
       [ "BL_MEM_AREA_TYPE_USER", "dd/d2c/bl__interface_8h.html#a827b71e6d5cdcaa075983c98ddc7563dab805c0d10c777c77f21b80944278f296", null ],
-      [ "BL_MEM_AREA_TYPE_MODEMFW", "dd/d2c/bl__interface_8h.html#a827b71e6d5cdcaa075983c98ddc7563da36cba8d8d256bf7b87e7ee18bc4d898e", null ]
+      [ "BL_MEM_AREA_TYPE_MODEMFW", "dd/d2c/bl__interface_8h.html#a827b71e6d5cdcaa075983c98ddc7563da36cba8d8d256bf7b87e7ee18bc4d898e", null ],
+      [ "BL_MEM_AREA_TYPE_MODEMDELTAFW", "dd/d2c/bl__interface_8h.html#a827b71e6d5cdcaa075983c98ddc7563da9201be259944386a54e31d6ee5ccd574", null ]
+    ] ],
+    [ "bl_scrat_modem_file_type_e", "dd/d2c/bl__interface_8h.html#a47563e507911f3a052d8171f90e93742", [
+      [ "BL_SCRAT_MODEM_FILE_TYPE_FULL_IMAGE", "dd/d2c/bl__interface_8h.html#a47563e507911f3a052d8171f90e93742a261ba3b4b8ff92d70b2a6f9fc51610d0", null ],
+      [ "BL_SCRAT_MODEM_FILE_TYPE_DELTA_IMAGE", "dd/d2c/bl__interface_8h.html#a47563e507911f3a052d8171f90e93742a205ed9bb3c67fbe573a4594cc9c09826", null ],
+      [ "BL_SCRAT_MODEM_FILE_TYPE_INVALID", "dd/d2c/bl__interface_8h.html#a47563e507911f3a052d8171f90e93742a32d7e2c5f5e71837168b48cef685185d", null ]
     ] ],
     [ "bl_scrat_type_e", "dd/d2c/bl__interface_8h.html#abcd1a4851130b269c0f236bde1ff9568", [
       [ "BL_SCRAT_TYPE_BLANK", "dd/d2c/bl__interface_8h.html#abcd1a4851130b269c0f236bde1ff9568a86cc25ea6cf3de5ca7abaa37bfc61f40", null ],

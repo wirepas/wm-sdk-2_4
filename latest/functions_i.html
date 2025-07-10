@@ -17,6 +17,13 @@
 <script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+  /* @license-end */
+</script>
 <link rel="search" href="search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -47,19 +54,67 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('',true,true,'search.html','Search');
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Example&#160;applications</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+          <div class="left">
+            <form id="FSearchBox" action="search.html" method="get">
+              <img id="MSearchSelect" src="search/mag.png" alt=""/>
+              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
+                     onfocus="searchBox.OnSearchFieldFocus(true)" 
+                     onblur="searchBox.OnSearchFieldFocus(false)"/>
+            </form>
+          </div><div class="right"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li class="current"><a href="functions.html"><span>All</span></a></li>
+      <li><a href="functions_func.html"><span>Functions</span></a></li>
+      <li><a href="functions_vars.html"><span>Variables</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="functions.html#index_a"><span>a</span></a></li>
+      <li><a href="functions_b.html#index_b"><span>b</span></a></li>
+      <li><a href="functions_c.html#index_c"><span>c</span></a></li>
+      <li><a href="functions_d.html#index_d"><span>d</span></a></li>
+      <li><a href="functions_e.html#index_e"><span>e</span></a></li>
+      <li><a href="functions_f.html#index_f"><span>f</span></a></li>
+      <li><a href="functions_g.html#index_g"><span>g</span></a></li>
+      <li><a href="functions_h.html#index_h"><span>h</span></a></li>
+      <li class="current"><a href="functions_i.html#index_i"><span>i</span></a></li>
+      <li><a href="functions_j.html#index_j"><span>j</span></a></li>
+      <li><a href="functions_k.html#index_k"><span>k</span></a></li>
+      <li><a href="functions_l.html#index_l"><span>l</span></a></li>
+      <li><a href="functions_m.html#index_m"><span>m</span></a></li>
+      <li><a href="functions_n.html#index_n"><span>n</span></a></li>
+      <li><a href="functions_o.html#index_o"><span>o</span></a></li>
+      <li><a href="functions_p.html#index_p"><span>p</span></a></li>
+      <li><a href="functions_q.html#index_q"><span>q</span></a></li>
+      <li><a href="functions_r.html#index_r"><span>r</span></a></li>
+      <li><a href="functions_s.html#index_s"><span>s</span></a></li>
+      <li><a href="functions_t.html#index_t"><span>t</span></a></li>
+      <li><a href="functions_u.html#index_u"><span>u</span></a></li>
+      <li><a href="functions_v.html#index_v"><span>v</span></a></li>
+      <li><a href="functions_w.html#index_w"><span>w</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -85,7 +140,8 @@ $(document).ready(function(){initNavTree('functions_i.html',''); initResizable()
 : <a class="el" href="d6/d21/poslib_8h.html#ae4d47b0303567c53ed0e97fb0553b6f6">ble_beacon_settings_t</a>
 </li>
 <li>id
-: <a class="el" href="d6/dd2/local__provisioning_8h.html#abaabdc509cdaba7df9f56c6c76f3ae19">local_provisioning_psk_t</a>
+: <a class="el" href="d9/da3/app__setup__int_8h.html#abaabdc509cdaba7df9f56c6c76f3ae19">app_setup_node_t</a>
+, <a class="el" href="d6/dd2/local__provisioning_8h.html#abaabdc509cdaba7df9f56c6c76f3ae19">local_provisioning_psk_t</a>
 </li>
 <li>in
 : <a class="el" href="d6/da4/ringbuffer_8h.html#a0a613175360865a14ac624eb0853773b">ringbuffer_t</a>
@@ -103,6 +159,9 @@ $(document).ready(function(){initNavTree('functions_i.html',''); initResizable()
 <li>info
 : <a class="el" href="d5/d53/dsap__frames_8h.html#a3b5693c71298b922c6188573f2474227">dsap_data_rx_frag_ind_t</a>
 , <a class="el" href="d5/d53/dsap__frames_8h.html#a3b5693c71298b922c6188573f2474227">dsap_data_rx_ind_t</a>
+</li>
+<li>initArea
+: <a class="el" href="dc/d82/wms__secure__storage_8h.html#a70786ca73bbfa7d863797dc02934aaf9">app_lib_secure_storage_t</a>
 </li>
 <li>inst_qual_cnf
 : <a class="el" href="d8/d21/msap__frames_8h.html#a45f0d52a73b30fa5a9b35726667aa25e">frame_msap</a>
@@ -138,6 +197,9 @@ $(document).ready(function(){initNavTree('functions_i.html',''); initResizable()
 </li>
 <li>is_local_unsec_allowed
 : <a class="el" href="d0/dae/provisioning_8h.html#a8dedbc190adcd3c2b01c0a0f1a8cb02d">provisioning_proxy_conf_t</a>
+</li>
+<li>is_secured
+: <a class="el" href="d4/d27/wms__state_8h.html#a8a097fe4bfb986d17ec46c1d26265185">app_lib_state_beacon_rx_t</a>
 </li>
 <li>is_sink
 : <a class="el" href="d4/d27/wms__state_8h.html#a6149885080d7e0559447dcbccedcfe3b">app_lib_state_beacon_rx_t</a>

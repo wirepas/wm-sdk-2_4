@@ -17,6 +17,13 @@
 <script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+  /* @license-end */
+</script>
 <link rel="search" href="../../search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 <link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -47,19 +54,27 @@
 var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="../../menudata.js"></script>
-<script type="text/javascript" src="../../menu.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('../../',true,true,'search.html','Search');
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="../../pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="../../annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="../../files.html"><span>Files</span></a></li>
+      <li><a href="../../examples.html"><span>Example&#160;applications</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+          <div class="left">
+            <form id="FSearchBox" action="../../search.html" method="get">
+              <img id="MSearchSelect" src="../../search/mag.png" alt=""/>
+              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
+                     onfocus="searchBox.OnSearchFieldFocus(true)" 
+                     onblur="searchBox.OnSearchFieldFocus(false)"/>
+            </form>
+          </div><div class="right"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -163,7 +178,7 @@ Asynchronous Application Callback Functions</h2>
 <h2><a class="anchor" id="application_interrupt"></a>
 Application Interrupt</h2>
 <p>The application can register to hardware interrupts. It must provide its own interrupt handler table (same format as the platform one) to Wirepas Mesh stack.</p>
-<p>Application interrupts can then be enabled/disabled with a specific API services <code><a class="el" href="../../df/d6b/wms__system_8h.html#a350a09c1934fdd3217523f328e2ed833">lib_system-&gt;enableAppIrq</a></code> service and <code><a class="el" href="../../df/d6b/wms__system_8h.html#ae871f054c8d6cf9441d1c2a362efdd1d">lib_system-&gt;disableAppIrq</a> </code> service.</p>
+<p>Application interrupts can then be enabled/disabled with a specific API services <code><a class="el" href="../../df/d6b/wms__system_8h.html#a87c4cf1d5da280010817d89268efc528">lib_system-&gt;enableAppIrq</a></code> service and <code><a class="el" href="../../df/d6b/wms__system_8h.html#a6af5e19d5cb4b5a304fda524ceb3963f">lib_system-&gt;disableAppIrq</a> </code> service.</p>
 <p>There are two kinds of interrupts. Deferred interrupt and fast interrupt.</p>
 <p>This page contains following sections:</p><ul>
 <li><a class="el" href="../../d7/d28/application_operation.html#deferred_interrupt">Deferred interrupt</a></li>

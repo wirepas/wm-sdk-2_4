@@ -17,6 +17,13 @@
 <script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() {
+    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
+  });
+  /* @license-end */
+</script>
 <link rel="search" href="search_opensearch.php?v=opensearch.xml" type="application/opensearchdescription+xml" title="Wirepas SDK"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
@@ -47,19 +54,67 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('',true,true,'search.html','Search');
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(function() {
-    if ($('.searchresults').length > 0) { searchBox.DOMSearchField().focus(); }
-  });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Example&#160;applications</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+          <div class="left">
+            <form id="FSearchBox" action="search.html" method="get">
+              <img id="MSearchSelect" src="search/mag.png" alt=""/>
+              <input type="text" id="MSearchField" name="query" value="Search" size="20" accesskey="S" 
+                     onfocus="searchBox.OnSearchFieldFocus(true)" 
+                     onblur="searchBox.OnSearchFieldFocus(false)"/>
+            </form>
+          </div><div class="right"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li class="current"><a href="functions.html"><span>All</span></a></li>
+      <li><a href="functions_func.html"><span>Functions</span></a></li>
+      <li><a href="functions_vars.html"><span>Variables</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="functions.html#index_a"><span>a</span></a></li>
+      <li><a href="functions_b.html#index_b"><span>b</span></a></li>
+      <li><a href="functions_c.html#index_c"><span>c</span></a></li>
+      <li><a href="functions_d.html#index_d"><span>d</span></a></li>
+      <li class="current"><a href="functions_e.html#index_e"><span>e</span></a></li>
+      <li><a href="functions_f.html#index_f"><span>f</span></a></li>
+      <li><a href="functions_g.html#index_g"><span>g</span></a></li>
+      <li><a href="functions_h.html#index_h"><span>h</span></a></li>
+      <li><a href="functions_i.html#index_i"><span>i</span></a></li>
+      <li><a href="functions_j.html#index_j"><span>j</span></a></li>
+      <li><a href="functions_k.html#index_k"><span>k</span></a></li>
+      <li><a href="functions_l.html#index_l"><span>l</span></a></li>
+      <li><a href="functions_m.html#index_m"><span>m</span></a></li>
+      <li><a href="functions_n.html#index_n"><span>n</span></a></li>
+      <li><a href="functions_o.html#index_o"><span>o</span></a></li>
+      <li><a href="functions_p.html#index_p"><span>p</span></a></li>
+      <li><a href="functions_q.html#index_q"><span>q</span></a></li>
+      <li><a href="functions_r.html#index_r"><span>r</span></a></li>
+      <li><a href="functions_s.html#index_s"><span>s</span></a></li>
+      <li><a href="functions_t.html#index_t"><span>t</span></a></li>
+      <li><a href="functions_u.html#index_u"><span>u</span></a></li>
+      <li><a href="functions_v.html#index_v"><span>v</span></a></li>
+      <li><a href="functions_w.html#index_w"><span>w</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -84,6 +139,9 @@ $(document).ready(function(){initNavTree('functions_e.html',''); initResizable()
 <li>eddystone
 : <a class="el" href="d6/d21/poslib_8h.html#a0e88d14de7feb766f811fe85fe4c4dc0">ble_beacon_settings_t</a>
 </li>
+<li>enable_key_management
+: <a class="el" href="d9/da3/app__setup__int_8h.html#a3e7cde82f8de342926cec564c4141db6">app_setup_key_mgmt_t</a>
+</li>
 <li>enableAppIrq
 : <a class="el" href="df/d6b/wms__system_8h.html#a38f56116fe3b1384c1cd339f1277b31a">app_lib_system_t</a>
 </li>
@@ -101,16 +159,24 @@ $(document).ready(function(){initNavTree('functions_e.html',''); initResizable()
 : <a class="el" href="df/dc7/wms__joining_8h.html#ad407b056e9066c55a70f77a9d6315358">app_lib_joining_t</a>
 </li>
 <li>enc_key
-: <a class="el" href="d0/dae/provisioning_8h.html#a4230e96dcacbc8079f5ed4b4ac6aac13">provisioning_proxy_net_param_t</a>
+: <a class="el" href="d9/da3/app__setup__int_8h.html#a104ec0a2dc4fbe521ed932e2d51a67f8">app_setup_provisioning_t</a>
+, <a class="el" href="d0/dae/provisioning_8h.html#a4230e96dcacbc8079f5ed4b4ac6aac13">provisioning_proxy_net_param_t</a>
 </li>
 <li>end
 : <a class="el" href="d2/d9e/cbor_8h.html#a1a9c887147aec6839c2433e29b78285f">CborEncoder</a>
 , <a class="el" href="d2/d9e/cbor_8h.html#a1a9c887147aec6839c2433e29b78285f">CborParser</a>
 </li>
 <li>end_cb
-: <a class="el" href="d0/dae/provisioning_8h.html#ad02e1424b5d1a170478c99ad3168e299">provisioning_conf_t</a>
+: <a class="el" href="d4/d4f/app__setup_8h.html#ad37ac04eb2b4bb857b7c0dfd7199bb78">app_setup_conf::setup_provisioning_conf</a>
+, <a class="el" href="d0/dae/provisioning_8h.html#ad02e1424b5d1a170478c99ad3168e299">provisioning_conf_t</a>
 , <a class="el" href="d9/d27/provisioning__int_8h.html#ad02e1424b5d1a170478c99ad3168e299">provisioning_data_conf_t</a>
 , <a class="el" href="d9/d27/provisioning__int_8h.html#a89dcaa0b44dac1adf43989e18d1d3fbf">provisioning_joining_conf_t</a>
+</li>
+<li>endpoint
+: <a class="el" href="d6/d50/wms__data_8h.html#a09294ef650c9488fa9cc94e0704e91b5">app_lib_config_data_item_t</a>
+</li>
+<li>endpoints
+: <a class="el" href="d8/d21/msap__frames_8h.html#a08da770b91b4540e0c7f71fe6d986a8c">msap_config_data_list_items_cnf_t</a>
 </li>
 <li>enterCriticalSection
 : <a class="el" href="df/d6b/wms__system_8h.html#a418b7095a0b302c275075ff3c88c49dd">app_lib_system_t</a>

@@ -24,10 +24,12 @@ var wms__radio__config_8h =
       [ "rx_gain_db", "d8/da1/wms__radio__config_8h.html#aa9cfc1ad54a3e032e49c49033c5a16db", null ]
     ] ],
     [ "app_lib_radio_cfg_t", "d8/da1/wms__radio__config_8h.html#de/d87/structapp__lib__radio__cfg__t", [
+      [ "bandSetup", "d8/da1/wms__radio__config_8h.html#a1f5361cc10de102bbaa57a92576f9fac", null ],
       [ "femSetup", "d8/da1/wms__radio__config_8h.html#aa6e6417b37d0dddc03c2caa9c41af352", null ],
       [ "paSetup", "d8/da1/wms__radio__config_8h.html#a47609edb46f3fa2afd4ffd312608919c", null ],
       [ "powerSetup", "d8/da1/wms__radio__config_8h.html#afa91c703d40fd4e0488c1b2b078d15ba", null ]
     ] ],
+    [ "app_lib_radio_cfg_band_setup_f", "d8/da1/wms__radio__config_8h.html#acbfc9353034bfaefb71368ccadfbbda9", null ],
     [ "app_lib_radio_cfg_fem_cmd_cb_f", "d8/da1/wms__radio__config_8h.html#a2a04457fc78ab5db9339cfa5eafdc8d5", null ],
     [ "app_lib_radio_cfg_fem_set_power_cb_f", "d8/da1/wms__radio__config_8h.html#aac3240e302e32e1edae779e568f1e86a", null ],
     [ "app_lib_radio_cfg_fem_setup_f", "d8/da1/wms__radio__config_8h.html#a7ca2ce224399b2cc02288b7aeeb19331", null ],

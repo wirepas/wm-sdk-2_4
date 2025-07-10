@@ -1,6 +1,8 @@
 var dir_bc0718b08fb2015b8e59c47b2805f60c =
 [
     [ "app_persistent", "dir_3557ff302007f0fe765db2bd985c1298.html", "dir_3557ff302007f0fe765db2bd985c1298" ],
+    [ "app_secure_storage", "dir_2c98ee1be6d07b1b70d472b29c72b4db.html", "dir_2c98ee1be6d07b1b70d472b29c72b4db" ],
+    [ "app_setup", "dir_4de8d0f6de772a3e6d46661b188b68ba.html", "dir_4de8d0f6de772a3e6d46661b188b68ba" ],
     [ "control_node", "dir_41c76b8dbcc7da3301d9bf1771c67eb7.html", "dir_41c76b8dbcc7da3301d9bf1771c67eb7" ],
     [ "dualmcu", "dir_f336371ed0cdf8166671c78b649eae30.html", "dir_f336371ed0cdf8166671c78b649eae30" ],
     [ "local_provisioning", "dir_7352890d51814ff0683afd3515450f97.html", "dir_7352890d51814ff0683afd3515450f97" ],

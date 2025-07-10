@@ -1,5 +1,12 @@
 var wms__settings_8h =
 [
+    [ "app_lib_settings_key_management_configuration_t", "df/d62/wms__settings_8h.html#da/d24/structapp__lib__settings__key__management__configuration__t", [
+      [ "flags", "df/d62/wms__settings_8h.html#a4fe30f8e5c6c01cf4abc217301fa22aa", null ],
+      [ "management_key_pair", "df/d62/wms__settings_8h.html#ac246e819d9df02424f904962c4523747", null ],
+      [ "management_key_pair_seq", "df/d62/wms__settings_8h.html#a28ab237911e756f9770451ac5a6ed6bf", null ],
+      [ "network_key_pair", "df/d62/wms__settings_8h.html#a2d7c23ac8866a060403ba9a76adf55a8", null ],
+      [ "network_key_pair_seq", "df/d62/wms__settings_8h.html#a5cefc5eb33e7349ae3f0c0c294695f01", null ]
+    ] ],
     [ "app_lib_settings_t", "df/d62/wms__settings_8h.html#de/d5b/structapp__lib__settings__t", [
       [ "getAcRange", "df/d62/wms__settings_8h.html#a0cb66c203e0716301b69b403f2cda72c", null ],
       [ "getAcRangeLimits", "df/d62/wms__settings_8h.html#a572fae9b766a997fa1f24513b1dc43e7", null ],
@@ -18,7 +25,9 @@ var wms__settings_8h =
       [ "isValidNetworkChannel", "df/d62/wms__settings_8h.html#a71d48da699880d0b63ace03f3f191bdc", null ],
       [ "isValidNodeAddress", "df/d62/wms__settings_8h.html#a5962b05f84aad7f25b492479ed3ba8bf", null ],
       [ "isValidNodeRole", "df/d62/wms__settings_8h.html#a194fa3fe93b7f0ba589263d659502693", null ],
+      [ "keyManagementConfiguration", "df/d62/wms__settings_8h.html#a82c21f590d6b3982cf54d4a39680ae1a", null ],
       [ "registerGroupQuery", "df/d62/wms__settings_8h.html#a4f6e72a53bbd71152ea996bedfa29785", null ],
+      [ "registerNodeUidCb", "df/d62/wms__settings_8h.html#a43b2d17bb55091a8858ddca02e7d238f", null ],
       [ "resetAll", "df/d62/wms__settings_8h.html#a9a6ef9b9b9a423c397a6a0c4e10eada3", null ],
       [ "setAcRange", "df/d62/wms__settings_8h.html#a2b06e7a9878d4b776d9dd8176bd7ef06", null ],
       [ "setAuthenticationKey", "df/d62/wms__settings_8h.html#a1429282296679210c3f972ec59509378", null ],
@@ -32,6 +41,18 @@ var wms__settings_8h =
       [ "setOfflineScan", "df/d62/wms__settings_8h.html#a7bbd71329c9b54468fd35155719cbb40", null ],
       [ "setReservedChannels", "df/d62/wms__settings_8h.html#a69420374f1366b94e0ebb8acad518ae6", null ]
     ] ],
+    [ "app_lib_settings_key_management_configuration_t.network_key_pair", "df/d62/wms__settings_8h.html#d0/d7a/structapp__lib__settings__key__management__configuration__t_8network__key__pair", [
+      [ "authentication_key_p", "df/d62/wms__settings_8h.html#a2e3cfae02198416391003eeb3706735f", null ],
+      [ "encryption_key_p", "df/d62/wms__settings_8h.html#a2a395e0834c2de926bc8e44970c04b55", null ]
+    ] ],
+    [ "app_lib_settings_key_management_configuration_t.management_key_pair", "df/d62/wms__settings_8h.html#d6/d5d/structapp__lib__settings__key__management__configuration__t_8management__key__pair", [
+      [ "authentication_key_p", "df/d62/wms__settings_8h.html#a2e3cfae02198416391003eeb3706735f", null ],
+      [ "encryption_key_p", "df/d62/wms__settings_8h.html#a2a395e0834c2de926bc8e44970c04b55", null ]
+    ] ],
+    [ "app_lib_settings_key_management_configuration_t.flags", "df/d62/wms__settings_8h.html#de/de3/structapp__lib__settings__key__management__configuration__t_8flags", [
+      [ "key_management", "df/d62/wms__settings_8h.html#a864353f12249b578d6b6a3951010cbfb", null ],
+      [ "revoke_keys", "df/d62/wms__settings_8h.html#a3e5411851aed9eaffa4333de53056ac4", null ]
+    ] ],
     [ "app_lib_settings_get_ac_range_f", "df/d62/wms__settings_8h.html#a81ceb0e7dd252eca631602fa78a00993", null ],
     [ "app_lib_settings_get_ac_range_limits_f", "df/d62/wms__settings_8h.html#ac3fb0302622c3ca5fcfd369e92a5ab6e", null ],
     [ "app_lib_settings_get_authentication_key_f", "df/d62/wms__settings_8h.html#a85c65e28cf62c736e61d84bd7e8c08f6", null ],
@@ -43,6 +64,7 @@ var wms__settings_8h =
     [ "app_lib_settings_get_network_channel_limits_f", "df/d62/wms__settings_8h.html#a0b1b9db3793501870ae79136ba23da81", null ],
     [ "app_lib_settings_get_node_address_f", "df/d62/wms__settings_8h.html#a101e534119dcfb8beda45b5552a3f91f", null ],
     [ "app_lib_settings_get_node_role_f", "df/d62/wms__settings_8h.html#a85051b080d2238659543ef3c52b33b29", null ],
+    [ "app_lib_settings_get_node_uid_cb_f", "df/d62/wms__settings_8h.html#a6fd469623e2c768122c9034e1d2aeb0f", null ],
     [ "app_lib_settings_get_offline_scan_f", "df/d62/wms__settings_8h.html#a6d8eec95d47e093aeca48dd4ecab3451", null ],
     [ "app_lib_settings_get_reserved_channels_f", "df/d62/wms__settings_8h.html#adae4ace95a84f7221fc3eb01503d22fa", null ],
     [ "app_lib_settings_is_group_cb_f", "df/d62/wms__settings_8h.html#a95e31e83c3592e503541f86ee917cf53", null ],
@@ -50,8 +72,10 @@ var wms__settings_8h =
     [ "app_lib_settings_is_valid_network_channel_f", "df/d62/wms__settings_8h.html#ae7294174797ac855b903c51f3d4eba4b", null ],
     [ "app_lib_settings_is_valid_node_address_f", "df/d62/wms__settings_8h.html#a2c1464ddff54488daf1ae6df55a637cb", null ],
     [ "app_lib_settings_is_valid_node_role_f", "df/d62/wms__settings_8h.html#ab0d387c21ebd3cd12fa25e7d44561fb0", null ],
+    [ "app_lib_settings_key_management_config_f", "df/d62/wms__settings_8h.html#aade490b8661f267de1a302242b7afdf9", null ],
     [ "app_lib_settings_net_addr_t", "df/d62/wms__settings_8h.html#a69db270642a7b444986c801131fcbd66", null ],
     [ "app_lib_settings_net_channel_t", "df/d62/wms__settings_8h.html#af0559e67154ec6b6dc9c34ccad540861", null ],
+    [ "app_lib_settings_register_node_uid_cb_f", "df/d62/wms__settings_8h.html#aa3247ba7514f8dc52ec66e3a868af923", null ],
     [ "app_lib_settings_reset_all_f", "df/d62/wms__settings_8h.html#a140d39369516a938d1348ac86e65e0a2", null ],
     [ "app_lib_settings_role_t", "df/d62/wms__settings_8h.html#a6e80e9f924c933ad9e52603b56a3f82a", null ],
     [ "app_lib_settings_set_ac_range_f", "df/d62/wms__settings_8h.html#a6f719184b46f29cb7e7475a30859950a", null ],
@@ -78,6 +102,7 @@ var wms__settings_8h =
       [ "APP_LIB_SETTINGS_ROLE_ADVERTISER", "df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aafbafd13358d2b8d35f940ae8ff8ffe4", null ]
     ] ],
     [ "APP_LIB_SETTINGS_AES_KEY_NUM_BYTES", "df/d62/wms__settings_8h.html#a6c6561f73e83af4857749db05caac45c", null ],
+    [ "APP_LIB_SETTINGS_MAX_NODE_UID_SIZE", "df/d62/wms__settings_8h.html#ab662fb842ec4d65371dedb082fad7a68", null ],
     [ "APP_LIB_SETTINGS_NAME", "df/d62/wms__settings_8h.html#a839e417649c2a4f3410be75a1098cf34", null ],
     [ "APP_LIB_SETTINGS_VERSION", "df/d62/wms__settings_8h.html#a0030037c33657de1d8bf7bfaf074f9d4", null ],
     [ "CHANNEL_NO_CHANNEL", "df/d62/wms__settings_8h.html#aa78a81ee8d65c8bc6b6cd8911248d508", null ]
