@@ -1,0 +1,1 @@
+INCLUDE gcc_bl_updater_nrf54l.ld
