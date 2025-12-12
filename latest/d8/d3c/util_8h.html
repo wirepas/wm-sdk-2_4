@@ -168,6 +168,8 @@ Macros</h2></td></tr>
 <tr class="separator:af1533f7162019801a2eaeba9f746ed5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ff3388c1c7a3f2ab1428926662e1e27"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d3c/util_8h.html#a6ff3388c1c7a3f2ab1428926662e1e27">STRUCT_ALIGN_2</a>(prev_type)&#160;&#160;&#160;<a class="el" href="../../d8/d3c/util_8h.html#af99ee9e7dbf5f0012b2dcf5c1e90c458">SA_BASE</a>(prev_type, 2, __LINE__)</td></tr>
 <tr class="separator:a6ff3388c1c7a3f2ab1428926662e1e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af89f4d2d8177557601d0ebd71d4500bf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d3c/util_8h.html#af89f4d2d8177557601d0ebd71d4500bf">member_size</a>(type,  member)&#160;&#160;&#160;(sizeof( ((type *)0)-&gt;member ))</td></tr>
+<tr class="separator:af89f4d2d8177557601d0ebd71d4500bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a41b401fecfddf8d973a26f3e5c0fbedc"></a>
@@ -297,6 +299,37 @@ Macros</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="af89f4d2d8177557601d0ebd71d4500bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af89f4d2d8177557601d0ebd71d4500bf">&#9670;&nbsp;</a></span>member_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define member_size</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">member&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(sizeof( ((type *)0)-&gt;member ))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Helper macro for defining the size of a struct member </p>
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d3c/util_8h_source.html#l00137">137</a> of file <a class="el" href="../../d8/d3c/util_8h_source.html">util.h</a>.</p>
+
+</div>
+</div>
 <a id="af99ee9e7dbf5f0012b2dcf5c1e90c458"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af99ee9e7dbf5f0012b2dcf5c1e90c458">&#9670;&nbsp;</a></span>SA_BASE</h2>
 

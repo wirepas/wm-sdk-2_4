@@ -6,6 +6,7 @@ var pca10156_2board_8h =
     [ "BOARD_GPIO_ID_BUTTON0", "de/df2/pca10156_2board_8h.html#afa0b2ea5bfdd62a83413c1cb4c5962c5", null ],
     [ "BOARD_GPIO_ID_BUTTON1", "de/df2/pca10156_2board_8h.html#ad2a52f8dcf7bd092ce0971357b1d7793", null ],
     [ "BOARD_GPIO_ID_BUTTON2", "de/df2/pca10156_2board_8h.html#a129c2acbee060c693cffdeaa2df0f388", null ],
+    [ "BOARD_GPIO_ID_BUTTON3", "de/df2/pca10156_2board_8h.html#a0210a8d95979bc985e743e2c4e2c412f", null ],
     [ "BOARD_GPIO_ID_LED0", "de/df2/pca10156_2board_8h.html#a2fdeeeca85127dde90914bbede54965f", null ],
     [ "BOARD_GPIO_ID_LED1", "de/df2/pca10156_2board_8h.html#a37335d948292661228ec3c91f336fa6d", null ],
     [ "BOARD_GPIO_ID_LED2", "de/df2/pca10156_2board_8h.html#a7631dfb97e91ee295c5e9ba38781292b", null ],

@@ -190,7 +190,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>Device must have <code>APP_LIB_SETTINGS_ROLE_FLAG_LL</code> in device role (service <a class="el" href="../../df/d62/wms__settings_8h.html#a09516bdd3d13abeb4d4079192b578854">lib_settings-&gt;setNodeRole()</a> in order for callback to be active. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00133">133</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00130">130</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
 
 </div>
 </div>
@@ -215,7 +215,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, normally <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a>. If <code>option==NULL</code>, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a>. If role is not <a class="el" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aafbafd13358d2b8d35f940ae8ff8ffe4">APP_LIB_SETTINGS_ROLE_ADVERTISER</a> , <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a2e0fd18ec0f8ae18c72ebdf838235cb3">APP_RES_INVALID_CONFIGURATION</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00189">189</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00186">186</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
 
 </div>
 </div>
@@ -244,7 +244,7 @@ Macros</h2></td></tr>
 <p>Recommendation is to use values larger than 80 ms. Smaller values than that will cause failed transmission even in normal operation conditions due to the time periods when transmission is forbidden.</p>
 <dl class="section note"><dt>Note</dt><dd>Using <code>time_ms</code> with value 0 to disabling the feature may have quite a large impact on power consumption. This means that device may make lot of transmission attempts to target instead of giving up and trying another , alternative, target and thus resulting high power consumption. This could happen, for example, when target device is doing network scan. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00164">164</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00161">161</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
 
 </div>
 </div>
@@ -270,7 +270,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true: output generated, false: use default acknowledgement </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00118">118</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00116">116</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
 
 </div>
 </div>
@@ -287,8 +287,10 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock"><p>Input data structure for callback function set by <a class="el" href="../../d1/dcf/wms__advertiser_8h.html#afebe4ee230daadbebb6a9b07426719df">lib_advertiser-&gt;setRouterAckGenCb()</a>. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d4/ddd/control_router_2app_8c-example.html#_a24">control_router/app.c</a>, and <a class="el" href="../../d7/d41/diradv_2app_8c-example.html#_a22">diradv/app.c</a>.</dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00071">71</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00069">69</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -349,8 +351,10 @@ src_endpoint</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock"><p>Output structure for for callback function set by <a class="el" href="../../d1/dcf/wms__advertiser_8h.html#afebe4ee230daadbebb6a9b07426719df">lib_advertiser-&gt;setRouterAckGenCb()</a>. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d4/ddd/control_router_2app_8c-example.html#_a25">control_router/app.c</a>, and <a class="el" href="../../d7/d41/diradv_2app_8c-example.html#_a23">diradv/app.c</a>.</dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00097">97</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00095">95</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -384,7 +388,7 @@ length</td>
 </div><div class="memdoc">
 <div class="textblock"><p>Option flags to be used with advertiser. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00169">169</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00166">166</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -410,7 +414,7 @@ follow_network</td>
 </div><div class="memdoc">
 <div class="textblock"><p>List of library functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00195">195</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00192">192</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -488,7 +492,7 @@ setRouterAckGenCb</td>
 
 <p>Default value used with <a class="el" href="../../d1/dcf/wms__advertiser_8h.html#a77124070f75e6d49c4b7676d5b8481fd">lib_advertiser-&gt;setQueuingTimeHp()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00064">64</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00062">62</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
 
 </div>
 </div>
@@ -506,6 +510,8 @@ setRouterAckGenCb</td>
 
 <p>Headnode acknowledges the packet by using this destination endpoint. </p>
 <p>Used in headnode callback function set with <a class="el" href="../../d1/dcf/wms__advertiser_8h.html#afebe4ee230daadbebb6a9b07426719df">lib_advertiser-&gt;setBeaconDataAckListenCb()</a> and receiving packet in advertiser in callback function set with <a class="el" href="../../d6/d50/wms__data_8h.html#a108548eef01aa6b4e3db667ef3c1c780">lib_data-&gt;setDataReceivedCb()</a> </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d7/d41/diradv_2app_8c-example.html#a5">diradv/app.c</a>.</dd>
+</dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00049">49</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
 
@@ -545,7 +551,7 @@ setRouterAckGenCb</td>
 <p>Absolute maximum size of the ACK message. </p>
 <p>This can be used for allocating memory structures for callback function set with <a class="el" href="../../d1/dcf/wms__advertiser_8h.html#afebe4ee230daadbebb6a9b07426719df">lib_advertiser-&gt;setBeaconDataAckListenCb()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00058">58</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html#l00057">57</a> of file <a class="el" href="../../d1/dcf/wms__advertiser_8h_source.html">wms_advertiser.h</a>.</p>
 
 </div>
 </div>

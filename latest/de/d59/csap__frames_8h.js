@@ -80,7 +80,8 @@ var csap__frames_8h =
       [ "CSAP_RESET_OK", "de/d59/csap__frames_8h.html#a6ab11144fff94c40dcaaaaa54df9ea13a49213d40f2a88ef51d834fea385b1c32", null ],
       [ "CSAP_RESET_INVALID_STATE", "de/d59/csap__frames_8h.html#a6ab11144fff94c40dcaaaaa54df9ea13a5e1cadbf7b37b53a8717c0d28a4d3984", null ],
       [ "CSAP_RESET_INVALID_KEY", "de/d59/csap__frames_8h.html#a6ab11144fff94c40dcaaaaa54df9ea13aa697ee5a0ec7f8e554cd773928310c44", null ],
-      [ "CSAP_RESET_ACCESS_DENIED", "de/d59/csap__frames_8h.html#a6ab11144fff94c40dcaaaaa54df9ea13a5e3ab366291ac88576c1fa3c2acac1f2", null ]
+      [ "CSAP_RESET_ACCESS_DENIED", "de/d59/csap__frames_8h.html#a6ab11144fff94c40dcaaaaa54df9ea13a5e3ab366291ac88576c1fa3c2acac1f2", null ],
+      [ "CSAP_RESET_RESOURCE_ERROR", "de/d59/csap__frames_8h.html#a6ab11144fff94c40dcaaaaa54df9ea13ad19a1ae16dfea760496d0dffeb3d93c1", null ]
     ] ],
     [ "RADIO_ADDRESS_WIDTH", "de/d59/csap__frames_8h.html#a9e21c28c8a35d11c185bba57e7dc78c3", null ]
 ];

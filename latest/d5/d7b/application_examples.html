@@ -111,7 +111,7 @@ Application examples</h1>
 <p class="endtd"></p>
 </th></tr>
 <tr>
-<td>battery_voltage_read_app </td><td>Battery voltage reading demo app </td><td><p class="starttd"></p>
+<td><a class="el" href="../../db/df3/battery_voltage_read_app_2app_8c-example.html">battery_voltage_read_app</a> </td><td>Battery voltage reading demo app </td><td><p class="starttd"></p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -119,11 +119,11 @@ Application examples</h1>
 <p class="endtd"></p>
 </td></tr>
 <tr>
-<td>control_node </td><td>To be used with control_router, switch in lighting example</td><td><p class="starttd"></p>
+<td><a class="el" href="../../d2/d53/control_node_2app_8c-example.html">control_node</a> </td><td>To be used with control_router, switch in lighting example</td><td><p class="starttd"></p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
-<td>control_router </td><td>To be used with control_node, lighting fixture</td><td><p class="starttd"></p>
+<td><a class="el" href="../../d4/ddd/control_router_2app_8c-example.html">control_router</a> </td><td>To be used with control_node, lighting fixture</td><td><p class="starttd"></p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -131,7 +131,7 @@ Application examples</h1>
 <p class="endtd"></p>
 </td></tr>
 <tr>
-<td>evaluation_app </td><td>Wirepas Massive discovery application</td><td><p class="starttd"></p>
+<td><a class="el" href="../../df/dc0/evaluation_app_2app_8c-example.html">evaluation_app</a> </td><td>Wirepas Massive discovery application</td><td><p class="starttd"></p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -143,7 +143,7 @@ Application examples</h1>
 <p class="endtd"></p>
 </td></tr>
 <tr>
-<td>low_latency_app </td><td>Low-latency mode demonstration app </td><td><p class="starttd"></p>
+<td><a class="el" href="../../d9/d09/low_latency_app_2app_8c-example.html">low_latency_app</a> </td><td>Low-latency mode demonstration app </td><td><p class="starttd"></p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -159,7 +159,7 @@ Application examples</h1>
 <p class="endtd"></p>
 </td></tr>
 <tr>
-<td>app_persistent </td><td>App persistent feature demo</td><td><p class="starttd"></p>
+<td><a class="el" href="../../dc/d74/app_persistent_2app_8c-example.html">app_persistent</a> </td><td>App persistent feature demo</td><td><p class="starttd"></p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -179,11 +179,11 @@ Application examples</h1>
 <p class="endtd"></p>
 </td></tr>
 <tr>
-<td>diradv </td><td>Direct Advertiser demo app</td><td><p class="starttd"></p>
+<td><a class="el" href="../../d7/d41/diradv_2app_8c-example.html">diradv</a> </td><td>Direct Advertiser demo app</td><td><p class="starttd"></p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
-<td>local_provisioning </td><td>Local provisioning demo app</td><td><p class="starttd"></p>
+<td><a class="el" href="../../dc/d5b/local_provisioning_2app_8c-example.html">local_provisioning</a> </td><td>Local provisioning demo app</td><td><p class="starttd"></p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -315,6 +315,7 @@ makefile</h2>
 <li><a class="el" href="../../d5/d7b/application_examples.html#source_makefile_hal_uart">HAL_UART</a></li>
 <li><a class="el" href="../../d5/d7b/application_examples.html#source_makefile_includes">INCLUDES</a></li>
 <li><a class="el" href="../../d5/d7b/application_examples.html#source_makefile_ldflags">LDFLAGS</a></li>
+<li><a class="el" href="../../d5/d7b/application_examples.html#source_makefile_ldlibs">LDLIBS</a></li>
 <li><a class="el" href="../../d5/d7b/application_examples.html#source_makefile_libs">LIBS</a></li>
 <li><a class="el" href="../../d5/d7b/application_examples.html#source_makefile_shared_data">SHARED_DATA</a></li>
 <li><a class="el" href="../../d5/d7b/application_examples.html#source_makefile_provisioning">PROVISIONING</a></li>
@@ -394,13 +395,18 @@ INCLUDES</h2>
 <p>Example: </p><div class="fragment"><div class="line">INCLUDES +=</div>
 </div><!-- fragment --><h2><a class="anchor" id="source_makefile_ldflags"></a>
 LDFLAGS</h2>
-<p>Introducing custom linker flags for ld can be done by extending this list.</p>
-<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#Link standard C math library</span></div>
-<div class="line"><span class="preprocessor">LDFLAGS += -lm</span></div>
+<p>Introducing custom linker flags for ld can be done by extending this list. These flags are placed in the beginning of the linker command line. Prefix <code>-Wl,</code> is required for each separate parameter added here, or the parameters can be in a comma-separated list after a single <code>-Wl,</code>.</p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor"># Print the names of the input files and archive members as ld processes them</span></div>
+<div class="line"><span class="preprocessor">LDFLAGS += -Wl,--trace,--trace</span></div>
+</div><!-- fragment --><h2><a class="anchor" id="source_makefile_ldlibs"></a>
+LDLIBS</h2>
+<p>Adding compiler-provided libraries can be done by extending this list. The libraries are added to the end of the linker command line, so they are usable from precompiled libraries (see <a class="el" href="../../d5/d7b/application_examples.html#source_makefile_libs">LIBS</a>) as well.</p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor"># Link standard C math library</span></div>
+<div class="line"><span class="preprocessor">LDLIBS += -lm</span></div>
 </div><!-- fragment --><h2><a class="anchor" id="source_makefile_libs"></a>
 LIBS</h2>
 <p>Introducing of precompiled libraries (.a files) for compilation can be done by extending this list.</p>
-<p>Example: </p><div class="fragment"><div class="line">LIBS +=</div>
+<p>Example: </p><div class="fragment"><div class="line">LIBS += $(APP_SRCS_PATH)my_lib/my_lib.a</div>
 </div><!-- fragment --><h2><a class="anchor" id="source_makefile_provisioning"></a>
 PROVISIONING</h2>
 <p>Using of <a class="el" href="../../d0/dae/provisioning_8h.html">provisioning library</a> can be done by using this flag.</p>
@@ -430,21 +436,44 @@ Tools</h1>
 <p>This folder contains various tools, mainly implemented in Python, used during build process of the application.</p>
 <p>This page contains following sections:</p><ul>
 <li><a class="el" href="../../d5/d7b/application_examples.html#genscratchpad_py">genscratchpad.py</a></li>
-<li><a class="el" href="../../d5/d7b/application_examples.html#config_mk_ini_file">INI_FILE</a></li>
+<li><a class="el" href="../../d5/d7b/application_examples.html#config_mk_ini_file">Bootloader and scratchpad .ini files</a></li>
+<li><a class="el" href="../../d5/d7b/application_examples.html#name_to_uint32_py">name_to_uint32.py</a></li>
 </ul>
 <h2><a class="anchor" id="genscratchpad_py"></a>
 genscratchpad.py</h2>
-<p>This tool, used by the Makefile, allows the scratchpad binary generation for the OTAP update. It uses the <code>ini</code> file in the same directory</p>
+<p>Wirepas Mesh wireless updates, or Over-The-Air-Programming ("OTAP"), use a file format called a "scratchpad". A scratchpad file contains one or more compressed and encrypted files, each of which have a specific target area ID that the file is meant for.</p>
+<p>A tool called <code>genscratchpad.py</code> is used to generate scratchpad files. It reads Intel HEX files as inputs, compresses and encrypts them according to a specified <code>.ini</code> file, and writes out the resulting scratchpad file. Scratchpad files have a suffix of <code>.otap</code>.</p>
+<p><code>genscratchpad.py</code> is normally called automatically as part of an application build (Makefile), but it can also be called manually, or from user-provided scripts. Various special scratchpad files can be created this way, for advanced OTAP use.</p>
 <h2><a class="anchor" id="config_mk_ini_file"></a>
-INI_FILE</h2>
-<p>All scratchpad images received <em>Over The Air</em> are compressed and encrypted.</p>
-<p>The bootloader authenticates the image and decrypts it, so authentication and encryption keys used to generate a scratchpad must match the ones stored in the bootloader.</p>
-<p>The list of keys stored in bootloader can be configured at the end of <code>tools/scratchpad_&lt;mcu&gt;.ini</code> file. The bootloader can contain several keys and will decrypt a received scratchpad, if it can be authenticated with any of the listed keys.</p>
-<p>By default, each application uses the same <code>.ini</code> file stored in <code>tools/scratchpad_&lt;mcu&gt;.ini</code> but it can be copied to the application folder and modified as needed. The new <code>.ini</code> file can be specified from the application as following:</p>
-<div class="fragment"><div class="line"><span class="preprocessor"># Define a specific scratchpad ini</span></div>
-<div class="line"><span class="preprocessor">INI_FILE = $(APP_SRCS_PATH)/scratchpad_custom.ini</span></div>
-</div><!-- fragment --><p>The scratchpad generated from an application build use the key named <code>default</code> from the <code>.ini</code> file. It can be changed by adding the <code>&ndash;keyname</code> option to the invocation of <code>genscratchpad.py</code> script from makefile. </p>
-</div></div><!-- contents -->
+Bootloader and scratchpad .ini files</h2>
+<p>Scratchpad files are compressed and encrypted for use with a specific Wirepas Mesh network. When a device reeives new scratchpad contents, the bootloader authenticates the scratchpad and decrypts it. Aauthentication and encryption keys used to generate a scratchpad must match the ones stored in the bootloader, or the scratchpad will not be processed further.</p>
+<p>The list of keys stored in bootloader can be configured in the <code>custom_bootloader_keys.ini</code> file. The bootloader can contain several keys and will decrypt a received scratchpad, if it can be authenticated with any of the listed keys.</p>
+<p>The bootloader has a number of preconfigured memory areas. When it processes a scratchpad, the area IDs of files within are compared to the areas known by the bootloader, and processed when matching files are found.</p>
+<p>By default, each application uses the same <code>&lt;mcu&gt;_app.ini</code> file in the <code>mcu/</code> folder, but the <code>.ini</code> file can be copied to the application folder and modified as needed. The new <code>.ini</code> file can then be specified in the application <code>config.mk</code> file, as follows:</p>
+<div class="fragment"><div class="line"><span class="preprocessor"># Define a specific application ini file</span></div>
+<div class="line"><span class="preprocessor">INI_FILE_APP = $(APP_SRCS_PATH)/&lt;mcu&gt;_app.ini</span></div>
+</div><!-- fragment --><p>The scratchpad generated from an application build uses a key called <code>default</code> from the <code>custom_bootloader_keys.ini</code> file. Another key can be used instead, by adding the <code>&ndash;keyname</code> option to the invocation of <code>genscratchpad.py</code> in user scripts.</p>
+<h2><a class="anchor" id="name_to_uint32_py"></a>
+name_to_uint32.py</h2>
+<p>The <a class="el" href="../../dc/d82/wms__secure__storage_8h.html">secure storage library</a> uses 32-bit tags instead of filenames for efficiency. To achieve this, it employs a character encoding scheme called <a href="https://en.wikipedia.org/wiki/DEC_Radix-50">SQUOZE</a>, which can store up to six characters in a 32-bit integer. The available character set consists of 40 symbols:</p>
+<div class="fragment"><div class="line">ABCDEFGHIJKLMNOPQRSTUVWXYZ$.%0123456789</div>
+</div><!-- fragment --><p>In addition, a space character is supported, but it cannot appear as the first character in the name.</p>
+<p>Any listed names are converted to integers. If a single name is given, the tool converts and prints the result without extra text, making this mode suitable for use in scripts. When multiple names are given, both the names and their converted values are printed, separated by newlines.</p>
+<p>The command-line flag <code>-u</code> or <code>&ndash;unsquoze</code> converts integers back to names.</p>
+<p>The command-line flag <code>-d</code> or <code>&ndash;decimal</code> displays all values in decimal instead of hexadecimal. Values on the command line may be provided in either format, with <code>0x</code> indicating a hexadecimal value.</p>
+<p>Convert a single name to uint32: </p><div class="fragment"><div class="line">$ tools/name_to_uint32.py myvar</div>
+<div class="line">0x0214c3ba</div>
+</div><!-- fragment --><p>Convert multiple names: </p><div class="fragment"><div class="line">$ tools/name_to_uint32.py this is a test</div>
+<div class="line">THIS: 0x0013bb7b</div>
+<div class="line">IS: 0x0000017b</div>
+<div class="line">A: 0x00000001</div>
+<div class="line">TEST: 0x0013aa4c</div>
+</div><!-- fragment --><p>Convert uint32 values back to names, with decimal output: </p><div class="fragment"><div class="line">tools/name_to_uint32.py -u -d 0x0013bb7b 0x0000017b 0x00000001 0x0013aa4c</div>
+<div class="line">1293179: THIS</div>
+<div class="line">379: IS</div>
+<div class="line">1: A</div>
+<div class="line">1288780: TEST</div>
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.17-->

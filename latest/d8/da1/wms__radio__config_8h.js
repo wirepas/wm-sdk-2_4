@@ -42,6 +42,7 @@ var wms__radio__config_8h =
       [ "APP_LIB_RADIO_CFG_FEM_PWR_ON", "d8/da1/wms__radio__config_8h.html#a198f7a8d83d5a6f34a323d2ca02000e9aa46be437c9d7ac664940091e30df50cf", null ],
       [ "APP_LIB_RADIO_CFG_FEM_PWR_OFF", "d8/da1/wms__radio__config_8h.html#a198f7a8d83d5a6f34a323d2ca02000e9aa61ff2f7d313a9359a9aadf09fc74ad1", null ]
     ] ],
+    [ "APP_LIB_DECT_BAND_22", "d8/da1/wms__radio__config_8h.html#a62cdfff7f405890925bd8bf5d7dcfc90", null ],
     [ "APP_LIB_RADIO_CFG_CURRENT_MAX", "d8/da1/wms__radio__config_8h.html#a80b3fe636d9c9226276fbebbeb0c849b", null ],
     [ "APP_LIB_RADIO_CFG_CURRENT_MIN", "d8/da1/wms__radio__config_8h.html#a83c88c1fcb443f47b60a896dd170a682", null ],
     [ "APP_LIB_RADIO_CFG_NAME", "d8/da1/wms__radio__config_8h.html#ad2f5996b476330efcc9b9242196acaf9", null ],

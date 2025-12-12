@@ -7,6 +7,12 @@ var wms__settings_8h =
       [ "network_key_pair", "df/d62/wms__settings_8h.html#a2d7c23ac8866a060403ba9a76adf55a8", null ],
       [ "network_key_pair_seq", "df/d62/wms__settings_8h.html#a5cefc5eb33e7349ae3f0c0c294695f01", null ]
     ] ],
+    [ "app_lib_settings_remote_api_csap_data_t", "df/d62/wms__settings_8h.html#d6/d49/structapp__lib__settings__remote__api__csap__data__t", [
+      [ "request_buffer", "df/d62/wms__settings_8h.html#a51213a2a1914844f8f0a6aa13f58dcb5", null ],
+      [ "request_buffer_len", "df/d62/wms__settings_8h.html#a4a43859cd186790bb36509710cd8cdab", null ],
+      [ "response_buffer", "df/d62/wms__settings_8h.html#a80e5abc03f7929725c398be82de3f724", null ],
+      [ "response_buffer_len", "df/d62/wms__settings_8h.html#a04b95ccf8c5b3e00213d130f327afa44", null ]
+    ] ],
     [ "app_lib_settings_t", "df/d62/wms__settings_8h.html#de/d5b/structapp__lib__settings__t", [
       [ "getAcRange", "df/d62/wms__settings_8h.html#a0cb66c203e0716301b69b403f2cda72c", null ],
       [ "getAcRangeLimits", "df/d62/wms__settings_8h.html#a572fae9b766a997fa1f24513b1dc43e7", null ],
@@ -27,7 +33,10 @@ var wms__settings_8h =
       [ "isValidNodeRole", "df/d62/wms__settings_8h.html#a194fa3fe93b7f0ba589263d659502693", null ],
       [ "keyManagementConfiguration", "df/d62/wms__settings_8h.html#a82c21f590d6b3982cf54d4a39680ae1a", null ],
       [ "registerGroupQuery", "df/d62/wms__settings_8h.html#a4f6e72a53bbd71152ea996bedfa29785", null ],
-      [ "registerNodeUidCb", "df/d62/wms__settings_8h.html#a43b2d17bb55091a8858ddca02e7d238f", null ],
+      [ "registerRemoteApiCsapCancelCb", "df/d62/wms__settings_8h.html#ae40c5292ef54682314c9c53d4d6f873d", null ],
+      [ "registerRemoteApiCsapReadCb", "df/d62/wms__settings_8h.html#a38e3016c07cae63a96600d9afd5c026d", null ],
+      [ "registerRemoteApiCsapUpdateCb", "df/d62/wms__settings_8h.html#aded791b2fe20e10baad9dfdce54ea3d7", null ],
+      [ "registerRemoteApiCsapWriteCb", "df/d62/wms__settings_8h.html#af077bb5d79bdae54dd9ad6a34f570506", null ],
       [ "resetAll", "df/d62/wms__settings_8h.html#a9a6ef9b9b9a423c397a6a0c4e10eada3", null ],
       [ "setAcRange", "df/d62/wms__settings_8h.html#a2b06e7a9878d4b776d9dd8176bd7ef06", null ],
       [ "setAuthenticationKey", "df/d62/wms__settings_8h.html#a1429282296679210c3f972ec59509378", null ],
@@ -50,7 +59,10 @@ var wms__settings_8h =
       [ "encryption_key_p", "df/d62/wms__settings_8h.html#a2a395e0834c2de926bc8e44970c04b55", null ]
     ] ],
     [ "app_lib_settings_key_management_configuration_t.flags", "df/d62/wms__settings_8h.html#de/de3/structapp__lib__settings__key__management__configuration__t_8flags", [
-      [ "key_management", "df/d62/wms__settings_8h.html#a864353f12249b578d6b6a3951010cbfb", null ],
+      [ "app_key_management_configured", "df/d62/wms__settings_8h.html#ae67e29e329197d84b41a30b929ff73fd", null ],
+      [ "app_key_management_supported", "df/d62/wms__settings_8h.html#a49d32bf86357ceb6f7511e54e6e2c51c", null ],
+      [ "apply_flags", "df/d62/wms__settings_8h.html#aa0db515d53eaf0ec2912ea5403f53507", null ],
+      [ "reserved", "df/d62/wms__settings_8h.html#a7f005c3fa691e77c52d3297cc2699072", null ],
       [ "revoke_keys", "df/d62/wms__settings_8h.html#a3e5411851aed9eaffa4333de53056ac4", null ]
     ] ],
     [ "app_lib_settings_get_ac_range_f", "df/d62/wms__settings_8h.html#a81ceb0e7dd252eca631602fa78a00993", null ],
@@ -64,7 +76,6 @@ var wms__settings_8h =
     [ "app_lib_settings_get_network_channel_limits_f", "df/d62/wms__settings_8h.html#a0b1b9db3793501870ae79136ba23da81", null ],
     [ "app_lib_settings_get_node_address_f", "df/d62/wms__settings_8h.html#a101e534119dcfb8beda45b5552a3f91f", null ],
     [ "app_lib_settings_get_node_role_f", "df/d62/wms__settings_8h.html#a85051b080d2238659543ef3c52b33b29", null ],
-    [ "app_lib_settings_get_node_uid_cb_f", "df/d62/wms__settings_8h.html#a6fd469623e2c768122c9034e1d2aeb0f", null ],
     [ "app_lib_settings_get_offline_scan_f", "df/d62/wms__settings_8h.html#a6d8eec95d47e093aeca48dd4ecab3451", null ],
     [ "app_lib_settings_get_reserved_channels_f", "df/d62/wms__settings_8h.html#adae4ace95a84f7221fc3eb01503d22fa", null ],
     [ "app_lib_settings_is_group_cb_f", "df/d62/wms__settings_8h.html#a95e31e83c3592e503541f86ee917cf53", null ],
@@ -75,7 +86,14 @@ var wms__settings_8h =
     [ "app_lib_settings_key_management_config_f", "df/d62/wms__settings_8h.html#aade490b8661f267de1a302242b7afdf9", null ],
     [ "app_lib_settings_net_addr_t", "df/d62/wms__settings_8h.html#a69db270642a7b444986c801131fcbd66", null ],
     [ "app_lib_settings_net_channel_t", "df/d62/wms__settings_8h.html#af0559e67154ec6b6dc9c34ccad540861", null ],
-    [ "app_lib_settings_register_node_uid_cb_f", "df/d62/wms__settings_8h.html#aa3247ba7514f8dc52ec66e3a868af923", null ],
+    [ "app_lib_settings_register_remote_api_csap_cancel_cb_f", "df/d62/wms__settings_8h.html#a298e80094d3211c334adeab299eea5cb", null ],
+    [ "app_lib_settings_register_remote_api_csap_read_cb_f", "df/d62/wms__settings_8h.html#ae38fda5f4d6c4cb0d87f6766a1a3de0b", null ],
+    [ "app_lib_settings_register_remote_api_csap_update_cb_f", "df/d62/wms__settings_8h.html#a16921412765c39a68a72e33f97ae36b5", null ],
+    [ "app_lib_settings_register_remote_api_csap_write_cb_f", "df/d62/wms__settings_8h.html#ab1b30187dec9c028b6e7b94a2012b669", null ],
+    [ "app_lib_settings_remote_api_csap_cancel_f", "df/d62/wms__settings_8h.html#a2ba16db91ce74f7e206964eb81ec877c", null ],
+    [ "app_lib_settings_remote_api_csap_read_f", "df/d62/wms__settings_8h.html#acdc6211887948c47bf1c37301f47571c", null ],
+    [ "app_lib_settings_remote_api_csap_update_f", "df/d62/wms__settings_8h.html#ab5595093751eb628bf02025075cf9b31", null ],
+    [ "app_lib_settings_remote_api_csap_write_f", "df/d62/wms__settings_8h.html#a05f0a9e4bfc067323187b42c760753e5", null ],
     [ "app_lib_settings_reset_all_f", "df/d62/wms__settings_8h.html#a140d39369516a938d1348ac86e65e0a2", null ],
     [ "app_lib_settings_role_t", "df/d62/wms__settings_8h.html#a6e80e9f924c933ad9e52603b56a3f82a", null ],
     [ "app_lib_settings_set_ac_range_f", "df/d62/wms__settings_8h.html#a6f719184b46f29cb7e7475a30859950a", null ],
@@ -90,6 +108,11 @@ var wms__settings_8h =
     [ "app_lib_settings_set_node_role_f", "df/d62/wms__settings_8h.html#a09516bdd3d13abeb4d4079192b578854", null ],
     [ "app_lib_settings_set_offline_scan_f", "df/d62/wms__settings_8h.html#af3cc9f7a47245e44d599d39a5713d430", null ],
     [ "app_lib_settings_set_reserved_channels_f", "df/d62/wms__settings_8h.html#aae5a7bc69cb036a66990e1616e073f8f", null ],
+    [ "app_lib_settings_remote_api_res_e", "df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dab", [
+      [ "APP_LIB_SETTINGS_REMOTE_API_RES_NONE", "df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1daba09313a14b0adee7604f74593bcf1cdb0", null ],
+      [ "APP_LIB_SETTINGS_REMOTE_API_RES_OK", "df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dabaad9b2a2391cdd4107ae1729ec06f5bd0", null ],
+      [ "APP_LIB_SETTINGS_REMOTE_API_RES_OK_RESET", "df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dabaf497c9c185b363560c1acbc7e5895c48", null ]
+    ] ],
     [ "app_lib_settings_role_e", "df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8", [
       [ "APP_LIB_SETTINGS_ROLE_SINK_LE", "df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a814d2aa3fd8f79d70d6a0ddeee57c504", null ],
       [ "APP_LIB_SETTINGS_ROLE_SINK_LL", "df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a3705edf2786fadb244f262171131204d", null ],
@@ -102,8 +125,18 @@ var wms__settings_8h =
       [ "APP_LIB_SETTINGS_ROLE_ADVERTISER", "df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aafbafd13358d2b8d35f940ae8ff8ffe4", null ]
     ] ],
     [ "APP_LIB_SETTINGS_AES_KEY_NUM_BYTES", "df/d62/wms__settings_8h.html#a6c6561f73e83af4857749db05caac45c", null ],
-    [ "APP_LIB_SETTINGS_MAX_NODE_UID_SIZE", "df/d62/wms__settings_8h.html#ab662fb842ec4d65371dedb082fad7a68", null ],
     [ "APP_LIB_SETTINGS_NAME", "df/d62/wms__settings_8h.html#a839e417649c2a4f3410be75a1098cf34", null ],
     [ "APP_LIB_SETTINGS_VERSION", "df/d62/wms__settings_8h.html#a0030037c33657de1d8bf7bfaf074f9d4", null ],
-    [ "CHANNEL_NO_CHANNEL", "df/d62/wms__settings_8h.html#aa78a81ee8d65c8bc6b6cd8911248d508", null ]
+    [ "CHANNEL_NO_CHANNEL", "df/d62/wms__settings_8h.html#aa78a81ee8d65c8bc6b6cd8911248d508", null ],
+    [ "REMOTE_API_CSAP_RESPONSE_ACCESS_DENIED", "df/d62/wms__settings_8h.html#a568f0237c8db36a64e283d9e24cfddd2", null ],
+    [ "REMOTE_API_CSAP_RESPONSE_INVALID_BEGIN", "df/d62/wms__settings_8h.html#aa5c66b90558d6f5e9fcf69ecdf20bc1e", null ],
+    [ "REMOTE_API_CSAP_RESPONSE_INVALID_BROADCAST_REQUEST", "df/d62/wms__settings_8h.html#ada9efb67bd803b1c927cf7767e87112d", null ],
+    [ "REMOTE_API_CSAP_RESPONSE_INVALID_LENGTH", "df/d62/wms__settings_8h.html#a967b724f781e5ab01a0fce0f69500167", null ],
+    [ "REMOTE_API_CSAP_RESPONSE_INVALID_VALUE", "df/d62/wms__settings_8h.html#a76f5634370e2699447645deb63d0ba50", null ],
+    [ "REMOTE_API_CSAP_RESPONSE_NO_SPACE_FOR_RESPONSE", "df/d62/wms__settings_8h.html#a9fe7cb93abb74bb00820c3c393cd24cc", null ],
+    [ "REMOTE_API_CSAP_RESPONSE_NONE", "df/d62/wms__settings_8h.html#aa200c3e71f055d609ef4c1eae9011662", null ],
+    [ "REMOTE_API_CSAP_RESPONSE_NORMAL", "df/d62/wms__settings_8h.html#ae8d077446dc99733a78f042e41d9df07", null ],
+    [ "REMOTE_API_CSAP_RESPONSE_UNKNOWN_REQUEST", "df/d62/wms__settings_8h.html#a4a738d7a71dc35c723ad990698741f5b", null ],
+    [ "REMOTE_API_CSAP_RESPONSE_WRITE_ONLY_ATTRIBUTE", "df/d62/wms__settings_8h.html#aef073299c0efb490b32f7fc6a7c0c494", null ],
+    [ "REMOTE_API_CSAP_WRITE_UNICAST", "df/d62/wms__settings_8h.html#a7f3701136d00a4bca421ea36f7c9c3aa", null ]
 ];

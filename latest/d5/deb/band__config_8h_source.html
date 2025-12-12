@@ -109,8 +109,23 @@ $(document).ready(function(){initNavTree('d5/deb/band__config_8h_source.html','.
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;   <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="../../d5/deb/band__config_8h.html#a0544c3fe466e421738dae463968b70ba">    8</a></span>&#160;   {</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;       <span class="keywordflow">return</span> <a class="code" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a3003711bc2e65045853433dacc324767">APP_RES_INVALID_VALUE</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;   }</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;   <span class="keywordflow">return</span> lib_radio_cfg-&gt;bandSetup(band_mask);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;   (void)band_group;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;   <span class="keywordflow">return</span> <a class="code" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a3fe08161a7ab5c3d6a5e8e8cbc196f21">APP_RES_NOT_IMPLEMENTED</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="awms__app_8h_html_a4d380466f2a9f6432a6abcabf44c8e80a3fe08161a7ab5c3d6a5e8e8cbc196f21"><div class="ttname"><a href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a3fe08161a7ab5c3d6a5e8e8cbc196f21">APP_RES_NOT_IMPLEMENTED</a></div><div class="ttdeci">@ APP_RES_NOT_IMPLEMENTED</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dbb/wms__app_8h_source.html#l00208">wms_app.h:208</a></div></div>
+<div class="ttc" id="awms__app_8h_html_a4d380466f2a9f6432a6abcabf44c8e80a3003711bc2e65045853433dacc324767"><div class="ttname"><a href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a3003711bc2e65045853433dacc324767">APP_RES_INVALID_VALUE</a></div><div class="ttdeci">@ APP_RES_INVALID_VALUE</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dbb/wms__app_8h_source.html#l00210">wms_app.h:210</a></div></div>
 <!-- HTML footer for doxygen 1.8.17-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

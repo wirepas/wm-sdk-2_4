@@ -108,7 +108,8 @@ var bl__interface_8h =
       [ "BL_RES_PARAM", "dd/d2c/bl__interface_8h.html#a9a1d6078d92f4d46b59e7f80ef16b898afb4414d01fa614225f3716184ac8c9d3", null ],
       [ "BL_RES_INVALID_AREA", "dd/d2c/bl__interface_8h.html#a9a1d6078d92f4d46b59e7f80ef16b898a44dab6e6be58bd1cdba9747cbb5fb47a", null ],
       [ "BL_RES_TIMEOUT", "dd/d2c/bl__interface_8h.html#a9a1d6078d92f4d46b59e7f80ef16b898a2ab1d6279ea7f577784720607c222cef", null ],
-      [ "BL_RES_INVALID_STATE", "dd/d2c/bl__interface_8h.html#a9a1d6078d92f4d46b59e7f80ef16b898a5dac3bfc8056c46f46bf86fb4dcaa225", null ]
+      [ "BL_RES_INVALID_STATE", "dd/d2c/bl__interface_8h.html#a9a1d6078d92f4d46b59e7f80ef16b898a5dac3bfc8056c46f46bf86fb4dcaa225", null ],
+      [ "BL_RES_INVALID_TAG", "dd/d2c/bl__interface_8h.html#a9a1d6078d92f4d46b59e7f80ef16b898a5f76afb3ca0f83914f568ac913a27b31", null ]
     ] ],
     [ "bl_memory_area_type_e", "dd/d2c/bl__interface_8h.html#a827b71e6d5cdcaa075983c98ddc7563d", [
       [ "BL_MEM_AREA_TYPE_BOOTLOADER", "dd/d2c/bl__interface_8h.html#a827b71e6d5cdcaa075983c98ddc7563da154df4370ce1d216531e69893a307807", null ],

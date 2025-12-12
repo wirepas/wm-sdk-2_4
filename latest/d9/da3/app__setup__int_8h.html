@@ -117,9 +117,9 @@ Data Structures</h2></td></tr>
 <tr class="memitem:d9/d2b/structapp__setup__node__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da3/app__setup__int_8h.html#d9/d2b/structapp__setup__node__t">app_setup_node_t</a></td></tr>
 <tr class="memdesc:d9/d2b/structapp__setup__node__t"><td class="mdescLeft">&#160;</td><td class="mdescRight">Node configuration.  <a href="../../d9/da3/app__setup__int_8h.html#d9/d2b/structapp__setup__node__t">More...</a><br /></td></tr>
 <tr class="separator:d9/d2b/structapp__setup__node__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:da/d2d/structapp__setup__key__mgmt__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da3/app__setup__int_8h.html#da/d2d/structapp__setup__key__mgmt__t">app_setup_key_mgmt_t</a></td></tr>
-<tr class="memdesc:da/d2d/structapp__setup__key__mgmt__t"><td class="mdescLeft">&#160;</td><td class="mdescRight">Key management configuration.  <a href="../../d9/da3/app__setup__int_8h.html#da/d2d/structapp__setup__key__mgmt__t">More...</a><br /></td></tr>
-<tr class="separator:da/d2d/structapp__setup__key__mgmt__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:de/d71/structapp__setup__network__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da3/app__setup__int_8h.html#de/d71/structapp__setup__network__t">app_setup_network_t</a></td></tr>
+<tr class="memdesc:de/d71/structapp__setup__network__t"><td class="mdescLeft">&#160;</td><td class="mdescRight">Key management configuration.  <a href="../../d9/da3/app__setup__int_8h.html#de/d71/structapp__setup__network__t">More...</a><br /></td></tr>
+<tr class="separator:de/d71/structapp__setup__network__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:d1/d5e/structapp__setup__provisioning__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da3/app__setup__int_8h.html#d1/d5e/structapp__setup__provisioning__t">app_setup_provisioning_t</a></td></tr>
 <tr class="memdesc:d1/d5e/structapp__setup__provisioning__t"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provisioning configuration.  <a href="../../d9/da3/app__setup__int_8h.html#d1/d5e/structapp__setup__provisioning__t">More...</a><br /></td></tr>
 <tr class="separator:d1/d5e/structapp__setup__provisioning__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,7 +135,7 @@ Macros</h2></td></tr>
 <tr class="memitem:a0b7727d9222f44256dddbf571d15a66f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da3/app__setup__int_8h.html#a0b7727d9222f44256dddbf571d15a66f">APP_SETUP_FORMAT</a>&#160;&#160;&#160;0xabb5e70b</td></tr>
 <tr class="memdesc:a0b7727d9222f44256dddbf571d15a66f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal header for application setup library.  <a href="../../d9/da3/app__setup__int_8h.html#a0b7727d9222f44256dddbf571d15a66f">More...</a><br /></td></tr>
 <tr class="separator:a0b7727d9222f44256dddbf571d15a66f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0277bf56d3c939f6728ad0912c5b828"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da3/app__setup__int_8h.html#af0277bf56d3c939f6728ad0912c5b828">APP_SETUP_VERSION</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memitem:af0277bf56d3c939f6728ad0912c5b828"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da3/app__setup__int_8h.html#af0277bf56d3c939f6728ad0912c5b828">APP_SETUP_VERSION</a>&#160;&#160;&#160;2</td></tr>
 <tr class="memdesc:af0277bf56d3c939f6728ad0912c5b828"><td class="mdescLeft">&#160;</td><td class="mdescRight">Version of the library.  <a href="../../d9/da3/app__setup__int_8h.html#af0277bf56d3c939f6728ad0912c5b828">More...</a><br /></td></tr>
 <tr class="separator:af0277bf56d3c939f6728ad0912c5b828"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fde4ad692e928764b4c2d2c7733e4aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da3/app__setup__int_8h.html#a4fde4ad692e928764b4c2d2c7733e4aa">APP_SETUP_CLEAR_BYTE</a>&#160;&#160;&#160;0xff</td></tr>
@@ -144,9 +144,12 @@ Macros</h2></td></tr>
 <tr class="memitem:a7fb390f254766c85a82ab458b8062056"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da3/app__setup__int_8h.html#a7fb390f254766c85a82ab458b8062056">APP_SETUP_KEY_SIZE_BYTES</a>&#160;&#160;&#160;16</td></tr>
 <tr class="memdesc:a7fb390f254766c85a82ab458b8062056"><td class="mdescLeft">&#160;</td><td class="mdescRight">All security keys are 16 bytes long.  <a href="../../d9/da3/app__setup__int_8h.html#a7fb390f254766c85a82ab458b8062056">More...</a><br /></td></tr>
 <tr class="separator:a7fb390f254766c85a82ab458b8062056"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d2ed42b4dcacc085a52a01db1225535"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da3/app__setup__int_8h.html#a4d2ed42b4dcacc085a52a01db1225535">APP_SETUP_PROV_UID_MAX_SIZE_BYTES</a>&#160;&#160;&#160;112</td></tr>
+<tr class="memitem:a4d2ed42b4dcacc085a52a01db1225535"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da3/app__setup__int_8h.html#a4d2ed42b4dcacc085a52a01db1225535">APP_SETUP_PROV_UID_MAX_SIZE_BYTES</a>&#160;&#160;&#160;79</td></tr>
 <tr class="memdesc:a4d2ed42b4dcacc085a52a01db1225535"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum size of provisioning UID.  <a href="../../d9/da3/app__setup__int_8h.html#a4d2ed42b4dcacc085a52a01db1225535">More...</a><br /></td></tr>
 <tr class="separator:a4d2ed42b4dcacc085a52a01db1225535"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab042021b4c83284bfabc3ca895dfab9d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da3/app__setup__int_8h.html#ab042021b4c83284bfabc3ca895dfab9d">APP_SETUP_AUTH_UID_SIZE_BYTES</a>&#160;&#160;&#160;16</td></tr>
+<tr class="memdesc:ab042021b4c83284bfabc3ca895dfab9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticator UID size.  <a href="../../d9/da3/app__setup__int_8h.html#ab042021b4c83284bfabc3ca895dfab9d">More...</a><br /></td></tr>
+<tr class="separator:ab042021b4c83284bfabc3ca895dfab9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Data Structure Documentation</h2>
 <a name="d4/d55/structapp__setup__hdr__t" id="d4/d55/structapp__setup__hdr__t"></a>
@@ -163,7 +166,7 @@ Macros</h2></td></tr>
 <div class="textblock"><p>Application setup data header. </p>
 <p>TYPES </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/app__setup__int_8h_source.html#l00061">61</a> of file <a class="el" href="../../d9/da3/app__setup__int_8h_source.html">app_setup_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/app__setup__int_8h_source.html#l00066">66</a> of file <a class="el" href="../../d9/da3/app__setup__int_8h_source.html">app_setup_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -204,11 +207,11 @@ version</td>
 </div><div class="memdoc">
 <div class="textblock"><p>Node configuration. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/app__setup__int_8h_source.html#l00083">83</a> of file <a class="el" href="../../d9/da3/app__setup__int_8h_source.html">app_setup_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/app__setup__int_8h_source.html#l00088">88</a> of file <a class="el" href="../../d9/da3/app__setup__int_8h_source.html">app_setup_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="ae3d6f1e33f3e14b3005c81b610bb28b3"></a>uint8_t</td>
+<a id="a58b5fc479becd1989d9ea89c6ad23219"></a>uint16_t</td>
 <td class="fieldname">
 diag_interval</td>
 <td class="fielddoc">
@@ -222,25 +225,10 @@ id</td>
 <p>Node id </p>
 </td></tr>
 <tr><td class="fieldtype">
-<a id="aa0012df325375f88ad43549ac9d64934"></a>uint32_t</td>
-<td class="fieldname">
-network_address</td>
-<td class="fielddoc">
-<p>Network address </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="aad0252e7db3902e308b3a78511e5c580"></a>uint8_t</td>
-<td class="fieldname">
-network_channel</td>
-<td class="fielddoc">
-<p>Network channel </p>
-</td></tr>
-<tr><td class="fieldtype">
 <a id="acb7bc06bed6f6408d719334fc41698c7"></a>uint8_t</td>
 <td class="fieldname">
 reserved</td>
 <td class="fielddoc">
-<p>Reserved byte to align structure to word </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a5b9aeb2bb7989ef331f452dd9626f139"></a>uint8_t</td>
@@ -253,36 +241,22 @@ role</td>
 
 </div>
 </div>
-<a name="da/d2d/structapp__setup__key__mgmt__t" id="da/d2d/structapp__setup__key__mgmt__t"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#da/d2d/structapp__setup__key__mgmt__t">&#9670;&nbsp;</a></span>app_setup_key_mgmt_t</h2>
+<a name="de/d71/structapp__setup__network__t" id="de/d71/structapp__setup__network__t"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#de/d71/structapp__setup__network__t">&#9670;&nbsp;</a></span>app_setup_network_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct app_setup_key_mgmt_t</td>
+          <td class="memname">struct app_setup_network_t</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock"><p>Key management configuration. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/app__setup__int_8h_source.html#l00120">120</a> of file <a class="el" href="../../d9/da3/app__setup__int_8h_source.html">app_setup_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/app__setup__int_8h_source.html#l00111">111</a> of file <a class="el" href="../../d9/da3/app__setup__int_8h_source.html">app_setup_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
-<tr><td class="fieldtype">
-<a id="a3e7cde82f8de342926cec564c4141db6"></a>uint8_t</td>
-<td class="fieldname">
-enable_key_management</td>
-<td class="fielddoc">
-<p>Enable key management </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a6a8ece3e085d2c96182cca42b3b33381"></a>uint8_t</td>
-<td class="fieldname">
-force_key_revocation</td>
-<td class="fielddoc">
-<p>Force key revocation </p>
-</td></tr>
 <tr><td class="fieldtype">
 <a id="a9e1e087bf2295ce15a87c3f9f567fa98"></a>uint8_t</td>
 <td class="fieldname">
@@ -305,11 +279,25 @@ mgmt_key_pair_seq</td>
 <p>Management key pair sequence </p>
 </td></tr>
 <tr><td class="fieldtype">
+<a id="aa0012df325375f88ad43549ac9d64934"></a>uint32_t</td>
+<td class="fieldname">
+network_address</td>
+<td class="fielddoc">
+<p>Network address </p>
+</td></tr>
+<tr><td class="fieldtype">
 <a id="ae3fb1bdc9c54800826c0a84fe444b46c"></a>uint8_t</td>
 <td class="fieldname">
 network_auth_key[16]</td>
 <td class="fielddoc">
 <p>Network authentication key </p>
+</td></tr>
+<tr><td class="fieldtype">
+<a id="aad0252e7db3902e308b3a78511e5c580"></a>uint8_t</td>
+<td class="fieldname">
+network_channel</td>
+<td class="fielddoc">
+<p>Network channel </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a9d74435dca04770114d10f79120268dc"></a>uint8_t</td>
@@ -324,6 +312,12 @@ network_enc_key[16]</td>
 network_key_pair_seq</td>
 <td class="fielddoc">
 <p>Network key pair sequence </p>
+</td></tr>
+<tr><td class="fieldtype">
+<a id="acb7bc06bed6f6408d719334fc41698c7"></a>uint8_t</td>
+<td class="fieldname">
+reserved</td>
+<td class="fielddoc">
 </td></tr>
 </table>
 
@@ -342,7 +336,7 @@ network_key_pair_seq</td>
 </div><div class="memdoc">
 <div class="textblock"><p>Provisioning configuration. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/app__setup__int_8h_source.html#l00167">167</a> of file <a class="el" href="../../d9/da3/app__setup__int_8h_source.html">app_setup_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/app__setup__int_8h_source.html#l00161">161</a> of file <a class="el" href="../../d9/da3/app__setup__int_8h_source.html">app_setup_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -374,11 +368,18 @@ num_retries</td>
 <p>How many retries will be attempted </p>
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a72aca6ea6d8153b28ea8f139b932ec3e"></a>uint8_t</td>
+<a id="a0f074fadf661293ee07a7359be181a16"></a>uint8_t</td>
 <td class="fieldname">
-reserved[3]</td>
+prov_uid[79]</td>
 <td class="fielddoc">
-<p>Reserved bytes to align structure to word </p>
+<p>Provisioning UID </p>
+</td></tr>
+<tr><td class="fieldtype">
+<a id="ae02a69f04959a19fe090c41a3e874896"></a>uint8_t</td>
+<td class="fieldname">
+prov_uid_len</td>
+<td class="fielddoc">
+<p>Provisioning UID length </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a7f1ad43d3bf79b40bc39dbb5a6c3a5ae"></a>uint16_t</td>
@@ -386,20 +387,6 @@ reserved[3]</td>
 timeout</td>
 <td class="fielddoc">
 <p>Timeout in seconds </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a38ca0dd1beb06ac045ca41f7081ee36b"></a>uint8_t</td>
-<td class="fieldname">
-uid[112]</td>
-<td class="fielddoc">
-<p>Provisioning UID </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="aaafb88cf67feff33c82ca5c25908d010"></a>uint8_t</td>
-<td class="fieldname">
-uid_len</td>
-<td class="fielddoc">
-<p>Provisioning UID length </p>
 </td></tr>
 </table>
 
@@ -418,15 +405,15 @@ uid_len</td>
 </div><div class="memdoc">
 <div class="textblock"><p>Actions for application setup. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/app__setup__int_8h_source.html#l00214">214</a> of file <a class="el" href="../../d9/da3/app__setup__int_8h_source.html">app_setup_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/app__setup__int_8h_source.html#l00203">203</a> of file <a class="el" href="../../d9/da3/app__setup__int_8h_source.html">app_setup_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="abad4aee5fef6a4d9d5f52e8aa0b88133"></a>uint8_t</td>
+<a id="a3b0b221dfd2612b36b57911505029675"></a>uint8_t</td>
 <td class="fieldname">
-no_erase_after</td>
+preserve_data</td>
 <td class="fielddoc">
-<p>Do not erase application persistent area after setup configuration is read </p>
+<p>Preserved data in app persistent area after first boot </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a5a6ed8c04a3db86066924b1a1bf4dad3"></a>uint16_t</td>
@@ -459,7 +446,7 @@ start_dualmcu</td>
 </div><div class="memdoc">
 <div class="textblock"><p>Application setup data structure. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/app__setup__int_8h_source.html#l00236">236</a> of file <a class="el" href="../../d9/da3/app__setup__int_8h_source.html">app_setup_int.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/app__setup__int_8h_source.html#l00225">225</a> of file <a class="el" href="../../d9/da3/app__setup__int_8h_source.html">app_setup_int.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -477,11 +464,11 @@ header</td>
 <p>Header </p>
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a31e552b53ca4a391448b7068946f741e"></a><a class="el" href="../../d9/da3/app__setup__int_8h.html#da/d2d/structapp__setup__key__mgmt__t">app_setup_key_mgmt_t</a></td>
+<a id="a9229f159a16156b0d7a8d09d4ebf06cd"></a><a class="el" href="../../d9/da3/app__setup__int_8h.html#de/d71/structapp__setup__network__t">app_setup_network_t</a></td>
 <td class="fieldname">
-key_mgmt</td>
+network</td>
 <td class="fielddoc">
-<p>Key management configuration </p>
+<p>Network configuration </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="af1e426c034b49cc4df6915099bb4bfc3"></a><a class="el" href="../../d9/da3/app__setup__int_8h.html#d9/d2b/structapp__setup__node__t">app_setup_node_t</a></td>
@@ -502,6 +489,24 @@ provisioning</td>
 </div>
 </div>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ab042021b4c83284bfabc3ca895dfab9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab042021b4c83284bfabc3ca895dfab9d">&#9670;&nbsp;</a></span>APP_SETUP_AUTH_UID_SIZE_BYTES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define APP_SETUP_AUTH_UID_SIZE_BYTES&#160;&#160;&#160;16</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Authenticator UID size. </p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/app__setup__int_8h_source.html#l00057">57</a> of file <a class="el" href="../../d9/da3/app__setup__int_8h_source.html">app_setup_int.h</a>.</p>
+
+</div>
+</div>
 <a id="a4fde4ad692e928764b4c2d2c7733e4aa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4fde4ad692e928764b4c2d2c7733e4aa">&#9670;&nbsp;</a></span>APP_SETUP_CLEAR_BYTE</h2>
 
@@ -537,7 +542,7 @@ provisioning</td>
 
          tools/app_setup.py
 </pre><dl class="section note"><dt>Note</dt><dd>Data structures are packed and aligned so that every compound member and array are word addressable.</dd></dl>
-<p>One MUST NOT use scalar members as pointers, because they are not guaranteed to be on word addressable offset. DEFINITIONS</p>
+<p>One should not use scalar members as pointers, because they are not guaranteed to be on word addressable offset. DEFINITIONS</p>
 <p>Application setup data identifier </p><pre class="fragment">     If application persistent area has this at the beginning, the
      data is presumed to be application setup data.
 </pre> 
@@ -570,7 +575,7 @@ provisioning</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define APP_SETUP_PROV_UID_MAX_SIZE_BYTES&#160;&#160;&#160;112</td>
+          <td class="memname">#define APP_SETUP_PROV_UID_MAX_SIZE_BYTES&#160;&#160;&#160;79</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -588,7 +593,7 @@ provisioning</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define APP_SETUP_VERSION&#160;&#160;&#160;1</td>
+          <td class="memname">#define APP_SETUP_VERSION&#160;&#160;&#160;2</td>
         </tr>
       </table>
 </div><div class="memdoc">

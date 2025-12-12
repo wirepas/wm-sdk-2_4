@@ -109,9 +109,10 @@ $(document).ready(function(){initNavTree('dc/d82/wms__secure__storage_8h.html','
 </div><!--header-->
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This library implements encrypted and authenticated record storage on top of the memory area library. Records can vary in length and are identified by 32-bit tags. They can be read, written, or deleted.</p>
-<p>Applications should only read from and write to their own predefined persistent area. However, for special purposes, multiple areas may be used.</p>
-<p>Library services are accessed via <a class="el" href="../../dc/d82/wms__secure__storage_8h.html#dc/d49/structapp__lib__secure__storage__t">lib_secure_storage</a> handle. </p>
+<div class="textblock"><p>This library implements encrypted and authenticated record storage on top of the memory area library. Records can vary in length and are identified by 32-bit tags. Records can be read, written, or deleted.</p>
+<p>Tags are similar to filenames. A tool called <a class="el" href="../../d5/d7b/application_examples.html#name_to_uint32_py">name_to_uint32.py</a> is provided to convert up to six-character names to uint32 values and back. It is recommended to use this tool to generate tag values instead of choosing arbitrary numbers.</p>
+<p>Applications have a predefined secure storage area for storing parameters. Additional areas may be created for special purposes.</p>
+<p>Library services are accessed through the <a class="el" href="../../dc/d82/wms__secure__storage_8h.html#dc/d49/structapp__lib__secure__storage__t">lib_secure_storage</a> handle. </p>
 
 <p class="definition">Definition in file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
 </div>
@@ -187,7 +188,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae76a4ac79b97b823a3a83fbaebd479b1">APP_LIB_MEM_AREA_RES_OK</a> if successful, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a51ad5a220adb43422186dbae13c1bd27">APP_LIB_MEM_AREA_RES_INVALID_TAG</a> if record doesn't exist. See <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76">app_lib_mem_area_res_e</a> for memory area related result codes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00145">145</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00151">151</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
 
 </div>
 </div>
@@ -219,7 +220,7 @@ Only areas of type <a class="el" href="../../d6/d15/wms__memory__area_8h.html#ac
 <dd>
 Accessing the memory area directly with memory area functions after it has been initialized as secure storage is undefined. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00083">83</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00088">88</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
 
 </div>
 </div>
@@ -247,7 +248,7 @@ Accessing the memory area directly with memory area functions after it has been 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae76a4ac79b97b823a3a83fbaebd479b1">APP_LIB_MEM_AREA_RES_OK</a> if successful, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a51ad5a220adb43422186dbae13c1bd27">APP_LIB_MEM_AREA_RES_INVALID_TAG</a> if record doesn't exist, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a15b1563bc64559a7df2717d52dd1ef8f">APP_LIB_MEM_AREA_RES_PARAM</a> if max_amount is too small for the record contents, or other parameter error. See <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76">app_lib_mem_area_res_e</a> for memory area related result codes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00104">104</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00109">109</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
 
 </div>
 </div>
@@ -266,7 +267,7 @@ Accessing the memory area directly with memory area functions after it has been 
 <p>Secure storage record tag definition. </p>
 <dl class="section note"><dt>Note</dt><dd>Use tools/genlibname.py to generate meaningful tag values </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00050">50</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00055">55</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
 
 </div>
 </div>
@@ -293,9 +294,9 @@ Accessing the memory area directly with memory area functions after it has been 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae76a4ac79b97b823a3a83fbaebd479b1">APP_LIB_MEM_AREA_RES_OK</a> if successful, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a51ad5a220adb43422186dbae13c1bd27">APP_LIB_MEM_AREA_RES_INVALID_TAG</a> if not enough space available for the new record, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a15b1563bc64559a7df2717d52dd1ef8f">APP_LIB_MEM_AREA_RES_PARAM</a> for an error in parameters. See <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76">app_lib_mem_area_res_e</a> for memory area related result codes. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76ae76a4ac79b97b823a3a83fbaebd479b1">APP_LIB_MEM_AREA_RES_OK</a> if successful, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a51ad5a220adb43422186dbae13c1bd27">APP_LIB_MEM_AREA_RES_INVALID_TAG</a> if not enough space available for the new record, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76a15b1563bc64559a7df2717d52dd1ef8f">APP_LIB_MEM_AREA_RES_PARAM</a> for an error in parameters, <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76aeaad5d1e5a494e240f5508a6d253c086">APP_LIB_MEM_AREA_RES_NODRIVER</a> for a write verify error. See <a class="el" href="../../d6/d15/wms__memory__area_8h.html#a62543d9eae159f7880972e769d50ce76">app_lib_mem_area_res_e</a> for memory area related result codes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00128">128</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00134">134</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
 
 </div>
 </div>
@@ -313,7 +314,7 @@ Accessing the memory area directly with memory area functions after it has been 
 </div><div class="memdoc">
 <div class="textblock"><p>List of library functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00151">151</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00157">157</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -367,12 +368,12 @@ writeRecord</td>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00037">37</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6a74f14bdbc6a7446e273ccabfe7ea5ad7">APP_LIB_SECURE_STORAGE_CMD_INIT</a> = 0,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6ab1c9e2946f3115041871ed8debd6fc38">APP_LIB_SECURE_STORAGE_CMD_NO_INIT</a> = 1,</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6acfc0ea3e793d1d227a777549ab068d36">APP_LIB_SECURE_STORAGE_CMD_ERASE</a> = 2,</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;} <a class="code" href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6">app_lib_secure_storage_command_e</a>;</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00042">42</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6a74f14bdbc6a7446e273ccabfe7ea5ad7">APP_LIB_SECURE_STORAGE_CMD_INIT</a> = 0,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6ab1c9e2946f3115041871ed8debd6fc38">APP_LIB_SECURE_STORAGE_CMD_NO_INIT</a> = 1,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6acfc0ea3e793d1d227a777549ab068d36">APP_LIB_SECURE_STORAGE_CMD_ERASE</a> = 2,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;} <a class="code" href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6">app_lib_secure_storage_command_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -396,11 +397,11 @@ writeRecord</td>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00053">53</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="../../dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dffa28d1a10b9db2e90580ae4a50ae1548c1">APP_LIB_SECURE_STORAGE_RECORD_FLAG_NO_ENCRYPT</a> = (1 &lt;&lt; 0),</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="../../dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dffacbb361c87d0a8558e9dd975da9ccca4e">APP_LIB_SECURE_STORAGE_RECORD_FLAG_NO_AUTH</a> = (1 &lt;&lt; 1),</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;} <a class="code" href="../../dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dff">app_lib_secure_storage_record_flags_e</a>;</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00058">58</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="../../dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dffa28d1a10b9db2e90580ae4a50ae1548c1">APP_LIB_SECURE_STORAGE_RECORD_FLAG_NO_ENCRYPT</a> = (1 &lt;&lt; 0),</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="../../dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dffacbb361c87d0a8558e9dd975da9ccca4e">APP_LIB_SECURE_STORAGE_RECORD_FLAG_NO_AUTH</a> = (1 &lt;&lt; 1),</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;} <a class="code" href="../../dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dff">app_lib_secure_storage_record_flags_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -420,7 +421,7 @@ writeRecord</td>
 <p>Library symbolic name. </p>
 <p>"SECURE" </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00031">31</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00036">36</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
 
 </div>
 </div>
@@ -438,19 +439,19 @@ writeRecord</td>
 
 <p>Maximum supported library version. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00034">34</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html#l00039">39</a> of file <a class="el" href="../../dc/d82/wms__secure__storage_8h_source.html">wms_secure_storage.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="awms__secure__storage_8h_html_a09d2dd90cdada4b0cf2fdced33871dffa28d1a10b9db2e90580ae4a50ae1548c1"><div class="ttname"><a href="../../dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dffa28d1a10b9db2e90580ae4a50ae1548c1">APP_LIB_SECURE_STORAGE_RECORD_FLAG_NO_ENCRYPT</a></div><div class="ttdeci">@ APP_LIB_SECURE_STORAGE_RECORD_FLAG_NO_ENCRYPT</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d82/wms__secure__storage_8h_source.html#l00056">wms_secure_storage.h:56</a></div></div>
-<div class="ttc" id="awms__secure__storage_8h_html_a5a1ad0376a66b17866201700585403c6ab1c9e2946f3115041871ed8debd6fc38"><div class="ttname"><a href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6ab1c9e2946f3115041871ed8debd6fc38">APP_LIB_SECURE_STORAGE_CMD_NO_INIT</a></div><div class="ttdeci">@ APP_LIB_SECURE_STORAGE_CMD_NO_INIT</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d82/wms__secure__storage_8h_source.html#l00042">wms_secure_storage.h:42</a></div></div>
-<div class="ttc" id="awms__secure__storage_8h_html_a5a1ad0376a66b17866201700585403c6a74f14bdbc6a7446e273ccabfe7ea5ad7"><div class="ttname"><a href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6a74f14bdbc6a7446e273ccabfe7ea5ad7">APP_LIB_SECURE_STORAGE_CMD_INIT</a></div><div class="ttdeci">@ APP_LIB_SECURE_STORAGE_CMD_INIT</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d82/wms__secure__storage_8h_source.html#l00040">wms_secure_storage.h:40</a></div></div>
-<div class="ttc" id="awms__secure__storage_8h_html_a5a1ad0376a66b17866201700585403c6"><div class="ttname"><a href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6">app_lib_secure_storage_command_e</a></div><div class="ttdeci">app_lib_secure_storage_command_e</div><div class="ttdoc">Secure storage initialization command.</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d82/wms__secure__storage_8h_source.html#l00037">wms_secure_storage.h:37</a></div></div>
-<div class="ttc" id="awms__secure__storage_8h_html_a5a1ad0376a66b17866201700585403c6acfc0ea3e793d1d227a777549ab068d36"><div class="ttname"><a href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6acfc0ea3e793d1d227a777549ab068d36">APP_LIB_SECURE_STORAGE_CMD_ERASE</a></div><div class="ttdeci">@ APP_LIB_SECURE_STORAGE_CMD_ERASE</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d82/wms__secure__storage_8h_source.html#l00044">wms_secure_storage.h:44</a></div></div>
-<div class="ttc" id="awms__secure__storage_8h_html_a09d2dd90cdada4b0cf2fdced33871dff"><div class="ttname"><a href="../../dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dff">app_lib_secure_storage_record_flags_e</a></div><div class="ttdeci">app_lib_secure_storage_record_flags_e</div><div class="ttdoc">Secure storage record option flags.</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d82/wms__secure__storage_8h_source.html#l00053">wms_secure_storage.h:53</a></div></div>
-<div class="ttc" id="awms__secure__storage_8h_html_a09d2dd90cdada4b0cf2fdced33871dffacbb361c87d0a8558e9dd975da9ccca4e"><div class="ttname"><a href="../../dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dffacbb361c87d0a8558e9dd975da9ccca4e">APP_LIB_SECURE_STORAGE_RECORD_FLAG_NO_AUTH</a></div><div class="ttdeci">@ APP_LIB_SECURE_STORAGE_RECORD_FLAG_NO_AUTH</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d82/wms__secure__storage_8h_source.html#l00058">wms_secure_storage.h:58</a></div></div>
+<div class="ttc" id="awms__secure__storage_8h_html_a09d2dd90cdada4b0cf2fdced33871dffa28d1a10b9db2e90580ae4a50ae1548c1"><div class="ttname"><a href="../../dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dffa28d1a10b9db2e90580ae4a50ae1548c1">APP_LIB_SECURE_STORAGE_RECORD_FLAG_NO_ENCRYPT</a></div><div class="ttdeci">@ APP_LIB_SECURE_STORAGE_RECORD_FLAG_NO_ENCRYPT</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d82/wms__secure__storage_8h_source.html#l00061">wms_secure_storage.h:61</a></div></div>
+<div class="ttc" id="awms__secure__storage_8h_html_a5a1ad0376a66b17866201700585403c6ab1c9e2946f3115041871ed8debd6fc38"><div class="ttname"><a href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6ab1c9e2946f3115041871ed8debd6fc38">APP_LIB_SECURE_STORAGE_CMD_NO_INIT</a></div><div class="ttdeci">@ APP_LIB_SECURE_STORAGE_CMD_NO_INIT</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d82/wms__secure__storage_8h_source.html#l00047">wms_secure_storage.h:47</a></div></div>
+<div class="ttc" id="awms__secure__storage_8h_html_a5a1ad0376a66b17866201700585403c6a74f14bdbc6a7446e273ccabfe7ea5ad7"><div class="ttname"><a href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6a74f14bdbc6a7446e273ccabfe7ea5ad7">APP_LIB_SECURE_STORAGE_CMD_INIT</a></div><div class="ttdeci">@ APP_LIB_SECURE_STORAGE_CMD_INIT</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d82/wms__secure__storage_8h_source.html#l00045">wms_secure_storage.h:45</a></div></div>
+<div class="ttc" id="awms__secure__storage_8h_html_a5a1ad0376a66b17866201700585403c6"><div class="ttname"><a href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6">app_lib_secure_storage_command_e</a></div><div class="ttdeci">app_lib_secure_storage_command_e</div><div class="ttdoc">Secure storage initialization command.</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d82/wms__secure__storage_8h_source.html#l00042">wms_secure_storage.h:42</a></div></div>
+<div class="ttc" id="awms__secure__storage_8h_html_a5a1ad0376a66b17866201700585403c6acfc0ea3e793d1d227a777549ab068d36"><div class="ttname"><a href="../../dc/d82/wms__secure__storage_8h.html#a5a1ad0376a66b17866201700585403c6acfc0ea3e793d1d227a777549ab068d36">APP_LIB_SECURE_STORAGE_CMD_ERASE</a></div><div class="ttdeci">@ APP_LIB_SECURE_STORAGE_CMD_ERASE</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d82/wms__secure__storage_8h_source.html#l00049">wms_secure_storage.h:49</a></div></div>
+<div class="ttc" id="awms__secure__storage_8h_html_a09d2dd90cdada4b0cf2fdced33871dff"><div class="ttname"><a href="../../dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dff">app_lib_secure_storage_record_flags_e</a></div><div class="ttdeci">app_lib_secure_storage_record_flags_e</div><div class="ttdoc">Secure storage record option flags.</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d82/wms__secure__storage_8h_source.html#l00058">wms_secure_storage.h:58</a></div></div>
+<div class="ttc" id="awms__secure__storage_8h_html_a09d2dd90cdada4b0cf2fdced33871dffacbb361c87d0a8558e9dd975da9ccca4e"><div class="ttname"><a href="../../dc/d82/wms__secure__storage_8h.html#a09d2dd90cdada4b0cf2fdced33871dffacbb361c87d0a8558e9dd975da9ccca4e">APP_LIB_SECURE_STORAGE_RECORD_FLAG_NO_AUTH</a></div><div class="ttdeci">@ APP_LIB_SECURE_STORAGE_RECORD_FLAG_NO_AUTH</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d82/wms__secure__storage_8h_source.html#l00063">wms_secure_storage.h:63</a></div></div>
 <!-- HTML footer for doxygen 1.8.17-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

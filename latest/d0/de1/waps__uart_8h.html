@@ -278,7 +278,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">frame_cb</td><td>Mandatory callback for upper layer notification about a valid looking frame </td></tr>
     <tr><td class="paramname">baud</td><td>Baudrate for communication </td></tr>
-    <tr><td class="paramname">flow_ctrl</td><td>Is flow control to be used or not </td></tr>
+    <tr><td class="paramname">flow_ctrl</td><td>Is flow control to be used or not. Note that flow control is only for application processor to hold communication. The mesh communication processor is designed to be able to receive full SLIP frame without holding transfer using HW flow control. </td></tr>
     <tr><td class="paramname">tx_buffer</td><td>Memory block for transmissions </td></tr>
     <tr><td class="paramname">rx_buffer</td><td>Memory block for receptions </td></tr>
   </table>

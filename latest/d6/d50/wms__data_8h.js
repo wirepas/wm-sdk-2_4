@@ -153,7 +153,8 @@ var wms__data_8h =
       [ "APP_LIB_DATA_SEND_RES_ACCESS_DENIED", "d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164ad596c53ca64be97c5a4ea740c27cd2e8", null ],
       [ "APP_LIB_DATA_SEND_RES_INVALID_HOP_LIMIT", "d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164ad6581bc7a9d06eb66e421d47158e48e3", null ],
       [ "APP_LIB_DATA_SEND_RES_UNINITIALIZED", "d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164af05f747dc0888b454ed1b6b2e2ed8fe7", null ],
-      [ "APP_LIB_DATA_SEND_RES_INVALID_FRAGMENT_INFO", "d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164a27b70a7629e5e66acef1ea9aefbfa05f", null ]
+      [ "APP_LIB_DATA_SEND_RES_INVALID_FRAGMENT_INFO", "d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164a27b70a7629e5e66acef1ea9aefbfa05f", null ],
+      [ "APP_LIB_DATA_SEND_RES_INVALID_PARAM", "d6/d50/wms__data_8h.html#ab53b6510f8ecb4a1621c905c15855164a076eb94ea23e6a5af3cddb0205bcf8cf", null ]
     ] ],
     [ "APP_DATA_DISABLE_LOCAL_MULTICAST", "d6/d50/wms__data_8h.html#a11ea81fcfb7658da9846b85bf4638ff2", null ],
     [ "APP_LIB_DATA_MAX_APP_CONFIG_NUM_BYTES", "d6/d50/wms__data_8h.html#ad30da92f672d77497c900d927d198359", null ],

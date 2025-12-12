@@ -136,6 +136,7 @@ var NAVTREE =
         [ "HAL_UART", "d5/d7b/application_examples.html#source_makefile_hal_uart", null ],
         [ "INCLUDES", "d5/d7b/application_examples.html#source_makefile_includes", null ],
         [ "LDFLAGS", "d5/d7b/application_examples.html#source_makefile_ldflags", null ],
+        [ "LDLIBS", "d5/d7b/application_examples.html#source_makefile_ldlibs", null ],
         [ "LIBS", "d5/d7b/application_examples.html#source_makefile_libs", null ],
         [ "PROVISIONING", "d5/d7b/application_examples.html#source_makefile_provisioning", null ],
         [ "PROVISIONING_PROXY", "d5/d7b/application_examples.html#source_makefile_provisioning_proxy", null ],
@@ -145,7 +146,8 @@ var NAVTREE =
       ] ],
       [ "Tools", "d5/d7b/application_examples.html#tools_folder", [
         [ "genscratchpad.py", "d5/d7b/application_examples.html#genscratchpad_py", null ],
-        [ "INI_FILE", "d5/d7b/application_examples.html#config_mk_ini_file", null ]
+        [ "Bootloader and scratchpad .ini files", "d5/d7b/application_examples.html#config_mk_ini_file", null ],
+        [ "name_to_uint32.py", "d5/d7b/application_examples.html#name_to_uint32_py", null ]
       ] ]
     ] ],
     [ "Data Structures", "annotated.html", [
@@ -175,23 +177,24 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d2/d67/shared__appconfig_8h.html#a70a4acbdc6a340e8b5adbea4f5a6554a",
-"d2/d9e/cbor_8h.html#dd/d56/struct_cbor_value",
-"d4/d27/wms__state_8h.html#a43cb27cf31a18f69cc7aa53b0aca6b1d",
-"d5/d28/poslib__decode_8h.html#a2cbffeaf8f04fde5c7924010bca9e56ca72d6d0fb3ed2ae63e46d97866614eefb",
-"d5/daf/i2c_8h.html",
-"d6/d3e/early__init_8h.html#a3e4aa56332fe3b8e7b0bfd61381dd706",
-"d6/da5/attribute__frames_8h.html#a51aee1e7416d9ccdb8d171407674e338",
-"d8/d21/msap__frames_8h.html#a447733f370d16a4278bae255516c08ee",
-"d8/d3c/util_8h.html#a5315fea1224de28edba64a57c86be3f1",
-"d9/d7b/shared__offline_8h.html#a1c71a0996c8c02b3eb12c07b767498f5",
-"da/d87/spi_8h.html#a0cb467f85c0d7ce489b861ee7bb20e9aaa4f44cbc69625c3d88c89a5b56c23495",
-"db/de1/tinycbor-version_8h.html#ab29c3e61c33a1141655299a07812be37",
-"dc/de1/waps__uart__protocol_8h.html#a08a01d79ba228c8143383e5f95aac478",
-"dd/dd9/debug__log_8h.html#a2325454fac7906237ece595f2f257083",
-"df/d16/poslib__control_8h.html#a9159a04ef891d0b8b8e057a9e930516da3dbed953beefe59f25db61cc2dd3fdd3",
-"df/d6b/wms__system_8h.html#a5ba9aa0bc74144cd4ba0590021549eae",
-"dir_c20b675dd8d6b8e5cf856d0368436ff5.html"
+"d2/d43/compilersupport__p_8h.html#ad3d8a3bd0c0b677acef144f2c2ef6d73",
+"d2/d9e/cbor_8h.html#ade6fa23a8fb3df9db434c69ca05d5ec1a2b05e8521f0cc4567811dac08bdb9277",
+"d4/d0d/pca10059_2board_8h.html#afa0b2ea5bfdd62a83413c1cb4c5962c5",
+"d5/d0c/silabs__brd2601b_2board_8h.html#ad040f55332feda958e433ae2c1f5bcd5",
+"d5/d92/pca10040_2board_8h.html#a433cf3a73ae6b00dde08e7a245b4a2ec",
+"d6/d21/poslib_8h.html#acbddf3489c3d2e37bc08e626fdf31747",
+"d6/da4/ringbuffer_8h.html#a306c4a6addaaa13174af38b2399f674b",
+"d8/d21/msap__frames_8h.html#a2a22fdcf30e8833fee4f1ad6360f4aeba49c17dee2d19e72a8766b253c448943e",
+"d8/d32/silabs__brd4253a_2board_8h.html#a154e4a912cfa2fbec72aeba6b69e18ab",
+"d9/d47/waps__protocol_8h.html#a02252104fef1000889442ae2e5ccff46",
+"da/d1b/function__codes_8h.html#a5d932513e8009c2280045fe336ff4138adf2f89ce5fc1ca86a8189c0af8d288a5",
+"db/db1/waps__frames_8h.html#a8bfbf1e81a7eaefcc0300b7f51a97bf4",
+"dc/db6/wms__beacon__rx_8h.html#aaf930a9f02b314e0112c182a28629d65",
+"dd/db3/unionwaps__frame__t_8____unnamed____.html#a815be97df65d6c4b510cd07189c5347a",
+"de/de7/promistel__rpi__hat_2board_8h.html#a29ae5883a2b90d5dd60552e78fa1a639",
+"df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a01f9d2b030a8adf650d031e23cc2255a",
+"df/de4/wms__beacon__tx_8h.html#a68a7e15245801d62c1b730e82461f48c",
+"index.html#sdk_libraries"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

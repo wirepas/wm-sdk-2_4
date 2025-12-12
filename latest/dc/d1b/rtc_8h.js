@@ -18,6 +18,7 @@ var rtc_8h =
       [ "PROV_DATA_ID_NET_KEY_SEQ", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a03fd02db9136d91cdb509f9ed302ba07", null ],
       [ "PROV_DATA_ID_MGMT_ENC_KEY", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a3c72798ed8e5531bc70f0a4fdf65af21", null ],
       [ "PROV_DATA_ID_MGMT_AUTH_KEY", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2ad3d06dc3d9f95b868020030aed11434f", null ],
+      [ "PROV_DATA_ID_MGMT_KEY_SEQ", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a1df18485485ad3356f1318214268503b", null ],
       [ "RTC_ID_TIMESTAMP", "dc/d1b/rtc_8h.html#aee542072e8ed4c6421604a90538f9dc2a48d8e55630c25eacd43229f49680ebf1", null ],
       [ "RTC_ID_TIMEZONE_OFFSET", "dc/d1b/rtc_8h.html#aee542072e8ed4c6421604a90538f9dc2a4a3f2add8548db9b69ec808237fee449", null ]
     ] ],

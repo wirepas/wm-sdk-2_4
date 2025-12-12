@@ -40,38 +40,69 @@ a, a.el:visited, a.el:hover, a.el:focus, a.el:active {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* primary theme color. This will affect the entire websites color scheme: links, arrows, labels, ... */
-    --primary-color: #42242a;
-    --primary-dark-color: #f04b30;
-    --primary-light-color: #42242a;
-    --primary-lighter-color: #cae1f1;
-    --primary-lightest-color: #e9f1f8;
-    /* default box shadow used for raising an element above the normal content. Used in dropdowns, Searchresult, ... */
-    --box-shadow: 0 2px 10px 0 rgba(0,0,0,.1);
-    --odd-color: rgba(0,0,0,.03);
-    --menu-selected-background: rgba(0,0,0,.05);
-    --page-background-color: white;
-    --page-foreground-color: #42242a;
-    --page-secondary-foreground-color: #67727e;
-    --separator-color: #dedede;
-    --side-nav-background: #fbfbfb;
-    --code-background: #f5f5f5;
-    --tablehead-background: #f1f1f1;
-    /* blockquote colors */
-    --blockquote-background: #f5f5f5;
-    --blockquote-foreground: #727272;
-    /* colors for various content boxes: @warning, @note, @deprecated @bug */
-    --warning-color: #fca49b;
-    --warning-color-dark: #b61825;
-    --warning-color-darker: #75070f;
-    --note-color: rgba(255,229,100,.3);
-    --note-color-dark: #c39900;
-    --note-color-darker: #8d7400;
-    --deprecated-color: rgb(214, 216, 224);
-    --deprecated-color-dark: #5b6269;
-    --deprecated-color-darker: #43454a;
-    --bug-color: rgb(246, 208, 178);
-    --bug-color-dark: #a53a00;
-    --bug-color-darker: #5b1d00;
+    --primary-color: #f04b30;  
+    --primary-dark-color: #ff6b4a;  
+    --primary-light-color: #f04b30;
+    --primary-lighter-color: #ff8a6b;
+    --primary-lightest-color: #2a1a1c;
+    
+    /* Dark backgrounds */
+    --page-background-color: #1a1a1a;  /* Dark background */
+    --page-foreground-color: #e0e0e0;  /* Light text */
+    --page-secondary-foreground-color: #b0b0b0;
+    --side-nav-background: #2a2a2a;
+    --header-background: #2a1a1c;  
+    
+    /* Dark UI elements */
+    --separator-color: #404040;
+    --code-background: #2d2d2d;
+    --tablehead-background: #333333;
+    --box-shadow: 0 2px 10px 0 rgba(0,0,0,.3);
+    --odd-color: rgba(255,255,255,.03);
+    --menu-selected-background: rgba(255,255,255,.1);
+    
+    /* Keep your link color or adjust for dark mode */
+    --link-color: #5ba3e0;  /* Lighter blue for better dark mode contrast */
+    
+    /* Content box colors for dark mode */
+    --blockquote-background: #2d2d2d;
+    --blockquote-foreground: #b0b0b0;
+    
+    /* Status colors adjusted for dark mode */
+    --warning-color: rgba(252, 164, 155, 0.3);
+    --warning-color-dark: #ff6b4a;
+    --warning-color-darker: #f04b30;
+    
+    --note-color: rgba(255,229,100,.2);
+    --note-color-dark: #e6c200;
+    --note-color-darker: #b39900;
+    
+    --deprecated-color: rgba(214, 216, 224, 0.2);
+    --deprecated-color-dark: #8b8d94;
+    --deprecated-color-darker: #6a6c73;
+    
+    --bug-color: rgba(246, 208, 178, 0.2);
+    --bug-color-dark: #d4621a;
+    --bug-color-darker: #a04a00;
+  }
+
+  img[alt="Logo"] {
+      filter: invert(1) brightness(1.1) contrast(1.1);
+      transition: filter 0.3s ease;
+  }  
+
+  /* Dark mode specific overrides */
+  div.header {
+    background-color: var(--header-background);
+    color: var(--primary-dark-color);
+  }
+  
+  h1, h2, h3, h4, h5 {
+    color: var(--primary-dark-color);
+  }
+  
+  a, a.el:visited, a.el:hover, a.el:focus, a.el:active {
+    color: var(--link-color);
   }
 }
+

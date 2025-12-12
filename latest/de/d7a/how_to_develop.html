@@ -312,11 +312,11 @@ Using platform specific storage</h2>
 Using a dedicated area in flash</h2>
 <p>The internal flash is partitioned in multiple areas. Some of these areas are used for Wirepas usage like the bootloader or the firmware that cannot be moved. But the remaining part of flash can be freely partitioned by the application. Each area has a dedicated area ID and a given size. More information about area ids and its usage can be found in <a class="el" href="../../de/d7a/how_to_develop.html#relmat2">[2]</a></p>
 <p>The steps to realize are:</p><ol type="1">
-<li>Defining a new partitioning in the <a class="el" href="../../d5/d7b/application_examples.html#config_mk_ini_file">Ini file</a> by adding a new area with flag user (i.e. flags = 0x00000014)</li>
+<li>Defining a new partitioning in the <a class="el" href="../../d5/d7b/application_examples.html#config_mk_ini_file">.ini file</a> by adding a new area with flag user (i.e. flags = 0x00000014)</li>
 <li>Access it through the <a class="el" href="../../d6/d15/wms__memory__area_8h.html#d8/d55/structapp__lib__memory__area__t">memory area library</a> handle from your application.</li>
 <li>Application can also directly access the memory area without using the library, but it requires the application to know the absolute address of the area (not needed with the memory library)</li>
 </ol>
-<p>An example can be found from the <a class="el" href="../../d5/da9/provisioning_joining_node_2app_8c-example.html">provisioning joining node</a> with the code to access the memory area in storage_memarea.c and example of modified ini file in the scratchpad_ini folder</p>
+<p>An example can be found from the <a class="el" href="../../d5/da9/provisioning_joining_node_2app_8c-example.html">provisioning joining node</a> with the code to access the memory area in storage_memarea.c and example of modified <code>.ini</code> file in the scratchpad_ini folder</p>
 <ul>
 <li>Pros<ol type="1">
 <li>Reserved persistent area for application can be quite large as long as enough room is reserved for receiving new scratchpads</li>

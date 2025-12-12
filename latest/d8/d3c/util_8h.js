@@ -4,6 +4,7 @@ var util_8h =
     [ "Util_inBetween", "d8/d3c/util_8h.html#a71315935337cfe57c1ed37f0db74e0b1", null ],
     [ "Util_isLtUint32", "d8/d3c/util_8h.html#adebe9bfb877b327ee2c85fb1d3109089", null ],
     [ "Util_isSmallest", "d8/d3c/util_8h.html#a4259357e97eed61747c427e81805dfb1", null ],
+    [ "member_size", "d8/d3c/util_8h.html#af89f4d2d8177557601d0ebd71d4500bf", null ],
     [ "SA_BASE", "d8/d3c/util_8h.html#af99ee9e7dbf5f0012b2dcf5c1e90c458", null ],
     [ "SA_MEMBERNAME", "d8/d3c/util_8h.html#ae66dbeb96b3d4203ab6f6efa3d5ab388", null ],
     [ "STRUCT_ALIGN_2", "d8/d3c/util_8h.html#a6ff3388c1c7a3f2ab1428926662e1e27", null ],
