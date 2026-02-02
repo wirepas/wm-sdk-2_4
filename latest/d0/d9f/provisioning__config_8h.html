@@ -100,7 +100,8 @@ $(document).ready(function(){initNavTree('d0/d9f/provisioning__config_8h.html','
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
 <div class="title">provisioning_config.h File Reference</div>  </div>
 </div><!--header-->
@@ -118,6 +119,22 @@ Functions</h2></td></tr>
 <tr class="separator:a3e71f1a76e96fbb2a23254d8d90097eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f8b445c2d68addad26a8cc9699ac0e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d9f/provisioning__config_8h.html#a5f8b445c2d68addad26a8cc9699ac0e4">remote_api_csap_cancel</a> (void)</td></tr>
 <tr class="separator:a5f8b445c2d68addad26a8cc9699ac0e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa91563288fc7c7789984c5bc37dd7504"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6">settings_validation_ret_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d9f/provisioning__config_8h.html#aa91563288fc7c7789984c5bc37dd7504">validate_settings</a> (const <a class="el" href="../../d0/dae/provisioning_8h.html#df/d2a/structprovisioning__settings__t">provisioning_settings_t</a> *settings)</td></tr>
+<tr class="separator:aa91563288fc7c7789984c5bc37dd7504"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:aaa3be685d8bf3f85db585456332c13b6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6">settings_validation_ret_e</a> { <br />
+&#160;&#160;<a class="el" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6af5e531b860c5711ddc37fa23f639063d">SETTINGS_OK</a> = 0, 
+<a class="el" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6a165f9590a0459fc11a83d1b558a2cd0f">SETTINGS_INVALID</a> = 1, 
+<a class="el" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6abc6392f63d9b9701b31c3fcb2d9586ea">SETTINGS_UID_INVALID_LENGTH</a> = 2, 
+<a class="el" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6ae69f0c7466ffbbb8d75b64776453c620">SETTINGS_EUID_INVALID_TYPE</a> = 3, 
+<br />
+&#160;&#160;<a class="el" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6ac134c59a44e0ae5b897d9cf405d3ae81">SETTINGS_INVALID_KEY</a> = 4, 
+<a class="el" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6a18e8c9b267502d1b21e90bc9bba93a77">SETTINGS_INVALID_TIMEOUT</a> = 5
+<br />
+ }</td></tr>
+<tr class="separator:aaa3be685d8bf3f85db585456332c13b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a5f8b445c2d68addad26a8cc9699ac0e4"></a>
@@ -237,8 +254,66 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="aa91563288fc7c7789984c5bc37dd7504"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa91563288fc7c7789984c5bc37dd7504">&#9670;&nbsp;</a></span>validate_settings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6">settings_validation_ret_e</a> validate_settings </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/dae/provisioning_8h.html#df/d2a/structprovisioning__settings__t">provisioning_settings_t</a> *&#160;</td>
+          <td class="paramname"><em>settings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="aaa3be685d8bf3f85db585456332c13b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa3be685d8bf3f85db585456332c13b6">&#9670;&nbsp;</a></span>settings_validation_ret_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6">settings_validation_ret_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aaa3be685d8bf3f85db585456332c13b6af5e531b860c5711ddc37fa23f639063d"></a>SETTINGS_OK&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaa3be685d8bf3f85db585456332c13b6a165f9590a0459fc11a83d1b558a2cd0f"></a>SETTINGS_INVALID&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaa3be685d8bf3f85db585456332c13b6abc6392f63d9b9701b31c3fcb2d9586ea"></a>SETTINGS_UID_INVALID_LENGTH&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaa3be685d8bf3f85db585456332c13b6ae69f0c7466ffbbb8d75b64776453c620"></a>SETTINGS_EUID_INVALID_TYPE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaa3be685d8bf3f85db585456332c13b6ac134c59a44e0ae5b897d9cf405d3ae81"></a>SETTINGS_INVALID_KEY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaa3be685d8bf3f85db585456332c13b6a18e8c9b267502d1b21e90bc9bba93a77"></a>SETTINGS_INVALID_TIMEOUT&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="../../d0/d9f/provisioning__config_8h_source.html#l00009">9</a> of file <a class="el" href="../../d0/d9f/provisioning__config_8h_source.html">provisioning_config.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6af5e531b860c5711ddc37fa23f639063d">SETTINGS_OK</a> = 0,</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6a165f9590a0459fc11a83d1b558a2cd0f">SETTINGS_INVALID</a> = 1, <span class="comment">// catch-all</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6abc6392f63d9b9701b31c3fcb2d9586ea">SETTINGS_UID_INVALID_LENGTH</a> = 2,</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6ae69f0c7466ffbbb8d75b64776453c620">SETTINGS_EUID_INVALID_TYPE</a> = 3,</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6ac134c59a44e0ae5b897d9cf405d3ae81">SETTINGS_INVALID_KEY</a> = 4,</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6a18e8c9b267502d1b21e90bc9bba93a77">SETTINGS_INVALID_TIMEOUT</a> = 5,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;} <a class="code" href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6">settings_validation_ret_e</a>;</div>
+</div><!-- fragment -->
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aprovisioning__config_8h_html_aaa3be685d8bf3f85db585456332c13b6af5e531b860c5711ddc37fa23f639063d"><div class="ttname"><a href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6af5e531b860c5711ddc37fa23f639063d">SETTINGS_OK</a></div><div class="ttdeci">@ SETTINGS_OK</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d9f/provisioning__config_8h_source.html#l00011">provisioning_config.h:11</a></div></div>
+<div class="ttc" id="aprovisioning__config_8h_html_aaa3be685d8bf3f85db585456332c13b6a18e8c9b267502d1b21e90bc9bba93a77"><div class="ttname"><a href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6a18e8c9b267502d1b21e90bc9bba93a77">SETTINGS_INVALID_TIMEOUT</a></div><div class="ttdeci">@ SETTINGS_INVALID_TIMEOUT</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d9f/provisioning__config_8h_source.html#l00016">provisioning_config.h:16</a></div></div>
+<div class="ttc" id="aprovisioning__config_8h_html_aaa3be685d8bf3f85db585456332c13b6ae69f0c7466ffbbb8d75b64776453c620"><div class="ttname"><a href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6ae69f0c7466ffbbb8d75b64776453c620">SETTINGS_EUID_INVALID_TYPE</a></div><div class="ttdeci">@ SETTINGS_EUID_INVALID_TYPE</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d9f/provisioning__config_8h_source.html#l00014">provisioning_config.h:14</a></div></div>
+<div class="ttc" id="aprovisioning__config_8h_html_aaa3be685d8bf3f85db585456332c13b6abc6392f63d9b9701b31c3fcb2d9586ea"><div class="ttname"><a href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6abc6392f63d9b9701b31c3fcb2d9586ea">SETTINGS_UID_INVALID_LENGTH</a></div><div class="ttdeci">@ SETTINGS_UID_INVALID_LENGTH</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d9f/provisioning__config_8h_source.html#l00013">provisioning_config.h:13</a></div></div>
+<div class="ttc" id="aprovisioning__config_8h_html_aaa3be685d8bf3f85db585456332c13b6"><div class="ttname"><a href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6">settings_validation_ret_e</a></div><div class="ttdeci">settings_validation_ret_e</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d9f/provisioning__config_8h_source.html#l00009">provisioning_config.h:9</a></div></div>
+<div class="ttc" id="aprovisioning__config_8h_html_aaa3be685d8bf3f85db585456332c13b6ac134c59a44e0ae5b897d9cf405d3ae81"><div class="ttname"><a href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6ac134c59a44e0ae5b897d9cf405d3ae81">SETTINGS_INVALID_KEY</a></div><div class="ttdeci">@ SETTINGS_INVALID_KEY</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d9f/provisioning__config_8h_source.html#l00015">provisioning_config.h:15</a></div></div>
+<div class="ttc" id="aprovisioning__config_8h_html_aaa3be685d8bf3f85db585456332c13b6a165f9590a0459fc11a83d1b558a2cd0f"><div class="ttname"><a href="../../d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6a165f9590a0459fc11a83d1b558a2cd0f">SETTINGS_INVALID</a></div><div class="ttdeci">@ SETTINGS_INVALID</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d9f/provisioning__config_8h_source.html#l00012">provisioning_config.h:12</a></div></div>
 <!-- HTML footer for doxygen 1.8.17-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -54,6 +54,8 @@ var provisioning__int_8h =
     [ "provisioning_joining_end_cb_f", "d9/d27/provisioning__int_8h.html#a981d6e69d029513017f86838e4489cca", null ],
     [ "provisioning_start_cb_f", "d9/d27/provisioning__int_8h.html#ab4990f992824d56f9c04b18bfb356a98", null ],
     [ "Provisioning_Data_decode", "d9/d27/provisioning__int_8h.html#a990a169cef676cc56e93e8a8eaa7eb92", null ],
+    [ "Provisioning_Failsafe_callback_beacons", "d9/d27/provisioning__int_8h.html#aaa08080a64367212f0187acefa1d5d27", null ],
+    [ "Provisioning_Failsafe_callback_end", "d9/d27/provisioning__int_8h.html#a0f4929aa4bf41487bc802f7ad20f2f77", null ],
     [ "Provisioning_Failsafe_init", "d9/d27/provisioning__int_8h.html#a693577a6b2a62de646a16b9aa1bcd2a9", null ],
     [ "Provisioning_Failsafe_start", "d9/d27/provisioning__int_8h.html#a3744e7894d5d7f7be61adad0aa904f57", null ],
     [ "Provisioning_Failsafe_stop", "d9/d27/provisioning__int_8h.html#a38fe15b3f774dcb5f1fb6da5ac1f0c86", null ],
@@ -102,7 +104,6 @@ var provisioning__int_8h =
     [ "PROV_PDU_SIZE", "d9/d27/provisioning__int_8h.html#a2c3cec32ea98ef20751da98b95620fad", null ],
     [ "PROV_START_FLAGS_NONE", "d9/d27/provisioning__int_8h.html#a8a60c01fd2f5035e8302fa1a2c9afe98", null ],
     [ "PROV_START_FLAGS_NW_PARAM_EQUAL_CHECK", "d9/d27/provisioning__int_8h.html#a8fbde8b21db8b7c14e7d71fdc4766289", null ],
-    [ "PROV_UID_TYPE_UUID_V4", "d9/d27/provisioning__int_8h.html#a2d0a8b2dd08ec3f9f4564fbc7f602b58", null ],
     [ "PROV_UPLINK_DST_EP", "d9/d27/provisioning__int_8h.html#a6baeb29e65cb0a7a58407af37cd6d2df", null ],
     [ "PROV_UPLINK_SRC_EP", "d9/d27/provisioning__int_8h.html#a8a4ca728a9d85c768d2178ea7e97c152", null ]
 ];

@@ -426,7 +426,7 @@ Macros</h2></td></tr>
 <div class="line">     lib_state-&gt;startStack();</div>
 <div class="line">}</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00954">954</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00958">958</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -451,13 +451,14 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Number of endpoint values written into <code>endpoints</code>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Note that the list of returned endpoints contain all config data items, not limited to those used by the application, but also including the endpoints used internally by the Wirepas stack.</dd></dl>
 <p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#define MAX_ITEMS 6</span></div>
 <div class="line"> </div>
 <div class="line">uint16_t endpoints[MAX_ITEMS];</div>
 <div class="line"> </div>
 <div class="line">uint8_t amount_endpoints = lib_data-&gt;getAllConfigDataEndpoints(endpoints, MAX_ITEMS);</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00863">863</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00867">867</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -636,7 +637,7 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00878">878</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00882">882</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -846,7 +847,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if mode is accepted. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l01000">1000</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l01004">1004</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -872,7 +873,7 @@ Macros</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if value is fine. <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> or <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a3003711bc2e65045853433dacc324767">APP_RES_INVALID_VALUE</a> if hops left value is too large to be represented</dd></dl>
 <p>Local multicast is the feature where propagation of multicast packets shall be limited when reaching outside target multicast group. This will decrease propagation of the packet in such areas, decreasing caused traffic load to network. When packet reaches device which does not belong to target multicast group, propagation of the packet is limited to amount of hops left defined in <code>info</code>. When packet is transmitted inside target multicast group, propagation is not affected. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00992">992</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00996">996</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -924,7 +925,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, always <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00890">890</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00894">894</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -1004,7 +1005,7 @@ In order for this to be activate, flag <a class="el" href="../../d6/d50/wms__dat
 <dl class="section warning"><dt>Warning</dt><dd>This function will be deprecated in a future release. Use lib_data-&gt;setConfigDataItem() instead.</dd></dl>
 <p>Example: </p><div class="fragment"><div class="line">lib_data-&gt;writeDiagnosticInterval(30);</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00920">920</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00924">924</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>
@@ -1416,7 +1417,7 @@ length</td>
 </div><div class="memdoc">
 <div class="textblock"><p>Information on setting local multicast functionality. To be used with service <a class="el" href="../../d6/d50/wms__data_8h.html#aa25a094a9e377a22976a9c76b9eb66a6">lib_data-&gt;setLocalMulticastInfo()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00966">966</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00970">970</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1442,7 +1443,7 @@ Amount of hops left set when multicast packet goes out of target multicast group
 </div><div class="memdoc">
 <div class="textblock"><p>List of library services. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l01005">1005</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l01009">1009</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1879,7 +1880,7 @@ writeDiagnosticInterval</td>
 
 <p>Dedicated value to disable local multicast functionality. To be used with service <a class="el" href="../../d6/d50/wms__data_8h.html#aa25a094a9e377a22976a9c76b9eb66a6">lib_data-&gt;setLocalMulticastInfo()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00960">960</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/d50/wms__data_8h_source.html#l00964">964</a> of file <a class="el" href="../../d6/d50/wms__data_8h_source.html">wms_data.h</a>.</p>
 
 </div>
 </div>

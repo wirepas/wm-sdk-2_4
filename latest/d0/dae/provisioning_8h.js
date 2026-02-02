@@ -61,11 +61,6 @@ var provisioning_8h =
       [ "PROV_METHOD_EXTENDED_UID", "d0/dae/provisioning_8h.html#ac27601a4f3f8b1b11e8eba070f6ced1ba7fe5b0de01782c89f92a996b0c5868cf", null ],
       [ "PROV_METHOD_EXTENDED_UID_KEY_MGMT", "d0/dae/provisioning_8h.html#ac27601a4f3f8b1b11e8eba070f6ced1bad4c5b0c1855944f48fa19c4070cc2a4b", null ]
     ] ],
-    [ "provisioning_method_flag_e", "d0/dae/provisioning_8h.html#a68de8b520d67391e8b7452c523e57da5", [
-      [ "PROV_METHOD_FLAG_SECURED", "d0/dae/provisioning_8h.html#a68de8b520d67391e8b7452c523e57da5a05d91e1c0cb7723835887c0f43a059c8", null ],
-      [ "PROV_METHOD_FLAG_EXTENDED_UID", "d0/dae/provisioning_8h.html#a68de8b520d67391e8b7452c523e57da5a6d38d2a3934582f39e386216070ff7ae", null ],
-      [ "PROV_METHOD_FLAG_KEY_MGMT", "d0/dae/provisioning_8h.html#a68de8b520d67391e8b7452c523e57da5add9802d84538edb033599afdaf8c81e3", null ]
-    ] ],
     [ "provisioning_res_e", "d0/dae/provisioning_8h.html#a6d4b29ca58ea67e8612eeb1556ffe853", [
       [ "PROV_RES_SUCCESS", "d0/dae/provisioning_8h.html#a6d4b29ca58ea67e8612eeb1556ffe853a1dffa35a099bc1dea325ca0f11f45645", null ],
       [ "PROV_RES_TIMEOUT", "d0/dae/provisioning_8h.html#a6d4b29ca58ea67e8612eeb1556ffe853a65a69df1822d52a14b76f02e673b03b7", null ],

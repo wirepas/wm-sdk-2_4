@@ -121,14 +121,6 @@ $(document).ready(function(){initNavTree('d7/db8/minimal_app_2app_8c-example.htm
 <div class="line"> </div>
 <div class="line">    <a name="a1"></a><a class="code" href="../../d4/d4f/app__setup_8h.html#a8612711c0f7664438eee795e0a3128bb">App_Setup</a>();</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Basic configuration of the node with a unique node address</span></div>
-<div class="line">    <span class="keywordflow">if</span> (<a name="a2"></a><a class="code" href="../../df/d2e/node__configuration_8h.html#a2560821c66e34240aa698da5affba7c7">configureNodeFromBuildParameters</a>() != <a name="a3"></a><a class="code" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a>)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">// Could not configure the node</span></div>
-<div class="line">        <span class="comment">// It should not happen except if one of the config value is invalid</span></div>
-<div class="line">        <span class="keywordflow">return</span>;</div>
-<div class="line">    }</div>
-<div class="line"> </div>
 <div class="line">    <span class="comment">/*</span></div>
 <div class="line"><span class="comment">     * Start the stack.</span></div>
 <div class="line"><span class="comment">     * This is really important step, otherwise the stack will stay stopped and</span></div>
@@ -142,10 +134,8 @@ $(document).ready(function(){initNavTree('d7/db8/minimal_app_2app_8c-example.htm
 </div><!-- doc-content -->
 <div class="ttc" id="aapp__setup_8h_html"><div class="ttname"><a href="../../d4/d4f/app__setup_8h.html">app_setup.h</a></div></div>
 <div class="ttc" id="anode__configuration_8h_html"><div class="ttname"><a href="../../df/d2e/node__configuration_8h.html">node_configuration.h</a></div></div>
-<div class="ttc" id="awms__app_8h_html_a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122"><div class="ttname"><a href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a></div><div class="ttdeci">@ APP_RES_OK</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dbb/wms__app_8h_source.html#l00204">wms_app.h:204</a></div></div>
 <div class="ttc" id="aapp__setup_8h_html_a8612711c0f7664438eee795e0a3128bb"><div class="ttname"><a href="../../d4/d4f/app__setup_8h.html#a8612711c0f7664438eee795e0a3128bb">App_Setup</a></div><div class="ttdeci">app_setup_res_e App_Setup(void)</div><div class="ttdoc">Setup configuration from application persistent memory.</div></div>
 <div class="ttc" id="awms__app_8h_html_d6/d81/structapp__global__functions__t"><div class="ttname"><a href="../../da/dbb/wms__app_8h.html#d6/d81/structapp__global__functions__t">app_global_functions_t</a></div><div class="ttdoc">List of global functions, passed to App_entrypoint()</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dbb/wms__app_8h_source.html#l00157">wms_app.h:157</a></div></div>
-<div class="ttc" id="anode__configuration_8h_html_a2560821c66e34240aa698da5affba7c7"><div class="ttname"><a href="../../df/d2e/node__configuration_8h.html#a2560821c66e34240aa698da5affba7c7">configureNodeFromBuildParameters</a></div><div class="ttdeci">__STATIC_INLINE app_res_e configureNodeFromBuildParameters()</div><div class="ttdoc">Wrapper on top of configureNode to get parameters from build system and hardcoded values from chip (f...</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d2e/node__configuration_8h_source.html#l00224">node_configuration.h:224</a></div></div>
 <div class="ttc" id="aapi_8h_html"><div class="ttname"><a href="../../dc/d65/api_8h.html">api.h</a></div></div>
 <!-- HTML footer for doxygen 1.8.17-->
 <!-- start footer part -->

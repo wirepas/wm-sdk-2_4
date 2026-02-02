@@ -122,48 +122,22 @@ $(document).ready(function(){initNavTree('da/d1e/dualmcu_app_2app_8c-example.htm
 <div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d5/d63/dualmcu__lib_8h.html">dualmcu_lib.h</a>&quot;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#ifdef DUALMCU_APP_KEY_MGMT</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keyword">static</span> <span class="keywordtype">bool</span> prov_end_cb(<a class="code" href="../../d0/dae/provisioning_8h.html#a6d4b29ca58ea67e8612eeb1556ffe853">provisioning_res_e</a> result)</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> (<a name="a0"></a><a class="code" href="../../d0/dae/provisioning_8h.html#a6d4b29ca58ea67e8612eeb1556ffe853a1dffa35a099bc1dea325ca0f11f45645">PROV_RES_SUCCESS</a> == result) ? true : <span class="keyword">false</span>;</div>
-<div class="line">}</div>
-<div class="line"> </div>
-<div class="line"><span class="keyword">static</span> <span class="keyword">const</span> app_lib_joining_received_beacon_t *</div>
-<div class="line">    prov_beacon_joining_cb(</div>
-<div class="line">        <span class="keyword">const</span> app_lib_joining_received_beacon_t * <span class="keyword">const</span> beacons)</div>
-<div class="line">{</div>
-<div class="line">    <span class="keyword">const</span> app_lib_joining_received_beacon_t * selected_beacon = beacons;</div>
-<div class="line">    <span class="keyword">const</span> app_lib_joining_received_beacon_t * current_beacon = beacons;</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">while</span> ((current_beacon = current_beacon-&gt;next) != NULL)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">if</span> (current_beacon-&gt;rssi &gt; selected_beacon-&gt;rssi)</div>
-<div class="line">        {</div>
-<div class="line">            selected_beacon = current_beacon;</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line">    </div>
-<div class="line">    <span class="keywordflow">return</span> selected_beacon;</div>
-<div class="line">}</div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> App_init(<span class="keyword">const</span> <a name="_a1"></a><a class="code" href="../../da/dbb/wms__app_8h.html#d6/d81/structapp__global__functions__t">app_global_functions_t</a> * functions)</div>
+<div class="line"><span class="keywordtype">void</span> App_init(<span class="keyword">const</span> <a name="_a0"></a><a class="code" href="../../da/dbb/wms__app_8h.html#d6/d81/structapp__global__functions__t">app_global_functions_t</a> * functions)</div>
 <div class="line">{</div>
 <div class="line">    (void) functions;</div>
 <div class="line"> </div>
-<div class="line">    <a name="a2"></a><a class="code" href="../../d4/d4f/app__setup_8h.html#a8612711c0f7664438eee795e0a3128bb">App_Setup</a>();</div>
+<div class="line">    <a name="a1"></a><a class="code" href="../../d4/d4f/app__setup_8h.html#a8612711c0f7664438eee795e0a3128bb">App_Setup</a>();</div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#ifdef DUALMCU_APP_KEY_MGMT</span></div>
 <div class="line"> </div>
 <div class="line">    <a class="code" href="../../df/d62/wms__settings_8h.html#a6e80e9f924c933ad9e52603b56a3f82a">app_lib_settings_role_t</a> role;</div>
-<div class="line">    <span class="keywordflow">if</span> (lib_settings-&gt;getNodeRole(&amp;role) == <a name="a3"></a><a class="code" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a>)</div>
+<div class="line">    <span class="keywordflow">if</span> (lib_settings-&gt;getNodeRole(&amp;role) == <a name="a2"></a><a class="code" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a>)</div>
 <div class="line">    {</div>
-<div class="line">        <span class="keywordflow">if</span> (role == <a name="a4"></a><a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a814d2aa3fd8f79d70d6a0ddeee57c504">APP_LIB_SETTINGS_ROLE_SINK_LE</a></div>
-<div class="line">            || role == <a name="a5"></a><a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a3705edf2786fadb244f262171131204d">APP_LIB_SETTINGS_ROLE_SINK_LL</a>)</div>
+<div class="line">        <span class="keywordflow">if</span> (role == <a name="a3"></a><a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a814d2aa3fd8f79d70d6a0ddeee57c504">APP_LIB_SETTINGS_ROLE_SINK_LE</a></div>
+<div class="line">            || role == <a name="a4"></a><a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a3705edf2786fadb244f262171131204d">APP_LIB_SETTINGS_ROLE_SINK_LL</a>)</div>
 <div class="line">        {</div>
 <div class="line">            lib_settings-&gt;keyManagementConfiguration(</div>
-<div class="line">                &amp;(<a name="_a6"></a><a class="code" href="../../df/d62/wms__settings_8h.html#da/d24/structapp__lib__settings__key__management__configuration__t">app_lib_settings_key_management_configuration_t</a>){</div>
+<div class="line">                &amp;(<a name="_a5"></a><a class="code" href="../../df/d62/wms__settings_8h.html#da/d24/structapp__lib__settings__key__management__configuration__t">app_lib_settings_key_management_configuration_t</a>){</div>
 <div class="line">                    .flags = {</div>
 <div class="line">                        .apply_flags = 1,</div>
 <div class="line">                        .app_key_management_supported = 1,</div>
@@ -174,27 +148,22 @@ $(document).ready(function(){initNavTree('da/d1e/dualmcu_app_2app_8c-example.htm
 <div class="line">        } </div>
 <div class="line">        <span class="keywordflow">else</span></div>
 <div class="line">        {</div>
-<div class="line">            <a name="a7"></a><a class="code" href="../../d0/dae/provisioning_8h.html#af0c60a80bfcf65df5d5dc53d9dbdeb36">Provisioning_init_from_storage</a>(&amp;(<a name="_a8"></a><a class="code" href="../../d0/dae/provisioning_8h.html#dd/d04/structprovisioning__conf__t">provisioning_conf_t</a>){</div>
-<div class="line">                .end_cb = prov_end_cb,</div>
-<div class="line">                .beacon_joining_cb = prov_beacon_joining_cb</div>
-<div class="line">            });</div>
+<div class="line">            <a name="a6"></a><a class="code" href="../../d0/dae/provisioning_8h.html#af0c60a80bfcf65df5d5dc53d9dbdeb36">Provisioning_init_from_storage</a>(&amp;(<a name="_a7"></a><a class="code" href="../../d0/dae/provisioning_8h.html#dd/d04/structprovisioning__conf__t">provisioning_conf_t</a>){0});</div>
 <div class="line">        }</div>
 <div class="line">    }</div>
 <div class="line"><span class="preprocessor">#else</span></div>
-<div class="line">    <a name="a9"></a><a class="code" href="../../d6/dd2/local__provisioning_8h.html#a4165364656d6855239266af640b36d5f">Local_provisioning_init</a>(NULL, NULL);</div>
+<div class="line">    <a name="a8"></a><a class="code" href="../../d6/dd2/local__provisioning_8h.html#a4165364656d6855239266af640b36d5f">Local_provisioning_init</a>(NULL, NULL);</div>
 <div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line"> </div>
-<div class="line">    <a name="a10"></a><a class="code" href="../../d5/d63/dualmcu__lib_8h.html#ab51e6d4045f7d54ded85cd33ba5fa167">Dualmcu_lib_init</a>(UART_BAUDRATE, UART_FLOWCONTROL);</div>
+<div class="line">    <a name="a9"></a><a class="code" href="../../d5/d63/dualmcu__lib_8h.html#ab51e6d4045f7d54ded85cd33ba5fa167">Dualmcu_lib_init</a>(UART_BAUDRATE, UART_FLOWCONTROL);</div>
 <div class="line">}</div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="alocal__provisioning_8h_html"><div class="ttname"><a href="../../d6/dd2/local__provisioning_8h.html">local_provisioning.h</a></div></div>
-<div class="ttc" id="aprovisioning_8h_html_a6d4b29ca58ea67e8612eeb1556ffe853a1dffa35a099bc1dea325ca0f11f45645"><div class="ttname"><a href="../../d0/dae/provisioning_8h.html#a6d4b29ca58ea67e8612eeb1556ffe853a1dffa35a099bc1dea325ca0f11f45645">PROV_RES_SUCCESS</a></div><div class="ttdeci">@ PROV_RES_SUCCESS</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dae/provisioning_8h_source.html#l00050">provisioning.h:50</a></div></div>
-<div class="ttc" id="aprovisioning_8h_html_a6d4b29ca58ea67e8612eeb1556ffe853"><div class="ttname"><a href="../../d0/dae/provisioning_8h.html#a6d4b29ca58ea67e8612eeb1556ffe853">provisioning_res_e</a></div><div class="ttdeci">provisioning_res_e</div><div class="ttdoc">Provisioning result.</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dae/provisioning_8h_source.html#l00048">provisioning.h:48</a></div></div>
 <div class="ttc" id="adualmcu__lib_8h_html"><div class="ttname"><a href="../../d5/d63/dualmcu__lib_8h.html">dualmcu_lib.h</a></div></div>
 <div class="ttc" id="aapp__setup_8h_html"><div class="ttname"><a href="../../d4/d4f/app__setup_8h.html">app_setup.h</a></div></div>
 <div class="ttc" id="awms__settings_8h_html"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html">wms_settings.h</a></div></div>
-<div class="ttc" id="aprovisioning_8h_html_dd/d04/structprovisioning__conf__t"><div class="ttname"><a href="../../d0/dae/provisioning_8h.html#dd/d04/structprovisioning__conf__t">provisioning_conf_t</a></div><div class="ttdoc">This structure contains all provisioning related parameters.</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dae/provisioning_8h_source.html#l00263">provisioning.h:263</a></div></div>
+<div class="ttc" id="aprovisioning_8h_html_dd/d04/structprovisioning__conf__t"><div class="ttname"><a href="../../d0/dae/provisioning_8h.html#dd/d04/structprovisioning__conf__t">provisioning_conf_t</a></div><div class="ttdoc">This structure contains all provisioning related parameters.</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dae/provisioning_8h_source.html#l00239">provisioning.h:239</a></div></div>
 <div class="ttc" id="awms__app_8h_html_a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122"><div class="ttname"><a href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a></div><div class="ttdeci">@ APP_RES_OK</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dbb/wms__app_8h_source.html#l00204">wms_app.h:204</a></div></div>
 <div class="ttc" id="aapp__setup_8h_html_a8612711c0f7664438eee795e0a3128bb"><div class="ttname"><a href="../../d4/d4f/app__setup_8h.html#a8612711c0f7664438eee795e0a3128bb">App_Setup</a></div><div class="ttdeci">app_setup_res_e App_Setup(void)</div><div class="ttdoc">Setup configuration from application persistent memory.</div></div>
 <div class="ttc" id="awms__app_8h_html_d6/d81/structapp__global__functions__t"><div class="ttname"><a href="../../da/dbb/wms__app_8h.html#d6/d81/structapp__global__functions__t">app_global_functions_t</a></div><div class="ttdoc">List of global functions, passed to App_entrypoint()</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dbb/wms__app_8h_source.html#l00157">wms_app.h:157</a></div></div>
