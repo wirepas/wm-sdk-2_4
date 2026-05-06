@@ -1,5 +1,7 @@
 var NAVTREEINDEX13 =
 {
+"dc/db6/wms__beacon__rx_8h.html#a3825cd0cfc978cd52d956c6195604797":[7,0,0,2,1,1],
+"dc/db6/wms__beacon__rx_8h.html#a3b962e67ba74725bd60ca3c29f785abe":[7,0,0,2,0,2],
 "dc/db6/wms__beacon__rx_8h.html#a4b03f4598842d009d89100a122c575d8":[7,0,0,2,3],
 "dc/db6/wms__beacon__rx_8h.html#a52d55d8f4e57b6dfbe1213ecd03f73fe":[7,0,0,2,8],
 "dc/db6/wms__beacon__rx_8h.html#a7b07c00bdcda35470ab71a9c73bba53c":[7,0,0,2,1,0],
@@ -148,8 +150,8 @@ var NAVTREEINDEX13 =
 "dd/d2c/bl__interface_8h.html#a9aee550ac0d15d2569c2090e8786dd17":[7,0,3,0,0,10],
 "dd/d2c/bl__interface_8h.html#a9fc0b8defd420744f18e5ee478f0af6b":[7,0,3,0,0,0,6],
 "dd/d2c/bl__interface_8h.html#aa2585d779da0ab21273a8d92de9a0ebe":[7,0,3,0,0,3,4],
-"dd/d2c/bl__interface_8h.html#aa60093a9a5d5d17864cfda66c47733e3":[7,0,3,0,0,2,0],
 "dd/d2c/bl__interface_8h.html#aa60093a9a5d5d17864cfda66c47733e3":[7,0,3,0,0,3,1],
+"dd/d2c/bl__interface_8h.html#aa60093a9a5d5d17864cfda66c47733e3":[7,0,3,0,0,2,0],
 "dd/d2c/bl__interface_8h.html#aa691912b1f952358843a0d2b7b77d642":[7,0,3,0,0,22],
 "dd/d2c/bl__interface_8h.html#aa8b1220e1f623a6b1e4a7aae240017d6":[7,0,3,0,0,5,1],
 "dd/d2c/bl__interface_8h.html#aa920dc7dbbfa201dba2cbf981dcbb70a":[7,0,3,0,0,1,5],
@@ -247,7 +249,5 @@ var NAVTREEINDEX13 =
 "dd/d9c/programming_interface.html#mcu_common_start_c":[4,4,1],
 "dd/d9c/programming_interface.html#mcu_hal_api":[4,4,2],
 "dd/d9c/programming_interface.html#mcu_specific_files":[4,4,3],
-"dd/d9c/programming_interface.html#ram_memory":[4,4,6],
-"dd/d9c/programming_interface.html#stack_api":[4,0],
-"dd/d9c/programming_interface.html#util_api":[4,5]
+"dd/d9c/programming_interface.html#ram_memory":[4,4,6]
 };

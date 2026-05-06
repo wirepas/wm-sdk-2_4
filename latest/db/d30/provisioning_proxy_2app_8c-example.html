@@ -123,7 +123,7 @@ $(document).ready(function(){initNavTree('db/d30/provisioning_proxy_2app_8c-exam
 <div class="line"> </div>
 <div class="line"><span class="comment">//#define LOW_LATENCY_NODE 1</span></div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#define ENABLE_LOCAL_PROVISIONING false</span></div>
+<div class="line"><span class="preprocessor">#define ENABLE_LOCAL_PROVISIONING true</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">static</span> <span class="keyword">const</span> uint8_t authentication_key[] =  {NET_AUTHEN_KEY};</div>
 <div class="line"> </div>
@@ -207,16 +207,17 @@ $(document).ready(function(){initNavTree('db/d30/provisioning_proxy_2app_8c-exam
 <div class="line"><span class="comment">       data being stored as plaintext on the flash.</span></div>
 <div class="line"><span class="comment">    */</span></div>
 <div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> uint8_t factory_key[] = {</div>
-<div class="line">                            0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,</div>
-<div class="line">                            0x08, 0X09, 0X0A, 0X0B, 0X0C, 0X0D, 0X0E, 0X0F,</div>
-<div class="line">                            0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,</div>
-<div class="line">                            0x08, 0X09, 0X0A, 0X0B, 0X0C, 0X0D, 0X0E, 0X0F</div>
-<div class="line">                            };</div>
+<div class="line">                                0xa1, 0xa2, 0xa3, 0xa4, 0xa5, 0xa6, 0xa7, 0xa8, 0xa9,</div>
+<div class="line">                                0xb1, 0xb2, 0xb3, 0xb4, 0xb5, 0xb6, 0xb7, 0xb8, 0xb9,</div>
+<div class="line">                                0xc1, 0xc2, 0xc3, 0xc4, 0xc5, 0xc6, 0xc7, 0xc8, 0xc9,</div>
+<div class="line">                                0xd1, 0xd2, 0xd3, 0xd4, 0xd5</div>
+<div class="line">                                };</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> uint32_t <span class="keywordtype">id</span> = 0x12345678;</div>
 <div class="line">    <a name="_a17"></a><a class="code" href="../../d0/dae/provisioning_8h.html#df/d3d/structprovisioning__proxy__conf__t">provisioning_proxy_conf_t</a> conf =</div>
 <div class="line">    {</div>
 <div class="line">        .<a name="a18"></a><a class="code" href="../../d0/dae/provisioning_8h.html#a72a96ade6a01c9bd107a0977b6a3059c">tx_power</a> = JOINING_TX_POWER,</div>
-<div class="line">        .payload = NULL,</div>
-<div class="line">        .num_bytes = 0,</div>
+<div class="line">        .payload = (uint8_t *)&amp;<span class="keywordtype">id</span>,</div>
+<div class="line">        .num_bytes = <span class="keyword">sizeof</span>(<span class="keywordtype">id</span>),</div>
 <div class="line">        .is_local_sec_allowed = ENABLE_LOCAL_PROVISIONING,</div>
 <div class="line">        .is_local_unsec_allowed = ENABLE_LOCAL_PROVISIONING,</div>
 <div class="line">        .key = factory_key,</div>
@@ -256,7 +257,7 @@ $(document).ready(function(){initNavTree('db/d30/provisioning_proxy_2app_8c-exam
 <div class="ttc" id="aprovisioning_8h_html_ab5f0c75b4246975b2dce8629d30ff7b5"><div class="ttname"><a href="../../d0/dae/provisioning_8h.html#ab5f0c75b4246975b2dce8629d30ff7b5">PROV_UUID_SIZE_BYTES</a></div><div class="ttdeci">#define PROV_UUID_SIZE_BYTES</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dae/provisioning_8h_source.html#l00019">provisioning.h:19</a></div></div>
 <div class="ttc" id="aprovisioning_8h_html_df/d3d/structprovisioning__proxy__conf__t"><div class="ttname"><a href="../../d0/dae/provisioning_8h.html#df/d3d/structprovisioning__proxy__conf__t">provisioning_proxy_conf_t</a></div><div class="ttdoc">This structure holds the joining proxy parameters.</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dae/provisioning_8h_source.html#l00266">provisioning.h:266</a></div></div>
 <div class="ttc" id="adebug__log_8h_html_a589372d7f7cc36183e6c19752a7df474"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a589372d7f7cc36183e6c19752a7df474">LVL_INFO</a></div><div class="ttdeci">#define LVL_INFO</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00083">debug_log.h:83</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a23d2002abd576025a705df36718a657b"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a23d2002abd576025a705df36718a657b">APP_LIB_SETTINGS_ROLE_HEADNODE_LE</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_HEADNODE_LE</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00073">wms_settings.h:73</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a23d2002abd576025a705df36718a657b"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a23d2002abd576025a705df36718a657b">APP_LIB_SETTINGS_ROLE_HEADNODE_LE</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_HEADNODE_LE</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00080">wms_settings.h:80</a></div></div>
 <div class="ttc" id="adebug__log_8h_html_a0666e007be537f1dd48e75b4abc0f53a"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a0666e007be537f1dd48e75b4abc0f53a">LOG_BUFFER</a></div><div class="ttdeci">#define LOG_BUFFER(level, buffer, size)</div><div class="ttdoc">Print a buffer if its severity is lower or equal to DEBUG_LOG_MAX_LEVEL.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00206">debug_log.h:206</a></div></div>
 <div class="ttc" id="aprovisioning_8h_html_a2df1e9207188e320093f9933631137b7"><div class="ttname"><a href="../../d0/dae/provisioning_8h.html#a2df1e9207188e320093f9933631137b7">Provisioning_Proxy_init</a></div><div class="ttdeci">provisioning_ret_e Provisioning_Proxy_init(provisioning_proxy_conf_t *conf)</div><div class="ttdoc">Initialize the provisioning proxy.</div></div>
 <div class="ttc" id="aprovisioning_8h_html_a85efeea2b977876f217931152f274b06"><div class="ttname"><a href="../../d0/dae/provisioning_8h.html#a85efeea2b977876f217931152f274b06">Provisioning_Proxy_start</a></div><div class="ttdeci">provisioning_ret_e Provisioning_Proxy_start(void)</div><div class="ttdoc">Start sending joining beacons. Provisioning packets will be forwarded to provisioning server or treat...</div></div>
@@ -283,7 +284,7 @@ $(document).ready(function(){initNavTree('db/d30/provisioning_proxy_2app_8c-exam
 <div class="ttc" id="adebug__log_8h_html_a94e6401c9e46b35182d9dbbce6b99be5"><div class="ttname"><a href="../../dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5">LOG</a></div><div class="ttdeci">#define LOG(level, fmt,...)</div><div class="ttdoc">Print a log message if its severity is lower or equal to DEBUG_LOG_MAX_LEVEL.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd9/debug__log_8h_source.html#l00173">debug_log.h:173</a></div></div>
 <div class="ttc" id="abutton_8h_html_a4e97005308962643f6d98e25de373ebeabd19dea9e19d02d7d39464dfdde1e48b"><div class="ttname"><a href="../../d7/d0e/button_8h.html#a4e97005308962643f6d98e25de373ebeabd19dea9e19d02d7d39464dfdde1e48b">BUTTON_PRESSED</a></div><div class="ttdeci">@ BUTTON_PRESSED</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d0e/button_8h_source.html#l00022">button.h:22</a></div></div>
 <div class="ttc" id="aprovisioning_8h_html_d5/d33/structprovisioning__proxy__net__param__t"><div class="ttname"><a href="../../d0/dae/provisioning_8h.html#d5/d33/structprovisioning__proxy__net__param__t">provisioning_proxy_net_param_t</a></div><div class="ttdoc">This structure contains the network parameters sent by the provisioning proxy to the new node.</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dae/provisioning_8h_source.html#l00155">provisioning.h:155</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a3d7c8b340098c5efef9c75159b793618"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a3d7c8b340098c5efef9c75159b793618">APP_LIB_SETTINGS_ROLE_HEADNODE_LL</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_HEADNODE_LL</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00075">wms_settings.h:75</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a3d7c8b340098c5efef9c75159b793618"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a3d7c8b340098c5efef9c75159b793618">APP_LIB_SETTINGS_ROLE_HEADNODE_LL</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_HEADNODE_LL</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00082">wms_settings.h:82</a></div></div>
 <div class="ttc" id="aprovisioning_8h_html"><div class="ttname"><a href="../../d0/dae/provisioning_8h.html">provisioning.h</a></div></div>
 <div class="ttc" id="aprovisioning_8h_html_aed113d07b2547a27d9b1a9ada6723399"><div class="ttname"><a href="../../d0/dae/provisioning_8h.html#aed113d07b2547a27d9b1a9ada6723399">provisioning_proxy_net_param_t::net_addr</a></div><div class="ttdeci">app_lib_settings_net_addr_t net_addr</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dae/provisioning_8h_source.html#l00162">provisioning.h:162</a></div></div>
 <div class="ttc" id="aapi_8h_html"><div class="ttname"><a href="../../dc/d65/api_8h.html">api.h</a></div></div>

@@ -127,9 +127,9 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4165364656d6855239266af640b36d5f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/dd2/local__provisioning_8h.html#a6754cb62e5c4f624b9d9852d0b5c0d0e">Local_provisioning_res_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dd2/local__provisioning_8h.html#a4165364656d6855239266af640b36d5f">Local_provisioning_init</a> (<a class="el" href="../../d6/dd2/local__provisioning_8h.html#d4/d9d/structlocal__provisioning__psk__t">local_provisioning_psk_t</a> *psk, <a class="el" href="../../d6/dd2/local__provisioning_8h.html#a00780404197689f4b7712d723b080083">local_provisioning_proxy_enabled_cb</a> on_proxy_enabled_cb)</td></tr>
-<tr class="memdesc:a4165364656d6855239266af640b36d5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the Local provisioning library.  <a href="../../d6/dd2/local__provisioning_8h.html#a4165364656d6855239266af640b36d5f">More...</a><br /></td></tr>
-<tr class="separator:a4165364656d6855239266af640b36d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c7a59d2e40eb5efa2f92a90f8fd89ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/dd2/local__provisioning_8h.html#a6754cb62e5c4f624b9d9852d0b5c0d0e">Local_provisioning_res_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dd2/local__provisioning_8h.html#a6c7a59d2e40eb5efa2f92a90f8fd89ad">Local_provisioning_init</a> (<a class="el" href="../../d6/dd2/local__provisioning_8h.html#d4/d9d/structlocal__provisioning__psk__t">local_provisioning_psk_t</a> *psk, <a class="el" href="../../d6/dd2/local__provisioning_8h.html#a00780404197689f4b7712d723b080083">local_provisioning_proxy_enabled_cb</a> on_proxy_enabled_cb, const <a class="el" href="../../d6/dd2/local__provisioning_8h.html#d3/d88/structlocal__provisioning__config__t">local_provisioning_config_t</a> *conf)</td></tr>
+<tr class="memdesc:a6c7a59d2e40eb5efa2f92a90f8fd89ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the Local provisioning library.  <a href="../../d6/dd2/local__provisioning_8h.html#a6c7a59d2e40eb5efa2f92a90f8fd89ad">More...</a><br /></td></tr>
+<tr class="separator:a6c7a59d2e40eb5efa2f92a90f8fd89ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73b8810e04a3a78fc3c916af71e409b0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dd2/local__provisioning_8h.html#a73b8810e04a3a78fc3c916af71e409b0">Local_provisioning_is_provisioned</a> ()</td></tr>
 <tr class="memdesc:a73b8810e04a3a78fc3c916af71e409b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the node provisioned A node is considered provisioned if it has a valid config with network security keys set.  <a href="../../d6/dd2/local__provisioning_8h.html#a73b8810e04a3a78fc3c916af71e409b0">More...</a><br /></td></tr>
 <tr class="separator:a73b8810e04a3a78fc3c916af71e409b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,6 +145,9 @@ Data Structures</h2></td></tr>
 <tr class="memitem:d4/d9d/structlocal__provisioning__psk__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dd2/local__provisioning_8h.html#d4/d9d/structlocal__provisioning__psk__t">local_provisioning_psk_t</a></td></tr>
 <tr class="memdesc:d4/d9d/structlocal__provisioning__psk__t"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pre shared key structure.  <a href="../../d6/dd2/local__provisioning_8h.html#d4/d9d/structlocal__provisioning__psk__t">More...</a><br /></td></tr>
 <tr class="separator:d4/d9d/structlocal__provisioning__psk__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:d3/d88/structlocal__provisioning__config__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dd2/local__provisioning_8h.html#d3/d88/structlocal__provisioning__config__t">local_provisioning_config_t</a></td></tr>
+<tr class="memdesc:d3/d88/structlocal__provisioning__config__t"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration for the Local provisioning library.  <a href="../../d6/dd2/local__provisioning_8h.html#d3/d88/structlocal__provisioning__config__t">More...</a><br /></td></tr>
+<tr class="separator:d3/d88/structlocal__provisioning__config__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -218,8 +221,8 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a4165364656d6855239266af640b36d5f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4165364656d6855239266af640b36d5f">&#9670;&nbsp;</a></span>Local_provisioning_init()</h2>
+<a id="a6c7a59d2e40eb5efa2f92a90f8fd89ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c7a59d2e40eb5efa2f92a90f8fd89ad">&#9670;&nbsp;</a></span>Local_provisioning_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -234,7 +237,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="../../d6/dd2/local__provisioning_8h.html#a00780404197689f4b7712d723b080083">local_provisioning_proxy_enabled_cb</a>&#160;</td>
-          <td class="paramname"><em>on_proxy_enabled_cb</em>&#160;</td>
+          <td class="paramname"><em>on_proxy_enabled_cb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d6/dd2/local__provisioning_8h.html#d3/d88/structlocal__provisioning__config__t">local_provisioning_config_t</a> *&#160;</td>
+          <td class="paramname"><em>conf</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -248,12 +257,14 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">psk</td><td>Pre Shared Key used between joining node and neighbor node. If set to NULL, secure method is still used but with a default key. </td></tr>
+    <tr><td class="paramname">on_proxy_enabled_cb</td><td>Callback notified when proxy is enabled or disabled. May be NULL. </td></tr>
+    <tr><td class="paramname">conf</td><td>Provisioning configuration. If NULL, defaults are used. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code of the operation </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>If psk is not set, even if data exchange is encrypted, anyone could decrypt it thanks to the default key available on GitHub. It is highly recommended to define a personal secret key that will be the same in all the nodes that can interact. </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/d1e/dualmcu_app_2app_8c-example.html#a8">dualmcu_app/app.c</a>, and <a class="el" href="../../dc/d5b/local_provisioning_2app_8c-example.html#a19">local_provisioning/app.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/d1e/dualmcu_app_2app_8c-example.html#a11">dualmcu_app/app.c</a>, and <a class="el" href="../../dc/d5b/local_provisioning_2app_8c-example.html#a21">local_provisioning/app.c</a>.</dd>
 </dl>
 
 </div>
@@ -276,7 +287,7 @@ Variables</h2></td></tr>
 <p>Is the node provisioned A node is considered provisioned if it has a valid config with network security keys set. </p>
 <dl class="section note"><dt>Note</dt><dd>Once provisioned, a node will automatically wait on app config specific order to start sending its joining beacons </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if node is provisioned, false otherwise. </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../dc/d5b/local_provisioning_2app_8c-example.html#a20">local_provisioning/app.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../dc/d5b/local_provisioning_2app_8c-example.html#a22">local_provisioning/app.c</a>.</dd>
 </dl>
 
 </div>
@@ -298,7 +309,7 @@ Variables</h2></td></tr>
 
 <p>Reset all node settings. </p>
 <dl class="section note"><dt>Note</dt><dd>This call will generate a reboot of node and will never return </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../dc/d5b/local_provisioning_2app_8c-example.html#a16">local_provisioning/app.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../dc/d5b/local_provisioning_2app_8c-example.html#a15">local_provisioning/app.c</a>.</dd>
 </dl>
 
 </div>
@@ -338,7 +349,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code of the operation </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../dc/d5b/local_provisioning_2app_8c-example.html#a12">local_provisioning/app.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../dc/d5b/local_provisioning_2app_8c-example.html#a7">local_provisioning/app.c</a>.</dd>
 </dl>
 
 </div>
@@ -373,6 +384,35 @@ id</td>
 <td class="fieldname">
 psk[32]</td>
 <td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="d3/d88/structlocal__provisioning__config__t" id="d3/d88/structlocal__provisioning__config__t"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#d3/d88/structlocal__provisioning__config__t">&#9670;&nbsp;</a></span>local_provisioning_config_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct local_provisioning_config_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>Configuration for the Local provisioning library. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/d1e/dualmcu_app_2app_8c-example.html#_a8">dualmcu_app/app.c</a>, and <a class="el" href="../../dc/d5b/local_provisioning_2app_8c-example.html#_a18">local_provisioning/app.c</a>.</dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d6/dd2/local__provisioning_8h_source.html#l00075">75</a> of file <a class="el" href="../../d6/dd2/local__provisioning_8h_source.html">local_provisioning.h</a>.</p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Data Fields</th></tr>
+<tr><td class="fieldtype">
+<a id="a6bbdc22c98ba6c8730c29079fe1186ea"></a>uint16_t</td>
+<td class="fieldname">
+timeout_s</td>
+<td class="fielddoc">
+<p>Provisioning session timeout in seconds </p>
 </td></tr>
 </table>
 

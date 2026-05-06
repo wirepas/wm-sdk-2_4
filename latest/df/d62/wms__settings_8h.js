@@ -125,6 +125,7 @@ var wms__settings_8h =
       [ "APP_LIB_SETTINGS_ROLE_ADVERTISER", "df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aafbafd13358d2b8d35f940ae8ff8ffe4", null ]
     ] ],
     [ "APP_LIB_SETTINGS_AES_KEY_NUM_BYTES", "df/d62/wms__settings_8h.html#a6c6561f73e83af4857749db05caac45c", null ],
+    [ "APP_LIB_SETTINGS_LL_ROLE_BIT", "df/d62/wms__settings_8h.html#ae66508dbd21ba441560fab04193dcbc8", null ],
     [ "APP_LIB_SETTINGS_NAME", "df/d62/wms__settings_8h.html#a839e417649c2a4f3410be75a1098cf34", null ],
     [ "APP_LIB_SETTINGS_VERSION", "df/d62/wms__settings_8h.html#a0030037c33657de1d8bf7bfaf074f9d4", null ],
     [ "CHANNEL_NO_CHANNEL", "df/d62/wms__settings_8h.html#aa78a81ee8d65c8bc6b6cd8911248d508", null ],

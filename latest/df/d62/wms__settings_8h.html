@@ -170,13 +170,13 @@ Typedefs</h2></td></tr>
 <tr class="memdesc:a09516bdd3d13abeb4d4079192b578854"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set node role.  <a href="../../df/d62/wms__settings_8h.html#a09516bdd3d13abeb4d4079192b578854">More...</a><br /></td></tr>
 <tr class="separator:a09516bdd3d13abeb4d4079192b578854"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85c65e28cf62c736e61d84bd7e8c08f6"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80">app_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d62/wms__settings_8h.html#a85c65e28cf62c736e61d84bd7e8c08f6">app_lib_settings_get_authentication_key_f</a>) (uint8_t *key_p)</td></tr>
-<tr class="memdesc:a85c65e28cf62c736e61d84bd7e8c08f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if authentication key is set.  <a href="../../df/d62/wms__settings_8h.html#a85c65e28cf62c736e61d84bd7e8c08f6">More...</a><br /></td></tr>
+<tr class="memdesc:a85c65e28cf62c736e61d84bd7e8c08f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the authentication key is set and read the key value.  <a href="../../df/d62/wms__settings_8h.html#a85c65e28cf62c736e61d84bd7e8c08f6">More...</a><br /></td></tr>
 <tr class="separator:a85c65e28cf62c736e61d84bd7e8c08f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9e12ee5bde6d5addc101b05979ed96e"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80">app_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d62/wms__settings_8h.html#aa9e12ee5bde6d5addc101b05979ed96e">app_lib_settings_set_authentication_key_f</a>) (const uint8_t *key_p)</td></tr>
 <tr class="memdesc:aa9e12ee5bde6d5addc101b05979ed96e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set authentication key.  <a href="../../df/d62/wms__settings_8h.html#aa9e12ee5bde6d5addc101b05979ed96e">More...</a><br /></td></tr>
 <tr class="separator:aa9e12ee5bde6d5addc101b05979ed96e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac240b624cbc8de0d84783bb2ef076dcc"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80">app_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d62/wms__settings_8h.html#ac240b624cbc8de0d84783bb2ef076dcc">app_lib_settings_get_encryption_key_f</a>) (uint8_t *key_p)</td></tr>
-<tr class="memdesc:ac240b624cbc8de0d84783bb2ef076dcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if encryption key is set.  <a href="../../df/d62/wms__settings_8h.html#ac240b624cbc8de0d84783bb2ef076dcc">More...</a><br /></td></tr>
+<tr class="memdesc:ac240b624cbc8de0d84783bb2ef076dcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the encryption key is set and read the key value.  <a href="../../df/d62/wms__settings_8h.html#ac240b624cbc8de0d84783bb2ef076dcc">More...</a><br /></td></tr>
 <tr class="separator:ac240b624cbc8de0d84783bb2ef076dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6586d211e2d41c3d79ae5c49dbbe0a8b"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80">app_res_e</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d62/wms__settings_8h.html#a6586d211e2d41c3d79ae5c49dbbe0a8b">app_lib_settings_set_encryption_key_f</a>) (const uint8_t *key_p)</td></tr>
 <tr class="memdesc:a6586d211e2d41c3d79ae5c49dbbe0a8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set encryption key.  <a href="../../df/d62/wms__settings_8h.html#a6586d211e2d41c3d79ae5c49dbbe0a8b">More...</a><br /></td></tr>
@@ -300,6 +300,9 @@ Macros</h2></td></tr>
 <tr class="memitem:a6c6561f73e83af4857749db05caac45c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d62/wms__settings_8h.html#a6c6561f73e83af4857749db05caac45c">APP_LIB_SETTINGS_AES_KEY_NUM_BYTES</a>&#160;&#160;&#160;16</td></tr>
 <tr class="memdesc:a6c6561f73e83af4857749db05caac45c"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES key size in bytes.  <a href="../../df/d62/wms__settings_8h.html#a6c6561f73e83af4857749db05caac45c">More...</a><br /></td></tr>
 <tr class="separator:a6c6561f73e83af4857749db05caac45c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae66508dbd21ba441560fab04193dcbc8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d62/wms__settings_8h.html#ae66508dbd21ba441560fab04193dcbc8">APP_LIB_SETTINGS_LL_ROLE_BIT</a>&#160;&#160;&#160;0x10</td></tr>
+<tr class="memdesc:ae66508dbd21ba441560fab04193dcbc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">LL role bit.  <a href="../../df/d62/wms__settings_8h.html#ae66508dbd21ba441560fab04193dcbc8">More...</a><br /></td></tr>
+<tr class="separator:ae66508dbd21ba441560fab04193dcbc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa78a81ee8d65c8bc6b6cd8911248d508"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d62/wms__settings_8h.html#aa78a81ee8d65c8bc6b6cd8911248d508">CHANNEL_NO_CHANNEL</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:aa78a81ee8d65c8bc6b6cd8911248d508"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reserved value for definition of 'no channel' for <a class="el" href="../../df/d62/wms__settings_8h.html#af0559e67154ec6b6dc9c34ccad540861">app_lib_settings_net_channel_t</a>.  <a href="../../df/d62/wms__settings_8h.html#aa78a81ee8d65c8bc6b6cd8911248d508">More...</a><br /></td></tr>
 <tr class="separator:aa78a81ee8d65c8bc6b6cd8911248d508"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -352,7 +355,7 @@ Macros</h2></td></tr>
 <p>Example: </p><div class="fragment"><div class="line">uint16_t min,max;</div>
 <div class="line">lib_settings-&gt;getAcRange(&amp;min, &amp;max);</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00520">520</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00544">544</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -379,7 +382,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, APP_RES_INVALID_NULL_POINTER if min_value_p or max_value_p is NULL </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00647">647</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00671">671</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -395,17 +398,22 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Check if authentication key is set. </p>
-<p>It is not possible to actually read the key from the stack. The <code>key_p</code> parameter is ignored.</p>
+<p>Check if the authentication key is set and read the key value. </p>
+<p>The return value indicates whether a valid key is set or not. If return value is <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> then a value is written to the memory pointed by the argument <code>key_p</code>. The value written to <code>key_p</code> is</p>
+<ul>
+<li>The authentication key, if the key management is NOT configured on the node, i.e. the management key pair is NOT set on the node.</li>
+<li>Constant value 0xCC..CC, if the key management is configured, i.e. management key pair is set.</li>
+</ul>
+<p>See <a class="el" href="../../df/d62/wms__settings_8h.html#aade490b8661f267de1a302242b7afdf9">app_lib_settings_key_management_config_f</a> for more information about setting the management key pair.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key_p</td><td>If NULL, key is not return but return code will inform if keys are set or not. Otherwise, pointer to a ram area of 16 bytes where the key can be copied. It is updated only if return value is APP_RES_OK. </td></tr>
+    <tr><td class="paramname">key_p</td><td>A pointer to an array of 16 bytes where the key value is written. If NULL pointer is provided the key value is not written. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if a key set, APP_RES_INVALID_CONFIGURATION if the key is all 0xff, i.e. not set </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if a key is set, APP_RES_INVALID_CONFIGURATION if the key is all 0xff, i.e. not set </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00438">438</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00454">454</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -421,17 +429,22 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Check if encryption key is set. </p>
-<p>It is not possible to actually read the key from the stack. The <code>key_p</code> parameter is ignored.</p>
+<p>Check if the encryption key is set and read the key value. </p>
+<p>The return value indicates whether a valid key is set or not. If return value is <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> then a value is written to the memory pointed by the argument <code>key_p</code>. The value written to <code>key_p</code> is</p>
+<ul>
+<li>The encryption key, if the key management is NOT configured on the node, i.e. the management key pair is NOT set on the node.</li>
+<li>Constant value 0xCC..CC, if the key management is configured, i.e. management key pair is set.</li>
+</ul>
+<p>See <a class="el" href="../../df/d62/wms__settings_8h.html#aade490b8661f267de1a302242b7afdf9">app_lib_settings_key_management_config_f</a> for more information about setting the management key pair.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key_p</td><td>If NULL, key is not return but return code will inform if keys are set or not. Otherwise, pointer to a ram area of 16 bytes where the key can be copied. It is updated only if return value is APP_RES_OK. </td></tr>
+    <tr><td class="paramname">key_p</td><td>A pointer to an array of 16 bytes where the key value is written. If NULL pointer is provided the key value is not written. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if a key set, APP_RES_INVALID_CONFIGURATION if the key is all 0xff, i.e. not set </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00475">475</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00499">499</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -457,7 +470,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, APP_RES_INVALID_NULL_POINTER if bits_p is NULL </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00245">245</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00252">252</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -484,7 +497,7 @@ Macros</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if a key set, APP_RES_INVALID_CONFIGURATION if the key is all 0xff, i.e. not set </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Reading the actual key value is not possible, for security reasons </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00273">273</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00280">280</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -509,7 +522,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, APP_RES_INVALID_CONFIGURATION if network address not set, APP_RES_INVALID_NULL_POINTER if addr_p is NULL </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00333">333</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00340">340</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -534,7 +547,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a2e0fd18ec0f8ae18c72ebdf838235cb3">APP_RES_INVALID_CONFIGURATION</a> if network channel not set, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> if <code>channel_p</code> is NULL </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00359">359</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00366">366</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -561,7 +574,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, APP_RES_INVALID_NULL_POINTER if min_value_p or max_value_p is NULL </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00630">630</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00654">654</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -586,7 +599,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a2e0fd18ec0f8ae18c72ebdf838235cb3">APP_RES_INVALID_CONFIGURATION</a> if node address not set, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> if <code>addr_p</code> is NULL </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00306">306</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00313">313</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -610,7 +623,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a2e0fd18ec0f8ae18c72ebdf838235cb3">APP_RES_INVALID_CONFIGURATION</a> if node role not set, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> if <code>role_p</code> is NULL </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00394">394</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00401">401</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -636,7 +649,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80acf4d6254abe9760ec1ad9403b4af6cdc">APP_RES_INVALID_STACK_STATE</a> if stack is not running, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> if <code>max_scan_p</code> is NULL </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00587">587</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00611">611</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -664,7 +677,7 @@ Macros</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> if <code>channels_p</code> is NULL, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a3003711bc2e65045853433dacc324767">APP_RES_INVALID_VALUE</a> if last reserved channel does not fit in <code>num_bytes</code> </dd></dl>
 <dl class="section note"><dt>Note</dt><dd><code>channels_p</code> bit array can be longer than the maximum reserved channel. Remaining channels are marked as not reserved </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00705">705</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00729">729</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -693,7 +706,7 @@ Macros</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Keep the function execution time moderately short, i.e. do not execute any time-consuming operations directly in this callback!</dd></dl>
 <p>Usage: see documentation of <a class="el" href="../../df/d62/wms__settings_8h.html#a98744182c10789896c9ab3640788b3dc">lib_settings-&gt;registerGroupQuery</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00205">205</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00212">212</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -718,7 +731,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if network address is valid. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00753">753</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00777">777</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -743,7 +756,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if network channel is valid. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00762">762</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00786">786</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -768,7 +781,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if node address is valid. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00770">770</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00794">794</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -793,7 +806,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if node role is valid. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00778">778</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00802">802</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -819,7 +832,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> if key_info is NULL, or other error codes based on the provisioning result. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00794">794</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00818">818</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -838,7 +851,7 @@ Macros</h2></td></tr>
 <p>Network address type definition. </p>
 <p>All nodes on the network must have the same network address. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00053">53</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00060">60</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -856,7 +869,7 @@ Macros</h2></td></tr>
 
 <p>Channel type definition. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00058">58</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00065">65</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -881,7 +894,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> if cb is NULL </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00977">977</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l01001">1001</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -906,7 +919,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> if cb is NULL </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00925">925</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00949">949</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -931,7 +944,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> if cb is NULL </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00952">952</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00976">976</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -956,7 +969,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> if cb is NULL </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00886">886</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00910">910</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -974,7 +987,7 @@ Macros</h2></td></tr>
 
 <p>A callback function type used for providing the Remote API Cancel request information to application side. In case the application has cached the data received from CSAP Write Requests, the cached data shall be cleared in a call to this function. .There is no need to respond the Cancel request on application side, thus no function arguments. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00964">964</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00988">988</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1000,7 +1013,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>REMOTE_API_CSAP_RESPONSE_NORMAL shall be returned if the request was read and response was written successfully, One of the REMOTE_API_CSAP_RESPONSE_* error codes shall be returned if the attribute ID was unexpected or the response_buffer_len was too small to fit the whole response. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00911">911</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00935">935</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1018,7 +1031,7 @@ Macros</h2></td></tr>
 
 <p>A callback function type used for providing the Remote API Update request information to application side. There is no need to respond the Update request on application side, thus no function arguments. Application may (optionally) cache the data received from CSAP Write Requests on application side and put them into action at the same time once this callback is called. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00938">938</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00962">962</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1045,7 +1058,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>REMOTE_API_CSAP_RESPONSE_NORMAL shall be returned if request was read and response was written successfully, One of the REMOTE_API_CSAP_RESPONSE_* error codes shall be returned if the request was of unexpected length, contents was invalid or the response_buffer_len was too small to fit the whole response, etc. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00872">872</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00896">896</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1082,7 +1095,7 @@ Macros</h2></td></tr>
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80acf4d6254abe9760ec1ad9403b4af6cdc">APP_RES_INVALID_STACK_STATE</a> if stack is running <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a55bc4f48f8714c3e5c515e3de50ffe88">APP_RES_RESOURCE_UNAVAILABLE</a> if reset of secure storage records failed </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00228">228</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00235">235</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1101,7 +1114,7 @@ Macros</h2></td></tr>
 <p>Node role type. </p>
 <p>List of possible roles are defined in <a class="el" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8">app_lib_settings_role_e</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00182">182</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00189">189</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1144,7 +1157,7 @@ Macros</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a3003711bc2e65045853433dacc324767">APP_RES_INVALID_VALUE</a> if <code>ac_min_value</code> or <code>ac_max_value</code> is invalid</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This setting is not possible when device role has flag <code>APP_LIB_SETTINGS_ROLE_FLAG_LL</code> mode set. Instead, those devices always have automatic access cycle selection enabled. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00572">572</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00596">596</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1172,7 +1185,7 @@ Macros</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80acf4d6254abe9760ec1ad9403b4af6cdc">APP_RES_INVALID_STACK_STATE</a> if stack is running, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> if <code>key_p</code> is NULL </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Note that both the encryption and authentication keys must be set for the encryption or authentication to be enabled. It is NOT enough to set just one key. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00459">459</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00475">475</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1200,7 +1213,7 @@ Macros</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80acf4d6254abe9760ec1ad9403b4af6cdc">APP_RES_INVALID_STACK_STATE</a> if stack is running, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> if <code>key_p</code> is NULL </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Note that both the encryption and authentication keys must be set for the encryption or authentication to be enabled. It is NOT enough to set just one key. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00496">496</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00520">520</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1226,7 +1239,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a3003711bc2e65045853433dacc324767">APP_RES_INVALID_VALUE</a> if an unsupported lock bit is set to 0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00259">259</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00266">266</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1253,7 +1266,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a3003711bc2e65045853433dacc324767">APP_RES_INVALID_VALUE</a> if a key is set and trying to unlock with a wrong key, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a64ef78c2608dd65baaf789968c3b39b2">APP_RES_INVALID_NULL_POINTER</a> if <code>key_p</code> is NULL </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00294">294</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00301">301</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1293,7 +1306,7 @@ Macros</h2></td></tr>
 <div class="line">    lib_state-&gt;startStack();</div>
 <div class="line">}</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00679">679</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00703">703</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1322,7 +1335,7 @@ Macros</h2></td></tr>
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00348">348</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00355">355</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1349,7 +1362,7 @@ Macros</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a3003711bc2e65045853433dacc324767">APP_RES_INVALID_VALUE</a> if <code>channel</code> is invalid, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80acf4d6254abe9760ec1ad9403b4af6cdc">APP_RES_INVALID_STACK_STATE</a> if stack is running </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Function must be called with a valid network channel before the stack can be started. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00380">380</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00387">387</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1376,7 +1389,7 @@ Macros</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a3003711bc2e65045853433dacc324767">APP_RES_INVALID_VALUE</a> if <code>addr</code> is invalid, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80acf4d6254abe9760ec1ad9403b4af6cdc">APP_RES_INVALID_STACK_STATE</a> if stack is running </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Function must be called with a valid node address before the stack can be started. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00322">322</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00329">329</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1411,7 +1424,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a3003711bc2e65045853433dacc324767">APP_RES_INVALID_VALUE</a> if <code>role</code> is invalid, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80acf4d6254abe9760ec1ad9403b4af6cdc">APP_RES_INVALID_STACK_STATE</a> if stack is running </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00422">422</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00429">429</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1446,7 +1459,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result code, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a003dcdf43ec0474fb1190cdccd959122">APP_RES_OK</a> if successful, <a class="el" href="../../da/dbb/wms__app_8h.html#a4d380466f2a9f6432a6abcabf44c8e80a3003711bc2e65045853433dacc324767">APP_RES_INVALID_VALUE</a> if <code>max_scan</code> is invalid </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00613">613</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00637">637</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1478,7 +1491,7 @@ Macros</h2></td></tr>
 <dd>
 In the current implementation, reserved channels are not stored in persistent memory. Application must call setReservedChannels() in App_init() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00744">744</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00768">768</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -1512,7 +1525,7 @@ Flag Application Behavior: When apply_flags=0, only key provisioning is performe
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/d1e/dualmcu_app_2app_8c-example.html#_a5">dualmcu_app/app.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00137">137</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00144">144</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1564,7 +1577,7 @@ network_key_pair_seq</td>
 </div><div class="memdoc">
 <div class="textblock"><p>Struct containing the CSAP Read adn Write request and response information. Needed the requests are handled on application side. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00828">828</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00852">852</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1613,7 +1626,7 @@ response_buffer_len</td>
 <div class="textblock"><p>Settings library API. </p>
 <p>This structure contains function pointers to all the settings library functions. The library is used to configure various network and node parameters. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00987">987</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l01011">1011</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1847,7 +1860,7 @@ setReservedChannels</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00139">139</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00146">146</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1880,7 +1893,7 @@ encryption_key_p)[16]</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00139">139</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00146">146</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1913,7 +1926,7 @@ encryption_key_p)[16]</td>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00148">148</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00155">155</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -1972,12 +1985,12 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00093">93</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;{</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1daba09313a14b0adee7604f74593bcf1cdb0">APP_LIB_SETTINGS_REMOTE_API_RES_NONE</a> = 0,</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dabaad9b2a2391cdd4107ae1729ec06f5bd0">APP_LIB_SETTINGS_REMOTE_API_RES_OK</a> = 1,</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dabaf497c9c185b363560c1acbc7e5895c48">APP_LIB_SETTINGS_REMOTE_API_RES_OK_RESET</a> = 2,</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;} <a class="code" href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dab">app_lib_settings_remote_api_res_e</a>;</div>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00100">100</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;{</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1daba09313a14b0adee7604f74593bcf1cdb0">APP_LIB_SETTINGS_REMOTE_API_RES_NONE</a> = 0,</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dabaad9b2a2391cdd4107ae1729ec06f5bd0">APP_LIB_SETTINGS_REMOTE_API_RES_OK</a> = 1,</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dabaf497c9c185b363560c1acbc7e5895c48">APP_LIB_SETTINGS_REMOTE_API_RES_OK_RESET</a> = 2,</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;} <a class="code" href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dab">app_lib_settings_remote_api_res_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2013,18 +2026,18 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00066">66</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;{</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a814d2aa3fd8f79d70d6a0ddeee57c504">APP_LIB_SETTINGS_ROLE_SINK_LE</a> = 0x00,</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a3705edf2786fadb244f262171131204d">APP_LIB_SETTINGS_ROLE_SINK_LL</a> = 0x10,</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a23d2002abd576025a705df36718a657b">APP_LIB_SETTINGS_ROLE_HEADNODE_LE</a> = 0x01,</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a3d7c8b340098c5efef9c75159b793618">APP_LIB_SETTINGS_ROLE_HEADNODE_LL</a> = 0x11,</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aaf3a79d23b26fc4ef8d6d572b272218b">APP_LIB_SETTINGS_ROLE_SUBNODE_LE</a> = 0x02,</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a2b2c53ad151b2ac9193141566b767b26">APP_LIB_SETTINGS_ROLE_SUBNODE_LL</a> = 0x12,</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a6a1eb491da8a62316f9bd1c265c03a44">APP_LIB_SETTINGS_ROLE_AUTOROLE_LE</a> = 0x42,</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8ab6273beaf0c94d3e45d4b8c8f591bce8">APP_LIB_SETTINGS_ROLE_AUTOROLE_LL</a> = 0x52,</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aafbafd13358d2b8d35f940ae8ff8ffe4">APP_LIB_SETTINGS_ROLE_ADVERTISER</a> = 0x04,</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;} <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8">app_lib_settings_role_e</a>;</div>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00073">73</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a814d2aa3fd8f79d70d6a0ddeee57c504">APP_LIB_SETTINGS_ROLE_SINK_LE</a> = 0x00,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a3705edf2786fadb244f262171131204d">APP_LIB_SETTINGS_ROLE_SINK_LL</a> = 0x10,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a23d2002abd576025a705df36718a657b">APP_LIB_SETTINGS_ROLE_HEADNODE_LE</a> = 0x01,</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a3d7c8b340098c5efef9c75159b793618">APP_LIB_SETTINGS_ROLE_HEADNODE_LL</a> = 0x11,</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aaf3a79d23b26fc4ef8d6d572b272218b">APP_LIB_SETTINGS_ROLE_SUBNODE_LE</a> = 0x02,</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a2b2c53ad151b2ac9193141566b767b26">APP_LIB_SETTINGS_ROLE_SUBNODE_LL</a> = 0x12,</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a6a1eb491da8a62316f9bd1c265c03a44">APP_LIB_SETTINGS_ROLE_AUTOROLE_LE</a> = 0x42,</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8ab6273beaf0c94d3e45d4b8c8f591bce8">APP_LIB_SETTINGS_ROLE_AUTOROLE_LL</a> = 0x52,</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aafbafd13358d2b8d35f940ae8ff8ffe4">APP_LIB_SETTINGS_ROLE_ADVERTISER</a> = 0x04,</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;} <a class="code" href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8">app_lib_settings_role_e</a>;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2047,6 +2060,27 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00044">44</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+
+</div>
+</div>
+<a id="ae66508dbd21ba441560fab04193dcbc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae66508dbd21ba441560fab04193dcbc8">&#9670;&nbsp;</a></span>APP_LIB_SETTINGS_LL_ROLE_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define APP_LIB_SETTINGS_LL_ROLE_BIT&#160;&#160;&#160;0x10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>LL role bit. </p>
+<p>This bit indicates if the role is a Low Latency (LL) role </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/d1e/dualmcu_app_2app_8c-example.html#a10">dualmcu_app/app.c</a>, and <a class="el" href="../../dc/d5b/local_provisioning_2app_8c-example.html#a20">local_provisioning/app.c</a>.</dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00051">51</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -2101,7 +2135,7 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 
 <p>Reserved value for definition of 'no channel' for <a class="el" href="../../df/d62/wms__settings_8h.html#af0559e67154ec6b6dc9c34ccad540861">app_lib_settings_net_channel_t</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00064">64</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00071">71</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -2118,7 +2152,7 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 </div><div class="memdoc">
 <p>Failure: Access is denied, i.e. feature lock key is set </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00807">807</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00831">831</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -2135,7 +2169,7 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 </div><div class="memdoc">
 <p>Failure: No begin request issued, or update delay countdown running </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00813">813</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00837">837</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -2152,7 +2186,7 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 </div><div class="memdoc">
 <p>Failure: Request is only valid for unicast, invalid when broadcasted </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00811">811</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00835">835</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -2169,7 +2203,7 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 </div><div class="memdoc">
 <p>Failure: Request has too many or too few parameters </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00819">819</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00843">843</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -2186,7 +2220,7 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 </div><div class="memdoc">
 <p>Failure: A value in the request is invalid or value is not set </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00817">817</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00841">841</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -2203,7 +2237,7 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 </div><div class="memdoc">
 <p>Failure: No space in response, cannot carry out request </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00815">815</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00839">839</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -2220,7 +2254,7 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 </div><div class="memdoc">
 <p>A special return value: no response needs to be generated </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00805">805</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00829">829</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -2237,7 +2271,7 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 </div><div class="memdoc">
 <p>A special return value: normal response should be generated </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00803">803</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00827">827</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -2254,7 +2288,7 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 </div><div class="memdoc">
 <p>Failure: Request was not recognized </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00821">821</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00845">845</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -2271,7 +2305,7 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 </div><div class="memdoc">
 <p>Failure: Trying to read an attribute that is write-only </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00809">809</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00833">833</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
@@ -2288,28 +2322,28 @@ Flag to let application force key revocation. When apply_flags=0, this flag is i
 </div><div class="memdoc">
 <p>Bit value indicating that the CSAP Write request was sent in a unicast data packet </p>
 
-<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00799">799</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/d62/wms__settings_8h_source.html#l00823">823</a> of file <a class="el" href="../../df/d62/wms__settings_8h_source.html">wms_settings.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8aaf3a79d23b26fc4ef8d6d572b272218b"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aaf3a79d23b26fc4ef8d6d572b272218b">APP_LIB_SETTINGS_ROLE_SUBNODE_LE</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_SUBNODE_LE</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00077">wms_settings.h:77</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8aafbafd13358d2b8d35f940ae8ff8ffe4"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aafbafd13358d2b8d35f940ae8ff8ffe4">APP_LIB_SETTINGS_ROLE_ADVERTISER</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_ADVERTISER</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00085">wms_settings.h:85</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a23d2002abd576025a705df36718a657b"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a23d2002abd576025a705df36718a657b">APP_LIB_SETTINGS_ROLE_HEADNODE_LE</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_HEADNODE_LE</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00073">wms_settings.h:73</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_a7b9841260fe2f49f1e73d504e95d1dabaad9b2a2391cdd4107ae1729ec06f5bd0"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dabaad9b2a2391cdd4107ae1729ec06f5bd0">APP_LIB_SETTINGS_REMOTE_API_RES_OK</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_REMOTE_API_RES_OK</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00098">wms_settings.h:98</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_a7b9841260fe2f49f1e73d504e95d1daba09313a14b0adee7604f74593bcf1cdb0"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1daba09313a14b0adee7604f74593bcf1cdb0">APP_LIB_SETTINGS_REMOTE_API_RES_NONE</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_REMOTE_API_RES_NONE</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00096">wms_settings.h:96</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8">app_lib_settings_role_e</a></div><div class="ttdeci">app_lib_settings_role_e</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00066">wms_settings.h:66</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8aaf3a79d23b26fc4ef8d6d572b272218b"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aaf3a79d23b26fc4ef8d6d572b272218b">APP_LIB_SETTINGS_ROLE_SUBNODE_LE</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_SUBNODE_LE</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00084">wms_settings.h:84</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8aafbafd13358d2b8d35f940ae8ff8ffe4"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8aafbafd13358d2b8d35f940ae8ff8ffe4">APP_LIB_SETTINGS_ROLE_ADVERTISER</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_ADVERTISER</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00092">wms_settings.h:92</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a23d2002abd576025a705df36718a657b"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a23d2002abd576025a705df36718a657b">APP_LIB_SETTINGS_ROLE_HEADNODE_LE</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_HEADNODE_LE</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00080">wms_settings.h:80</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_a7b9841260fe2f49f1e73d504e95d1dabaad9b2a2391cdd4107ae1729ec06f5bd0"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dabaad9b2a2391cdd4107ae1729ec06f5bd0">APP_LIB_SETTINGS_REMOTE_API_RES_OK</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_REMOTE_API_RES_OK</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00105">wms_settings.h:105</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_a7b9841260fe2f49f1e73d504e95d1daba09313a14b0adee7604f74593bcf1cdb0"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1daba09313a14b0adee7604f74593bcf1cdb0">APP_LIB_SETTINGS_REMOTE_API_RES_NONE</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_REMOTE_API_RES_NONE</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00103">wms_settings.h:103</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8">app_lib_settings_role_e</a></div><div class="ttdeci">app_lib_settings_role_e</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00073">wms_settings.h:73</a></div></div>
 <div class="ttc" id="awms__app_8h_html_d6/d81/structapp__global__functions__t"><div class="ttname"><a href="../../da/dbb/wms__app_8h.html#d6/d81/structapp__global__functions__t">app_global_functions_t</a></div><div class="ttdoc">List of global functions, passed to App_entrypoint()</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dbb/wms__app_8h_source.html#l00157">wms_app.h:157</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a3705edf2786fadb244f262171131204d"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a3705edf2786fadb244f262171131204d">APP_LIB_SETTINGS_ROLE_SINK_LL</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_SINK_LL</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00071">wms_settings.h:71</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a6a1eb491da8a62316f9bd1c265c03a44"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a6a1eb491da8a62316f9bd1c265c03a44">APP_LIB_SETTINGS_ROLE_AUTOROLE_LE</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_AUTOROLE_LE</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00081">wms_settings.h:81</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_a7b9841260fe2f49f1e73d504e95d1dab"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dab">app_lib_settings_remote_api_res_e</a></div><div class="ttdeci">app_lib_settings_remote_api_res_e</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00093">wms_settings.h:93</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a3705edf2786fadb244f262171131204d"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a3705edf2786fadb244f262171131204d">APP_LIB_SETTINGS_ROLE_SINK_LL</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_SINK_LL</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00078">wms_settings.h:78</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a6a1eb491da8a62316f9bd1c265c03a44"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a6a1eb491da8a62316f9bd1c265c03a44">APP_LIB_SETTINGS_ROLE_AUTOROLE_LE</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_AUTOROLE_LE</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00088">wms_settings.h:88</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_a7b9841260fe2f49f1e73d504e95d1dab"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dab">app_lib_settings_remote_api_res_e</a></div><div class="ttdeci">app_lib_settings_remote_api_res_e</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00100">wms_settings.h:100</a></div></div>
 <div class="ttc" id="awms__app_8h_html_ad019ddac3feea21ca0548bced1c9e501"><div class="ttname"><a href="../../da/dbb/wms__app_8h.html#ad019ddac3feea21ca0548bced1c9e501">app_addr_t</a></div><div class="ttdeci">uint32_t app_addr_t</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dbb/wms__app_8h_source.html#l00228">wms_app.h:228</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a814d2aa3fd8f79d70d6a0ddeee57c504"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a814d2aa3fd8f79d70d6a0ddeee57c504">APP_LIB_SETTINGS_ROLE_SINK_LE</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_SINK_LE</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00069">wms_settings.h:69</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a2b2c53ad151b2ac9193141566b767b26"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a2b2c53ad151b2ac9193141566b767b26">APP_LIB_SETTINGS_ROLE_SUBNODE_LL</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_SUBNODE_LL</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00079">wms_settings.h:79</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_a7b9841260fe2f49f1e73d504e95d1dabaf497c9c185b363560c1acbc7e5895c48"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dabaf497c9c185b363560c1acbc7e5895c48">APP_LIB_SETTINGS_REMOTE_API_RES_OK_RESET</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_REMOTE_API_RES_OK_RESET</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00100">wms_settings.h:100</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a3d7c8b340098c5efef9c75159b793618"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a3d7c8b340098c5efef9c75159b793618">APP_LIB_SETTINGS_ROLE_HEADNODE_LL</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_HEADNODE_LL</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00075">wms_settings.h:75</a></div></div>
-<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8ab6273beaf0c94d3e45d4b8c8f591bce8"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8ab6273beaf0c94d3e45d4b8c8f591bce8">APP_LIB_SETTINGS_ROLE_AUTOROLE_LL</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_AUTOROLE_LL</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00083">wms_settings.h:83</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a814d2aa3fd8f79d70d6a0ddeee57c504"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a814d2aa3fd8f79d70d6a0ddeee57c504">APP_LIB_SETTINGS_ROLE_SINK_LE</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_SINK_LE</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00076">wms_settings.h:76</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a2b2c53ad151b2ac9193141566b767b26"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a2b2c53ad151b2ac9193141566b767b26">APP_LIB_SETTINGS_ROLE_SUBNODE_LL</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_SUBNODE_LL</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00086">wms_settings.h:86</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_a7b9841260fe2f49f1e73d504e95d1dabaf497c9c185b363560c1acbc7e5895c48"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#a7b9841260fe2f49f1e73d504e95d1dabaf497c9c185b363560c1acbc7e5895c48">APP_LIB_SETTINGS_REMOTE_API_RES_OK_RESET</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_REMOTE_API_RES_OK_RESET</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00107">wms_settings.h:107</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8a3d7c8b340098c5efef9c75159b793618"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8a3d7c8b340098c5efef9c75159b793618">APP_LIB_SETTINGS_ROLE_HEADNODE_LL</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_HEADNODE_LL</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00082">wms_settings.h:82</a></div></div>
+<div class="ttc" id="awms__settings_8h_html_ad2ffb12371d3d3c5c3c16e8aa691a3d8ab6273beaf0c94d3e45d4b8c8f591bce8"><div class="ttname"><a href="../../df/d62/wms__settings_8h.html#ad2ffb12371d3d3c5c3c16e8aa691a3d8ab6273beaf0c94d3e45d4b8c8f591bce8">APP_LIB_SETTINGS_ROLE_AUTOROLE_LL</a></div><div class="ttdeci">@ APP_LIB_SETTINGS_ROLE_AUTOROLE_LL</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d62/wms__settings_8h_source.html#l00090">wms_settings.h:90</a></div></div>
 <!-- HTML footer for doxygen 1.8.17-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

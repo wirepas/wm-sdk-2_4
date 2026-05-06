@@ -107,6 +107,7 @@ var annotated_dup =
     [ "hardware_services_t", "dd/d2c/bl__interface_8h.html#d2/df4/structhardware__services__t", "dd/d2c/bl__interface_8h_d2/df4/structhardware__services__t" ],
     [ "i2c_conf_t", "d5/daf/i2c_8h.html#db/dd0/structi2c__conf__t", "d5/daf/i2c_8h_db/dd0/structi2c__conf__t" ],
     [ "i2c_xfer_t", "d5/daf/i2c_8h.html#df/d55/structi2c__xfer__t", "d5/daf/i2c_8h_df/d55/structi2c__xfer__t" ],
+    [ "local_provisioning_config_t", "d6/dd2/local__provisioning_8h.html#d3/d88/structlocal__provisioning__config__t", "d6/dd2/local__provisioning_8h_d3/d88/structlocal__provisioning__config__t" ],
     [ "local_provisioning_psk_t", "d6/dd2/local__provisioning_8h.html#d4/d9d/structlocal__provisioning__psk__t", "d6/dd2/local__provisioning_8h_d4/d9d/structlocal__provisioning__psk__t" ],
     [ "memory_area_services_t", "dd/d2c/bl__interface_8h.html#d3/df8/structmemory__area__services__t", "dd/d2c/bl__interface_8h_d3/df8/structmemory__area__services__t" ],
     [ "msap_config_data_item_get_cnf_t", "d8/d21/msap__frames_8h.html#d3/d34/structmsap__config__data__item__get__cnf__t", "d8/d21/msap__frames_8h_d3/d34/structmsap__config__data__item__get__cnf__t" ],

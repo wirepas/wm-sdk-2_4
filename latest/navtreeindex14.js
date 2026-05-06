@@ -1,14 +1,16 @@
 var NAVTREEINDEX14 =
 {
+"dd/d9c/programming_interface.html#stack_api":[4,0],
+"dd/d9c/programming_interface.html#util_api":[4,5],
 "dd/da9/pca10112_2makefile__board_8mk.html":[7,0,1,10,2],
 "dd/da9/pca10112_2makefile__board_8mk_source.html":[7,0,1,10,2],
-"dd/db3/unionwaps__frame__t_8____unnamed____.html":[6,0,197],
-"dd/db3/unionwaps__frame__t_8____unnamed____.html#a308a06d29886078735d08413a656b2a8":[6,0,197,3],
-"dd/db3/unionwaps__frame__t_8____unnamed____.html#a5dbca3fddcc9f7c21ecca09fb903401e":[6,0,197,1],
-"dd/db3/unionwaps__frame__t_8____unnamed____.html#a815be97df65d6c4b510cd07189c5347a":[6,0,197,0],
-"dd/db3/unionwaps__frame__t_8____unnamed____.html#ad802a89ff5df06b8b00485c9e62ab5cc":[6,0,197,4],
-"dd/db3/unionwaps__frame__t_8____unnamed____.html#adef3546701f0d1be086d43d2281d44af":[6,0,197,5],
-"dd/db3/unionwaps__frame__t_8____unnamed____.html#ae496570850153cef5a9b4cbd44c8ac91":[6,0,197,2],
+"dd/db3/unionwaps__frame__t_8____unnamed____.html":[6,0,198],
+"dd/db3/unionwaps__frame__t_8____unnamed____.html#a308a06d29886078735d08413a656b2a8":[6,0,198,3],
+"dd/db3/unionwaps__frame__t_8____unnamed____.html#a5dbca3fddcc9f7c21ecca09fb903401e":[6,0,198,1],
+"dd/db3/unionwaps__frame__t_8____unnamed____.html#a815be97df65d6c4b510cd07189c5347a":[6,0,198,0],
+"dd/db3/unionwaps__frame__t_8____unnamed____.html#ad802a89ff5df06b8b00485c9e62ab5cc":[6,0,198,4],
+"dd/db3/unionwaps__frame__t_8____unnamed____.html#adef3546701f0d1be086d43d2281d44af":[6,0,198,5],
+"dd/db3/unionwaps__frame__t_8____unnamed____.html#ae496570850153cef5a9b4cbd44c8ac91":[6,0,198,2],
 "dd/dbc/makefile__stack_8mk.html":[7,0,16],
 "dd/dbc/makefile__stack_8mk_source.html":[7,0,16],
 "dd/dbe/board__init_8h.html":[7,0,1,26],
@@ -247,7 +249,5 @@ var NAVTREEINDEX14 =
 "de/d7a/how_to_develop.html#recommendations":[2,9],
 "de/d7a/how_to_develop.html#storage_library":[2,9,4],
 "de/d7a/how_to_develop.html#test_application":[2,3],
-"de/d7a/how_to_develop.html#using_otap":[2,5],
-"de/dde/aes_2app_8c-example.html":[8,0],
-"de/de7/promistel__rpi__hat_2board_8h.html":[7,0,1,12,0]
+"de/d7a/how_to_develop.html#using_otap":[2,5]
 };
