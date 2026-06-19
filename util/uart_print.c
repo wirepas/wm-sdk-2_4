@@ -12,8 +12,8 @@
 #include "uart_print.h"
 
 // Storage for debug messages.
-#define BUFFER_SIZE     128ul
-static uint8_t          m_buffer[BUFFER_SIZE];
+#define UART_PRINT_BUF_SIZE     256ul
+static uint8_t          m_buffer[UART_PRINT_BUF_SIZE];
 
 #include "hal_api.h"
 
@@ -30,11 +30,8 @@ static ssize_t _write(char * ptr, size_t len)
 
 void UartPrint_init(uint32_t baudrate)
 {
-    // Open HAL
     HAL_Open();
-    // Initialize the hardware module
-    Usart_init(baudrate, false);
-    // And set power on (do not power down UART between writing frames)
+    Usart_init(baudrate, UART_FLOW_CONTROL_NONE);
     Usart_setEnabled(true);
 }
 
@@ -45,7 +42,7 @@ int UartPrint_printf(const char * fmt, ...)
 
     va_start(args, fmt);
 
-    len = vsnprintf((char *)&m_buffer[0], BUFFER_SIZE, fmt, args);
+    len = vsnprintf((char *)&m_buffer[0], UART_PRINT_BUF_SIZE, fmt, args);
     // Try sending
     len = _write((char *)m_buffer, len);
 

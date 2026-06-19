@@ -16,7 +16,7 @@ sdk_development=0
 
 
 # Specify the arm toolchain to use (leave it blank if already set in your PATH)
-arm_toolchain=
+arm_toolchain=$(HOME)/arm-gcc/arm-gnu-toolchain-12.2.rel1-darwin-arm64-arm-none-eabi/bin/
 
 # Only set this value if python interpreter is not found. Python3 is preferred.
 # Python2 is end of life and support will be removed in the future.

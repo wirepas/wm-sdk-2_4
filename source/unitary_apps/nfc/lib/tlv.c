@@ -71,6 +71,7 @@ void tlv_encode(uint8_t *msg, uint16_t msgLength, uint8_t *tagData)
  */
 tlv_res_e tlv_decode(uint8_t *tagData, uint16_t tagDataLength, tlv_msg_t *tlv)
 {
+    (void)tagDataLength;
     tlv_res_e ret = TLV_RES_ERR;
     uint8_t tag;
 

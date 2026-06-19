@@ -116,6 +116,7 @@ static inline void process_rx_buffer(void)
 
 bool Usart_init(uint32_t baudrate, uart_flow_control_e flow_control)
 {
+    (void)flow_control;
     bool ret;
 
     /* Module variables */
@@ -273,6 +274,8 @@ bool Usart_setFlowControl(uart_flow_control_e flow)
         }
     }
     Sys_exitCriticalSection();
+#else
+    (void)flow;
 #endif  // defined(BOARD_USART_CTS_PIN) && defined(BOARD_USART_RTS_PIN)
 
     return ret;
