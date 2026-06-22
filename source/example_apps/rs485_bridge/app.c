@@ -38,6 +38,7 @@
 #include "lis2dw.h"
 #include "ads1220.h"
 #include "rs485_uart.h"
+#include "cbor.h"
 
 #define DEBUG_LOG_MODULE_NAME "AP"
 #define DEBUG_LOG_MAX_LEVEL LVL_INFO
@@ -414,16 +415,84 @@ static const lis2dw_cfg_t m_lis2dw_cfg = {
 #define USE_ADS1220  1
 
 #if USE_ADS1220
-/* ADS1220: AIN0 vs AVSS, gain=1, 20 SPS, internal 2.048V ref */
-static const ads1220_regs_t m_ads_cfg = {
+/* ── CTN foliar / frost probe — ratiometric half-bridge on the ADS1220 ────────
+ * Probe: Red = excitation/REFP1 (+3V3), White = mid-point/AIN1, Black = GND/REFN1.
+ * A fixed 24.9 kΩ (inside the probe) and the 10k CTN form the divider; the ADC
+ * reference is taken across the excitation (REFP1/REFN1 = AIN0/AIN3), so V_EX
+ * cancels out → R_T = R_BRIDGE * (FS/code - 1), independent of the 3V3 value.
+ *
+ * MUX = AIN1-AVSS with PGA bypass (not AIN1-AIN2): Black sits at GND, so AINN≈AVSS.
+ * A true differential pair needs the PGA enabled (AINN ≥ AVSS+0.2V), which GND
+ * violates; PGA bypass is only allowed for the AINx-AVSS settings. Same math. */
+#define CTN_R_BRIDGE_OHM   24900.0f   /* fixed series resistor inside the probe   */
+#define ADS_FS             8388608.0f /* ADS1220 positive full scale = 2^23       */
+/* Steinhart-Hart coefficients supplied with the probe */
+#define CTN_SH_A           1.129241e-3f
+#define CTN_SH_B           2.341077e-4f
+#define CTN_SH_C           8.775468e-8f
+#define ADS_AVG_SAMPLES    1u         /* 1 sample (purge already settles the spike) */
+#define ADS_PURGE_SAMPLES  1u         /* discard 1 conversion to settle after WREG */
+
+/* ── SP-110 pyranometer (irradiance) — absolute measurement, AIN2 ─────────────
+ * Self-powered silicon photodiode: NEVER apply a voltage to its wires.
+ * White=AIN2 (signal+), Black=GND, Clear=shield→GND (single point).
+ * Internal 2.048 V reference, gain 4 → FS = 512 mV (0–400 mV calibrated range).
+ *   V_mV = code/FS * (2048/4) = code * 512/FS ; irradiance = V_mV * 5.0 W/m². */
+#define SP110_VREF_MV          2048.0f
+#define SP110_GAIN             4.0f
+#define SP110_CAL_WM2_PER_MV   5.0f    /* Apogee SP-110 calibration factor */
+
+static const ads1220_regs_t m_ads_cfg_ctn = {
     .reg = {
-        ADS1220_MUX_AIN0_AVSS | ADS1220_GAIN_1,          /* REG0 */
-        ADS1220_DR_20SPS | ADS1220_MODE_NORMAL,           /* REG1 */
-        ADS1220_VREF_INT | ADS1220_FIR_50_60HZ,           /* REG2 */
-        0x00u,                                             /* REG3: IDAC off */
+        /* REG0: MUX=AIN1-AVSS, gain=1, PGA bypass (single-supply, AINN=AVSS) */
+        ADS1220_MUX_AIN1_AVSS | ADS1220_GAIN_1 | ADS1220_PGA_BYPASS,
+        /* REG1: 20 SPS, normal mode, single-shot (averaged in software) */
+        ADS1220_DR_20SPS | ADS1220_MODE_NORMAL,
+        /* REG2: external ratiometric ref REFP1/REFN1 (=AIN0/AIN3), 50/60 Hz FIR */
+        ADS1220_VREF_EXT_AIN01 | ADS1220_FIR_50_60HZ,
+        /* REG3: IDAC off (voltage-excitation mode) */
+        0x00u,
     }
 };
-#endif
+
+static const ads1220_regs_t m_ads_cfg_sp110 = {
+    .reg = {
+        /* REG0: MUX=AIN2-AVSS, gain=4 (PGA enabled) — absolute mV measurement */
+        ADS1220_MUX_AIN2_AVSS | ADS1220_GAIN_4,
+        /* REG1: 20 SPS, normal mode, single-shot */
+        ADS1220_DR_20SPS | ADS1220_MODE_NORMAL,
+        /* REG2: internal 2.048 V reference, 50/60 Hz FIR */
+        ADS1220_VREF_INT | ADS1220_FIR_50_60HZ,
+        /* REG3: IDAC off */
+        0x00u,
+    }
+};
+
+/* Ratiometric ADC code → CTN resistance (Ω). Returns <0 on out-of-range code
+ * (probe shorted: code→FS, or open: code→0). */
+static float ctn_code_to_ohms(int32_t code)
+{
+    if (code <= 0 || (float)code >= ADS_FS)
+        return -1.0f;
+    return CTN_R_BRIDGE_OHM * (ADS_FS / (float)code - 1.0f);
+}
+
+/* CTN resistance (Ω) → temperature (°C) via Steinhart-Hart. */
+static float ctn_ohms_to_celsius(float r_t)
+{
+    float ln_r  = logf(r_t);
+    float t_inv = CTN_SH_A + CTN_SH_B * ln_r + CTN_SH_C * ln_r * ln_r * ln_r;
+    if (t_inv == 0.0f)
+        return -999.0f;
+    return (1.0f / t_inv) - 273.15f;
+}
+
+/* SP-110 ADC code (internal ref, gain 4) → photodiode voltage (mV). */
+static float sp110_code_to_mv(int32_t code)
+{
+    return (float)code * (SP110_VREF_MV / SP110_GAIN) / ADS_FS;
+}
+#endif /* USE_ADS1220 */
 
 #if defined(USE_AEM10900)
 /* Convert AEM10900 TEMP register raw value to °C using B-parameter equation.
@@ -583,6 +652,8 @@ static void beacon_update(void)
 #define EP_RS485_DOWN   1   /* gateway → bridge → motor (commands) */
 #define EP_RS485_UP     2   /* motor → bridge → gateway (replies)  */
 #define EP_HEARTBEAT   10   /* periodic uplink counter              */
+#define EP_SENSOR_CBOR 11   /* periodic CTN [T_C, R_T, diag] as CBOR array */
+#define EP_IRRADIANCE  12   /* periodic SP-110 [W/m2, mV, diag] as CBOR array */
 
 /* ── Protocol constants ─────────────────────────────────────────────────────── */
 #define FRAME_STX           0x02U
@@ -627,7 +698,13 @@ static struct {
     int16_t x_raw;
     int16_t y_raw;
     int16_t z_raw;
-    int32_t adc_raw;
+    int32_t adc_raw;        /* averaged CTN code — kept for EP10 / RS485 forward */
+    float   ctn_temp_c;     /* CTN temperature (°C), -999 if probe fault          */
+    float   ctn_ohm;        /* CTN resistance (Ω)                                 */
+    uint8_t ctn_diag;       /* 0 = OK, 1 = probe open/shorted (code saturated)    */
+    float   irr_wm2;        /* SP-110 irradiance (W/m²)                           */
+    float   irr_mv;         /* SP-110 photodiode voltage (mV)                     */
+    uint8_t irr_diag;       /* 0 = OK, 1 = saturated, 2 = negative (wiring?)      */
 } m_sensor;
 
 /* Set from ISR on VBAT_EXT_nFAULT falling edge; cleared and logged from poll_task */
@@ -745,6 +822,67 @@ static void send_sensor_uplink(void)
     LOG(LVL_DEBUG, "EP10 sensor uplink sent");
 }
 
+#if USE_ADS1220
+/* Send the CTN measurement to the Wirepas sink on EP_SENSOR_CBOR (EP 11) as a
+ * CBOR array: [T_C (float °C), R_T (float Ω), diag (uint, 0=OK 1=probe fault)].
+ * 1 (array hdr) + 2×5 (float32) + 1 (small uint) = 12 bytes → 32-byte buf ample. */
+static void send_adc_cbor_uplink(void)
+{
+    uint8_t buf[32];
+    CborEncoder enc, arr;
+    cbor_encoder_init(&enc, buf, sizeof(buf), 0);
+    cbor_encoder_create_array(&enc, &arr, 3);
+    cbor_encode_float(&arr, m_sensor.ctn_temp_c);
+    cbor_encode_float(&arr, m_sensor.ctn_ohm);
+    cbor_encode_uint(&arr, m_sensor.ctn_diag);
+    cbor_encoder_close_container(&enc, &arr);
+
+    size_t len = cbor_encoder_get_buffer_size(&enc, buf);
+
+    app_lib_data_to_send_t pkt = {
+        .bytes         = buf,
+        .num_bytes     = len,
+        .dest_address  = APP_ADDR_ANYSINK,
+        .src_endpoint  = EP_SENSOR_CBOR,
+        .dest_endpoint = EP_SENSOR_CBOR,
+        .qos           = APP_LIB_DATA_QOS_NORMAL,
+        .flags         = APP_LIB_DATA_SEND_FLAG_NONE,
+        .tracking_id   = APP_LIB_DATA_NO_TRACKING_ID,
+    };
+    Shared_Data_sendData(&pkt, NULL);
+    LOG(LVL_DEBUG, "EP11 CTN CBOR uplink sent (%u B)", (unsigned)len);
+}
+
+/* Send the SP-110 irradiance to the Wirepas sink on EP_IRRADIANCE (EP 12) as a
+ * CBOR array: [W/m2 (float), mV (float), diag (uint 0=OK 1=sat 2=negative)]. */
+static void send_irradiance_uplink(void)
+{
+    uint8_t buf[32];
+    CborEncoder enc, arr;
+    cbor_encoder_init(&enc, buf, sizeof(buf), 0);
+    cbor_encoder_create_array(&enc, &arr, 3);
+    cbor_encode_float(&arr, m_sensor.irr_wm2);
+    cbor_encode_float(&arr, m_sensor.irr_mv);
+    cbor_encode_uint(&arr, m_sensor.irr_diag);
+    cbor_encoder_close_container(&enc, &arr);
+
+    size_t len = cbor_encoder_get_buffer_size(&enc, buf);
+
+    app_lib_data_to_send_t pkt = {
+        .bytes         = buf,
+        .num_bytes     = len,
+        .dest_address  = APP_ADDR_ANYSINK,
+        .src_endpoint  = EP_IRRADIANCE,
+        .dest_endpoint = EP_IRRADIANCE,
+        .qos           = APP_LIB_DATA_QOS_NORMAL,
+        .flags         = APP_LIB_DATA_SEND_FLAG_NONE,
+        .tracking_id   = APP_LIB_DATA_NO_TRACKING_ID,
+    };
+    Shared_Data_sendData(&pkt, NULL);
+    LOG(LVL_DEBUG, "EP12 irradiance uplink sent (%u B)", (unsigned)len);
+}
+#endif /* USE_ADS1220 */
+
 /* ── BLE beacon RX ──────────────────────────────────────────────────────────── */
 /*
  * Callback runs in IRQ context — data is copied into a ring buffer and
@@ -764,21 +902,21 @@ static volatile uint8_t  m_brx_wr = 0;
 static volatile uint8_t  m_brx_rd = 0;
 static brx_entry_t       m_brx_ring[BRX_RING_LEN];
 
-/* Called from IRQ — must be fast, no LOG, no malloc */
-static void beacon_rx_cb(const app_lib_beacon_rx_received_t * pkt)
-{
-    m_brx_total++;
+// /* Called from IRQ — must be fast, no LOG, no malloc */
+// static void beacon_rx_cb(const app_lib_beacon_rx_received_t * pkt)
+// {
+//     m_brx_total++;
 
-    uint8_t next = (uint8_t)((m_brx_wr + 1u) % BRX_RING_LEN);
-    if (next == m_brx_rd) return;   /* ring full — drop frame */
+//     uint8_t next = (uint8_t)((m_brx_wr + 1u) % BRX_RING_LEN);
+//     if (next == m_brx_rd) return;   /* ring full — drop frame */
 
-    brx_entry_t * e = &m_brx_ring[m_brx_wr];
-    e->type = pkt->type;
-    e->rssi = pkt->rssi;
-    e->len  = (pkt->length < BRX_PDU_MAX) ? pkt->length : BRX_PDU_MAX;
-    memcpy(e->data, pkt->payload, e->len);
-    m_brx_wr = next;
-}
+//     brx_entry_t * e = &m_brx_ring[m_brx_wr];
+//     e->type = pkt->type;
+//     e->rssi = pkt->rssi;
+//     e->len  = (pkt->length < BRX_PDU_MAX) ? pkt->length : BRX_PDU_MAX;
+//     memcpy(e->data, pkt->payload, e->len);
+//     m_brx_wr = next;
+// }
 
 /* ── BLE beacon RX parser ────────────────────────────────────────────────────── */
 #define BRX_AD_START    6u      /* AD structures start after BT addr (6) — PDU type is in packet->type */
@@ -966,7 +1104,7 @@ static void flush_pending_tx(void)
 /* ── Poll task: forward completed frames, handle reply timeout ───────────────── */
 static uint32_t poll_task(void)
 {
-    /* Start BLE scanner once, on first task execution (stack is running here) */
+    /* Start BLE scanner once, on first task execution (stack is running here). */
     if (!lib_beacon_rx->isScannerStarted())
     {
         app_res_e r = lib_beacon_rx->startScanner(APP_LIB_BEACON_RX_CHANNEL_ALL);
@@ -1057,33 +1195,39 @@ static uint32_t poll_task(void)
     return POLL_PERIOD_MS;
 }
 
-/* ── Sensor read task: LIS2DW (accel)  [+ ADS1220 ADC when USE_ADS1220] ──────── */
+/* Sensor read task - simple blocking (like the AIN2 build that ran for hours).
+ * Reads accel + (when enabled) ADS1220 CTN + SP-110 with minimal averaging,
+ * publishes, then sleeps. Few samples keep one call under the stack's ~100 ms
+ * per-callback budget. No state machine / chunk gate (those starved the radio). */
 #define SENSOR_READ_PERIOD_MS   4000u
-#define SENSOR_READ_EXEC_US   10000u   /* ADS1220 at 20 SPS blocks ~50 ms */
+#define SENSOR_READ_EXEC_US    30000u  /* small reservation: big values starve LL  */
 
-static uint32_t sensor_read_task(void)
+static uint8_t  m_lis_fail = 0u;       /* consecutive LIS2DW read failures */
+
+static void sensor_read_accel(void)
 {
-    lis2dw_sample_t acc;
-    lis2dw_res_e lis_r = LIS2DW_read_xyz(&acc);
-    if (lis_r != LIS2DW_RES_OK)
+    lis2dw_sample_t acc = {0};
+    if (LIS2DW_read_xyz(&acc) != LIS2DW_RES_OK)
     {
-        /* At cold start the sensor has not yet finished its power-on reset (~1 ms).
-         * Re-init and skip this cycle; at 25 Hz the first sample needs 40 ms anyway,
-         * so reading immediately after init always returns zeros. */
-        if (LIS2DW_init(&m_lis2dw_cfg) == LIS2DW_RES_OK)
+        if ((m_lis_fail++ % 8u) == 0u)
         {
-            LOG(LVL_INFO, CGRN "LIS2DW reinit OK" C0);
+            if (LIS2DW_init(&m_lis2dw_cfg) == LIS2DW_RES_OK)
+            {
+                LOG(LVL_INFO, CGRN "LIS2DW reinit OK" C0);
+            }
+            else
+            {
+                LOG(LVL_WARNING, CRED "LIS2DW reinit failed" C0);
+            }
         }
-        else
-        {
-            LOG(LVL_WARNING, CRED "LIS2DW reinit failed" C0);
-        }
-        return SENSOR_READ_PERIOD_MS;
+    }
+    else
+    {
+        m_lis_fail = 0u;
     }
     m_sensor.x_raw = acc.x;
     m_sensor.y_raw = acc.y;
     m_sensor.z_raw = acc.z;
-    /* LP2 ±2g: sensitivity 0.244 mg/LSB, raw is 14-bit left-aligned */
     float x_mg = (acc.x >> 2) * 0.244f;
     float y_mg = (acc.y >> 2) * 0.244f;
     float z_mg = (acc.z >> 2) * 0.244f;
@@ -1092,72 +1236,99 @@ static uint32_t sensor_read_task(void)
         fixed_str(bx, sizeof bx, x_mg, 1),
         fixed_str(by, sizeof by, y_mg, 1),
         fixed_str(bz, sizeof bz, z_mg, 1));
-    bool any_ok = true;
+}
+
+static void sensor_publish(void)
+{
+    forward_sensor_to_motor();
+    send_sensor_uplink();          /* EP10: accel + CTN raw */
+#if USE_ADS1220
+    send_adc_cbor_uplink();        /* EP11: CTN [T_C, R_T, diag] */
+    send_irradiance_uplink();      /* EP12: SP-110 [W/m2, mV, diag] */
+#endif
+}
 
 #if USE_ADS1220
-    /* Scan all 4 single-ended channels + internal diagnostics.
-     * VMID=(AVDD-AVSS)/4: non-zero only if chip is powered (3.3V→~0.825V→raw≈3.38M).
-     * SHORT: inputs shorted to midpoint — should read near 0 (offset check). */
-    static const uint8_t adc_mux[6] = {
-        ADS1220_MUX_AIN0_AVSS,
-        ADS1220_MUX_AIN1_AVSS,
-        ADS1220_MUX_AIN2_AVSS,
-        ADS1220_MUX_AIN3_AVSS,
-        ADS1220_MUX_VMID,    /* (AVDD-AVSS)/4 — supply monitor */
-        ADS1220_MUX_SHORT,   /* shorted inputs — offset check   */
-    };
-    static const char * const adc_name[6] = {
-        "AIN0", "AIN1", "AIN2", "AIN3", "VMID", "SHORT"
-    };
+/* Blocking: discard ADS_PURGE_SAMPLES then average ADS_AVG_SAMPLES conversions. */
+static bool sensor_read_code(int32_t * out_code)
+{
+    int32_t raw = 0;
+#if ADS_PURGE_SAMPLES > 0
+    for (uint8_t i = 0u; i < ADS_PURGE_SAMPLES; i++)
+        (void)ADS1220_read_single(&raw, 200u);
+#endif
+    int64_t acc = 0; uint8_t ok = 0u;
+    for (uint8_t i = 0u; i < ADS_AVG_SAMPLES; i++)
+        if (ADS1220_read_single(&raw, 200u) == ADS1220_RES_OK) { acc += raw; ok++; }
+    if (ok == 0u) return false;
+    *out_code = (int32_t)(acc / ok);
+    return true;
+}
 
-    gpio_level_e drdy_init;
-    Gpio_inputRead(BOARD_GPIO_ID_ADS1220_DRDY, &drdy_init);
-    LOG(LVL_INFO, CCYN "ADS1220 DRDY=%d (1=idle OK, 0=stuck/unpowered)" C0, (int)drdy_init);
+static void sensor_finalize_ctn(int32_t code)
+{
+    float r_t = ctn_code_to_ohms(code);
+    m_sensor.adc_raw = code;
+    if (r_t > 0.0f)
+    {
+        m_sensor.ctn_ohm    = r_t;
+        m_sensor.ctn_temp_c = ctn_ohms_to_celsius(r_t);
+        m_sensor.ctn_diag   = 0u;
+        char bt[24];
+        LOG(LVL_INFO, CMAG "CTN  code=%ld  R=%ld ohm  T=%s C" C0,
+            (long)code, (long)(r_t + 0.5f),
+            fixed_str(bt, sizeof bt, m_sensor.ctn_temp_c, 2));
+    }
+    else
+    {
+        m_sensor.ctn_ohm    = -1.0f;
+        m_sensor.ctn_temp_c = -999.0f;
+        m_sensor.ctn_diag   = 1u;
+        LOG(LVL_WARNING, CRED "CTN probe fault (code=%ld)" C0, (long)code);
+    }
+}
 
-    /* DRDY must be HIGH at idle (no conversion running).
-     * If it reads LOW before START: pin is floating without pull-up
-     * or chip is not powered — skip scan to avoid watchdog timeout. */
-    if (drdy_init == GPIO_LEVEL_LOW)
-    {
-        LOG(LVL_WARNING, CRED "ADS1220 DRDY stuck LOW — check AVDD and P2.02 wiring" C0);
-    }
-    else for (uint8_t ch = 0u; ch < 6u; ch++)
-    {
-        if (ADS1220_set_mux(adc_mux[ch]) != ADS1220_RES_OK)
-        {
-            LOG(LVL_WARNING, CRED "ADS1220 mux err ch=%u" C0, ch);
-            break;
-        }
-        int32_t raw = 0;
-        ads1220_res_e adc_r = ADS1220_read_single(&raw, 200u);
-        if (adc_r == ADS1220_RES_OK)
-        {
-            /* Int. ref 2.048 V, gain=1: V = raw × 2.048 / 2^23 */
-            float v = (float)raw * (2.048f / 8388608.0f);
-            char bv[24];
-            LOG(LVL_INFO, CMAG "ADC  %s raw=%ld %sV" C0,
-                adc_name[ch], (long)raw, fixed_str(bv, sizeof bv, v, 4));
-            if (ch == 0u)
-            {
-                m_sensor.adc_raw = raw;   /* keep AIN0 in the uplink payload */
-                any_ok = true;
-            }
-        }
-        else
-        {
-            LOG(LVL_WARNING, CRED "ADS1220 %s err=%d" C0, adc_name[ch], (int)adc_r);
-        }
-    }
+static void sensor_finalize_sp110(int32_t code)
+{
+    float v_mv = sp110_code_to_mv(code);
+    m_sensor.irr_mv  = v_mv;
+    m_sensor.irr_wm2 = v_mv * SP110_CAL_WM2_PER_MV;
+    if (code < 0)                           m_sensor.irr_diag = 2u;
+    else if ((float)code >= 0.99f * ADS_FS) m_sensor.irr_diag = 1u;
+    else                                    m_sensor.irr_diag = 0u;
+    char bv[24], bw[24];
+    LOG(LVL_INFO, CMAG "SP110 code=%ld  V=%s mV  E=%s W/m2" C0,
+        (long)code,
+        fixed_str(bv, sizeof bv, v_mv, 3),
+        fixed_str(bw, sizeof bw, m_sensor.irr_wm2, 1));
+}
 #endif /* USE_ADS1220 */
 
-    if (any_ok)
-    {
-        /* Forward to STM32G030 motor controller via RS485 */
-        forward_sensor_to_motor();
-        /* Upload sensor snapshot to Wirepas gateway on EP_HEARTBEAT */
-        send_sensor_uplink();
-    }
+static uint32_t sensor_read_task(void)
+{
+    sensor_read_accel();
 
+#if USE_ADS1220
+    /* One ADS channel per cycle (alternating) so a config switch + purge + average
+     * fits the small exec budget. Each channel is refreshed every ~2 cycles. */
+    int32_t code;
+    static bool read_ctn = true;
+    if (read_ctn)
+    {
+        ADS1220_write_regs(&m_ads_cfg_ctn);
+        if (sensor_read_code(&code)) { sensor_finalize_ctn(code); }
+        else { m_sensor.ctn_diag = 1u; LOG(LVL_WARNING, CRED "CTN read failed" C0); }
+    }
+    else
+    {
+        ADS1220_write_regs(&m_ads_cfg_sp110);
+        if (sensor_read_code(&code)) { sensor_finalize_sp110(code); }
+        else { m_sensor.irr_diag = 1u; LOG(LVL_WARNING, CRED "SP110 read failed" C0); }
+    }
+    read_ctn = !read_ctn;
+#endif
+
+    sensor_publish();
     return SENSOR_READ_PERIOD_MS;
 }
 
@@ -1360,7 +1531,7 @@ void App_init(const app_global_functions_t * functions)
     (void)functions;
 
     LOG_INIT();
-    LOG(LVL_INFO, "RS485 bridge v1.0");
+    LOG(LVL_INFO, "RS485 bridge v1.1");
 
     /* Set AUTOROLE_LL only on first boot (before the address is written by
      * configureNodeFromBuildParameters). Subsequent boots preserve any role
@@ -1368,7 +1539,7 @@ void App_init(const app_global_functions_t * functions)
     app_addr_t _addr;
     if (lib_settings->getNodeAddress(&_addr) != APP_RES_OK)
     {
-        lib_settings->setNodeRole(APP_LIB_SETTINGS_ROLE_AUTOROLE_LL);
+        lib_settings->setNodeRole(APP_LIB_SETTINGS_ROLE_AUTOROLE_LE);
     }
 
     configureNodeFromBuildParameters();
@@ -1462,7 +1633,7 @@ void App_init(const app_global_functions_t * functions)
     /* ADC (ADS1220) init via SPI3 */
     ads1220_res_e ads_r = ADS1220_init(BOARD_GPIO_ID_SPI_CS_ADS1220,
                                         BOARD_GPIO_ID_ADS1220_DRDY,
-                                        &m_ads_cfg);
+                                        &m_ads_cfg_ctn);
     if (ads_r != ADS1220_RES_OK) {
         LOG(LVL_ERROR, CRED "ADS1220 init error %d" C0, (int)ads_r);
     } else {
@@ -1491,7 +1662,7 @@ void App_init(const app_global_functions_t * functions)
     /* energy_monitor_task (AEM10900) — skipped, chip not populated */
 
     /* BLE beacon RX — callback registered before startStack */
-    lib_beacon_rx->setBeaconReceivedCb(beacon_rx_cb);
+ //   lib_beacon_rx->setBeaconReceivedCb(beacon_rx_cb);
 
     lib_state->startStack();   /* never returns */
 }

@@ -1,5 +1,12 @@
 # Dual MCU app needs UART
 HAL_UART=yes
+
+# silabs_brd4180b only: blink an LED on every indication poll (see board.h
+# BOARD_LED_BLINK_ON_POLL). HAL_LED pulls in HAL_GPIO automatically.
+ifeq ($(target_board),silabs_brd4180b)
+HAL_LED=yes
+endif
+
 ifeq ($(uart_use_usb),yes)
 UART_USE_DMA=no
 UART_USE_USB=yes

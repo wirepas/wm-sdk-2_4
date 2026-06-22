@@ -18,9 +18,11 @@ LDLIBS += -lm
 # Wirepas HAL drivers
 HAL_GPIO=yes
 HAL_I2C=yes
-HAL_SPI=yes
 
 BEACON_TX=yes
+
+# CBOR encoder (util/tinycbor) — used for the EP11 ADC sensor uplink
+TINY_CBOR=yes
 
 # Wirepas libraries used
 SHARED_DATA=yes

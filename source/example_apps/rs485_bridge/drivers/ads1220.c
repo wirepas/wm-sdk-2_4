@@ -1,67 +1,135 @@
-/* ADS1220 24-bit ADC driver (SPI Mode 1: CPOL=0, CPHA=1)
+/* ADS1220 24-bit ADC driver — raw SPIM00 register access on nRF54L15
  *
- * SPI is initialised once in ADS1220_init() and stays open for all subsequent
- * transfers.  The previous pattern of SPI_close()+SPI_init() inside each
- * transfer reset SCK/MOSI/MISO to GPIO-default (input) while CS was held low,
- * causing glitches that confused the chip and made the clock invisible on a
- * scope (8 clocks at 4 MHz = 2 µs, hidden in the reconfiguration overhead).
+ * On nRF54L15 there are two GPIO / peripheral domains:
+ *   LP domain  (0x4004x/0x4005x/0x4010x): P0, P2, SPIM00, SPIM30/UARTE30
+ *   Peripheral domain (0x400Cx/0x400Dx):  P1, SPIM20-22, UARTE20
  *
- * Wirepas SPI mode naming:
- *   SPI_MODE_HIGH_SECOND = first edge HIGH (clock idles LOW = CPOL=0),
- *                          data latched on second edge (CPHA=1) = SPI Mode 1.
- * The old driver used SPI_MODE_LOW_SECOND = Mode 3 (CPOL=1, CPHA=1) — wrong.
+ * The ADS1220 SPI signals are routed to P2 (LP domain) on this board.
+ * SPIM22 (peripheral domain) cannot drive P2 pins via PSEL — it generates
+ * clocks internally but they never reach the physical pins.
+ * SPIM00 (LP domain) can drive P2 pins → use SPIM00.
+ *
+ * SPIM00 has a 128 MHz core clock; prescaler=64 gives 2 MHz SPI.
+ *
+ * All transfers are full-duplex (TX.MAXCNT == RX.MAXCNT >= 1).
+ *
+ * ADS1220 SPI Mode 1: CPOL=0, CPHA=1
+ *   CONFIG = 0x02 (MSB first, trailing edge latch, active-high clock)
  */
 
 #include <stddef.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <string.h>
 
 #include "ads1220.h"
-#include "spi.h"
 #include "gpio.h"
+#include "board.h"     /* BOARD_SPI_* pin definitions */
+#include "nrf.h"       /* pulls in NRF_SPIM00 */
 
-/* 1 MHz during bringup: each byte = 8 µs, easy to see on a scope.
- * Restore to 4000000u once the hardware is verified. */
-#define ADS1220_SPI_CLOCK_HZ    1000000u
+#define DEBUG_LOG_MODULE_NAME "ADS"
+#define DEBUG_LOG_MAX_LEVEL LVL_INFO
+#define DEBUG_LOG_UART_BAUDRATE 1000000
+#include "debug_log.h"
+
+/* ── SPIM00 configuration ───────────────────────────────────────────────────── */
+
+/* SPIM00 core = 128 MHz; prescaler=64 → 2 MHz SPI clock */
+#define SPIM00_PRESCALER      64u
+#define SPIM00_CONFIG         0x02u   /* CPOL=0, CPHA=1, MSB first               */
+#define SPIM00_ORC            0xFFu
+
+/* PSEL pin encodings come straight from board.h (bits[7:5]=port, bits[4:0]=pin).
+ * MISO and DRDY are SEPARATE pins: MISO = DOUT/DRDY data line (P2.09),
+ * DRDY = dedicated data-ready line (P2.02). Do not confuse them. */
+#define SPIM00_PSEL_SCK       BOARD_SPI_SCK_PIN     /* P2.06 */
+#define SPIM00_PSEL_MOSI      BOARD_SPI_MOSI_PIN    /* P2.08 */
+#define SPIM00_PSEL_MISO      BOARD_SPI_MISO_PIN    /* P2.09 */
+#define SPIM00_PSEL_DISCONNECT 0x80000000UL
+
+#define SPIM00_ENABLE_ON      0x07u
+#define SPIM00_ENABLE_OFF     0x00u
+
+/* Timeout: 2 MHz, 8 bytes = 32 µs = ~2048 cycles @ 64 MHz.
+ * Each iteration reads a peripheral register (~10+ cycles).
+ * 20000 gives a ~3 ms safety margin. */
+#define SPIM00_XFER_TIMEOUT   20000UL
+
+/* ── Private state ───────────────────────────────────────────────────────────── */
 
 static bool    m_initialized = false;
 static uint8_t m_cs_id;
 static uint8_t m_drdy_id;
-static uint8_t m_reg0_cache = 0;   /* cached REG0 to allow MUX-only updates */
+static uint8_t m_reg0_cache = 0;
 
-static const spi_conf_t m_spi_conf = {
-    .clock     = ADS1220_SPI_CLOCK_HZ,
-    .mode      = SPI_MODE_HIGH_SECOND,  /* CPOL=0, CPHA=1 = SPI Mode 1 */
-    .bit_order = SPI_ORDER_MSB,
-};
+/* Scratch buffers — word-aligned for EasyDMA.
+ * Max transfer: WREG 4 regs = 1 cmd + 4 data = 5 bytes. */
+static uint8_t s_tx[8] __attribute__((aligned(4)));
+static uint8_t s_rx[8] __attribute__((aligned(4)));
 
 /* ── CS helpers ─────────────────────────────────────────────────────────────── */
 
 static void cs_assert(void)   { Gpio_outputWrite(m_cs_id, GPIO_LEVEL_LOW);  }
 static void cs_deassert(void) { Gpio_outputWrite(m_cs_id, GPIO_LEVEL_HIGH); }
 
-/* ── SPI primitives (SPI must already be initialised) ────────────────────────── */
+/* ── Raw SPIM00 transfer ─────────────────────────────────────────────────────── */
 
-static ads1220_res_e spi_write(const uint8_t * data, size_t len)
+static bool s_first_xfer = true;
+
+static ads1220_res_e spim00_xfer(const uint8_t * tx_buf,
+                                  uint8_t       * rx_buf,
+                                  uint32_t        len)
 {
-    spi_xfer_t x = {
-        .write_ptr  = (uint8_t *)data,
-        .write_size = len,
-        .read_ptr   = NULL,
-        .read_size  = 0,
-    };
-    return (SPI_transfer(&x, NULL) == SPI_RES_OK) ? ADS1220_RES_OK
-                                                   : ADS1220_RES_SPI_ERR;
+    /* SPIM00 stays enabled (set once in init) — the AIN2-only build ran for
+     * hours this way; toggling ENABLE per transfer is what disturbed the radio. */
+    NRF_SPIM00->EVENTS_END    = 0;
+    NRF_SPIM00->DMA.TX.PTR    = (uint32_t)(uintptr_t)tx_buf;
+    NRF_SPIM00->DMA.TX.MAXCNT = len;
+    NRF_SPIM00->DMA.RX.PTR    = (uint32_t)(uintptr_t)rx_buf;
+    NRF_SPIM00->DMA.RX.MAXCNT = len;
+    NRF_SPIM00->TASKS_START   = 1;
+
+    volatile uint32_t to = SPIM00_XFER_TIMEOUT;
+    while (!NRF_SPIM00->EVENTS_END && to > 0u) { to--; }
+    NRF_SPIM00->EVENTS_END = 0;
+
+    if (s_first_xfer)
+    {
+        s_first_xfer = false;
+        uint32_t tx_amt = NRF_SPIM00->DMA.TX.AMOUNT;
+        uint32_t rx_amt = NRF_SPIM00->DMA.RX.AMOUNT;
+        uint32_t tx_err = NRF_SPIM00->EVENTS_DMA.TX.BUSERROR;
+        uint32_t rx_err = NRF_SPIM00->EVENTS_DMA.RX.BUSERROR;
+        LOG(LVL_INFO, "SPIM00 xfer len=%u to=%u txAmt=%u rxAmt=%u txErr=%u rxErr=%u",
+            (unsigned)len, (unsigned)to,
+            (unsigned)tx_amt, (unsigned)rx_amt,
+            (unsigned)tx_err, (unsigned)rx_err);
+    }
+
+    return (to > 0u) ? ADS1220_RES_OK : ADS1220_RES_SPI_ERR;
 }
 
-static ads1220_res_e spi_read(uint8_t * data, size_t len)
+static ads1220_res_e spi_cmd_read(const uint8_t * cmd_buf,  uint32_t cmd_len,
+                                   uint8_t       * out_data, uint32_t read_len)
 {
-    spi_xfer_t x = {
-        .write_ptr  = NULL,
-        .write_size = 0,
-        .read_ptr   = data,
-        .read_size  = len,
-    };
-    return (SPI_transfer(&x, NULL) == SPI_RES_OK) ? ADS1220_RES_OK
-                                                   : ADS1220_RES_SPI_ERR;
+    uint32_t total = cmd_len + read_len;
+    if (total > (uint32_t)sizeof(s_tx)) return ADS1220_RES_SPI_ERR;
+
+    memcpy(s_tx, cmd_buf, cmd_len);
+    memset(s_tx + cmd_len, SPIM00_ORC, read_len);
+
+    ads1220_res_e r = spim00_xfer(s_tx, s_rx, total);
+    if (r == ADS1220_RES_OK)
+        memcpy(out_data, s_rx + cmd_len, read_len);
+
+    return r;
+}
+
+static ads1220_res_e spi_write(const uint8_t * write_buf, uint32_t len)
+{
+    if (len > (uint32_t)sizeof(s_tx)) return ADS1220_RES_SPI_ERR;
+    memcpy(s_tx, write_buf, len);
+    return spim00_xfer(s_tx, s_rx, len);
 }
 
 /* ── Public API ─────────────────────────────────────────────────────────────── */
@@ -80,9 +148,7 @@ ads1220_res_e ADS1220_init(uint8_t cs_gpio_id,
     };
     Gpio_outputSetCfg(m_cs_id, &cs_cfg);
 
-    /* DRDY: input with internal pull-up as fallback.
-     * DRDY is active-low; idle HIGH.  Without pull-up a disconnected pin
-     * floats LOW and looks like "data ready" before any conversion. */
+    /* DRDY: pull-up input (active-low; idle HIGH when chip has no new data). */
     gpio_in_cfg_t drdy_cfg = {
         .event_cb    = NULL,
         .event_cfg   = GPIO_IN_EVENT_NONE,
@@ -90,16 +156,46 @@ ads1220_res_e ADS1220_init(uint8_t cs_gpio_id,
     };
     Gpio_inputSetCfg(m_drdy_id, &drdy_cfg);
 
-    /* Init SPI once — stays open for all transfers. SPI_close() first in case
-     * the HAL was left initialised from a previous call (e.g. warm reset). */
-    SPI_close();
-    if (SPI_init((spi_conf_t *)&m_spi_conf) != SPI_RES_OK)
-        return ADS1220_RES_SPI_ERR;
+    /* ── Configure SPIM00 (LP domain — same domain as P2) ── */
 
-    /* RESET command: bring the chip to a known state */
-    uint8_t cmd = ADS1220_CMD_RESET;
+    /* GPIO direction must be set before PSEL takes effect.
+     * SCK and MOSI: output, idle LOW.  MISO stays input (reset default). */
+    uint32_t sck_bit  = 1u << (BOARD_SPI_SCK_PIN  & 0x1Fu);
+    uint32_t mosi_bit = 1u << (BOARD_SPI_MOSI_PIN & 0x1Fu);
+    NRF_P2->OUTCLR = sck_bit | mosi_bit;
+    NRF_P2->DIRSET = sck_bit | mosi_bit;
+
+    NRF_SPIM00->ENABLE = SPIM00_ENABLE_OFF;
+
+    NRF_SPIM00->PSEL.SCK  = SPIM00_PSEL_SCK;
+    NRF_SPIM00->PSEL.MOSI = SPIM00_PSEL_MOSI;
+    NRF_SPIM00->PSEL.MISO = SPIM00_PSEL_MISO;
+    NRF_SPIM00->PSEL.CSN  = SPIM00_PSEL_DISCONNECT;
+
+    NRF_SPIM00->PRESCALER = SPIM00_PRESCALER;
+    NRF_SPIM00->CONFIG    = SPIM00_CONFIG;
+    NRF_SPIM00->ORC       = SPIM00_ORC;
+
+    NRF_SPIM00->EVENTS_STARTED = 0;
+    NRF_SPIM00->EVENTS_END     = 0;
+    NRF_SPIM00->EVENTS_STOPPED = 0;
+
+    NRF_SPIM00->ENABLE = SPIM00_ENABLE_ON;
+
+    uint32_t en   = NRF_SPIM00->ENABLE;
+    uint32_t sck  = NRF_SPIM00->PSEL.SCK;
+    uint32_t mosi = NRF_SPIM00->PSEL.MOSI;
+    uint32_t miso = NRF_SPIM00->PSEL.MISO;
+    uint32_t prsc = NRF_SPIM00->PRESCALER;
+    LOG(LVL_INFO, "SPIM00 EN=%u SCK=%u MOSI=%u MISO=%u PRSC=%u",
+        (unsigned)en, (unsigned)sck, (unsigned)mosi, (unsigned)miso, (unsigned)prsc);
+
+    s_first_xfer = true;
+
+    /* RESET command */
+    uint8_t reset_cmd = ADS1220_CMD_RESET;
     cs_assert();
-    ads1220_res_e r = spi_write(&cmd, 1u);
+    ads1220_res_e r = spi_write(&reset_cmd, 1u);
     cs_deassert();
     if (r != ADS1220_RES_OK) return r;
 
@@ -136,7 +232,6 @@ ads1220_res_e ADS1220_read_result(int32_t * result, uint32_t timeout_ms)
 {
     if (!m_initialized) return ADS1220_RES_NOT_INITIALIZED;
 
-    /* Poll DRDY (active-low) */
     uint32_t ticks = timeout_ms * 1000u;
     gpio_level_e level;
     do {
@@ -144,15 +239,11 @@ ads1220_res_e ADS1220_read_result(int32_t * result, uint32_t timeout_ms)
         if (ticks-- == 0u) return ADS1220_RES_NOT_READY;
     } while (level != GPIO_LEVEL_LOW);
 
-    /* RDATA: send command byte, then read 3 data bytes in the same CS frame */
-    uint8_t cmd  = ADS1220_CMD_RDATA;
+    uint8_t cmd    = ADS1220_CMD_RDATA;
     uint8_t raw[3] = {0, 0, 0};
-    ads1220_res_e r;
 
     cs_assert();
-    r = spi_write(&cmd, 1u);
-    if (r == ADS1220_RES_OK)
-        r = spi_read(raw, 3u);
+    ads1220_res_e r = spi_cmd_read(&cmd, 1u, raw, 3u);
     cs_deassert();
 
     if (r != ADS1220_RES_OK) return r;
@@ -185,12 +276,8 @@ ads1220_res_e ADS1220_write_regs(const ads1220_regs_t * regs)
 ads1220_res_e ADS1220_read_regs(ads1220_regs_t * regs)
 {
     uint8_t cmd = ADS1220_CMD_RREG(0u, 4u);
-    ads1220_res_e r;
-
     cs_assert();
-    r = spi_write(&cmd, 1u);
-    if (r == ADS1220_RES_OK)
-        r = spi_read(regs->reg, 4u);
+    ads1220_res_e r = spi_cmd_read(&cmd, 1u, regs->reg, 4u);
     cs_deassert();
     return r;
 }
@@ -198,7 +285,6 @@ ads1220_res_e ADS1220_read_regs(ads1220_regs_t * regs)
 ads1220_res_e ADS1220_set_mux(uint8_t mux)
 {
     if (!m_initialized) return ADS1220_RES_NOT_INITIALIZED;
-    /* mux = ADS1220_MUX_xxx (already occupies bits [7:4] of REG0) */
     m_reg0_cache = (m_reg0_cache & 0x0Fu) | (mux & 0xF0u);
     uint8_t buf[2] = { ADS1220_CMD_WREG(0u, 1u), m_reg0_cache };
     cs_assert();

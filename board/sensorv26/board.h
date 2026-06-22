@@ -26,8 +26,11 @@
 #define BOARD_I2C_SCL_PIN           43      /* P1.11 */
 #define BOARD_I2C_SDA_PIN           44      /* P1.12 */
 
-/* ── SPI3 — ADS1220 24-bit ADC (SPIM22 = SERIAL22) ─────────────────────────── */
-#define USE_SPI3
+/* ── SPI — ADS1220 24-bit ADC (raw SPIM00, see drivers/ads1220.c) ──────────── */
+/* ADS1220 signals are on P2 (LP/main domain, 0x4005_xxxx). Only SPIM00 lives in
+ * that same domain — SPIM20-22 are in the peripheral domain (0x400C_xxxx) and
+ * cannot route PSEL to P2 pins. The driver uses NRF_SPIM00 directly (no HAL).
+ * MISO (P2.09) and DRDY (P2.02) are SEPARATE pins — do not merge them. */
 #define BOARD_SPI_SCK_PIN           70      /* P2.06 */
 #define BOARD_SPI_MOSI_PIN          72      /* P2.08 */
 #define BOARD_SPI_MISO_PIN          73      /* P2.09 */

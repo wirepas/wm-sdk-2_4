@@ -58,9 +58,10 @@ from wirepas_uart import (
     REMOTE_API_RSP_SRC_EP, REMOTE_API_RSP_DST_EP,
     _SCRATCH_ACTION_NAMES,
     cmd_remote_configure,
+    cmd_remote_read_csap, parse_remote_csap_read, decode_csap_role,
     parse_rx_ind, parse_rx_frag_ind, FragReassembler, cbor_to_str,
     cbor_diag_to_str, parse_diag_packet, DIAG_SRC_EP, DIAG_DST_EP,
-    ADDR_BROADCAST, ADDR_MCAST_BIT,
+    ADDR_BROADCAST, ADDR_MCAST_BIT, parse_adc_cbor,
 )
 
 
@@ -272,6 +273,12 @@ class RxFilterProxy(QSortFilterProxyModel):
         self._max_bytes: int           = 0
         self._search:    str           = ""
 
+    def _invalidate(self):
+        # invalidateFilter() is deprecated in Qt6; use invalidateRowsFilter()
+        # when the running PySide6 provides it, else fall back.
+        fn = getattr(self, "invalidateRowsFilter", None)
+        (fn or self.invalidateFilter)()
+
     # ── setters ──────────────────────────────────────────────────────────────
     def _ep_from_text(self, text: str) -> Optional[int]:
         t = text.strip()
@@ -288,15 +295,15 @@ class RxFilterProxy(QSortFilterProxyModel):
             except ValueError:
                 pass
         self._ep_vals = vals
-        self.invalidateFilter()
+        self._invalidate()
 
     def set_src_ep(self, text: str):
         self._src_ep = self._ep_from_text(text)
-        self.invalidateFilter()
+        self._invalidate()
 
     def set_dst_ep(self, text: str):
         self._dst_ep = self._ep_from_text(text)
-        self.invalidateFilter()
+        self._invalidate()
 
     def _node_from_text(self, text: str) -> Optional[int]:
         t = text.strip()
@@ -310,50 +317,50 @@ class RxFilterProxy(QSortFilterProxyModel):
         v = self._node_from_text(text)
         self._src_node = v
         self._dst_node = v
-        self.invalidateFilter()
+        self._invalidate()
 
     def set_src_node(self, text: str):
         self._src_node = self._node_from_text(text)
-        self.invalidateFilter()
+        self._invalidate()
 
     def set_dst_node(self, text: str):
         self._dst_node = self._node_from_text(text)
-        self.invalidateFilter()
+        self._invalidate()
 
     def set_max_hops(self, n: int):
         self._max_hops = n
-        self.invalidateFilter()
+        self._invalidate()
 
     def set_ptype(self, p: str):
         self._ptype = p
-        self.invalidateFilter()
+        self._invalidate()
 
     def set_qos(self, text: str):
         try:
             self._qos = int(text) if text not in ("", "All") else None
         except ValueError:
             self._qos = None
-        self.invalidateFilter()
+        self._invalidate()
 
     def set_min_delay(self, n: int):
         self._min_delay = n
-        self.invalidateFilter()
+        self._invalidate()
 
     def set_max_delay(self, n: int):
         self._max_delay = n
-        self.invalidateFilter()
+        self._invalidate()
 
     def set_min_bytes(self, n: int):
         self._min_bytes = n
-        self.invalidateFilter()
+        self._invalidate()
 
     def set_max_bytes(self, n: int):
         self._max_bytes = n
-        self.invalidateFilter()
+        self._invalidate()
 
     def set_search(self, text: str):
         self._search = text.strip().lower()
-        self.invalidateFilter()
+        self._invalidate()
 
     def clear_filters(self):
         self._ep_vals   = set()
@@ -369,7 +376,7 @@ class RxFilterProxy(QSortFilterProxyModel):
         self._min_bytes = 0
         self._max_bytes = 0
         self._search    = ""
-        self.invalidateFilter()
+        self._invalidate()
 
     # ── filter logic ─────────────────────────────────────────────────────────
     def filterAcceptsRow(self, src_row: int, _src_parent) -> bool:
@@ -987,6 +994,210 @@ class MotorWindow(QDialog):
         super().closeEvent(event)
 
 
+# ─── Sensor (ADC EP 11) plot window ───────────────────────────────────────────
+class SensorPlot(QWidget):
+    """Matplotlib widget for one node: CTN temperature (°C, EP 11), CTN
+    resistance (Ω, EP 11), and SP-110 irradiance (W/m², EP 12) vs. time."""
+    MAXLEN = 1800
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        lay = QVBoxLayout(self)
+        lay.setContentsMargins(0, 0, 0, 0)
+
+        if not _MATPLOTLIB_OK:
+            lay.addWidget(QLabel("matplotlib not installed — pip install matplotlib"))
+            self._ok = False
+            return
+        self._ok = True
+
+        self._fig = Figure(facecolor="#1e1e1e", tight_layout=True)
+        self._ax_t = self._fig.add_subplot(311)
+        self._ax_r = self._fig.add_subplot(312, sharex=self._ax_t)
+        self._ax_i = self._fig.add_subplot(313, sharex=self._ax_t)
+
+        for ax in (self._ax_t, self._ax_r, self._ax_i):
+            ax.set_facecolor("#252526")
+            ax.tick_params(colors="#aaa", labelsize=8)
+            ax.grid(True, alpha=0.25, lw=0.5)
+            for spine in ax.spines.values():
+                spine.set_edgecolor("#555")
+
+        self._ax_t.set_ylabel("°C",    fontsize=8, color="#aaa")
+        self._ax_r.set_ylabel("Ω",     fontsize=8, color="#aaa")
+        self._ax_i.set_ylabel("W/m²",  fontsize=8, color="#aaa")
+        self._ax_i.set_xlabel("t (s)", fontsize=8, color="#aaa")
+        self._ax_t.set_title("CTN temperature", fontsize=9, color="#ccc")
+        self._ax_r.set_title("CTN resistance",  fontsize=9, color="#ccc")
+        self._ax_i.set_title("SP-110 irradiance", fontsize=9, color="#ccc")
+
+        self._ln_t, = self._ax_t.plot([], [], "#5a9fd4", lw=1.4)
+        self._ln_r, = self._ax_r.plot([], [], "#27ae60", lw=1.2)
+        self._ln_i, = self._ax_i.plot([], [], "#e0a030", lw=1.4)
+
+        self._canvas = FigureCanvasQTAgg(self._fig)
+        lay.addWidget(self._canvas)
+
+    def redraw(self, T, TC, RT, TI, IRR):
+        """CTN series share time base T; irradiance uses its own time base TI."""
+        if not self._ok:
+            return
+        tl = list(T)
+        self._ln_t.set_data(tl, list(TC))
+        self._ln_r.set_data(tl, list(RT))
+        self._ln_i.set_data(list(TI), list(IRR))
+        for ax in (self._ax_t, self._ax_r, self._ax_i):
+            ax.relim(); ax.autoscale_view()
+        self._canvas.draw_idle()
+
+    def clear(self):
+        if not self._ok:
+            return
+        for ln in (self._ln_t, self._ln_r, self._ln_i):
+            ln.set_data([], [])
+        self._canvas.draw_idle()
+
+
+class SensorWindow(QDialog):
+    """Floating per-node CTN sensor plot window.
+
+    Receives EP 11 CBOR [T_C, R_T, diag] uplinks via feed() from the main window
+    and plots temperature + resistance vs. time, one node at a time (selectable).
+    """
+
+    visibilityChanged = Signal(bool)
+
+    EP_SENSOR     = 11   # CTN [T_C, R_T, diag] CBOR uplink endpoint
+    EP_IRRADIANCE = 12   # SP-110 [W/m2, mV, diag] CBOR uplink endpoint
+
+    def __init__(self):
+        super().__init__(None,
+                         Qt.WindowType.Window |
+                         Qt.WindowType.WindowTitleHint |
+                         Qt.WindowType.WindowCloseButtonHint |
+                         Qt.WindowType.WindowMinimizeButtonHint)
+        self.setWindowTitle("Sensor — CTN (EP 11)")
+        self.resize(900, 560)
+
+        # Per-node ring buffers:
+        #   addr → {"T": deque, "TC": deque, "RT": deque, "t0": float}
+        self._data: dict[int, dict] = {}
+
+        root = QVBoxLayout(self)
+        root.setSpacing(6)
+        root.setContentsMargins(6, 6, 6, 6)
+
+        # ── Toolbar: node selector + latest values ───────────────────────────────
+        bar = QHBoxLayout()
+        bar.addWidget(QLabel("Node:"))
+        self._cbo_node = QComboBox()
+        self._cbo_node.setMinimumWidth(140)
+        self._cbo_node.setFont(QFont("Courier New", 11))
+        self._cbo_node.currentIndexChanged.connect(self._on_node_changed)
+        bar.addWidget(self._cbo_node)
+
+        self._lbl_vals = QLabel("—")
+        self._lbl_vals.setFont(QFont("Courier New", 11))
+        self._lbl_vals.setStyleSheet("color:#5a9fd4;")
+        bar.addWidget(self._lbl_vals, stretch=1)
+
+        btn_clear = QPushButton("Clear")
+        btn_clear.clicked.connect(self._on_clear)
+        bar.addWidget(btn_clear)
+        root.addLayout(bar)
+
+        self._plot = SensorPlot()
+        root.addWidget(self._plot, stretch=1)
+
+    # ── Public API ────────────────────────────────────────────────────────────
+
+    def _node(self, src_addr: int) -> dict:
+        """Get/create the per-node buffer set and combo entry."""
+        d = self._data.get(src_addr)
+        if d is None:
+            d = {"t0": time.time(),
+                 "T":   deque(maxlen=SensorPlot.MAXLEN),   # CTN time base (EP11)
+                 "TC":  deque(maxlen=SensorPlot.MAXLEN),
+                 "RT":  deque(maxlen=SensorPlot.MAXLEN),
+                 "TI":  deque(maxlen=SensorPlot.MAXLEN),   # irradiance time base (EP12)
+                 "IRR": deque(maxlen=SensorPlot.MAXLEN)}
+            self._data[src_addr] = d
+            self._cbo_node.addItem(f"0x{src_addr:08x}", src_addr)
+            if self._cbo_node.count() == 1:
+                self._cbo_node.setCurrentIndex(0)
+        return d
+
+    def feed_ctn(self, src_addr: int, t_c: float, r_t: float, diag: int):
+        """EP 11 CTN packet. A probe fault is plotted as a gap (NaN)."""
+        fault = bool(diag) or t_c <= -900.0 or r_t < 0.0
+        d = self._node(src_addr)
+        d["T"].append(time.time() - d["t0"])
+        d["TC"].append(float("nan") if fault else t_c)
+        d["RT"].append(float("nan") if fault else r_t)
+        d["last_ctn"] = (t_c, r_t, diag, fault)
+        if self._selected_addr() == src_addr:
+            self._refresh()
+
+    def feed_irr(self, src_addr: int, wm2: float, mv: float, diag: int):
+        """EP 12 SP-110 irradiance packet. A sensor fault is a gap (NaN)."""
+        fault = bool(diag)
+        d = self._node(src_addr)
+        d["TI"].append(time.time() - d["t0"])
+        d["IRR"].append(float("nan") if fault else wm2)
+        d["last_irr"] = (wm2, mv, diag, fault)
+        if self._selected_addr() == src_addr:
+            self._refresh()
+
+    # ── Internal ──────────────────────────────────────────────────────────────
+
+    def _selected_addr(self):
+        idx = self._cbo_node.currentIndex()
+        return self._cbo_node.itemData(idx) if idx >= 0 else None
+
+    def _refresh(self):
+        addr = self._selected_addr()
+        d = self._data.get(addr) if addr is not None else None
+        if d is None:
+            self._plot.clear()
+            self._lbl_vals.setText("—")
+            return
+        self._plot.redraw(d["T"], d["TC"], d["RT"], d["TI"], d["IRR"])
+
+        parts = []
+        ctn = d.get("last_ctn")
+        if ctn is not None:
+            t_c, r_t, diag, fault = ctn
+            parts.append(f"CTN FAULT(diag={diag})" if fault
+                         else f"T={t_c:.2f}°C R={r_t:.0f}Ω")
+        irr = d.get("last_irr")
+        if irr is not None:
+            wm2, mv, diag, fault = irr
+            parts.append(f"SP110 FAULT(diag={diag})" if fault
+                         else f"E={wm2:.1f}W/m² ({mv:.2f}mV)")
+        any_fault = (ctn and ctn[3]) or (irr and irr[3])
+        self._lbl_vals.setText("    ".join(parts) if parts else "—")
+        self._lbl_vals.setStyleSheet(
+            "color:#e74c3c; font-weight:bold;" if any_fault else "color:#5a9fd4;")
+
+    def _on_node_changed(self, _idx: int):
+        self._refresh()
+
+    def _on_clear(self):
+        addr = self._selected_addr()
+        if addr is not None and addr in self._data:
+            d = self._data[addr]
+            for k in ("T", "TC", "RT", "TI", "IRR"):
+                d[k].clear()
+            d.pop("last_ctn", None)
+            d.pop("last_irr", None)
+            d["t0"] = time.time()
+        self._refresh()
+
+    def closeEvent(self, event):
+        self.visibilityChanged.emit(False)
+        super().closeEvent(event)
+
+
 # ─── Signal bridge (rx thread → GUI thread) ───────────────────────────────────
 class _Signals(QObject):
     rx_packet     = Signal(dict)   # RX_IND decoded dict
@@ -999,7 +1210,9 @@ class _Signals(QObject):
     appconfig     = Signal(dict)   # AppConfig read result
     otap_target   = Signal(dict)   # OTAP target read result
     node_cfg_result  = Signal(str, str)   # (message, css-color)
-    remote_scratch   = Signal(int, dict) # (src_addr, parsed status dict)
+    # NOTE: src_addr is a 32-bit Wirepas address that can exceed 2**31, which
+    # overflows PySide6's C++ `int`. Use `object` so the Python int passes through.
+    remote_scratch   = Signal(object, object) # (src_addr, parsed status dict)
     net_uplink_done  = Signal(str, str)  # (summary, css-color) — batch send finished
 
 
@@ -1024,6 +1237,8 @@ class MainWindow(QMainWindow):
         self._signals.net_uplink_done.connect(self._on_net_uplink_done)
 
         self._otap_processed_seq: int = 0  # last known processed scratchpad seq
+        self._diag_role_seen: dict = {}    # addr → last logged diagnostic role_raw
+        self._csap_role_nodes: set = set() # addrs with authoritative CSAP role read
 
         # Polling timer — sends INDICATION_POLL_REQ at ~500ms intervals
         self._poll_timer = QTimer()
@@ -1043,6 +1258,9 @@ class MainWindow(QMainWindow):
         self._motor_window = MotorWindow()
         self._motor_window.set_send_fn(self._motor_send)
         self._motor_window.visibilityChanged.connect(self._on_motor_window_closed)
+
+        self._sensor_window = SensorWindow()
+        self._sensor_window.visibilityChanged.connect(self._on_sensor_window_closed)
 
         self.setWindowTitle("Wirepas UART Console")
         self.resize(1280, 780)
@@ -1133,6 +1351,11 @@ class MainWindow(QMainWindow):
         self._chk_show_motor.setChecked(False)
         self._chk_show_motor.toggled.connect(self._on_motor_toggle)
         conn_lay.addRow("", self._chk_show_motor)
+
+        self._chk_show_sensor = QCheckBox("Show sensor plot window (CTN EP 11)")
+        self._chk_show_sensor.setChecked(False)
+        self._chk_show_sensor.toggled.connect(self._on_sensor_toggle)
+        conn_lay.addRow("", self._chk_show_sensor)
 
         btn_row = QHBoxLayout()
         self._btn_connect = QPushButton("Connect")
@@ -1318,6 +1541,7 @@ class MainWindow(QMainWindow):
             f"QTableView::item:selected {{ background:{COL_SEL}; color:#ffffff; }}"
         )
         self._net_table.selectionModel().selectionChanged.connect(self._on_net_selection_changed)
+        self._net_table.clicked.connect(self._on_net_cell_clicked)
         lay.addWidget(self._net_table, stretch=1)
 
         # ── Uplink panel (shown when ≥1 row selected) ────────────────────────
@@ -2127,23 +2351,65 @@ class MainWindow(QMainWindow):
             src_ep=row['src_ep'],
             incr_pkt=True,
         )
-        # Enrich with role/mode from Wirepas diagnostic packets (EP=247→255)
+        # Enrich with role/mode from Wirepas diagnostic packets (EP=247→255).
+        # Skip if we already have the authoritative CSAP role for this node.
         if row['src_ep'] == DIAG_SRC_EP and row['dst_ep'] == DIAG_DST_EP:
             diag = parse_diag_packet(row['raw'])
             if diag:
-                self._node_model.update_node(src, **{
-                    k: diag[k] for k in ("role", "mode") if k in diag
-                })
-        # Detect Remote API MSAP Scratchpad Status responses (automatic since v5.1)
+                if src not in self._csap_role_nodes:
+                    self._node_model.update_node(src, **{
+                        k: diag[k] for k in ("role", "mode") if k in diag
+                    })
+                # Log the raw role byte once per (node, value) to help calibrate
+                # the _DIAG_ROLE_MAP if a role/mode is mislabelled.
+                if "role_raw" in diag:
+                    seen = self._diag_role_seen.get(src)
+                    if seen != diag["role_raw"]:
+                        self._diag_role_seen[src] = diag["role_raw"]
+                        rv = diag["role_raw"]
+                        msg = (f"diag 0x{src:08x}  role_raw={rv} (0x{rv:02x} "
+                               f"0b{rv:08b})  → {diag.get('role','?')}/{diag.get('mode','?')}")
+                        if self._chk_debug.isChecked() and diag.get("raw_map"):
+                            msg += "  fields=" + str(diag["raw_map"])
+                        self._log_line(msg)
+        # Remote API responses (src_ep=240 → dst_ep=255)
         if row['src_ep'] == REMOTE_API_RSP_SRC_EP and row['dst_ep'] == REMOTE_API_RSP_DST_EP:
+            # Scratchpad status (0x99) → FW / area ID / OTAP info
             st = parse_remote_scratchpad_status(row['raw'])
             if st is not None:
                 self._signals.remote_scratch.emit(src, st)
+            else:
+                # ReadCSAP response (0x8E) → authoritative configured role/mode
+                csap = parse_remote_csap_read(row['raw'])
+                if csap and csap["attr_id"] == CSAP.NODE_ROLE and csap["value"]:
+                    role_byte = csap["value"][0]
+                    role, mode = decode_csap_role(role_byte)
+                    self._csap_role_nodes.add(src)
+                    self._node_model.update_node(src, role=role, mode=mode)
+                    self._log_line(
+                        f"csap 0x{src:08x}  role=0x{role_byte:02x}  → {role}/{mode}")
 
         # Route EP 2 (RS485_UP) replies to motor window if open
         if row['src_ep'] == MotorWindow.EP_UP:
             if self._motor_window.isVisible():
                 self._motor_window.feed_reply(row['raw'])
+
+        # Route CTN (EP 11) and SP-110 irradiance (EP 12) to the sensor window
+        if self._sensor_window.isVisible():
+            if row['src_ep'] == SensorWindow.EP_SENSOR:
+                vals = parse_adc_cbor(row['raw'])
+                if vals:
+                    t_c  = vals[0]
+                    r_t  = vals[1] if len(vals) > 1 else float("nan")
+                    diag = int(vals[2]) if len(vals) > 2 else 0
+                    self._sensor_window.feed_ctn(src, t_c, r_t, diag)
+            elif row['src_ep'] == SensorWindow.EP_IRRADIANCE:
+                vals = parse_adc_cbor(row['raw'])
+                if vals:
+                    wm2  = vals[0]
+                    mv   = vals[1] if len(vals) > 1 else float("nan")
+                    diag = int(vals[2]) if len(vals) > 2 else 0
+                    self._sensor_window.feed_irr(src, wm2, mv, diag)
 
     def _motor_send(self, dst_addr: int, dst_ep: int, payload: bytes, src_ep: int):
         conn = self._conn
@@ -2165,6 +2431,17 @@ class MainWindow(QMainWindow):
     def _on_motor_window_closed(self, visible: bool):
         if not visible:
             self._chk_show_motor.setChecked(False)
+
+    def _on_sensor_toggle(self, checked: bool):
+        if checked:
+            self._sensor_window.show()
+            self._sensor_window.raise_()
+        else:
+            self._sensor_window.hide()
+
+    def _on_sensor_window_closed(self, visible: bool):
+        if not visible:
+            self._chk_show_sensor.setChecked(False)
 
     def _on_tx_ind(self, info: dict):
         result = info["result"]
@@ -2576,16 +2853,23 @@ class MainWindow(QMainWindow):
         if conn is None:
             self._log_line("Not connected")
             return
-        self._log_line("Network scan: sending Remote API broadcast to 0xffffffff…")
+        self._log_line("Network scan: Remote API broadcast to 0xffffffff "
+                       "(scratchpad status + CSAP role)…")
         import threading
-        threading.Thread(
-            target=lambda: cmd_remote_scratchpad_status_req(
-                conn, 0xFFFFFFFF,
-                log_cb=lambda m: self._signals.log_message.emit(m)),
-            daemon=True).start()
+
+        def _do():
+            log = lambda m: self._signals.log_message.emit(m)
+            # Scratchpad status → FW / area ID / OTAP info
+            cmd_remote_scratchpad_status_req(conn, 0xFFFFFFFF, log_cb=log)
+            # CSAP NODE_ROLE → authoritative configured role/mode (incl. autorole)
+            cmd_remote_read_csap(conn, 0xFFFFFFFF, CSAP.NODE_ROLE, log_cb=log)
+
+        threading.Thread(target=_do, daemon=True).start()
 
     def _on_net_clear(self):
         self._node_model.clear()
+        self._csap_role_nodes.clear()
+        self._diag_role_seen.clear()
 
     def _on_net_filter(self, text: str):
         self._net_proxy.setFilterFixedString(text)
@@ -2598,6 +2882,18 @@ class MainWindow(QMainWindow):
             if addr is not None:
                 addrs.append(addr)
         return addrs
+
+    def _on_net_cell_clicked(self, idx):
+        """Clicking the address column copies that node's address to clipboard."""
+        # Columns 0 = "Addr (hex)", 1 = "Addr (dec)"
+        if idx.column() not in (0, 1):
+            return
+        text = idx.data()
+        if not text:
+            return
+        QApplication.clipboard().setText(str(text))
+        self._log_line(f"Copied to clipboard: {text}")
+        self._status_bar.showMessage(f"Copied {text}", 2000)
 
     def _on_net_selection_changed(self, *_):
         addrs = self._net_selected_addrs()

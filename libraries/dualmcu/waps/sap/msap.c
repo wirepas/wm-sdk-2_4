@@ -19,6 +19,10 @@
 #include "shared_appconfig.h"
 #include "stack_state.h"
 #include "ds.h"
+#include "board.h"
+#ifdef BOARD_LED_BLINK_ON_POLL
+#include "led.h"
+#endif
 
 /* Request handlers */
 static bool stackStart(waps_item_t * item);
@@ -454,6 +458,10 @@ static bool pollRequest(waps_item_t * item)
     {
         return false;
     }
+#ifdef BOARD_LED_BLINK_ON_POLL
+    /* Board-specific: toggle an LED on every indication poll (debug aid). */
+    Led_toggle(BOARD_LED_BLINK_ON_POLL);
+#endif
     Waps_item_init(item, WAPS_FUNC_MSAP_INDICATION_POLL_CNF, 1);
     item->pre_cb = updateIndicationCount;
     return true;

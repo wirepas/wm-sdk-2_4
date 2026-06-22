@@ -416,8 +416,11 @@ def parse_remote_scratchpad_status(apdu: bytes) -> Optional[dict]:
     if len(apdu) < 4 or apdu[0] != _REMOTE_API_SCRATCH_STATUS_RSP:
         return None
     data_len = apdu[1]
-    if data_len not in (24, 39, 47) or len(apdu) < 2 + data_len:
-        print(f"[parse_remote_scratchpad_status] unexpected data_len={data_len} "
+    # Part 1 needs 24 bytes; later firmware may append extra fields, so accept
+    # any length >= 24 and decode whichever parts are present (don't whitelist).
+    avail = min(data_len, len(apdu) - 2)
+    if avail < 24:
+        print(f"[parse_remote_scratchpad_status] short data_len={data_len} "
               f"apdu_len={len(apdu)}  hex={apdu[:8].hex()}")
         return None
     d = apdu[2:]
@@ -431,14 +434,14 @@ def parse_remote_scratchpad_status(apdu: bytes) -> Optional[dict]:
         proc_bytes=proc_bytes, proc_crc=proc_crc, proc_seq=proc_seq,
         area_id=area_id, fw=(major, minor, maint, devel),
     )
-    if data_len >= 39:
+    if avail >= 39:
         # Part 2 — app area info (since v4.0)
         (app_bytes, app_crc, app_seq, app_area_id,
          app_major, app_minor, app_maint, app_devel) = struct.unpack_from('<IHBIBBBB', d, 24)
         result.update(app_bytes=app_bytes, app_crc=app_crc, app_seq=app_seq,
                       app_area_id=app_area_id,
                       app_fw=(app_major, app_minor, app_maint, app_devel))
-    if data_len >= 47:
+    if avail >= 47:
         # Part 3 — OTAP target info (since v5.1)
         action, target_seq, target_crc, delay_min, remaining_min = \
             struct.unpack_from('<BBHHH', d, 39)
@@ -881,6 +884,55 @@ def decode_remote_api_response(payload: bytes) -> str:
     return "  ".join(parts) if parts else "(empty)"
 
 
+def cmd_remote_read_csap(conn: WapsConn, target_addr: int, attr_id: int,
+                         log_cb: Optional[Callable] = None) -> bool:
+    """Send a Remote API ReadCSAP request for one attribute to a remote node
+    (or broadcast to 0xFFFFFFFF). The reply arrives asynchronously as an RX
+    packet on src_ep=240 dst_ep=255 (parse with parse_remote_csap_read).
+    Requires the stack to be started on the SINK."""
+    def log(msg):
+        (log_cb or print)(msg)
+    payload = _ra_tlv(REMOTE_API_READ_CSAP, struct.pack('<H', attr_id))
+    ok = cmd_send(conn, dst=target_addr, dst_ep=REMOTE_API_REQ_DST_EP,
+                  src_ep=REMOTE_API_REQ_SRC_EP, payload=payload)
+    log(f"Remote CSAP read attr={attr_id} → 0x{target_addr:08x}: "
+        f"{'sent' if ok else 'FAIL'}")
+    return ok
+
+
+def parse_remote_csap_read(apdu: bytes) -> Optional[dict]:
+    """Parse a Remote API ReadCSAP response (TLV type 0x8E) out of an RX APDU.
+    The 0x8E value is [attribute_id(2, LE)] + [attribute_value(N)].
+    Returns {'attr_id': int, 'value': bytes} for the first 0x8E TLV, or None."""
+    off = 0
+    while off + 2 <= len(apdu):
+        t  = apdu[off]
+        ln = apdu[off + 1]
+        val = apdu[off + 2:off + 2 + ln]
+        if len(val) < ln:
+            break
+        if t == 0x8E and ln >= 2:
+            attr_id = val[0] | (val[1] << 8)
+            return {"attr_id": attr_id, "value": bytes(val[2:])}
+        off += 2 + ln
+    return None
+
+
+def decode_csap_role(role_byte: int) -> tuple:
+    """Decode a CSAP NODE_ROLE byte (the authoritative configured role) into
+    (role_name, mode). Wirepas role bitmask:
+      base (low 3 bits): 1=SINK, 2=HEADNODE, 3=SUBNODE
+      flag 0x10 = low-latency (LL); cleared = low-energy (LE)
+      flag 0x80 = autorole (node auto-selects headnode/subnode)
+    """
+    base = role_byte & 0x07
+    name = {1: "SINK", 2: "HEADNODE", 3: "SUBNODE"}.get(base, f"0x{role_byte:02x}")
+    if role_byte & 0x80:
+        name = "AUTOROLE"
+    mode = "LL" if (role_byte & 0x10) else "LE"
+    return name, mode
+
+
 # ─── CBOR decoding (minimal, dependency-free) ──────────────────────────────────
 def cbor_decode(data: bytes):
     """Decode a single CBOR data item. Returns (value, bytes_consumed).
@@ -976,6 +1028,31 @@ except ImportError:
     _cbor2 = None
 
 
+def parse_adc_cbor(data: bytes):
+    """Decode an EP-11 ADC uplink payload: a CBOR array of numbers
+    (volts encoded as floats, or raw integer counts).
+    Returns a list of floats, or None if the payload is not a CBOR array."""
+    if not data:
+        return None
+    try:
+        if _cbor2 is not None:
+            import io
+            val = _cbor2.CBORDecoder(io.BytesIO(bytes(data))).decode()
+        else:
+            val, _ = cbor_decode(bytes(data))
+    except Exception:
+        return None
+    if not isinstance(val, (list, tuple)) or not val:
+        return None
+    out = []
+    for x in val:
+        try:
+            out.append(float(x))
+        except (TypeError, ValueError):
+            return None
+    return out
+
+
 def cbor_to_str(data: bytes) -> str:
     """Decode CBOR and return a compact human-readable string, or '' if the
     payload is not valid CBOR. Uses the cbor2 library when available, with a
@@ -1049,18 +1126,17 @@ DIAG_FIELD_LABELS = {
 DIAG_SRC_EP = 247
 DIAG_DST_EP = 255
 
-# node_role (CBOR key 4) uses a SEQUENTIAL enum — different from the CSAP NodeRole bitmask.
-# Confirmed from live packets: SINK_LL=2, HEADNODE_LL=4 (sequential pairs LE/LL per role type)
-_DIAG_ROLE_MAP: dict[int, tuple[str, str]] = {
-    1: ("SINK",     "LE"),
-    2: ("SINK",     "LL"),
-    3: ("HEADNODE", "LE"),
-    4: ("HEADNODE", "LL"),
-    5: ("SUBNODE",  "LE"),
-    6: ("SUBNODE",  "LL"),
-    7: ("AUTOROLE", "LE"),
-    8: ("AUTOROLE", "LL"),
-    9: ("ADVERTISER", "—"),
+# node_role (diagnostic CBOR key 4) — exact, calibrated values.
+# The diagnostic role byte is neither a sequential enum nor a clean bit-field
+# (observed: 3 and 4 are both LL but share no bit). It reports the OPERATIONAL
+# role; calibrate from live `role_raw=N` log lines. Values below were observed
+# on a sensorv26 network (sink + autorole/LL sensor nodes). Add new (raw → role,
+# mode) pairs here whenever the log shows a role_raw that resolves to "0xNN".
+_DIAG_ROLE_MAP = {
+    3:  ("SINK",     "LL"),   # the sink
+    4:  ("AUTOROLE", "LL"),   # sensorv26 autorole node (operational headnode)
+    5:  ("AUTOROLE", "LL"),   # sensorv26 autorole node
+    13: ("AUTOROLE", "LL"),   # sensorv26 autorole node
 }
 
 
@@ -1096,9 +1172,17 @@ def parse_diag_packet(data: bytes) -> Optional[dict]:
 
     result: dict = {}
 
-    # node_role (key 4) — sequential diagnostic enum (NOT the CSAP bitmask)
+    # Expose all scalar integer fields (key→value) for diagnostics/calibration.
+    result["raw_map"] = {k: v for k, v in raw.items() if isinstance(v, int)}
+
+    # node_role (key 4). The diagnostic role byte reports the OPERATIONAL role
+    # in an opaque encoding (not a clean enum or bit-field), so it is decoded by
+    # an exact lookup table calibrated from live data (_DIAG_ROLE_MAP). Unknown
+    # values render as "0xNN"/"?" so they stand out for calibration; the GUI logs
+    # role_raw (and the full field map in Debug mode) to help extend the table.
     if 4 in raw:
         role_val = raw[4] if isinstance(raw[4], int) else int(raw[4])
+        result["role_raw"] = role_val
         if role_val in _DIAG_ROLE_MAP:
             result["role"], result["mode"] = _DIAG_ROLE_MAP[role_val]
         else:

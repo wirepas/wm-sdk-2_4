@@ -21,6 +21,11 @@
 #define BOARD_USART_RX_PORT             GPIO_PORTA
 #define BOARD_USART_RX_PIN              6
 
+// NOTE! On the BRD4001A WSTK mainboard the console is routed through the
+// board-controller VCOM bridge, which supports ONLY standard baud rates.
+// The Wirepas default (125000) does not work over VCOM, so force 115200.
+#define BOARD_USART_FORCE_BAUDRATE      115200
+
 // List of GPIO pins
 #define BOARD_GPIO_PIN_LIST            {{GPIO_PORTD, 2}, /* PD02 */\
                                         {GPIO_PORTD, 3}, /* PD03 */\
@@ -39,6 +44,10 @@
 
 // List of LED IDs
 #define BOARD_LED_ID_LIST              {BOARD_GPIO_ID_LED0, BOARD_GPIO_ID_LED1}
+
+// Blink this LED (index into BOARD_LED_ID_LIST) on every dual-MCU indication
+// poll. Board-specific debug aid: only boards that define this macro blink.
+#define BOARD_LED_BLINK_ON_POLL        0  // LED0 (PD02)
 
 // Active high polarity for LEDs
 #define BOARD_LED_ACTIVE_LOW false

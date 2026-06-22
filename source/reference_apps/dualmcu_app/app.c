@@ -23,6 +23,12 @@
 #endif
 #include "dualmcu_lib.h"
 
+#include "board.h"
+#ifdef BOARD_LED_BLINK_ON_POLL
+#include "gpio.h"
+#include "led.h"
+#endif
+
 /**
  * \brief   Initialization callback for application
  *
@@ -35,6 +41,12 @@ void App_init(const app_global_functions_t * functions)
     (void) functions;
 
     App_Setup();
+
+#ifdef BOARD_LED_BLINK_ON_POLL
+    /* Initialise LEDs so msap.c can blink one on every indication poll. */
+    Gpio_init();
+    Led_init();
+#endif
 
 #ifdef DUALMCU_APP_KEY_MGMT
     /**
