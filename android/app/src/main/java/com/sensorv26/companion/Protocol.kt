@@ -10,14 +10,19 @@ import java.util.UUID
  *   - read  : node address as "0x%08X"
  *   - write : "net=AABBCC;ch=7;addr=0000002A"  (addr optional)
  *
- * BLE beacon (card -> phone), Manufacturer Specific Data:
- *   company 0xFFFF, then  ver(1) addr(4 LE) vbat(2 LE, mV) temp(1) flags(1)
- *   temp  = (T_celsius + 40) * 2          -> T = raw/2 - 40
- *   flags = bit0 charging, bit1 valid
+ * BLE beacon (card -> phone), Manufacturer Specific Data — Wirepas net info:
+ *   company 0xFFFF, then type(0x01) node(4 LE) sink(4 LE) cost(1)
+ *                        nbor_count(1) best_rssi(1, signed)
+ *   sink = 0 and cost = 0xFF when the node has no route to a sink.
  *
  * The card's RX filter accepts an advert iff it contains 16-bit UUID 0x1234
- * AND manufacturer data company 0xFFFF with version byte 0x01 — so the phone
- * emits the very same layout to be recognised.
+ * AND manufacturer data company 0xFFFF.
+ *
+ * Control command (phone -> card), Manufacturer Specific Data:
+ *   company 0xFFFF, then  type=0x02 target(4 LE) cmd(1) param(4 LE)
+ *   target — node address the command is aimed at (from the NFC read)
+ *   cmd    — command id (see CMD_*)
+ *   param  — 32-bit parameter (e.g. LED state 0/1)
  */
 object Protocol {
 
@@ -29,63 +34,72 @@ object Protocol {
 
     /** 0xFFFF — "no company / test" manufacturer ID. */
     const val COMPANY_ID = 0xFFFF
-    const val VERSION: Byte = 0x01
 
-    const val MFR_PAYLOAD_LEN = 9 // ver(1)+addr(4)+vbat(2)+temp(1)+flags(1)
+    /** Manufacturer payload type byte (first byte after the company id). */
+    const val TYPE_SENSOR: Byte = 0x01   // card -> phone telemetry
+    const val TYPE_COMMAND: Byte = 0x02  // phone -> card control command
+
+    const val VERSION: Byte = TYPE_SENSOR
+
+    const val MFR_PAYLOAD_LEN = 12 // net: type(1)+node(4)+sink(4)+cost(1)+nbors(1)+rssi(1)
+
+    /** Route cost meaning "no route to a sink" (APP_LIB_STATE_INVALID_ROUTE_COST). */
+    const val NO_ROUTE_COST = 0xFF
+
+    // ---- Control command ids (phone -> card) -------------------------------
+    const val CMD_LED_RED = 0x01     // param = 0/1 (off/on)
+    const val CMD_LED_GREEN = 0x02   // param = 0/1 (off/on)
+    const val CMD_BEACON_TX = 0x03   // param = 0/1 (card stops/starts its own beacon)
 
     // ---- Beacon decode (card -> phone) -------------------------------------
 
-    data class SensorBeacon(
+    data class NetworkBeacon(
         val nodeAddr: Long,
-        val vbatMv: Int,
-        val tempC: Double,
-        val charging: Boolean,
-        val valid: Boolean,
-    )
+        val sinkAddr: Long,
+        val cost: Int,
+        val neighbourCount: Int,
+        val rssi: Int,
+    ) {
+        val hasRoute: Boolean get() = cost != NO_ROUTE_COST && sinkAddr != 0L
+    }
 
     /**
      * Decode the manufacturer-specific payload (already stripped of the 2-byte
      * company id by [android.bluetooth.le.ScanRecord.getManufacturerSpecificData]).
-     * Returns null if it is not one of our sensor beacons.
+     * Returns null if it is not one of our Wirepas network beacons.
      */
-    fun decodeManufacturerData(data: ByteArray?): SensorBeacon? {
+    fun decodeManufacturerData(data: ByteArray?): NetworkBeacon? {
         if (data == null || data.size < MFR_PAYLOAD_LEN) return null
-        if (data[0] != VERSION) return null
-        val addr = (data[1].u() ) or (data[2].u() shl 8) or
+        if (data[0] != TYPE_SENSOR) return null
+        val node = data[1].u() or (data[2].u() shl 8) or
                 (data[3].u() shl 16) or (data[4].u() shl 24)
-        val vbat = data[5].u() or (data[6].u() shl 8)
-        val tempRaw = data[7].toInt() and 0xFF
-        val tempC = tempRaw / 2.0 - 40.0
-        val flags = data[8].toInt() and 0xFF
-        return SensorBeacon(
-            nodeAddr = addr.toLong() and 0xFFFFFFFFL,
-            vbatMv = vbat,
-            tempC = tempC,
-            charging = flags and 0x01 != 0,
-            valid = flags and 0x02 != 0,
+        val sink = data[5].u() or (data[6].u() shl 8) or
+                (data[7].u() shl 16) or (data[8].u() shl 24)
+        return NetworkBeacon(
+            nodeAddr = node.toLong() and 0xFFFFFFFFL,
+            sinkAddr = sink.toLong() and 0xFFFFFFFFL,
+            cost = data[9].toInt() and 0xFF,
+            neighbourCount = data[10].toInt() and 0xFF,
+            rssi = data[11].toInt(),  // signed
         )
     }
 
-    // ---- Beacon encode (phone -> card) -------------------------------------
+    // ---- Command encode (phone -> card) ------------------------------------
 
-    /** Build the manufacturer payload (without the company id) for emission. */
-    fun encodeManufacturerData(
-        nodeAddr: Long,
-        vbatMv: Int,
-        tempC: Double,
-        charging: Boolean,
-        valid: Boolean,
-    ): ByteArray {
-        val tempRaw = ((tempC + 40.0) * 2.0).toInt().coerceIn(0, 255)
-        val flags = (if (charging) 0x01 else 0) or (if (valid) 0x02 else 0)
-        val a = nodeAddr.toInt()
+    /**
+     * Build the command manufacturer payload (without the company id):
+     * type(1) target(4 LE) cmd(1) param(4 LE) = 10 bytes.
+     */
+    fun encodeCommand(targetAddr: Long, cmd: Int, param: Long): ByteArray {
+        val a = targetAddr.toInt()
+        val p = param.toInt()
         return byteArrayOf(
-            VERSION,
+            TYPE_COMMAND,
             (a ushr 0).toByte(), (a ushr 8).toByte(),
             (a ushr 16).toByte(), (a ushr 24).toByte(),
-            (vbatMv and 0xFF).toByte(), ((vbatMv ushr 8) and 0xFF).toByte(),
-            tempRaw.toByte(),
-            flags.toByte(),
+            (cmd and 0xFF).toByte(),
+            (p ushr 0).toByte(), (p ushr 8).toByte(),
+            (p ushr 16).toByte(), (p ushr 24).toByte(),
         )
     }
 

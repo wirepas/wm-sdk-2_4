@@ -38,11 +38,12 @@
 #include "lis2dw.h"
 #include "ads1220.h"
 #include "rs485_uart.h"
+#include "i2c.h"      /* low-level I2C HAL — used for the AEM10900 bus diagnostic */
 #include "cbor.h"
 
 #define DEBUG_LOG_MODULE_NAME "AP"
 #define DEBUG_LOG_MAX_LEVEL LVL_INFO
-#define DEBUG_LOG_UART_BAUDRATE 1000000
+#define DEBUG_LOG_UART_BAUDRATE 115200
 #include "debug_log.h"
 
 /* ANSI colour codes */
@@ -92,6 +93,88 @@ static const char * fixed_str(char * buf, size_t n, float v, unsigned dec)
 #define TXT_HDR_SIZE       3   /* NDEF text header: status byte + "en" */
 
 static uint8_t m_nfc_memory[NFC_MEMORY_SIZE];
+
+/* Network settings (net/ch/addr) cannot be changed while the stack is running
+ * (setNetworkAddress returns APP_RES_INVALID_STACK_STATE). So NFC commissioning
+ * persists the requested parameters and reboots; App_init applies them before
+ * startStack (stack stopped) on the next boot.
+ *
+ * The persistent area is the application's 32-byte slice of lib_storage. The
+ * record is CRC-protected and every write is verified by read-back, so a
+ * corrupt or partially-written blob is never applied (which would otherwise
+ * risk masking Remote-API settings on every boot). */
+#define NFC_COMMISSION_MAGIC  0x4E464331u   /* "NFC1" */
+#define NFC_STORE_WRITE_TRIES 3u
+
+typedef struct {
+    uint32_t magic;
+    uint32_t net;
+    uint32_t addr;
+    uint8_t  ch;
+    uint8_t  set_addr;
+    uint8_t  _pad[2];
+    uint32_t crc;       /* CRC32 over all preceding fields */
+} nfc_commission_store_t;
+
+/* Must fit the 32-byte application persistent area (see wms_storage.h). */
+typedef char nfc_store_fits_check[(sizeof(nfc_commission_store_t) <= 32) ? 1 : -1];
+
+/* Compact table-less CRC32 (poly 0xEDB88320). */
+static uint32_t nfc_crc32(const void * data, size_t len)
+{
+    const uint8_t * p = (const uint8_t *)data;
+    uint32_t crc = 0xFFFFFFFFu;
+    for (size_t i = 0; i < len; i++)
+    {
+        crc ^= p[i];
+        for (uint8_t k = 0; k < 8u; k++)
+            crc = (crc >> 1) ^ (0xEDB88320u & (uint32_t)(-(int32_t)(crc & 1u)));
+    }
+    return ~crc;
+}
+
+static uint32_t nfc_store_crc(const nfc_commission_store_t * s)
+{
+    return nfc_crc32(s, sizeof(*s) - sizeof(s->crc));
+}
+
+/* Validate magic, CRC and value ranges. Defends against flash corruption. */
+static bool nfc_store_valid(const nfc_commission_store_t * s)
+{
+    if (s->magic != NFC_COMMISSION_MAGIC)        return false;
+    if (s->crc   != nfc_store_crc(s))            return false;
+    if (s->net == 0u || s->net > 0xFFFFFEu)      return false;
+    if (s->ch  < 1u  || s->ch  > 11u)            return false;
+    if (s->set_addr && s->addr == 0u)            return false;
+    return true;
+}
+
+/* Write a record and confirm it by read-back. Returns true only if the stored
+ * bytes match exactly. Retried a few times to ride out a transient failure. */
+static bool nfc_store_write(const nfc_commission_store_t * s)
+{
+    if (lib_storage == NULL) return false;
+    for (uint8_t attempt = 0; attempt < NFC_STORE_WRITE_TRIES; attempt++)
+    {
+        if (lib_storage->writePersistent(s, sizeof(*s)) != APP_RES_OK)
+            continue;
+        nfc_commission_store_t rb;
+        if (lib_storage->readPersistent(&rb, sizeof(rb)) == APP_RES_OK
+            && memcmp(&rb, s, sizeof(rb)) == 0)
+            return true;
+    }
+    return false;
+}
+
+/* Invalidate the staged record (verified). Returns true if cleared. */
+static bool nfc_store_clear(void)
+{
+    nfc_commission_store_t cleared;
+    memset(&cleared, 0, sizeof(cleared));   /* magic = 0 → invalid */
+    return nfc_store_write(&cleared);
+}
+
+static uint32_t led_red_off_task(void);  /* used as a persist-failure cue */
 
 /* Event flags — set from callback (IRQ context), drained in poll_task. */
 #define NFC_EVT_FIELD_ON      (1u << 0)
@@ -243,24 +326,74 @@ static void nfc_commissioning_apply(void)
         return;
     }
 
-    /* Apply */
-    lib_settings->setNetworkAddress(net_addr);
-    lib_settings->setNetworkChannel(channel);
-    if (set_addr)
+    /* Persist for the next boot — the stack is running here so the settings
+     * setters would fail. apply_pending_commissioning() applies it in App_init. */
+    nfc_commission_store_t store;
+    memset(&store, 0, sizeof(store));
+    store.magic    = NFC_COMMISSION_MAGIC;
+    store.net      = (uint32_t)net_addr;
+    store.addr     = (uint32_t)node_addr;
+    store.ch       = (uint8_t)channel;
+    store.set_addr = set_addr ? 1u : 0u;
+    store.crc      = nfc_store_crc(&store);
+
+    /* Only reboot if the parameters were durably stored AND verified. Otherwise
+     * keep running so the user can retry the tap (a reboot would change nothing
+     * and hide the failure). */
+    if (!nfc_store_write(&store))
     {
-        lib_settings->setNodeAddress(node_addr);
+        LOG(LVL_ERROR, CRED "NFC commissioning: persist failed — not rebooting" C0);
+        /* Visible failure cue without the debug UART: pulse the red LED. */
+        Gpio_outputWrite(BOARD_GPIO_ID_LED_RED, GPIO_LEVEL_HIGH);
+        App_Scheduler_addTask_execTime(led_red_off_task, 500U, 100U);
+        return;
     }
 
     LOG(LVL_INFO,
-        CCYN CBOLD "NFC commissioning applied: net=0x%06X ch=%u%s — rebooting" C0,
-        (unsigned)net_addr,
-        (unsigned)channel,
-        set_addr ? " (addr set)" : "");
+        CCYN CBOLD "NFC commissioning staged: net=0x%06X ch=%u%s — rebooting" C0,
+        (unsigned)net_addr, (unsigned)channel, set_addr ? " (addr set)" : "");
 
     /* Short delay so the log message is sent before reset */
     for (volatile uint32_t i = 0; i < 200000u; i++) {}
 
     NVIC_SystemReset();
+}
+
+/* Apply (and clear) any NFC commissioning staged in persistent storage.
+ * Must be called from App_init, before startStack, while the stack is stopped. */
+static void apply_pending_commissioning(void)
+{
+    if (lib_storage == NULL) return;
+
+    nfc_commission_store_t s;
+    if (lib_storage->readPersistent(&s, sizeof(s)) != APP_RES_OK) return;
+    if (s.magic != NFC_COMMISSION_MAGIC) return;   /* nothing staged */
+
+    /* Discard anything that does not pass CRC + range validation, so corrupt
+     * flash can never be applied nor re-applied on subsequent boots. */
+    if (!nfc_store_valid(&s))
+    {
+        LOG(LVL_ERROR, CRED "NFC commissioning: corrupt record discarded" C0);
+        nfc_store_clear();
+        return;
+    }
+
+    app_res_e r1 = lib_settings->setNetworkAddress((app_lib_settings_net_addr_t)s.net);
+    app_res_e r2 = lib_settings->setNetworkChannel((app_lib_settings_net_channel_t)s.ch);
+    app_res_e r3 = APP_RES_OK;
+    if (s.set_addr)
+        r3 = lib_settings->setNodeAddress((app_addr_t)s.addr);
+
+    /* Clear with verification so it is applied exactly once. If clearing somehow
+     * fails the same valid values would simply re-apply next boot (idempotent),
+     * never garbage — but log it as it would mask later Remote-API changes. */
+    if (!nfc_store_clear())
+        LOG(LVL_ERROR, CRED "NFC commissioning: clear failed (will re-apply)" C0);
+
+    LOG(LVL_INFO,
+        CCYN CBOLD "NFC commissioning applied: net=0x%06X ch=%u%s (r=%d/%d/%d)" C0,
+        (unsigned)s.net, (unsigned)s.ch, s.set_addr ? " (addr)" : "",
+        (int)r1, (int)r2, (int)r3);
 }
 
 /* Build and write an NDEF text record into m_nfc_memory[T2_HEADER_SIZE..].
@@ -370,7 +503,7 @@ static void log_node_info(void)
 /* NTC parameters — NCP15XH103J03RC + 22 kΩ divider */
 #define NTC_R25_OHM     10000.0f
 #define NTC_B_K          3380.0f
-#define NTC_RDIV_OHM    22000.0f
+#define NTC_RDIV_OHM    15000.0f   /* divider resistor on sensorv26 (measured) */
 #define NTC_T_REF_K       298.15f
 
 typedef struct
@@ -506,17 +639,69 @@ static float ntc_raw_to_celsius(uint8_t raw)
     float t_inv = (1.0f / NTC_T_REF_K) + (logf(r_ntc / NTC_R25_OHM) / NTC_B_K);
     return (1.0f / t_inv) - 273.15f;
 }
-
-static void beacon_update(void);
 #endif /* USE_AEM10900 */
 static void appconfig_cb(uint16_t type, uint8_t length, uint8_t * value_p);
 static bool appconfig_log(void);
 
 #if defined(USE_AEM10900)
+static void send_pmic_cbor_uplink(void);   /* defined near the other CBOR uplinks */
+static bool m_pmic_ready = false;
+
+/* One-shot low-level I2C diagnostic: confirms whether anything ACKs on the bus
+ * and what the AEM10900 (0x2D) returns. Granular i2c_res_e tells bus from chip:
+ *   6=ANACK (no device / chip unpowered), 8=BUS_HANG (SDA/SCL stuck / no pull-up). */
+static void i2c_bus_diag(void)
+{
+    i2c_conf_t cfg = { .clock = 100000u, .pullup = true };
+    i2c_res_e ir = I2C_init(&cfg);
+    LOG(LVL_INFO, CYEL "I2C diag: init=%d (0=OK 4=ALREADY)" C0, (int)ir);
+
+    uint8_t b;
+    i2c_xfer_t probe = { .address = 0x41u /* AEM10900 addr */, .write_ptr = NULL,
+                         .write_size = 0u, .read_ptr = &b, .read_size = 1u };
+    i2c_res_e pr = I2C_transfer(&probe, NULL);
+    LOG(LVL_INFO, CYEL "I2C 0x2D probe=%d (0=OK 6=ANACK 7=DNACK 8=BUS_HANG)" C0, (int)pr);
+
+    uint8_t found = 0u;
+    for (uint8_t a = 0x08u; a <= 0x77u; a++)
+    {
+        uint8_t rb;
+        i2c_xfer_t sx = { .address = a, .write_ptr = NULL, .write_size = 0u,
+                          .read_ptr = &rb, .read_size = 1u };
+        if (I2C_transfer(&sx, NULL) == I2C_RES_OK)
+        {
+            LOG(LVL_INFO, CGRN "I2C device found @ 0x%02X" C0, a);
+            found++;
+        }
+    }
+    LOG(LVL_INFO, CYEL "I2C scan: %u device(s) on the bus" C0, found);
+}
+
 static uint32_t energy_monitor_task(void)
 {
     uint8_t temp_raw;
     aem10900_res_e r;
+
+    /* (Re)initialise on demand. Logged here (10 s apart) rather than at boot,
+     * where a burst of lines overflows the 115200 UART TX buffer and is lost.
+     * Also auto-recovers if the PMIC only becomes ready later (storage charges). */
+    if (!m_pmic_ready)
+    {
+        r = AEM10900_init(&m_pmic_cfg);
+        if (r != AEM10900_RES_OK)
+        {
+            LOG(LVL_WARNING,
+                CRED "AEM10900 init error %d (1=I2C_ERR 3=SYNC_TIMEOUT) — retry in 10s" C0,
+                (int)r);
+            /* On the first failure, dump a low-level bus diagnostic. */
+            static bool diag_done = false;
+            if (!diag_done) { diag_done = true; i2c_bus_diag(); }
+            m_energy.valid = false;
+            return ENERGY_MONITOR_PERIOD_MS;
+        }
+        LOG(LVL_INFO, CGRN "AEM10900 init OK" C0);
+        m_pmic_ready = true;
+    }
 
     r = AEM10900_read_storage_voltage(&m_energy.storage_v);
     if (r != AEM10900_RES_OK) goto fail;
@@ -524,13 +709,19 @@ static uint32_t energy_monitor_task(void)
     r = AEM10900_read_source_voltage(&m_energy.source_v);
     if (r != AEM10900_RES_OK) goto fail;
 
+    /* Raw SRC register, to diagnose the vsrc conversion (LUT tops at ~1.485 V). */
+    uint8_t src_raw = 0;
+    (void)AEM10900_read_reg(AEM10900_REG_SRC, &src_raw);
+
     r = AEM10900_read_reg(AEM10900_REG_TEMP, &temp_raw);
     if (r != AEM10900_RES_OK) goto fail;
 
     r = AEM10900_get_status(&m_energy.status);
     if (r != AEM10900_RES_OK) goto fail;
 
-    r = AEM10900_read_apm(&m_energy.apm_uw);
+    /* Coherent burst read; apm_raw[2:0] = APM2:APM1:APM0 for the diagnostic log. */
+    uint8_t apm_raw[3] = { 0, 0, 0 };
+    r = AEM10900_read_apm(&m_energy.apm_uw, apm_raw);
     if (r != AEM10900_RES_OK) goto fail;
 
     m_energy.temperature_c = ntc_raw_to_celsius(temp_raw);
@@ -539,37 +730,34 @@ static uint32_t energy_monitor_task(void)
 
     char bsto[24], bsrc[24], btmp[24], bpwr[24];
     LOG(LVL_INFO,
-        CYEL "PMIC: vsto=%sV vsrc=%sV T=%sC pwr=%suW chg=%d st=0x%02x" C0,
+        CYEL "PMIC: vsto=%sV vsrc=%sV(0x%02x) T=%sC pwr=%suW(apm=%02x%02x%02x) chg=%d st=0x%02x" C0,
         fixed_str(bsto, sizeof bsto, m_energy.storage_v, 2),
         fixed_str(bsrc, sizeof bsrc, m_energy.source_v, 2),
+        src_raw,
         fixed_str(btmp, sizeof btmp, m_energy.temperature_c, 1),
         fixed_str(bpwr, sizeof bpwr, m_energy.apm_uw, 1),
+        apm_raw[2], apm_raw[1], apm_raw[0],
         (int)m_energy.is_charging,
         m_energy.status);
 
+    send_pmic_cbor_uplink();   /* EP09: [vsto, vsrc, T, pwr, status, chg] */
+
     LOG(LVL_INFO, "BLE RX total: %u", (unsigned)m_brx_total);
-    beacon_update();
     return ENERGY_MONITOR_PERIOD_MS;
 
 fail:
-    LOG(LVL_WARNING, CRED "PMIC read error %d" C0, r);
+    LOG(LVL_WARNING, CRED "PMIC read error %d — will re-init" C0, r);
+    m_pmic_ready   = false;   /* force a fresh init next cycle */
+    m_energy.valid = false;
     LOG(LVL_INFO, "BLE RX total: %u", (unsigned)m_brx_total);
-    beacon_update();    /* update beacon even without PMIC data */
     return ENERGY_MONITOR_PERIOD_MS;
 }
 #endif /* USE_AEM10900 */
 
-/* ── BLE beacon TX ───────────────────────────────────────────────────────────── */
-/*
- * ADV_NONCONN_IND PDU layout (30 bytes, < 38 max):
- *   [0]      PDU type  0x42
- *   [1..6]   BT addr   node_addr (4B LE) + 00 00
- *   [7..9]   Flags     02 01 04
- *   [10..13] UUID list 03 03 34 12          ← UUID 0x1234
- *   [14..16] TX Power  02 0A 04             ← 4 dBm
- *   [17..29] Mfr Data  0C FF FF FF 01 + 8B  ← company 0xFFFF, ver 0x01
- *              Mfr payload: addr[4] vbat[2] temp[1] flags[1]
- */
+/* ── BLE beacon TX — Wirepas network info ─────────────────────────────────────
+ * Always-on advertiser (independent of the PMIC). Emits UUID 0x1234 + mfr
+ * 0xFFFF/type 0x01 carrying the node's Wirepas route/neighbour state. The PMIC
+ * (AEM10900), when fitted, is read separately and only logged. */
 #define BEACON_SERVICE_UUID     0x1234u
 #define BEACON_COMPANY_ID_LO    0xFFu
 #define BEACON_COMPANY_ID_HI    0xFFu
@@ -577,57 +765,83 @@ fail:
 #define BEACON_INTERVAL_MS      1000u
 #define BEACON_POWER_DBM        4
 
-#if defined(USE_AEM10900)
-static bool m_beacon_initialized = false;
+#define BEACON_TX_PERIOD_MS   1000u
+#define BEACON_TX_EXEC_US     2000u   /* tiny budget: must not starve the LL radio */
 
-static void beacon_update(void)
+static bool          m_beacon_tx_started = false;
+/* START/STOP controlled by CMD_BEACON_TX (0x03) from a command beacon. */
+static volatile bool m_beacon_tx_enable  = true;
+
+static uint32_t beacon_tx_task(void)
 {
+    /* Honour START/STOP: when disabled, ensure the beacon is off and idle. */
+    if (!m_beacon_tx_enable)
+    {
+        if (m_beacon_tx_started)
+        {
+            lib_beacon_tx->enableBeacons(false);
+            m_beacon_tx_started = false;
+        }
+        return BEACON_TX_PERIOD_MS;
+    }
+
     app_addr_t addr = 0;
     lib_settings->getNodeAddress(&addr);
 
-    uint16_t vbat_mv = m_energy.valid
-                       ? (uint16_t)(m_energy.storage_v * 1000.0f) : 0u;
-    uint8_t temp_raw = m_energy.valid
-                       ? (uint8_t)((m_energy.temperature_c + 40.0f) * 2.0f) : 0u;
-    uint8_t flags    = (m_energy.is_charging ? 0x01u : 0x00u)
-                     | (m_energy.valid        ? 0x02u : 0x00u);
+    /* Gather Wirepas network state to advertise: route to sink + neighbours. */
+    app_lib_state_route_info_t route;
+    memset(&route, 0, sizeof(route));
+    lib_state->getRouteInfo(&route);
 
-    uint8_t pdu[32];
+    app_lib_state_nbor_info_t nbor_buf[8];
+    app_lib_state_nbor_list_t nlist = { .number_nbors = 8u, .nbors = nbor_buf };
+    lib_state->getNbors(&nlist);
+
+    uint8_t nbor_count = (uint8_t)nlist.number_nbors;
+    int8_t  best_rssi  = -128;
+    for (uint32_t n = 0; n < nlist.number_nbors; n++)
+        if (nbor_buf[n].norm_rssi > best_rssi) best_rssi = nbor_buf[n].norm_rssi;
+    if (best_rssi == -128) best_rssi = 0;
+
+    uint32_t sink = (uint32_t)route.sink;
+
+    uint8_t pdu[40];
     uint8_t i = 0;
 
-    pdu[i++] = 0x42u;                           /* PDU type: non-connectable */
-    pdu[i++] = (uint8_t)(addr >>  0);           /* BT addr (LSB first) */
-    pdu[i++] = (uint8_t)(addr >>  8);
-    pdu[i++] = (uint8_t)(addr >> 16);
-    pdu[i++] = (uint8_t)(addr >> 24);
-    pdu[i++] = 0x00u;
-    pdu[i++] = 0x00u;
-
-    /* AD: Flags */
-    pdu[i++] = 0x02u; pdu[i++] = 0x01u; pdu[i++] = 0x04u;
-
-    /* AD: Complete List of 16-bit UUIDs — 0x1234 */
-    pdu[i++] = 0x03u; pdu[i++] = 0x03u;
-    pdu[i++] = (uint8_t)(BEACON_SERVICE_UUID & 0xFFu);
-    pdu[i++] = (uint8_t)(BEACON_SERVICE_UUID >> 8);
-
-    /* AD: TX Power Level */
-    pdu[i++] = 0x02u; pdu[i++] = 0x0Au; pdu[i++] = (uint8_t)BEACON_POWER_DBM;
-
-    /* AD: Manufacturer Specific Data (company 0xFFFF, ver 0x01, 8 bytes data) */
-    pdu[i++] = 0x0Cu; pdu[i++] = 0xFFu;
-    pdu[i++] = BEACON_COMPANY_ID_LO; pdu[i++] = BEACON_COMPANY_ID_HI;
-    pdu[i++] = BEACON_VERSION;
+    pdu[i++] = 0x42u;                           /* ADV_NONCONN_IND */
     pdu[i++] = (uint8_t)(addr >>  0);
     pdu[i++] = (uint8_t)(addr >>  8);
     pdu[i++] = (uint8_t)(addr >> 16);
     pdu[i++] = (uint8_t)(addr >> 24);
-    pdu[i++] = (uint8_t)(vbat_mv & 0xFFu);
-    pdu[i++] = (uint8_t)(vbat_mv >> 8);
-    pdu[i++] = temp_raw;
-    pdu[i++] = flags;   /* i == 30 */
+    pdu[i++] = 0x00u;
+    pdu[i++] = 0x00u;
 
-    if (!m_beacon_initialized)
+    pdu[i++] = 0x02u; pdu[i++] = 0x01u; pdu[i++] = 0x04u;          /* Flags */
+
+    pdu[i++] = 0x03u; pdu[i++] = 0x03u;                            /* UUID16 list */
+    pdu[i++] = (uint8_t)(BEACON_SERVICE_UUID & 0xFFu);
+    pdu[i++] = (uint8_t)(BEACON_SERVICE_UUID >> 8);
+
+    pdu[i++] = 0x02u; pdu[i++] = 0x0Au; pdu[i++] = (uint8_t)BEACON_POWER_DBM; /* TX pwr */
+
+    /* Mfr Specific Data — Wirepas network info:
+     * type(0x01) node(4 LE) sink(4 LE) cost(1) nbor_count(1) best_rssi(1) */
+    pdu[i++] = 0x0Fu; pdu[i++] = 0xFFu;
+    pdu[i++] = BEACON_COMPANY_ID_LO; pdu[i++] = BEACON_COMPANY_ID_HI;
+    pdu[i++] = BEACON_VERSION;                  /* 0x01 = network info */
+    pdu[i++] = (uint8_t)(addr >>  0);
+    pdu[i++] = (uint8_t)(addr >>  8);
+    pdu[i++] = (uint8_t)(addr >> 16);
+    pdu[i++] = (uint8_t)(addr >> 24);
+    pdu[i++] = (uint8_t)(sink >>  0);
+    pdu[i++] = (uint8_t)(sink >>  8);
+    pdu[i++] = (uint8_t)(sink >> 16);
+    pdu[i++] = (uint8_t)(sink >> 24);
+    pdu[i++] = route.cost;                      /* route cost to sink (0xFF = none) */
+    pdu[i++] = nbor_count;                       /* number of neighbours */
+    pdu[i++] = (uint8_t)best_rssi;               /* best neighbour norm RSSI (signed) */
+
+    if (!m_beacon_tx_started)
     {
         int8_t pwr = BEACON_POWER_DBM;
         lib_beacon_tx->clearBeacons();
@@ -636,21 +850,22 @@ static void beacon_update(void)
         lib_beacon_tx->setBeaconChannels(0, APP_LIB_BEACON_TX_CHANNELS_ALL);
         lib_beacon_tx->setBeaconContents(0, pdu, i);
         lib_beacon_tx->enableBeacons(true);
-        m_beacon_initialized = true;
+        m_beacon_tx_started = true;
         LOG(LVL_INFO,
-            CBOLD CBLU "BLE beacon enabled addr=0x%08x " CDEC "(%u) " CBLU "UUID=0x%04x " CDEC "(%u)" C0,
-            addr, addr, BEACON_SERVICE_UUID, BEACON_SERVICE_UUID);
+            CBOLD CBLU "BLE beacon enabled (no PMIC) addr=0x%08x " CDEC "(%u) "
+            CBLU "UUID=0x%04x" C0, addr, addr, BEACON_SERVICE_UUID);
     }
     else
     {
         lib_beacon_tx->setBeaconContents(0, pdu, i);
     }
+    return BEACON_TX_PERIOD_MS;
 }
-#endif /* USE_AEM10900 */
 
 /* ── Wirepas endpoints ──────────────────────────────────────────────────────── */
 #define EP_RS485_DOWN   1   /* gateway → bridge → motor (commands) */
 #define EP_RS485_UP     2   /* motor → bridge → gateway (replies)  */
+#define EP_PMIC_CBOR    9   /* periodic AEM10900 PMIC data as CBOR array */
 #define EP_HEARTBEAT   10   /* periodic uplink counter              */
 #define EP_SENSOR_CBOR 11   /* periodic CTN [T_C, R_T, diag] as CBOR array */
 #define EP_IRRADIANCE  12   /* periodic SP-110 [W/m2, mV, diag] as CBOR array */
@@ -883,6 +1098,42 @@ static void send_irradiance_uplink(void)
 }
 #endif /* USE_ADS1220 */
 
+#if defined(USE_AEM10900)
+/* Send the AEM10900 PMIC snapshot to the Wirepas sink on EP_PMIC_CBOR (EP 9) as
+ * a CBOR array: [vsto (float V), vsrc (float V), temp (float °C),
+ * pwr (float µW), status (uint), charging (bool)].
+ * 1 (hdr) + 4×5 (float32) + 1 (uint) + 1 (bool) = 23 bytes → 32-byte buf ample. */
+static void send_pmic_cbor_uplink(void)
+{
+    uint8_t buf[32];
+    CborEncoder enc, arr;
+    cbor_encoder_init(&enc, buf, sizeof(buf), 0);
+    cbor_encoder_create_array(&enc, &arr, 6);
+    cbor_encode_float(&arr, m_energy.storage_v);
+    cbor_encode_float(&arr, m_energy.source_v);
+    cbor_encode_float(&arr, m_energy.temperature_c);
+    cbor_encode_float(&arr, m_energy.apm_uw);
+    cbor_encode_uint(&arr, m_energy.status);
+    cbor_encode_boolean(&arr, m_energy.is_charging);
+    cbor_encoder_close_container(&enc, &arr);
+
+    size_t len = cbor_encoder_get_buffer_size(&enc, buf);
+
+    app_lib_data_to_send_t pkt = {
+        .bytes         = buf,
+        .num_bytes     = len,
+        .dest_address  = APP_ADDR_ANYSINK,
+        .src_endpoint  = EP_PMIC_CBOR,
+        .dest_endpoint = EP_PMIC_CBOR,
+        .qos           = APP_LIB_DATA_QOS_NORMAL,
+        .flags         = APP_LIB_DATA_SEND_FLAG_NONE,
+        .tracking_id   = APP_LIB_DATA_NO_TRACKING_ID,
+    };
+    Shared_Data_sendData(&pkt, NULL);
+    LOG(LVL_DEBUG, "EP09 PMIC CBOR uplink sent (%u B)", (unsigned)len);
+}
+#endif /* USE_AEM10900 */
+
 /* ── BLE beacon RX ──────────────────────────────────────────────────────────── */
 /*
  * Callback runs in IRQ context — data is copied into a ring buffer and
@@ -903,20 +1154,20 @@ static volatile uint8_t  m_brx_rd = 0;
 static brx_entry_t       m_brx_ring[BRX_RING_LEN];
 
 // /* Called from IRQ — must be fast, no LOG, no malloc */
-// static void beacon_rx_cb(const app_lib_beacon_rx_received_t * pkt)
-// {
-//     m_brx_total++;
+static void beacon_rx_cb(const app_lib_beacon_rx_received_t * pkt)
+{
+    m_brx_total++;
 
-//     uint8_t next = (uint8_t)((m_brx_wr + 1u) % BRX_RING_LEN);
-//     if (next == m_brx_rd) return;   /* ring full — drop frame */
+    uint8_t next = (uint8_t)((m_brx_wr + 1u) % BRX_RING_LEN);
+    if (next == m_brx_rd) return;   /* ring full — drop frame */
 
-//     brx_entry_t * e = &m_brx_ring[m_brx_wr];
-//     e->type = pkt->type;
-//     e->rssi = pkt->rssi;
-//     e->len  = (pkt->length < BRX_PDU_MAX) ? pkt->length : BRX_PDU_MAX;
-//     memcpy(e->data, pkt->payload, e->len);
-//     m_brx_wr = next;
-// }
+    brx_entry_t * e = &m_brx_ring[m_brx_wr];
+    e->type = pkt->type;
+    e->rssi = pkt->rssi;
+    e->len  = (pkt->length < BRX_PDU_MAX) ? pkt->length : BRX_PDU_MAX;
+    memcpy(e->data, pkt->payload, e->len);
+    m_brx_wr = next;
+}
 
 /* ── BLE beacon RX parser ────────────────────────────────────────────────────── */
 #define BRX_AD_START    6u      /* AD structures start after BT addr (6) — PDU type is in packet->type */
@@ -1024,26 +1275,24 @@ static void ad_log_one(uint8_t ad_type, const uint8_t * d, uint8_t dlen)
             break;
 
         case 0xFFu:
-            if (dlen >= 3u
+            if (dlen >= 12u
                 && d[0] == BEACON_COMPANY_ID_LO
                 && d[1] == BEACON_COMPANY_ID_HI
                 && d[2] == BEACON_VERSION)
             {
-                /* Our Wirepas sensor format */
-                uint32_t node_addr = (uint32_t)d[3]
-                                   | ((uint32_t)d[4] << 8)
-                                   | ((uint32_t)d[5] << 16)
-                                   | ((uint32_t)d[6] << 24);
-                uint16_t vbat_mv   = (uint16_t)d[7] | ((uint16_t)d[8] << 8);
-                int16_t  t2        = (int16_t)d[9] - 80;  /* raw/2 - 40, ×2 */
-                uint8_t  fl        = d[10];
+                /* Our Wirepas network-info format:
+                 * type node(4) sink(4) cost(1) nbor_count(1) best_rssi(1) */
+                uint32_t node_addr = (uint32_t)d[3]  | ((uint32_t)d[4]  << 8)
+                                   | ((uint32_t)d[5] << 16) | ((uint32_t)d[6]  << 24);
+                uint32_t sink_addr = (uint32_t)d[7]  | ((uint32_t)d[8]  << 8)
+                                   | ((uint32_t)d[9] << 16) | ((uint32_t)d[10] << 24);
+                uint8_t  cost      = d[11];
+                uint8_t  nbors     = (dlen >= 13u) ? d[12] : 0u;
+                int8_t   rssi      = (dlen >= 14u) ? (int8_t)d[13] : 0;
                 LOG(LVL_INFO,
-                    "  Mfr[Sensor]: " CBLU "node=0x%08x " CDEC "(%u) " CBLU
-                    "vbat=%u mV T=%d.%u C chg=%d valid=%d" C0,
-                    node_addr, node_addr, vbat_mv,
-                    t2 / 2, (uint8_t)((t2 & 1) ? 5u : 0u),
-                    (fl & 0x01u) ? 1 : 0,
-                    (fl & 0x02u) ? 1 : 0);
+                    "  Mfr[Net]   : " CBLU "node=0x%08x sink=0x%08x cost=%u "
+                    "nbors=%u rssi=%d" C0,
+                    node_addr, sink_addr, cost, nbors, (int)rssi);
             }
             else if (dlen >= 2u)
             {
@@ -1061,6 +1310,35 @@ static void ad_log_one(uint8_t ad_type, const uint8_t * d, uint8_t dlen)
 
 /* Minimum RSSI to log — filters distant/unrelated devices */
 #define BRX_RSSI_MIN    (-90)
+
+/* Execute a control command carried in a received beacon's manufacturer data.
+ * Layout after the company id: type(1)=0x02 target(4 LE) cmd(1) param(4 LE).
+ * A target of 0 is treated as a broadcast (acted on by any node). */
+static void brx_handle_command(const uint8_t * d, uint8_t dlen)
+{
+    if (dlen < 12u) return;
+    if (d[0] != BEACON_COMPANY_ID_LO || d[1] != BEACON_COMPANY_ID_HI) return;
+    if (d[2] != 0x02u) return;   /* not a command beacon (0x01 = sensor) */
+
+    uint32_t target = (uint32_t)d[3] | ((uint32_t)d[4] << 8)
+                    | ((uint32_t)d[5] << 16) | ((uint32_t)d[6] << 24);
+    uint8_t  cmd    = d[7];
+    uint32_t param  = (uint32_t)d[8]  | ((uint32_t)d[9]  << 8)
+                    | ((uint32_t)d[10] << 16) | ((uint32_t)d[11] << 24);
+
+    app_addr_t my_addr = 0;
+    lib_settings->getNodeAddress(&my_addr);
+    if (target != 0u && target != (uint32_t)my_addr) return;   /* not for us */
+
+    gpio_level_e lvl = (param != 0u) ? GPIO_LEVEL_HIGH : GPIO_LEVEL_LOW;
+    switch (cmd)
+    {
+        case 0x01: Gpio_outputWrite(BOARD_GPIO_ID_LED_RED,   lvl); break;  /* LED red   */
+        case 0x02: Gpio_outputWrite(BOARD_GPIO_ID_LED_GREEN, lvl); break;  /* LED green */
+        case 0x03: m_beacon_tx_enable = (param != 0u); break;             /* card beacon START/STOP */
+        default:   break;
+    }
+}
 
 static void brx_log_entry(const brx_entry_t * e)
 {
@@ -1088,6 +1366,8 @@ static void brx_log_entry(const brx_entry_t * e)
         uint8_t ad_type = ads[pos + 1u];
         if (ad_len == 0u || pos + ad_len >= ads_len) break;
         ad_log_one(ad_type, &ads[pos + 2u], ad_len - 1u);
+        if (ad_type == 0xFFu)
+            brx_handle_command(&ads[pos + 2u], ad_len - 1u);
         pos += ad_len + 1u;
     }
 }
@@ -1544,6 +1824,10 @@ void App_init(const app_global_functions_t * functions)
 
     configureNodeFromBuildParameters();
 
+    /* Override net/ch/addr with any NFC commissioning staged before reboot.
+     * Done after configureNode (which only sets unset values) so NFC wins. */
+    apply_pending_commissioning();
+
     log_node_info();
     nfc_init_address_tag();
 
@@ -1617,7 +1901,8 @@ void App_init(const app_global_functions_t * functions)
                                    APP_SCHEDULER_SCHEDULE_ASAP,
                                    500U);
 
-    /* AEM10900 not populated — skipped */
+    /* AEM10900 PMIC is initialised lazily by energy_monitor_task (with retry +
+     * visible logging), so its init errors are not lost in the boot log burst. */
 
     /* Accelerometer (LIS2DW12) init via I2C1 */
     lis2dw_res_e lis_r = LIS2DW_init(&m_lis2dw_cfg);
@@ -1659,10 +1944,20 @@ void App_init(const app_global_functions_t * functions)
                                    APP_SCHEDULER_SCHEDULE_ASAP,
                                    SENSOR_READ_EXEC_US);
 
-    /* energy_monitor_task (AEM10900) — skipped, chip not populated */
+#if defined(USE_AEM10900)
+    /* Periodic PMIC read + log (storage/source voltage, temperature, power). */
+    App_Scheduler_addTask_execTime(energy_monitor_task,
+                                   APP_SCHEDULER_SCHEDULE_ASAP,
+                                   ENERGY_MONITOR_EXEC_US);
+#endif
+
+    /* BLE beacon TX — Wirepas network info, always on (independent of the PMIC). */
+    App_Scheduler_addTask_execTime(beacon_tx_task,
+                                   APP_SCHEDULER_SCHEDULE_ASAP,
+                                   BEACON_TX_EXEC_US);
 
     /* BLE beacon RX — callback registered before startStack */
- //   lib_beacon_rx->setBeaconReceivedCb(beacon_rx_cb);
+    lib_beacon_rx->setBeaconReceivedCb(beacon_rx_cb);
 
     lib_state->startStack();   /* never returns */
 }

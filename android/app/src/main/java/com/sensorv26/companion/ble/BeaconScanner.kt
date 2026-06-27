@@ -13,12 +13,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-/** A scanned advertisement, decoded when it matches our sensor format. */
+/** A scanned advertisement, decoded when it matches our network format. */
 data class ScannedBeacon(
     val address: String,
     val name: String?,
     val rssi: Int,
-    val sensor: Protocol.SensorBeacon?,
+    val net: Protocol.NetworkBeacon?,
     val lastSeenMs: Long,
 )
 
@@ -51,12 +51,12 @@ class BeaconScanner(context: Context) {
     private fun handle(result: ScanResult) {
         val record = result.scanRecord
         val mfr = record?.getManufacturerSpecificData(Protocol.COMPANY_ID)
-        val sensor = Protocol.decodeManufacturerData(mfr)
+        val net = Protocol.decodeManufacturerData(mfr)
         val entry = ScannedBeacon(
             address = result.device.address,
             name = record?.deviceName,
             rssi = result.rssi,
-            sensor = sensor,
+            net = net,
             lastSeenMs = System.currentTimeMillis(),
         )
         _beacons.update { list ->

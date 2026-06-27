@@ -1,20 +1,29 @@
 package com.sensorv26.companion.ui
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Nfc
 import androidx.compose.material.icons.filled.Sensors
 import androidx.compose.material.icons.filled.WifiTethering
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.HorizontalDivider
@@ -29,6 +38,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -37,6 +47,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -45,6 +58,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sensorv26.companion.AppViewModel
 import com.sensorv26.companion.NfcMode
+import com.sensorv26.companion.Protocol
 import com.sensorv26.companion.ble.ScannedBeacon
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -88,7 +102,10 @@ private fun NfcTab(vm: AppViewModel, nfcAvailable: Boolean) {
     var ch by remember { mutableStateOf("") }
     var addr by remember { mutableStateOf("") }
 
-    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+    Column(
+        Modifier.verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
         if (!nfcAvailable) {
             SectionCard {
                 Text("NFC désactivé ou indisponible.", color = MaterialTheme.colorScheme.error)
@@ -199,14 +216,17 @@ private fun BeaconRow(b: ScannedBeacon) {
             Text(b.name ?: b.address, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
             Text("${b.rssi} dBm", fontFamily = FontFamily.Monospace)
         }
-        val s = b.sensor
-        if (s != null) {
+        val n = b.net
+        if (n != null) {
             HorizontalDivider(Modifier.padding(vertical = 4.dp))
-            Text("node = 0x%08X (%d)".format(s.nodeAddr, s.nodeAddr),
+            Text("node = 0x%08X (%d)".format(n.nodeAddr, n.nodeAddr),
                 fontFamily = FontFamily.Monospace)
-            Text("vbat = %d mV   T = %.1f °C".format(s.vbatMv, s.tempC),
-                fontFamily = FontFamily.Monospace)
-            Text("charge=${if (s.charging) 1 else 0}  valid=${if (s.valid) 1 else 0}",
+            if (n.hasRoute)
+                Text("sink = 0x%08X   cost = %d".format(n.sinkAddr, n.cost),
+                    fontFamily = FontFamily.Monospace)
+            else
+                Text("sink = — (pas de route)", fontFamily = FontFamily.Monospace)
+            Text("voisins = %d   rssi = %d".format(n.neighbourCount, n.rssi),
                 fontFamily = FontFamily.Monospace)
         } else {
             Text(b.address, style = MaterialTheme.typography.bodySmall)
@@ -216,61 +236,174 @@ private fun BeaconRow(b: ScannedBeacon) {
 
 // ---------------------------------------------------------------- Emit tab
 
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 private fun EmitTab(vm: AppViewModel) {
     val advertising by vm.advertiser.advertising.collectAsStateWithLifecycle()
     val status by vm.advertiser.status.collectAsStateWithLifecycle()
+    val states by vm.advertiser.sentStates.collectAsStateWithLifecycle()
+    val nfc by vm.nfc.collectAsStateWithLifecycle()
+    val history by vm.nfcHistory.collectAsStateWithLifecycle()
 
-    var addr by remember { mutableStateOf("0000002A") }
-    var vbat by remember { mutableStateOf("3300") }
-    var temp by remember { mutableStateOf("23") }
-    var charging by remember { mutableStateOf(false) }
+    val haptic = LocalHapticFeedback.current
+    fun isActive(cmd: Int, param: Long) = states[cmd] == param
 
-    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+    // Address auto-filled from the last NFC read; re-seeded whenever it changes.
+    val nfcAddr = nfc.lastRead
+        ?.trim()?.removePrefix("0x")?.removePrefix("0X")?.takeIf { it.toLongOrNull(16) != null }
+    var addr by remember(nfcAddr) { mutableStateOf(nfcAddr ?: "0000002A") }
+    var cmd by remember { mutableStateOf("16") }
+    var param by remember { mutableStateOf("0") }
+
+    fun target(): Long = addr.toLongOrNull(16) ?: 0L
+    val canEmit = vm.advertiser.isSupported
+
+    Column(
+        Modifier.verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
         SectionCard {
-            Text("Beacon à émettre (lu par la carte)", fontWeight = FontWeight.Bold)
+            Text("Carte cible", fontWeight = FontWeight.Bold)
             OutlinedTextField(
                 value = addr, onValueChange = { addr = it.filter { c -> c.isLetterOrDigit() } },
                 label = { Text("node addr (hex 32 bits)") },
                 singleLine = true, modifier = Modifier.fillMaxWidth())
+            if (nfcAddr != null)
+                Text("auto-renseignée depuis NFC : 0x$nfcAddr",
+                    style = MaterialTheme.typography.bodySmall)
+            else
+                Text("Lis la carte dans l'onglet NFC, ou choisis ci-dessous.",
+                    style = MaterialTheme.typography.bodySmall)
+
+            if (history.isNotEmpty()) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("Historique NFC", Modifier.weight(1f),
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.bodySmall)
+                    TextButton(onClick = { vm.clearHistory() }) { Text("Effacer") }
+                }
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    history.forEach { h ->
+                        FilterChip(
+                            selected = addr.equals(h, ignoreCase = true),
+                            onClick = {
+                                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                                addr = h
+                            },
+                            label = { Text("0x$h") })
+                    }
+                }
+            }
+        }
+
+        SectionCard {
+            Text("Commandes LED", fontWeight = FontWeight.Bold)
+            Row(verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text("LED rouge", Modifier.weight(1f))
+                CmdButton("ON", isActive(Protocol.CMD_LED_RED, 1), canEmit) {
+                    vm.advertiser.send(target(), Protocol.CMD_LED_RED, 1) }
+                CmdButton("OFF", isActive(Protocol.CMD_LED_RED, 0), canEmit) {
+                    vm.advertiser.send(target(), Protocol.CMD_LED_RED, 0) }
+            }
+            Row(verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text("LED verte", Modifier.weight(1f))
+                CmdButton("ON", isActive(Protocol.CMD_LED_GREEN, 1), canEmit) {
+                    vm.advertiser.send(target(), Protocol.CMD_LED_GREEN, 1) }
+                CmdButton("OFF", isActive(Protocol.CMD_LED_GREEN, 0), canEmit) {
+                    vm.advertiser.send(target(), Protocol.CMD_LED_GREEN, 0) }
+            }
+        }
+
+        SectionCard {
+            Text("Beacon de la carte", fontWeight = FontWeight.Bold)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                CmdButton("START", isActive(Protocol.CMD_BEACON_TX, 1), canEmit,
+                    Modifier.weight(1f)) {
+                    vm.advertiser.send(target(), Protocol.CMD_BEACON_TX, 1) }
+                CmdButton("STOP", isActive(Protocol.CMD_BEACON_TX, 0), canEmit,
+                    Modifier.weight(1f)) {
+                    vm.advertiser.send(target(), Protocol.CMD_BEACON_TX, 0) }
+            }
+        }
+
+        SectionCard {
+            Text("Commande générique", fontWeight = FontWeight.Bold)
             OutlinedTextField(
-                value = vbat, onValueChange = { vbat = it.filter { c -> c.isDigit() } },
-                label = { Text("vbat (mV)") },
+                value = cmd, onValueChange = { cmd = it.filter { c -> c.isDigit() } },
+                label = { Text("CMD (0-255)") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 singleLine = true, modifier = Modifier.fillMaxWidth())
             OutlinedTextField(
-                value = temp, onValueChange = { temp = it.filter { c -> c.isDigit() || c == '-' || c == '.' } },
-                label = { Text("température (°C)") },
+                value = param, onValueChange = { param = it.filter { c -> c.isLetterOrDigit() } },
+                label = { Text("PARAM (déc, ou 0x… hex)") },
                 singleLine = true, modifier = Modifier.fillMaxWidth())
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("en charge", Modifier.weight(1f))
-                Switch(checked = charging, onCheckedChange = { charging = it })
+            CmdButton("Envoyer", false, canEmit, Modifier.fillMaxWidth()) {
+                vm.advertiser.send(target(), cmd.toIntOrNull() ?: 0, parseNum(param))
             }
         }
 
         SectionCard {
             OutlinedButton(
                 onClick = {
-                    if (advertising) vm.advertiser.stop()
-                    else vm.advertiser.start(
-                        nodeAddr = addr.toLongOrNull(16) ?: 0L,
-                        vbatMv = vbat.toIntOrNull() ?: 0,
-                        tempC = temp.toDoubleOrNull() ?: 0.0,
-                        charging = charging,
-                    )
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    vm.advertiser.stop()
                 },
-                enabled = vm.advertiser.isSupported,
+                enabled = canEmit && advertising,
                 modifier = Modifier.fillMaxWidth(),
-            ) { Text(if (advertising) "Arrêter l'émission" else "Émettre le beacon") }
+            ) { Text("Arrêter l'émission") }
             status?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
-            if (!vm.advertiser.isSupported)
+            if (!canEmit)
                 Text("Cet appareil ne supporte pas l'émission BLE.",
                     color = MaterialTheme.colorScheme.error)
         }
     }
 }
 
+/** Parse a uint32 as decimal, or hex when prefixed with 0x. */
+private fun parseNum(s: String): Long {
+    val t = s.trim()
+    return if (t.startsWith("0x") || t.startsWith("0X"))
+        t.removePrefix("0x").removePrefix("0X").toLongOrNull(16) ?: 0L
+    else t.toLongOrNull() ?: 0L
+}
+
 // ---------------------------------------------------------------- shared
+
+/** Button with haptic feedback, a press scale-down effect, and an active
+ * (filled) vs idle (muted) colour state. */
+@Composable
+private fun CmdButton(
+    label: String,
+    active: Boolean,
+    enabled: Boolean,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+) {
+    val haptic = LocalHapticFeedback.current
+    val interaction = remember { MutableInteractionSource() }
+    val pressed by interaction.collectIsPressedAsState()
+    val scale by animateFloatAsState(if (pressed) 0.92f else 1f, label = "press")
+    val colors = if (active)
+        ButtonDefaults.buttonColors(
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary)
+    else
+        ButtonDefaults.buttonColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            contentColor = MaterialTheme.colorScheme.onSurfaceVariant)
+    Button(
+        onClick = {
+            haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+            onClick()
+        },
+        enabled = enabled,
+        interactionSource = interaction,
+        colors = colors,
+        modifier = modifier.scale(scale),
+    ) { Text(label) }
+}
 
 @Composable
 private fun SectionCard(content: @Composable ColumnScope.() -> Unit) {

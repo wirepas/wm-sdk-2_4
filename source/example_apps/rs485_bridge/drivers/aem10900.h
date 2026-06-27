@@ -145,12 +145,12 @@ typedef enum {
  *   THRESH = 256 × R_NTC(T) / (R_NTC(T) + R_DIV)
  *   R_NTC(T) = R25 × exp(B × (1/T_K − 1/298.15))
  *
- * Board: NCP15XH103J03RC (Murata), R25 = 10 kΩ, B25/50 = 3380 K, R_DIV = 22 kΩ
- *   0°C  → R_NTC = 28 228 Ω → THRESH = 144   (TEMPCOLD: stop charging below 0°C)
- *   45°C → R_NTC =  4 901 Ω → THRESH =  47   (TEMPHOT:  stop charging above 45°C)
+ * Board: NCP15XH103J03RC (Murata), R25 = 10 kΩ, B25/50 = 3380 K, R_DIV = 15 kΩ
+ *   0°C  → R_NTC = 28 228 Ω → THRESH = 167   (TEMPCOLD: stop charging below 0°C)
+ *   45°C → R_NTC =  4 901 Ω → THRESH =  63   (TEMPHOT:  stop charging above 45°C)
  */
-#define AEM10900_LIION_TEMPCOLD_RAW     144u    /* 0°C  charging lower limit */
-#define AEM10900_LIION_TEMPHOT_RAW       47u    /* 45°C charging upper limit */
+#define AEM10900_LIION_TEMPCOLD_RAW     167u    /* 0°C  charging lower limit */
+#define AEM10900_LIION_TEMPHOT_RAW       63u    /* 45°C charging upper limit */
 
 /* ── Configuration structure ────────────────────────────────────────────────── */
 typedef struct
@@ -217,7 +217,7 @@ aem10900_res_e AEM10900_read_source_voltage(float * voltage_v);
  * In POWER_METER mode: result_uW = (data << shift) × 0.10166
  * where shift = APM2[7:4], data is the 20-bit value in APM0-APM2[3:0].
  */
-aem10900_res_e AEM10900_read_apm(float * result);
+aem10900_res_e AEM10900_read_apm(float * result, uint8_t raw_out[3]);
 
 /** Low-level single register read. */
 aem10900_res_e AEM10900_read_reg(uint8_t reg, uint8_t * val);
@@ -254,7 +254,7 @@ bool AEM10900_is_charging(void);
     .sleep_enable    = true,                                \
     .sleep_srcthresh = AEM10900_SLEEP_SRC_300MV,           \
     .stomon_rate     = AEM10900_STOMON_RATE_256MS,         \
-    .apm_enable      = false,                              \
+    .apm_enable      = true,                               \
     .apm_mode        = AEM10900_APM_MODE_POWER,            \
     .apm_window      = AEM10900_APM_WIN_128MS_256MS,       \
     .irq_mask        = AEM10900_IRQ_VOVCH                  \

@@ -22,7 +22,7 @@
 
 /* ── I2C1 — AEM10900 PMIC + LIS2DW (TWIM21 = SERIAL21) ─────────────────────── */
 #define USE_I2C1
-/* #define USE_AEM10900 */   /* AEM10900 not populated — keep commented until fitted */
+#define USE_AEM10900            /* AEM10900 PMIC fitted — enable init + periodic read */
 #define BOARD_I2C_SCL_PIN           43      /* P1.11 */
 #define BOARD_I2C_SDA_PIN           44      /* P1.12 */
 

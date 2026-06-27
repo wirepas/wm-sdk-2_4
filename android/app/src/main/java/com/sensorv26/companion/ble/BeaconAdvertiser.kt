@@ -12,8 +12,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 /**
- * Emits a beacon the card recognises: 16-bit service UUID 0x1234 plus
- * manufacturer data (company 0xFFFF, version 0x01, sensor payload).
+ * Emits a control-command beacon the card recognises: 16-bit service UUID
+ * 0x1234 plus manufacturer data (company 0xFFFF, type 0x02, target/cmd/param).
+ * The advertisement stays on (continuously re-broadcast) until [stop] or until
+ * a new [send] replaces its content — so the last command persists.
  */
 class BeaconAdvertiser(context: Context) {
 
@@ -26,6 +28,10 @@ class BeaconAdvertiser(context: Context) {
 
     private val _status = MutableStateFlow<String?>(null)
     val status: StateFlow<String?> = _status
+
+    /** Last param sent per command id (for independent per-button highlight). */
+    private val _sentStates = MutableStateFlow<Map<Int, Long>>(emptyMap())
+    val sentStates: StateFlow<Map<Int, Long>> = _sentStates
 
     val isSupported: Boolean get() = advertiser != null
 
@@ -48,14 +54,19 @@ class BeaconAdvertiser(context: Context) {
         }
     }
 
+    /** (Re)start advertising a control command. Replaces any current command. */
     @SuppressLint("MissingPermission")
-    fun start(nodeAddr: Long, vbatMv: Int, tempC: Double, charging: Boolean) {
+    fun send(targetAddr: Long, cmd: Int, param: Long) {
         val adv = advertiser
         if (adv == null) {
             _status.value = "BLE advertising non supporté"
             return
         }
-        if (_advertising.value) return
+        // A running advertisement must be stopped before its data can change.
+        if (_advertising.value) {
+            adv.stopAdvertising(callback)
+            _advertising.value = false
+        }
 
         val settings = AdvertiseSettings.Builder()
             .setAdvertiseMode(AdvertiseSettings.ADVERTISE_MODE_LOW_LATENCY)
@@ -63,10 +74,7 @@ class BeaconAdvertiser(context: Context) {
             .setConnectable(false)
             .build()
 
-        val payload = Protocol.encodeManufacturerData(
-            nodeAddr = nodeAddr, vbatMv = vbatMv, tempC = tempC,
-            charging = charging, valid = true,
-        )
+        val payload = Protocol.encodeCommand(targetAddr, cmd, param)
 
         val data = AdvertiseData.Builder()
             .setIncludeDeviceName(false)
@@ -75,6 +83,8 @@ class BeaconAdvertiser(context: Context) {
             .build()
 
         adv.startAdvertising(settings, data, callback)
+        _sentStates.value = _sentStates.value + (cmd to param)
+        _status.value = "Émission cmd=0x%02X param=%d → 0x%08X".format(cmd, param, targetAddr)
     }
 
     @SuppressLint("MissingPermission")
@@ -82,6 +92,7 @@ class BeaconAdvertiser(context: Context) {
         if (!_advertising.value) return
         advertiser?.stopAdvertising(callback)
         _advertising.value = false
+        // Per-LED highlights are kept: they reflect the last commanded state.
         _status.value = "Arrêté"
     }
 }
