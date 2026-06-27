@@ -1,0 +1,4 @@
+<resources>
+    <!-- Base theme; Compose drives the actual colors via MaterialTheme. -->
+    <style name="Theme.SensorV26Companion" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
