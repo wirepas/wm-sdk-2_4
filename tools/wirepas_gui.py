@@ -3,6 +3,7 @@
 wirepas_gui.py  —  Qt GUI for Wirepas UART (WAPS) console
 
 Requires:  pip install pyserial PySide6
+Optional:  pip install wirepas-mqtt-library   (for MQTT/MQTTS backend transport)
 Usage:     python tools/wirepas_gui.py [-p PORT] [-b BAUD]
 """
 
@@ -31,9 +32,9 @@ try:
     from PySide6.QtWidgets import (
         QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
         QFormLayout, QLabel, QLineEdit, QPushButton,
-        QComboBox, QSpinBox, QGroupBox, QTabWidget, QTableView,
-        QHeaderView, QTextEdit, QSplitter, QStatusBar,
-        QCheckBox, QFileDialog, QProgressBar, QSizePolicy, QDialog,
+        QComboBox, QSpinBox, QDoubleSpinBox, QGroupBox, QTabWidget, QTableView,
+        QHeaderView, QTextEdit, QSplitter, QStatusBar, QScrollArea,
+        QCheckBox, QFileDialog, QProgressBar, QSizePolicy, QDialog, QMessageBox,
     )
     from PySide6.QtSerialPort import QSerialPortInfo
 except ImportError:
@@ -63,6 +64,7 @@ from wirepas_uart import (
     cbor_diag_to_str, parse_diag_packet, DIAG_SRC_EP, DIAG_DST_EP,
     ADDR_BROADCAST, ADDR_MCAST_BIT, parse_adc_cbor,
 )
+from wirepas_mqtt import MqttConn, mqtt_lib_available
 
 
 # ─── Colour palette ────────────────────────────────────────────────────────────
@@ -601,6 +603,9 @@ _MOTOR_CMD = {
     'ENABLE':   0x0A, 'DISABLE': 0x0B, 'CLR_FAULT':   0x0C,
     'SET_KP':   0x0D, 'SET_KI':  0x0E, 'SET_KD':      0x0F,
     'GET_CURRENT': 0x10,
+    'DEEP_SLEEP':  0x11, 'AUTO_SLEEP':    0x12, 'HOMING':  0x13,
+    'SET_ADDR':    0x14, 'SET_RAMP':      0x15, 'SET_RAMP_DOWN': 0x16,
+    'GET_UID':     0x17, 'BEEP':          0x18,
 }
 _MOTOR_CMD_NAME = {v: k for k, v in _MOTOR_CMD.items()}
 
@@ -633,6 +638,10 @@ def _parse_motor_reply(raw: bytes) -> Optional[dict]:
     elif cmd == 0x10 and nbr_data >= 5:
         mA, peak_mA, oc = struct.unpack_from('<HHB', data)
         d.update(mA=mA, peak_mA=peak_mA, oc=bool(oc))
+
+    elif cmd == 0x17 and nbr_data >= 12:
+        w0, w1, w2 = struct.unpack_from('<III', data)
+        d["uid"] = f"{w0:08X}-{w1:08X}-{w2:08X}"
 
     elif nbr_data == 1:
         d["ack"] = (data[0] == 0x00)
@@ -702,6 +711,8 @@ class MotorPlot(QWidget):
         self._canvas.draw_idle()
 
     def set_setpoint(self, sp: int):
+        if not self._ok:
+            return
         if self._SP:
             self._SP[-1] = sp  # update last point immediately for display
 
@@ -716,11 +727,286 @@ class MotorPlot(QWidget):
         self._canvas.draw_idle()
 
 
+class MotorPanel(QGroupBox):
+    """All controls + live status for a single motor (one RS485 address).
+
+    Commands are sent through the owning MotorWindow, which holds the shared
+    bridge address and Wirepas send function. Each panel owns one MotorPlot.
+    """
+
+    def __init__(self, title: str, default_motor: int, plot: "MotorPlot", owner: "MotorWindow"):
+        super().__init__(title)
+        self._owner = owner
+        self._plot  = plot
+        self._sp    = 0   # current setpoint (for the plot)
+
+        lay = QVBoxLayout(self)
+        lay.setSpacing(5)
+
+        # Motor address
+        addr_row = QHBoxLayout()
+        addr_row.addWidget(QLabel("Motor addr:"))
+        self._spn_motor = QSpinBox()
+        self._spn_motor.setRange(1, 8)
+        self._spn_motor.setValue(default_motor)
+        self._spn_motor.setFixedWidth(60)
+        addr_row.addWidget(self._spn_motor)
+        addr_row.addStretch()
+        lay.addLayout(addr_row)
+
+        # Status
+        def _status_lbl():
+            l = QLabel("—")
+            l.setFont(QFont("Courier New", 11))
+            l.setStyleSheet("color:#5a9fd4;")
+            return l
+
+        sta_lay = QFormLayout()
+        sta_lay.setSpacing(2)
+        self._lbl_pos   = _status_lbl()
+        self._lbl_mA    = _status_lbl()
+        self._lbl_fault = _status_lbl()
+        sta_lay.addRow("Position:", self._lbl_pos)
+        sta_lay.addRow("Current:",  self._lbl_mA)
+        sta_lay.addRow("Fault:",    self._lbl_fault)
+        lay.addLayout(sta_lay)
+
+        # Simple commands (incl. new Sleep / Wake)
+        for row in (
+            [("Enable", "ENABLE"), ("Disable", "DISABLE"), ("Stop", "STOP")],
+            [("Home", "HOME"), ("Clr fault", "CLR_FAULT"), ("Status", "GET_STATUS")],
+            [("Get pos", "GET_POS"), ("Get I", "GET_CURRENT")],
+            [("Sleep", "SLEEP"), ("Wake", "WAKE")],
+        ):
+            hl = QHBoxLayout()
+            for label, cmd_name in row:
+                btn = QPushButton(label)
+                btn.clicked.connect(lambda _, c=cmd_name: self._send(c))
+                hl.addWidget(btn)
+            hl.addStretch()
+            lay.addLayout(hl)
+
+        # Move
+        mv = QHBoxLayout()
+        mv.addWidget(QLabel("Counts:"))
+        self._txt_counts = QLineEdit("1000")
+        self._txt_counts.setFont(QFont("Courier New", 11))
+        self._txt_counts.setFixedWidth(80)
+        self._txt_counts.setToolTip("Counts (int32). Positive = forward.")
+        mv.addWidget(self._txt_counts)
+        btn_rel = QPushButton("REL")
+        btn_rel.setStyleSheet("background:#1e6b4a;")
+        btn_rel.clicked.connect(self._move_rel)
+        mv.addWidget(btn_rel)
+        btn_abs = QPushButton("ABS")
+        btn_abs.setStyleSheet("background:#2d5a8e;")
+        btn_abs.clicked.connect(self._move_abs)
+        mv.addWidget(btn_abs)
+        lay.addLayout(mv)
+
+        # Speed
+        spd = QHBoxLayout()
+        spd.addWidget(QLabel("Speed:"))
+        self._spn_speed = QSpinBox()
+        self._spn_speed.setRange(0, 100)
+        self._spn_speed.setValue(50)
+        self._spn_speed.setSuffix(" %")
+        self._spn_speed.setFixedWidth(70)
+        spd.addWidget(self._spn_speed)
+        btn_spd = QPushButton("Set")
+        btn_spd.clicked.connect(
+            lambda: self._send("SET_SPEED", bytes([self._spn_speed.value()])))
+        spd.addWidget(btn_spd)
+        spd.addStretch()
+        lay.addLayout(spd)
+
+        # PID gains (new) — sent as float32 LE
+        pid_lay = QFormLayout()
+        pid_lay.setSpacing(2)
+        self._pid_spn = {}
+        for name, cmd_name in (("Kp", "SET_KP"), ("Ki", "SET_KI"), ("Kd", "SET_KD")):
+            row = QHBoxLayout()
+            spn = QDoubleSpinBox()
+            spn.setRange(-128.0, 127.0)   # firmware stores k × 256 as int16
+            spn.setDecimals(3)
+            spn.setSingleStep(0.1)
+            spn.setFixedWidth(90)
+            row.addWidget(spn)
+            btn = QPushButton("Set")
+            btn.clicked.connect(
+                lambda _, c=cmd_name, s=spn: self._send(c, self._pack_gain(s.value())))
+            row.addWidget(btn)
+            row.addStretch()
+            holder = QWidget(); holder.setLayout(row)
+            pid_lay.addRow(name + ":", holder)
+            self._pid_spn[name] = spn
+        lay.addLayout(pid_lay)
+
+        # Ramp (new) — up / down accel time in ms, uint16 LE (0 = disabled)
+        ramp_lay = QFormLayout(); ramp_lay.setSpacing(2)
+        self._spn_ramp_up = QSpinBox()
+        self._spn_ramp_up.setRange(0, 65535); self._spn_ramp_up.setSuffix(" ms"); self._spn_ramp_up.setFixedWidth(100)
+        self._spn_ramp_dn = QSpinBox()
+        self._spn_ramp_dn.setRange(0, 65535); self._spn_ramp_dn.setSuffix(" ms"); self._spn_ramp_dn.setFixedWidth(100)
+        for spn, cmd_name, label in ((self._spn_ramp_up, "SET_RAMP", "Ramp up:"),
+                                     (self._spn_ramp_dn, "SET_RAMP_DOWN", "Ramp dn:")):
+            r = QHBoxLayout(); r.addWidget(spn)
+            b = QPushButton("Set")
+            b.clicked.connect(lambda _, c=cmd_name, s=spn: self._send(c, struct.pack("<H", s.value())))
+            r.addWidget(b); r.addStretch()
+            holder = QWidget(); holder.setLayout(r)
+            ramp_lay.addRow(label, holder)
+        lay.addLayout(ramp_lay)
+
+        # Buzzer / beep (new) — freq_hz(2) dur_ms(2) duty_pct(1)
+        buzz = QHBoxLayout()
+        buzz.addWidget(QLabel("Buzz:"))
+        self._spn_bz_freq = QSpinBox(); self._spn_bz_freq.setRange(0, 20000); self._spn_bz_freq.setValue(2000); self._spn_bz_freq.setSuffix(" Hz"); self._spn_bz_freq.setFixedWidth(85)
+        self._spn_bz_dur  = QSpinBox(); self._spn_bz_dur.setRange(0, 65535); self._spn_bz_dur.setValue(200); self._spn_bz_dur.setSuffix(" ms"); self._spn_bz_dur.setFixedWidth(85)
+        self._spn_bz_duty = QSpinBox(); self._spn_bz_duty.setRange(0, 100); self._spn_bz_duty.setValue(50); self._spn_bz_duty.setSuffix(" %"); self._spn_bz_duty.setFixedWidth(65)
+        buzz.addWidget(self._spn_bz_freq); buzz.addWidget(self._spn_bz_dur); buzz.addWidget(self._spn_bz_duty)
+        b_bz = QPushButton("Buzz"); b_bz.clicked.connect(self._buzz)
+        buzz.addWidget(b_bz)
+        lay.addLayout(buzz)
+
+        # Homing (new) — dir(1) speed(1) timeout_ms(2 LE)
+        hm = QHBoxLayout()
+        hm.addWidget(QLabel("Homing:"))
+        self._cmb_home_dir = QComboBox(); self._cmb_home_dir.addItems(["fwd", "rev"]); self._cmb_home_dir.setFixedWidth(60)
+        self._spn_home_spd = QSpinBox(); self._spn_home_spd.setRange(0, 100); self._spn_home_spd.setValue(30); self._spn_home_spd.setSuffix(" %"); self._spn_home_spd.setFixedWidth(65)
+        self._spn_home_to  = QSpinBox(); self._spn_home_to.setRange(0, 65535); self._spn_home_to.setValue(5000); self._spn_home_to.setSuffix(" ms"); self._spn_home_to.setFixedWidth(85)
+        hm.addWidget(self._cmb_home_dir); hm.addWidget(self._spn_home_spd); hm.addWidget(self._spn_home_to)
+        b_hm = QPushButton("Go"); b_hm.clicked.connect(self._homing)
+        hm.addWidget(b_hm)
+        lay.addLayout(hm)
+
+        # Change motor address (SET_ADDR) — dedicated, with confirmation since it
+        # re-addresses the slave (sent to the panel's *current* motor address).
+        chad = QHBoxLayout()
+        chad.addWidget(QLabel("Change addr →"))
+        self._spn_newaddr = QSpinBox()
+        self._spn_newaddr.setRange(1, 8)
+        self._spn_newaddr.setFixedWidth(55)
+        self._spn_newaddr.setToolTip("New RS485 address (1–8) to assign to the motor "
+                                     "currently selected above")
+        chad.addWidget(self._spn_newaddr)
+        b_sa = QPushButton("Apply addr")
+        b_sa.clicked.connect(self._set_addr)
+        chad.addWidget(b_sa)
+        chad.addStretch()
+        lay.addLayout(chad)
+
+        # Misc commands (new): auto-sleep, deep sleep, get UID
+        msc = QHBoxLayout()
+        msc.addWidget(QLabel("Auto-slp:"))
+        self._spn_autosleep = QSpinBox(); self._spn_autosleep.setRange(0, 65535); self._spn_autosleep.setSuffix(" s"); self._spn_autosleep.setFixedWidth(80)
+        msc.addWidget(self._spn_autosleep)
+        b_as = QPushButton("Set")
+        b_as.clicked.connect(lambda: self._send("AUTO_SLEEP", struct.pack("<H", self._spn_autosleep.value())))
+        msc.addWidget(b_as)
+        for label, cmd_name in (("Deep sleep", "DEEP_SLEEP"), ("Get UID", "GET_UID")):
+            b = QPushButton(label)
+            b.clicked.connect(lambda _, c=cmd_name: self._send(c))
+            msc.addWidget(b)
+        msc.addStretch()
+        lay.addLayout(msc)
+
+    # ── API used by MotorWindow ───────────────────────────────────────────────
+
+    def motor_addr(self) -> int:
+        return self._spn_motor.value()
+
+    def handle_reply(self, d: dict):
+        """Update status labels + plot from a parsed reply for this motor."""
+        if "pos" in d and "mA" in d:
+            pos = d["pos"]; mA = d["mA"]
+            fault = bool(d.get("fault_summary", 0) or d.get("fault", 0))
+            self._lbl_pos.setText(f"{pos:+d}")
+            self._lbl_mA.setText(f"{mA} mA")
+            self._lbl_fault.setText("FAULT" if fault else "OK")
+            self._lbl_fault.setStyleSheet(
+                "color:#e74c3c; font-weight:bold;" if fault else "color:#27ae60; font-weight:bold;")
+            self._plot.push(pos, self._sp, mA)
+        elif "pos" in d:
+            self._lbl_pos.setText(f"{d['pos']:+d}")
+            self._plot.push(d["pos"], self._sp, 0)
+        elif "mA" in d:
+            mA = d["mA"]; peak = d.get("peak_mA", 0)
+            self._lbl_mA.setText(f"{mA} mA  (peak {peak})")
+
+    def clear_plot(self):
+        self._plot.clear()
+
+    # ── Internal ──────────────────────────────────────────────────────────────
+
+    def _send(self, cmd_name: str, data: bytes = b''):
+        self._owner.send_to_motor(self.motor_addr(), cmd_name, data)
+
+    def _counts(self) -> Optional[int]:
+        try:
+            return int(self._txt_counts.text())
+        except ValueError:
+            self._owner.append_log("Invalid count value", "#e74c3c")
+            return None
+
+    def _move_rel(self):
+        counts = self._counts()
+        if counts is None:
+            return
+        self._sp += counts
+        self._plot.set_setpoint(self._sp)
+        self._send("MOVE_REL", struct.pack("<i", counts))
+
+    def _move_abs(self):
+        counts = self._counts()
+        if counts is None:
+            return
+        self._sp = counts
+        self._plot.set_setpoint(self._sp)
+        self._send("MOVE_ABS", struct.pack("<i", counts))
+
+    @staticmethod
+    def _pack_gain(value: float) -> bytes:
+        """PID gain → int16 (value × 256), little-endian (firmware format)."""
+        fixed = max(-32768, min(32767, int(round(value * 256))))
+        return struct.pack("<h", fixed)
+
+    def _buzz(self):
+        self._send("BEEP", struct.pack("<HHB",
+                                       self._spn_bz_freq.value(),
+                                       self._spn_bz_dur.value(),
+                                       self._spn_bz_duty.value()))
+
+    def _homing(self):
+        data = bytes([self._cmb_home_dir.currentIndex(), self._spn_home_spd.value()]) \
+            + struct.pack("<H", self._spn_home_to.value())
+        self._send("HOMING", data)
+
+    def _set_addr(self):
+        """Re-address the currently-selected motor (SET_ADDR), with confirmation."""
+        cur = self.motor_addr()
+        new = self._spn_newaddr.value()
+        if cur == new:
+            self._owner.append_log(f"Motor already at address {new}", "#e0a030")
+            return
+        reply = QMessageBox.question(
+            self, "Change motor address",
+            f"Re-address motor {cur} → {new}?\n\n"
+            f"The command is sent to motor {cur}; on success the motor adopts "
+            f"address {new} and this panel will target {new}.",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        if reply != QMessageBox.StandardButton.Yes:
+            return
+        self._send("SET_ADDR", bytes([new]))      # sent to the current address (cur)
+        self._spn_motor.setValue(new)             # re-target this panel at the new address
+
+
 class MotorWindow(QDialog):
-    """Floating motor control + diagnostics window.
+    """Floating motor control + diagnostics window for two motors.
 
     Send commands to the RS485 bridge via Wirepas EP 1.
-    Receive motor replies via EP 2 (call feed_reply() from the main window).
+    Receive motor replies via EP 2 (call feed_reply() from the main window);
+    replies are routed to the panel whose motor address matches.
     """
 
     visibilityChanged = Signal(bool)
@@ -735,72 +1021,28 @@ class MotorWindow(QDialog):
                          Qt.WindowType.WindowCloseButtonHint |
                          Qt.WindowType.WindowMinimizeButtonHint)
         self.setWindowTitle("Motor Control")
-        self.resize(1050, 620)
+        self.resize(1550, 780)
 
         self._send_fn = None   # set by MainWindow: fn(dst_addr, dst_ep, payload, src_ep)
-        self._sp = 0           # current setpoint (for plot)
 
         # ── Layout ──────────────────────────────────────────────────────────────
         root = QHBoxLayout(self)
         root.setSpacing(6)
         root.setContentsMargins(6, 6, 6, 6)
 
-        # Left: controls
-        left = QWidget(); left.setFixedWidth(270)
+        # Left: shared bridge target + two motor panels (scrollable)
+        left = QWidget()
         llay = QVBoxLayout(left); llay.setSpacing(6)
-        root.addWidget(left)
 
-        # Right: plot + log
-        right = QSplitter(Qt.Orientation.Vertical)
-        self._plot = MotorPlot()
-        right.addWidget(self._plot)
-        self._log = QTextEdit()
-        self._log.setReadOnly(True)
-        self._log.setFont(QFont("Courier New", 10))
-        self._log.setMaximumHeight(130)
-        right.addWidget(self._log)
-        right.setStretchFactor(0, 1)
-        root.addWidget(right, stretch=1)
-
-        # ── Target section ───────────────────────────────────────────────────────
-        tgt_grp = QGroupBox("Target")
+        tgt_grp = QGroupBox("Bridge")
         tgt_lay = QFormLayout(tgt_grp)
-        tgt_lay.setSpacing(4)
-
         self._txt_node = QLineEdit("0x0000006f")
         self._txt_node.setFont(QFont("Courier New", 11))
         self._txt_node.setToolTip("Wirepas node address of the RS485 bridge")
         tgt_lay.addRow("Bridge addr:", self._txt_node)
-
-        self._spn_motor = QSpinBox()
-        self._spn_motor.setRange(1, 8)
-        self._spn_motor.setValue(1)
-        self._spn_motor.setFixedWidth(60)
-        tgt_lay.addRow("Motor addr:", self._spn_motor)
-
         llay.addWidget(tgt_grp)
 
-        # ── Status section ───────────────────────────────────────────────────────
-        sta_grp = QGroupBox("Status")
-        sta_lay = QFormLayout(sta_grp)
-        sta_lay.setSpacing(3)
-
-        def _status_lbl():
-            l = QLabel("—")
-            l.setFont(QFont("Courier New", 11))
-            l.setStyleSheet("color:#5a9fd4;")
-            return l
-
-        self._lbl_pos   = _status_lbl()
-        self._lbl_mA    = _status_lbl()
-        self._lbl_fault = _status_lbl()
-        sta_lay.addRow("Position:", self._lbl_pos)
-        sta_lay.addRow("Current:",  self._lbl_mA)
-        sta_lay.addRow("Fault:",    self._lbl_fault)
-        llay.addWidget(sta_grp)
-
-        # ── Auto-poll ────────────────────────────────────────────────────────────
-        poll_grp = QGroupBox("Auto-poll GET_STATUS")
+        poll_grp = QGroupBox("Auto-poll GET_STATUS (both motors)")
         poll_lay = QHBoxLayout(poll_grp)
         self._chk_poll = QCheckBox("Enable")
         self._chk_poll.toggled.connect(self._on_poll_toggle)
@@ -816,79 +1058,39 @@ class MotorWindow(QDialog):
         llay.addWidget(poll_grp)
 
         self._poll_timer = QTimer()
-        self._poll_timer.timeout.connect(self._do_get_status)
+        self._poll_timer.timeout.connect(self._do_poll_all)
 
-        # ── Simple commands ──────────────────────────────────────────────────────
-        cmd_grp = QGroupBox("Commands")
-        cmd_lay = QVBoxLayout(cmd_grp)
-        cmd_lay.setSpacing(4)
+        btn_clr = QPushButton("Clear both plots")
+        btn_clr.clicked.connect(lambda: (self._panelA.clear_plot(), self._panelB.clear_plot()))
+        llay.addWidget(btn_clr)
 
-        btn_row1 = QHBoxLayout()
-        for label, cmd_name in [("Enable", "ENABLE"), ("Disable", "DISABLE"), ("Stop", "STOP")]:
-            btn = QPushButton(label)
-            btn.clicked.connect(lambda _, c=cmd_name: self._send_cmd(c))
-            btn_row1.addWidget(btn)
-        cmd_lay.addLayout(btn_row1)
+        # Right: two stacked plots (one per motor) + log
+        right = QSplitter(Qt.Orientation.Vertical)
+        self._plotA = MotorPlot()
+        self._plotB = MotorPlot()
+        right.addWidget(self._plotA)
+        right.addWidget(self._plotB)
+        self._log = QTextEdit()
+        self._log.setReadOnly(True)
+        self._log.setFont(QFont("Courier New", 10))
+        self._log.setMaximumHeight(120)
+        right.addWidget(self._log)
+        right.setStretchFactor(0, 1)
+        right.setStretchFactor(1, 1)
 
-        btn_row2 = QHBoxLayout()
-        for label, cmd_name in [("Home", "HOME"), ("Clr fault", "CLR_FAULT"), ("Status", "GET_STATUS")]:
-            btn = QPushButton(label)
-            btn.clicked.connect(lambda _, c=cmd_name: self._send_cmd(c))
-            btn_row2.addWidget(btn)
-        cmd_lay.addLayout(btn_row2)
-
-        btn_row3 = QHBoxLayout()
-        for label, cmd_name in [("Get pos", "GET_POS"), ("Get I", "GET_CURRENT")]:
-            btn = QPushButton(label)
-            btn.clicked.connect(lambda _, c=cmd_name: self._send_cmd(c))
-            btn_row3.addWidget(btn)
-        btn_row3.addStretch()
-        cmd_lay.addLayout(btn_row3)
-
-        llay.addWidget(cmd_grp)
-
-        # ── Move ─────────────────────────────────────────────────────────────────
-        mv_grp = QGroupBox("Move")
-        mv_lay = QFormLayout(mv_grp)
-        mv_lay.setSpacing(4)
-
-        self._txt_counts = QLineEdit("1000")
-        self._txt_counts.setFont(QFont("Courier New", 11))
-        self._txt_counts.setToolTip("Counts (int32). Positive = forward.")
-        mv_lay.addRow("Counts:", self._txt_counts)
-
-        mv_btn_row = QHBoxLayout()
-        btn_rel = QPushButton("Move REL")
-        btn_rel.setStyleSheet("background:#1e6b4a;")
-        btn_rel.clicked.connect(self._on_move_rel)
-        mv_btn_row.addWidget(btn_rel)
-        btn_abs = QPushButton("Move ABS")
-        btn_abs.setStyleSheet("background:#2d5a8e;")
-        btn_abs.clicked.connect(self._on_move_abs)
-        mv_btn_row.addWidget(btn_abs)
-        mv_lay.addRow("", mv_btn_row)
-        llay.addWidget(mv_grp)
-
-        # ── Speed ─────────────────────────────────────────────────────────────────
-        spd_grp = QGroupBox("Speed")
-        spd_lay = QHBoxLayout(spd_grp)
-        self._spn_speed = QSpinBox()
-        self._spn_speed.setRange(0, 100)
-        self._spn_speed.setValue(50)
-        self._spn_speed.setSuffix(" %")
-        self._spn_speed.setFixedWidth(75)
-        spd_lay.addWidget(self._spn_speed)
-        btn_spd = QPushButton("SetSpd")
-        btn_spd.clicked.connect(self._on_set_speed)
-        spd_lay.addWidget(btn_spd)
-        spd_lay.addStretch()
-
-        btn_clear = QPushButton("Clr Plt")
-        btn_clear.clicked.connect(self._plot.clear)
-        spd_lay.addWidget(btn_clear)
-        llay.addWidget(spd_grp)
-
+        # Two motor panels
+        self._panelA = MotorPanel("Motor A", 1, self._plotA, self)
+        self._panelB = MotorPanel("Motor B", 2, self._plotB, self)
+        llay.addWidget(self._panelA)
+        llay.addWidget(self._panelB)
         llay.addStretch()
+
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setWidget(left)
+        scroll.setFixedWidth(740)
+        root.addWidget(scroll)
+        root.addWidget(right, stretch=1)
 
     # ── Public API ────────────────────────────────────────────────────────────
 
@@ -897,60 +1099,59 @@ class MotorWindow(QDialog):
         self._send_fn = fn
 
     def feed_reply(self, raw: bytes):
-        """Called from MainWindow when an EP 2 packet arrives."""
+        """Called from MainWindow when an EP 2 packet arrives. Routes the reply
+        to the panel whose motor address matches the frame's address."""
         d = _parse_motor_reply(raw)
         if d is None:
-            self._append_log(f"[RX] unparsed: {raw.hex()}", "#888")
+            self.append_log(f"[RX] unparsed: {raw.hex()}", "#888")
             return
 
-        cmd_name = d["cmd_name"]
-        if "pos" in d and "mA" in d:
-            pos = d["pos"]; mA = d["mA"]
-            fault = bool(d.get("fault_summary", 0) or d.get("fault", 0))
-            self._lbl_pos.setText(f"{pos:+d}")
-            self._lbl_mA.setText(f"{mA} mA")
-            self._lbl_fault.setText("FAULT" if fault else "OK")
-            self._lbl_fault.setStyleSheet(
-                "color:#e74c3c; font-weight:bold;" if fault else "color:#27ae60; font-weight:bold;")
-            self._plot.push(pos, self._sp, mA)
-            self._append_log(
-                f"[{cmd_name}] pos={pos:+d}  mA={mA}  fault={'!' if fault else 'OK'}", "#5a9fd4")
-        elif "pos" in d:
-            pos = d["pos"]
-            self._lbl_pos.setText(f"{pos:+d}")
-            self._plot.push(pos, self._sp, 0)
-            self._append_log(f"[{cmd_name}] pos={pos:+d}", "#5a9fd4")
-        elif "mA" in d:
-            mA = d["mA"]; peak = d.get("peak_mA", 0)
-            self._lbl_mA.setText(f"{mA} mA  (peak {peak})")
-            self._append_log(f"[{cmd_name}] mA={mA}  peak={peak}  oc={d.get('oc',False)}", "#5a9fd4")
-        elif "ack" in d:
-            ok = d["ack"]
-            self._append_log(f"[{cmd_name}] {'ACK' if ok else 'NAK'}", "#27ae60" if ok else "#e74c3c")
-        else:
-            self._append_log(f"[{cmd_name}] {d['data'].hex()}", "#888")
+        motor = d["addr"]
+        routed = False
+        for panel in (self._panelA, self._panelB):
+            if panel.motor_addr() == motor:
+                panel.handle_reply(d)
+                routed = True
+        self.append_log(f"[m{motor} {d['cmd_name']}] {self._fmt_reply(d)}",
+                        "#5a9fd4" if routed else "#888")
 
     # ── Internal helpers ──────────────────────────────────────────────────────
+
+    @staticmethod
+    def _fmt_reply(d: dict) -> str:
+        if "pos" in d and "mA" in d:
+            fault = d.get("fault_summary", 0) or d.get("fault", 0)
+            return f"pos={d['pos']:+d}  mA={d['mA']}  fault={'!' if fault else 'OK'}"
+        if "pos" in d:
+            return f"pos={d['pos']:+d}"
+        if "mA" in d:
+            return f"mA={d['mA']}  peak={d.get('peak_mA', 0)}  oc={d.get('oc', False)}"
+        if "uid" in d:
+            return f"UID={d['uid']}"
+        if "ack" in d:
+            return "ACK" if d["ack"] else "NAK"
+        return d["data"].hex()
 
     def _node_addr(self) -> Optional[int]:
         try:
             return int(self._txt_node.text().strip(), 0)
         except ValueError:
-            self._append_log("Invalid bridge address", "#e74c3c")
+            self.append_log("Invalid bridge address", "#e74c3c")
             return None
 
-    def _send_cmd(self, cmd_name: str, data: bytes = b''):
+    def send_to_motor(self, motor: int, cmd_name: str, data: bytes = b''):
+        """Send a command to a specific motor address via the bridge."""
         addr = self._node_addr()
         if addr is None or self._send_fn is None:
             return
-        motor = self._spn_motor.value()
         cid   = _MOTOR_CMD[cmd_name]
         frame = _motor_frame(motor, cid, data)
         self._send_fn(addr, self.EP_DOWN, frame, self.EP_DOWN)
-        self._append_log(f"TX → 0x{addr:08x}  [{cmd_name}]  {frame.hex()}", "#27ae60")
+        self.append_log(f"TX → 0x{addr:08x} m{motor} [{cmd_name}] {frame.hex()}", "#27ae60")
 
-    def _do_get_status(self):
-        self._send_cmd("GET_STATUS")
+    def _do_poll_all(self):
+        self.send_to_motor(self._panelA.motor_addr(), "GET_STATUS")
+        self.send_to_motor(self._panelB.motor_addr(), "GET_STATUS")
 
     def _on_poll_toggle(self, checked: bool):
         if checked:
@@ -958,29 +1159,7 @@ class MotorWindow(QDialog):
         else:
             self._poll_timer.stop()
 
-    def _on_move_rel(self):
-        try:
-            counts = int(self._txt_counts.text())
-        except ValueError:
-            self._append_log("Invalid count value", "#e74c3c")
-            return
-        self._sp += counts
-        self._plot.set_setpoint(self._sp)
-        self._send_cmd("MOVE_REL", struct.pack("<i", counts))
-
-    def _on_move_abs(self):
-        try:
-            counts = int(self._txt_counts.text())
-        except ValueError:
-            self._append_log("Invalid count value", "#e74c3c")
-            return
-        self._sp = counts
-        self._send_cmd("MOVE_ABS", struct.pack("<i", counts))
-
-    def _on_set_speed(self):
-        self._send_cmd("SET_SPEED", bytes([self._spn_speed.value()]))
-
-    def _append_log(self, msg: str, color: str = "#d4d4d4"):
+    def append_log(self, msg: str, color: str = "#d4d4d4"):
         ts = time.strftime("%H:%M:%S")
         self._log.append(
             f"<span style='color:#555;'>[{ts}]</span> "
@@ -994,10 +1173,11 @@ class MotorWindow(QDialog):
         super().closeEvent(event)
 
 
-# ─── Sensor (ADC EP 11) plot window ───────────────────────────────────────────
+# ─── Sensor plot window (CTN EP11 / SP-110 EP12 / AEM10900 EP09) ───────────────
 class SensorPlot(QWidget):
-    """Matplotlib widget for one node: CTN temperature (°C, EP 11), CTN
-    resistance (Ω, EP 11), and SP-110 irradiance (W/m², EP 12) vs. time."""
+    """Matplotlib widget for one node, 3×2 grid (all share one time base):
+       left   — CTN temperature (°C), CTN resistance (Ω), SP-110 irradiance (W/m²)
+       right  — AEM voltages (vsto/vsrc, V), AEM power (µW), AEM temperature (°C)."""
     MAXLEN = 1800
 
     def __init__(self, parent=None):
@@ -1011,49 +1191,75 @@ class SensorPlot(QWidget):
             return
         self._ok = True
 
+        # 4×2 grid: left = CTN T / CTN R / SP-110 ; right = AEM vsto / vsrc / pwr / temp
         self._fig = Figure(facecolor="#1e1e1e", tight_layout=True)
-        self._ax_t = self._fig.add_subplot(311)
-        self._ax_r = self._fig.add_subplot(312, sharex=self._ax_t)
-        self._ax_i = self._fig.add_subplot(313, sharex=self._ax_t)
+        self._ax_t    = self._fig.add_subplot(4, 2, 1)
+        self._ax_vsto = self._fig.add_subplot(4, 2, 2, sharex=self._ax_t)
+        self._ax_r    = self._fig.add_subplot(4, 2, 3, sharex=self._ax_t)
+        self._ax_vsrc = self._fig.add_subplot(4, 2, 4, sharex=self._ax_t)
+        self._ax_i    = self._fig.add_subplot(4, 2, 5, sharex=self._ax_t)
+        self._ax_p    = self._fig.add_subplot(4, 2, 6, sharex=self._ax_t)
+        self._ax_at   = self._fig.add_subplot(4, 2, 8, sharex=self._ax_t)
+        self._axes = (self._ax_t, self._ax_vsto, self._ax_r, self._ax_vsrc,
+                      self._ax_i, self._ax_p, self._ax_at)
 
-        for ax in (self._ax_t, self._ax_r, self._ax_i):
+        for ax in self._axes:
             ax.set_facecolor("#252526")
-            ax.tick_params(colors="#aaa", labelsize=8)
+            ax.tick_params(colors="#aaa", labelsize=7)
             ax.grid(True, alpha=0.25, lw=0.5)
             for spine in ax.spines.values():
                 spine.set_edgecolor("#555")
 
-        self._ax_t.set_ylabel("°C",    fontsize=8, color="#aaa")
-        self._ax_r.set_ylabel("Ω",     fontsize=8, color="#aaa")
-        self._ax_i.set_ylabel("W/m²",  fontsize=8, color="#aaa")
-        self._ax_i.set_xlabel("t (s)", fontsize=8, color="#aaa")
-        self._ax_t.set_title("CTN temperature", fontsize=9, color="#ccc")
-        self._ax_r.set_title("CTN resistance",  fontsize=9, color="#ccc")
-        self._ax_i.set_title("SP-110 irradiance", fontsize=9, color="#ccc")
+        self._ax_t.set_title("CTN temperature", fontsize=8, color="#ccc")
+        self._ax_t.set_ylabel("°C", fontsize=7, color="#aaa")
+        self._ax_r.set_title("CTN resistance", fontsize=8, color="#ccc")
+        self._ax_r.set_ylabel("Ω", fontsize=7, color="#aaa")
+        self._ax_i.set_title("SP-110 irradiance", fontsize=8, color="#ccc")
+        self._ax_i.set_ylabel("W/m²", fontsize=7, color="#aaa")
+        self._ax_i.set_xlabel("t (s)", fontsize=7, color="#aaa")
+        self._ax_vsto.set_title("AEM vsto (storage)", fontsize=8, color="#ccc")
+        self._ax_vsto.set_ylabel("V", fontsize=7, color="#aaa")
+        self._ax_vsrc.set_title("AEM vsrc (source)", fontsize=8, color="#ccc")
+        self._ax_vsrc.set_ylabel("V", fontsize=7, color="#aaa")
+        self._ax_p.set_title("AEM power", fontsize=8, color="#ccc")
+        self._ax_p.set_ylabel("µW", fontsize=7, color="#aaa")
+        self._ax_at.set_title("AEM temperature", fontsize=8, color="#ccc")
+        self._ax_at.set_ylabel("°C", fontsize=7, color="#aaa")
+        self._ax_at.set_xlabel("t (s)", fontsize=7, color="#aaa")
 
-        self._ln_t, = self._ax_t.plot([], [], "#5a9fd4", lw=1.4)
-        self._ln_r, = self._ax_r.plot([], [], "#27ae60", lw=1.2)
-        self._ln_i, = self._ax_i.plot([], [], "#e0a030", lw=1.4)
+        self._ln_t,    = self._ax_t.plot([], [], "#5a9fd4", lw=1.4)
+        self._ln_r,    = self._ax_r.plot([], [], "#27ae60", lw=1.2)
+        self._ln_i,    = self._ax_i.plot([], [], "#e0a030", lw=1.4)
+        self._ln_vsto, = self._ax_vsto.plot([], [], "#5a9fd4", lw=1.3)
+        self._ln_vsrc, = self._ax_vsrc.plot([], [], "#e74c3c", lw=1.3)
+        self._ln_p,    = self._ax_p.plot([], [], "#9b59b6", lw=1.3)
+        self._ln_at,   = self._ax_at.plot([], [], "#1abc9c", lw=1.3)
 
         self._canvas = FigureCanvasQTAgg(self._fig)
         lay.addWidget(self._canvas)
 
-    def redraw(self, T, TC, RT, TI, IRR):
-        """CTN series share time base T; irradiance uses its own time base TI."""
+    def redraw(self, d: dict):
+        """All series share the per-node t0 time base."""
         if not self._ok:
             return
-        tl = list(T)
-        self._ln_t.set_data(tl, list(TC))
-        self._ln_r.set_data(tl, list(RT))
-        self._ln_i.set_data(list(TI), list(IRR))
-        for ax in (self._ax_t, self._ax_r, self._ax_i):
+        tl = list(d["T"])
+        self._ln_t.set_data(tl, list(d["TC"]))
+        self._ln_r.set_data(tl, list(d["RT"]))
+        self._ln_i.set_data(list(d["TI"]), list(d["IRR"]))
+        ta = list(d["TA"])
+        self._ln_vsto.set_data(ta, list(d["VSTO"]))
+        self._ln_vsrc.set_data(ta, list(d["VSRC"]))
+        self._ln_p.set_data(ta, list(d["PWR"]))
+        self._ln_at.set_data(ta, list(d["ATEMP"]))
+        for ax in self._axes:
             ax.relim(); ax.autoscale_view()
         self._canvas.draw_idle()
 
     def clear(self):
         if not self._ok:
             return
-        for ln in (self._ln_t, self._ln_r, self._ln_i):
+        for ln in (self._ln_t, self._ln_r, self._ln_i,
+                   self._ln_vsto, self._ln_vsrc, self._ln_p, self._ln_at):
             ln.set_data([], [])
         self._canvas.draw_idle()
 
@@ -1067,6 +1273,7 @@ class SensorWindow(QDialog):
 
     visibilityChanged = Signal(bool)
 
+    EP_PMIC       =  9   # AEM10900 [vsto, vsrc, T, pwr, status, chg] CBOR uplink
     EP_SENSOR     = 11   # CTN [T_C, R_T, diag] CBOR uplink endpoint
     EP_IRRADIANCE = 12   # SP-110 [W/m2, mV, diag] CBOR uplink endpoint
 
@@ -1076,8 +1283,8 @@ class SensorWindow(QDialog):
                          Qt.WindowType.WindowTitleHint |
                          Qt.WindowType.WindowCloseButtonHint |
                          Qt.WindowType.WindowMinimizeButtonHint)
-        self.setWindowTitle("Sensor — CTN (EP 11)")
-        self.resize(900, 560)
+        self.setWindowTitle("Sensor — CTN / SP-110 / AEM10900")
+        self.resize(1120, 840)
 
         # Per-node ring buffers:
         #   addr → {"T": deque, "TC": deque, "RT": deque, "t0": float}
@@ -1120,7 +1327,12 @@ class SensorWindow(QDialog):
                  "TC":  deque(maxlen=SensorPlot.MAXLEN),
                  "RT":  deque(maxlen=SensorPlot.MAXLEN),
                  "TI":  deque(maxlen=SensorPlot.MAXLEN),   # irradiance time base (EP12)
-                 "IRR": deque(maxlen=SensorPlot.MAXLEN)}
+                 "IRR": deque(maxlen=SensorPlot.MAXLEN),
+                 "TA":  deque(maxlen=SensorPlot.MAXLEN),   # AEM time base (EP09)
+                 "VSTO": deque(maxlen=SensorPlot.MAXLEN),
+                 "VSRC": deque(maxlen=SensorPlot.MAXLEN),
+                 "PWR":  deque(maxlen=SensorPlot.MAXLEN),
+                 "ATEMP": deque(maxlen=SensorPlot.MAXLEN)}
             self._data[src_addr] = d
             self._cbo_node.addItem(f"0x{src_addr:08x}", src_addr)
             if self._cbo_node.count() == 1:
@@ -1148,6 +1360,19 @@ class SensorWindow(QDialog):
         if self._selected_addr() == src_addr:
             self._refresh()
 
+    def feed_aem(self, src_addr: int, vsto: float, vsrc: float, temp: float,
+                 pwr: float, status: int, charging: bool):
+        """EP 09 AEM10900 PMIC packet."""
+        d = self._node(src_addr)
+        d["TA"].append(time.time() - d["t0"])
+        d["VSTO"].append(vsto)
+        d["VSRC"].append(vsrc)
+        d["PWR"].append(pwr)
+        d["ATEMP"].append(temp)
+        d["last_aem"] = (vsto, vsrc, temp, pwr, status, charging)
+        if self._selected_addr() == src_addr:
+            self._refresh()
+
     # ── Internal ──────────────────────────────────────────────────────────────
 
     def _selected_addr(self):
@@ -1161,7 +1386,7 @@ class SensorWindow(QDialog):
             self._plot.clear()
             self._lbl_vals.setText("—")
             return
-        self._plot.redraw(d["T"], d["TC"], d["RT"], d["TI"], d["IRR"])
+        self._plot.redraw(d)
 
         parts = []
         ctn = d.get("last_ctn")
@@ -1174,6 +1399,11 @@ class SensorWindow(QDialog):
             wm2, mv, diag, fault = irr
             parts.append(f"SP110 FAULT(diag={diag})" if fault
                          else f"E={wm2:.1f}W/m² ({mv:.2f}mV)")
+        aem = d.get("last_aem")
+        if aem is not None:
+            vsto, vsrc, atemp, pwr, status, charging = aem
+            parts.append(f"AEM vsto={vsto:.2f}V vsrc={vsrc:.2f}V "
+                         f"P={pwr:.0f}µW T={atemp:.1f}°C{' chg' if charging else ''}")
         any_fault = (ctn and ctn[3]) or (irr and irr[3])
         self._lbl_vals.setText("    ".join(parts) if parts else "—")
         self._lbl_vals.setStyleSheet(
@@ -1186,10 +1416,209 @@ class SensorWindow(QDialog):
         addr = self._selected_addr()
         if addr is not None and addr in self._data:
             d = self._data[addr]
-            for k in ("T", "TC", "RT", "TI", "IRR"):
+            for k in ("T", "TC", "RT", "TI", "IRR",
+                      "TA", "VSTO", "VSRC", "PWR", "ATEMP"):
                 d[k].clear()
             d.pop("last_ctn", None)
             d.pop("last_irr", None)
+            d.pop("last_aem", None)
+            d["t0"] = time.time()
+        self._refresh()
+
+    def closeEvent(self, event):
+        self.visibilityChanged.emit(False)
+        super().closeEvent(event)
+
+
+# ─── nRF54L15-tag plot window (EP 20) ─────────────────────────────────────────
+class TagPlot(QWidget):
+    """Matplotlib widget for one nRF54L15-tag node (EP 20), 3×2 grid sharing one
+    time base: BME688 temperature / pressure / humidity / gas, ADXL367 accel
+    (x/y/z) and BMI270 gyro (x/y/z)."""
+    MAXLEN = 1800
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        lay = QVBoxLayout(self)
+        lay.setContentsMargins(0, 0, 0, 0)
+        if not _MATPLOTLIB_OK:
+            lay.addWidget(QLabel("matplotlib not installed — pip install matplotlib"))
+            self._ok = False
+            return
+        self._ok = True
+
+        self._fig = Figure(facecolor="#1e1e1e", tight_layout=True)
+        self._ax_t = self._fig.add_subplot(3, 2, 1)
+        self._ax_p = self._fig.add_subplot(3, 2, 2, sharex=self._ax_t)
+        self._ax_h = self._fig.add_subplot(3, 2, 3, sharex=self._ax_t)
+        self._ax_g = self._fig.add_subplot(3, 2, 4, sharex=self._ax_t)
+        self._ax_a = self._fig.add_subplot(3, 2, 5, sharex=self._ax_t)
+        self._ax_w = self._fig.add_subplot(3, 2, 6, sharex=self._ax_t)
+        self._axes = (self._ax_t, self._ax_p, self._ax_h, self._ax_g,
+                      self._ax_a, self._ax_w)
+        for ax in self._axes:
+            ax.set_facecolor("#252526")
+            ax.tick_params(colors="#aaa", labelsize=7)
+            ax.grid(True, alpha=0.25, lw=0.5)
+            for spine in ax.spines.values():
+                spine.set_edgecolor("#555")
+
+        self._ax_t.set_title("BME688 temperature", fontsize=8, color="#ccc")
+        self._ax_t.set_ylabel("°C", fontsize=7, color="#aaa")
+        self._ax_p.set_title("BME688 pressure", fontsize=8, color="#ccc")
+        self._ax_p.set_ylabel("Pa", fontsize=7, color="#aaa")
+        self._ax_h.set_title("BME688 humidity", fontsize=8, color="#ccc")
+        self._ax_h.set_ylabel("%", fontsize=7, color="#aaa")
+        self._ax_g.set_title("BME688 gas", fontsize=8, color="#ccc")
+        self._ax_g.set_ylabel("Ω", fontsize=7, color="#aaa")
+        self._ax_a.set_title("ADXL367 accel", fontsize=8, color="#ccc")
+        self._ax_a.set_ylabel("mg", fontsize=7, color="#aaa")
+        self._ax_a.set_xlabel("t (s)", fontsize=7, color="#aaa")
+        self._ax_w.set_title("BMI270 gyro", fontsize=8, color="#ccc")
+        self._ax_w.set_ylabel("raw", fontsize=7, color="#aaa")
+        self._ax_w.set_xlabel("t (s)", fontsize=7, color="#aaa")
+
+        self._ln_t, = self._ax_t.plot([], [], "#5a9fd4", lw=1.4)
+        self._ln_p, = self._ax_p.plot([], [], "#e0a030", lw=1.3)
+        self._ln_h, = self._ax_h.plot([], [], "#1abc9c", lw=1.3)
+        self._ln_g, = self._ax_g.plot([], [], "#9b59b6", lw=1.2)
+        self._ln_ax, = self._ax_a.plot([], [], "#e74c3c", lw=1.1, label="x")
+        self._ln_ay, = self._ax_a.plot([], [], "#27ae60", lw=1.1, label="y")
+        self._ln_az, = self._ax_a.plot([], [], "#5a9fd4", lw=1.1, label="z")
+        self._ln_gx, = self._ax_w.plot([], [], "#e74c3c", lw=1.1, label="x")
+        self._ln_gy, = self._ax_w.plot([], [], "#27ae60", lw=1.1, label="y")
+        self._ln_gz, = self._ax_w.plot([], [], "#5a9fd4", lw=1.1, label="z")
+        for ax in (self._ax_a, self._ax_w):
+            ax.legend(fontsize=6, labelcolor="#ccc", facecolor="#252526",
+                      edgecolor="#555", loc="upper right")
+
+        self._canvas = FigureCanvasQTAgg(self._fig)
+        lay.addWidget(self._canvas)
+
+    def redraw(self, d: dict):
+        if not self._ok:
+            return
+        t = list(d["T"])
+        self._ln_t.set_data(t, list(d["TC"]))
+        self._ln_p.set_data(t, list(d["P"]))
+        self._ln_h.set_data(t, list(d["H"]))
+        self._ln_g.set_data(t, list(d["GAS"]))
+        self._ln_ax.set_data(t, list(d["AX"]))
+        self._ln_ay.set_data(t, list(d["AY"]))
+        self._ln_az.set_data(t, list(d["AZ"]))
+        self._ln_gx.set_data(t, list(d["GX"]))
+        self._ln_gy.set_data(t, list(d["GY"]))
+        self._ln_gz.set_data(t, list(d["GZ"]))
+        for ax in self._axes:
+            ax.relim(); ax.autoscale_view()
+        self._canvas.draw_idle()
+
+    def clear(self):
+        if not self._ok:
+            return
+        for ln in (self._ln_t, self._ln_p, self._ln_h, self._ln_g,
+                   self._ln_ax, self._ln_ay, self._ln_az,
+                   self._ln_gx, self._ln_gy, self._ln_gz):
+            ln.set_data([], [])
+        self._canvas.draw_idle()
+
+
+class TagWindow(QDialog):
+    """Floating per-node plot window for nRF54L15-tag EP 20 CBOR uplinks
+    [T, P, H, gas, ax, ay, az, gx, gy, gz]."""
+
+    visibilityChanged = Signal(bool)
+    EP_TAG = 20
+
+    _KEYS = ("TC", "P", "H", "GAS", "AX", "AY", "AZ", "GX", "GY", "GZ")
+
+    def __init__(self):
+        super().__init__(None,
+                         Qt.WindowType.Window |
+                         Qt.WindowType.WindowTitleHint |
+                         Qt.WindowType.WindowCloseButtonHint |
+                         Qt.WindowType.WindowMinimizeButtonHint)
+        self.setWindowTitle("nRF54L15-tag — BME688 / ADXL367 / BMI270 (EP 20)")
+        self.resize(1120, 760)
+        self._data: dict[int, dict] = {}
+
+        root = QVBoxLayout(self)
+        root.setSpacing(6)
+        root.setContentsMargins(6, 6, 6, 6)
+
+        bar = QHBoxLayout()
+        bar.addWidget(QLabel("Node:"))
+        self._cbo_node = QComboBox()
+        self._cbo_node.setMinimumWidth(140)
+        self._cbo_node.setFont(QFont("Courier New", 11))
+        self._cbo_node.currentIndexChanged.connect(self._on_node_changed)
+        bar.addWidget(self._cbo_node)
+        self._lbl_vals = QLabel("—")
+        self._lbl_vals.setFont(QFont("Courier New", 11))
+        self._lbl_vals.setStyleSheet("color:#5a9fd4;")
+        bar.addWidget(self._lbl_vals, stretch=1)
+        btn_clear = QPushButton("Clear")
+        btn_clear.clicked.connect(self._on_clear)
+        bar.addWidget(btn_clear)
+        root.addLayout(bar)
+
+        self._plot = TagPlot()
+        root.addWidget(self._plot, stretch=1)
+
+    def _node(self, src_addr: int) -> dict:
+        d = self._data.get(src_addr)
+        if d is None:
+            d = {"t0": time.time(), "T": deque(maxlen=TagPlot.MAXLEN)}
+            for k in self._KEYS:
+                d[k] = deque(maxlen=TagPlot.MAXLEN)
+            self._data[src_addr] = d
+            self._cbo_node.addItem(f"0x{src_addr:08x}", src_addr)
+            if self._cbo_node.count() == 1:
+                self._cbo_node.setCurrentIndex(0)
+        return d
+
+    def feed_tag(self, src_addr: int, vals: list):
+        """EP 20 packet: [T, P, H, gas, ax, ay, az, gx, gy, gz]."""
+        if len(vals) < 10:
+            return
+        d = self._node(src_addr)
+        d["T"].append(time.time() - d["t0"])
+        for k, v in zip(self._KEYS, vals[:10]):
+            d[k].append(v)
+        d["last"] = vals[:10]
+        if self._selected_addr() == src_addr:
+            self._refresh()
+
+    def _selected_addr(self):
+        idx = self._cbo_node.currentIndex()
+        return self._cbo_node.itemData(idx) if idx >= 0 else None
+
+    def _refresh(self):
+        addr = self._selected_addr()
+        d = self._data.get(addr) if addr is not None else None
+        if d is None:
+            self._plot.clear()
+            self._lbl_vals.setText("—")
+            return
+        self._plot.redraw(d)
+        v = d.get("last")
+        if v:
+            self._lbl_vals.setText(
+                f"T={v[0]:.2f}°C  P={v[1]:.0f}Pa  H={v[2]:.1f}%  "
+                f"gas={v[3]:.0f}Ω  acc=({v[4]:.0f},{v[5]:.0f},{v[6]:.0f})mg  "
+                f"gyr=({v[7]:.0f},{v[8]:.0f},{v[9]:.0f})")
+
+    def _on_node_changed(self, _idx: int):
+        self._refresh()
+
+    def _on_clear(self):
+        addr = self._selected_addr()
+        if addr is not None and addr in self._data:
+            d = self._data[addr]
+            d["T"].clear()
+            for k in self._KEYS:
+                d[k].clear()
+            d.pop("last", None)
             d["t0"] = time.time()
         self._refresh()
 
@@ -1214,6 +1643,7 @@ class _Signals(QObject):
     # overflows PySide6's C++ `int`. Use `object` so the Python int passes through.
     remote_scratch   = Signal(object, object) # (src_addr, parsed status dict)
     net_uplink_done  = Signal(str, str)  # (summary, css-color) — batch send finished
+    mqtt_discovered  = Signal(object, object)  # (conn, gateway-list) from bg thread
 
 
 # ─── Main window ──────────────────────────────────────────────────────────────
@@ -1235,6 +1665,7 @@ class MainWindow(QMainWindow):
         self._signals.node_cfg_result.connect(self._on_node_cfg_result)
         self._signals.remote_scratch.connect(self._on_remote_scratch_status)
         self._signals.net_uplink_done.connect(self._on_net_uplink_done)
+        self._signals.mqtt_discovered.connect(self._on_mqtt_discovered)
 
         self._otap_processed_seq: int = 0  # last known processed scratchpad seq
         self._diag_role_seen: dict = {}    # addr → last logged diagnostic role_raw
@@ -1261,6 +1692,9 @@ class MainWindow(QMainWindow):
 
         self._sensor_window = SensorWindow()
         self._sensor_window.visibilityChanged.connect(self._on_sensor_window_closed)
+
+        self._tag_window = TagWindow()
+        self._tag_window.visibilityChanged.connect(self._on_tag_window_closed)
 
         self.setWindowTitle("Wirepas UART Console")
         self.resize(1280, 780)
@@ -1301,8 +1735,19 @@ class MainWindow(QMainWindow):
         lay = QVBoxLayout(w)
         lay.setSpacing(10)
 
+        # ── Transport selector ────────────────────────────────────────────────
+        self._cbo_conn_mode = QComboBox()
+        self._cbo_conn_mode.addItem("Serial (UART sink)", "serial")
+        self._cbo_conn_mode.addItem("MQTT backend (broker)", "mqtt")
+        self._cbo_conn_mode.currentIndexChanged.connect(self._on_conn_mode_changed)
+        mode_grp = QGroupBox("Transport")
+        mode_lay = QFormLayout(mode_grp)
+        mode_lay.addRow("Connect via:", self._cbo_conn_mode)
+        lay.addWidget(mode_grp)
+
         # ── UART connection ────────────────────────────────────────────────────
         conn_grp = QGroupBox("UART Connection")
+        self._grp_serial = conn_grp
         conn_lay = QFormLayout(conn_grp)
         conn_lay.setSpacing(8)
 
@@ -1342,20 +1787,100 @@ class MainWindow(QMainWindow):
         timeout_row.addStretch()
         conn_lay.addRow("Timeout:", timeout_row)
 
+        lay.addWidget(conn_grp)
+
+        # ── MQTT backend connection ────────────────────────────────────────────
+        mqtt_grp = QGroupBox("MQTT Backend Connection")
+        self._grp_mqtt = mqtt_grp
+        mqtt_lay = QFormLayout(mqtt_grp)
+        mqtt_lay.setSpacing(8)
+
+        self._txt_mqtt_host = QLineEdit()
+        self._txt_mqtt_host.setPlaceholderText("broker.example.com")
+        self._txt_mqtt_host.setText("wnt.dev.bienesis.fr")
+        mqtt_lay.addRow("Host:", self._txt_mqtt_host)
+
+        self._spn_mqtt_port = QSpinBox()
+        self._spn_mqtt_port.setRange(1, 65535)
+        self._spn_mqtt_port.setValue(8883)
+        self._spn_mqtt_port.setFixedWidth(90)
+        tls_row = QHBoxLayout()
+        tls_row.addWidget(self._spn_mqtt_port)
+        tls_row.addSpacing(16)
+        self._chk_mqtt_tls = QCheckBox("TLS")
+        self._chk_mqtt_tls.setChecked(True)
+        self._chk_mqtt_tls.toggled.connect(
+            lambda on: self._spn_mqtt_port.setValue(8883 if on else 1883))
+        tls_row.addWidget(self._chk_mqtt_tls)
+        self._chk_mqtt_insecure = QCheckBox("Skip cert verify")
+        tls_row.addWidget(self._chk_mqtt_insecure)
+        tls_row.addStretch()
+        mqtt_lay.addRow("Port:", tls_row)
+
+        self._txt_mqtt_user = QLineEdit()
+        self._txt_mqtt_user.setPlaceholderText("username")
+        self._txt_mqtt_user.setText("mqttmasteruser")
+        mqtt_lay.addRow("Username:", self._txt_mqtt_user)
+
+        self._txt_mqtt_pass = QLineEdit()
+        self._txt_mqtt_pass.setEchoMode(QLineEdit.EchoMode.Password)
+        self._txt_mqtt_pass.setPlaceholderText("password")
+        mqtt_lay.addRow("Password:", self._txt_mqtt_pass)
+
+        gw_row = QHBoxLayout()
+        self._cbo_mqtt_gw = QComboBox()
+        self._cbo_mqtt_gw.setEditable(True)
+        self._cbo_mqtt_gw.setMinimumWidth(200)
+        self._cbo_mqtt_gw.setToolTip("Gateway id (discovered on connect, or typed)")
+        self._cbo_mqtt_gw.currentIndexChanged.connect(self._on_mqtt_gw_changed)
+        gw_row.addWidget(self._cbo_mqtt_gw, stretch=1)
+        self._btn_mqtt_refresh = QPushButton("⟳")
+        self._btn_mqtt_refresh.setFixedWidth(30)
+        self._btn_mqtt_refresh.setToolTip("Refresh gateways / sinks")
+        self._btn_mqtt_refresh.clicked.connect(self._on_mqtt_refresh_sinks)
+        gw_row.addWidget(self._btn_mqtt_refresh)
+        self._btn_mqtt_sniff = QPushButton("Sniff")
+        self._btn_mqtt_sniff.setFixedWidth(50)
+        self._btn_mqtt_sniff.setToolTip("List topics actually published on the "
+                                        "broker for 6 s (diagnostic)")
+        self._btn_mqtt_sniff.clicked.connect(self._on_mqtt_sniff)
+        gw_row.addWidget(self._btn_mqtt_sniff)
+        mqtt_lay.addRow("Gateway:", gw_row)
+
+        self._cbo_mqtt_sink = QComboBox()
+        self._cbo_mqtt_sink.setEditable(True)
+        self._cbo_mqtt_sink.setMinimumWidth(200)
+        self._cbo_mqtt_sink.setEditText("sink0")
+        self._cbo_mqtt_sink.setToolTip("Sink id (default sink0)")
+        self._cbo_mqtt_sink.currentIndexChanged.connect(self._on_mqtt_sink_changed)
+        mqtt_lay.addRow("Sink:", self._cbo_mqtt_sink)
+
+        lay.addWidget(mqtt_grp)
+        mqtt_grp.setVisible(False)   # serial is the default transport
+
+        # ── Shared connection actions (visible in both transports) ─────────────
+        act_grp = QGroupBox("Connection")
+        act_lay = QVBoxLayout(act_grp)
+
         self._chk_show_log = QCheckBox("Show log window")
         self._chk_show_log.setChecked(False)
         self._chk_show_log.toggled.connect(self._on_log_toggle)
-        conn_lay.addRow("", self._chk_show_log)
+        act_lay.addWidget(self._chk_show_log)
 
         self._chk_show_motor = QCheckBox("Show motor control window")
         self._chk_show_motor.setChecked(False)
         self._chk_show_motor.toggled.connect(self._on_motor_toggle)
-        conn_lay.addRow("", self._chk_show_motor)
+        act_lay.addWidget(self._chk_show_motor)
 
         self._chk_show_sensor = QCheckBox("Show sensor plot window (CTN EP 11)")
         self._chk_show_sensor.setChecked(False)
         self._chk_show_sensor.toggled.connect(self._on_sensor_toggle)
-        conn_lay.addRow("", self._chk_show_sensor)
+        act_lay.addWidget(self._chk_show_sensor)
+
+        self._chk_show_tag = QCheckBox("Show nRF54L15-tag plot window (EP 20)")
+        self._chk_show_tag.setChecked(False)
+        self._chk_show_tag.toggled.connect(self._on_tag_toggle)
+        act_lay.addWidget(self._chk_show_tag)
 
         btn_row = QHBoxLayout()
         self._btn_connect = QPushButton("Connect")
@@ -1367,8 +1892,8 @@ class MainWindow(QMainWindow):
         self._btn_disconnect.clicked.connect(self._on_disconnect)
         btn_row.addWidget(self._btn_disconnect)
         btn_row.addStretch()
-        conn_lay.addRow("", btn_row)
-        lay.addWidget(conn_grp)
+        act_lay.addLayout(btn_row)
+        lay.addWidget(act_grp)
 
         # ── Node info (read-only) ─────────────────────────────────────────────
         info_grp = QGroupBox("Node info")
@@ -2169,7 +2694,21 @@ class MainWindow(QMainWindow):
 
     # ── Connect / disconnect ─────────────────────────────────────────────────
 
+    def _conn_mode(self) -> str:
+        return self._cbo_conn_mode.currentData() or "serial"
+
+    def _on_conn_mode_changed(self, *_):
+        mqtt = self._conn_mode() == "mqtt"
+        self._grp_serial.setVisible(not mqtt)
+        self._grp_mqtt.setVisible(mqtt)
+
     def _on_connect(self):
+        if self._conn_mode() == "mqtt":
+            self._connect_mqtt()
+        else:
+            self._connect_serial()
+
+    def _connect_serial(self):
         port = self._cbo_port.currentText().strip()
         if not port:
             self._log_line("ERROR: no port selected")
@@ -2193,6 +2732,166 @@ class MainWindow(QMainWindow):
         if self._chk_poll.isChecked():
             QTimer.singleShot(600, self._poll_timer.start)
 
+    def _connect_mqtt(self):
+        ok, hint = mqtt_lib_available()
+        if not ok:
+            self._log_line(f"MQTT unavailable: {hint}")
+            QMessageBox.warning(self, "MQTT backend", hint)
+            return
+        host = self._txt_mqtt_host.text().strip()
+        if not host:
+            self._log_line("ERROR: no MQTT host")
+            return
+        man_gw, man_sink = self._mqtt_gwsink()
+        try:
+            conn = MqttConn(
+                host, port=self._spn_mqtt_port.value(),
+                username=self._txt_mqtt_user.text(),
+                password=self._txt_mqtt_pass.text(),
+                tls=self._chk_mqtt_tls.isChecked(),
+                insecure=self._chk_mqtt_insecure.isChecked(),
+                gw=man_gw, sink=man_sink,
+                timeout=float(self._spn_timeout.value()))
+            conn.set_logger(lambda m: self._signals.log_message.emit(m))
+            conn.open()
+            conn.add_callback(self._waps_callback)
+            self._conn = conn
+        except Exception as e:
+            self._log_line(f"MQTT connect failed: {e}")
+            QMessageBox.critical(self, "MQTT backend", f"Connect failed:\n{e}")
+            return
+        self._set_connected(True)
+        self._log_line(f"MQTT connected  {host}:{self._spn_mqtt_port.value()}  "
+                       f"— discovering gateways…")
+        # Gateway/sink status arrives asynchronously; poll in the background and
+        # marshal the result to the GUI thread via a signal (QTimer.singleShot
+        # does NOT fire from a plain worker thread — it has no Qt event loop).
+        import threading
+        def _discover():
+            conn.discover(timeout=8.0)
+            gws = conn.list_gateways()
+            self._signals.mqtt_discovered.emit(conn, gws)
+        threading.Thread(target=_discover, daemon=True).start()
+
+    def _on_mqtt_discovered(self, conn, gws):
+        if self._conn is not conn:
+            return   # disconnected / switched meanwhile
+        self._populate_mqtt_sinks(conn, gateways=gws)
+        n = len(conn.list_sinks())
+        self._log_line(f"MQTT discovery: {len(gws)} gateway(s), {n} sink(s)")
+        # Push the current gateway/sink into the connection so downlink (scan,
+        # remote API, TX) works even when no sink config was discovered.
+        gw, sink = self._mqtt_gwsink()
+        if gw:
+            conn.select(gw, sink)
+            self._log_line(f"MQTT active sink: {gw} / {sink}")
+            QTimer.singleShot(100, self._on_read_node_info)
+        elif n == 0:
+            self._log_line(
+                "No gateway selected — pick a gateway above, or type "
+                "gateway/sink manually.")
+
+    def _mqtt_gwsink(self):
+        """Current (gateway, sink) from the two fields. sink defaults to sink0.
+        Resolves the sink display label ("sink0  (0x…)") back to its clean id
+        (stored as item data) so downlink topic + config lookup use the real id."""
+        gw = self._cbo_mqtt_gw.currentText().strip() or None
+        sc = self._cbo_mqtt_sink
+        txt = sc.currentText().strip()
+        idx = sc.findText(txt)
+        if idx >= 0 and sc.itemData(idx):
+            sink = str(sc.itemData(idx))
+        else:
+            sink = txt or "sink0"
+        return gw, sink
+
+    def _populate_mqtt_sinks(self, conn, gateways=None):
+        """Fill the gateway list from discovery, then the sink list for it.
+        `gateways` may be a list captured during discovery to avoid re-querying
+        (get_gateways() can transiently return empty right after)."""
+        sinks = conn.list_sinks()
+        # Gateways come from get_gateways() (independent of sink config), plus any
+        # gateway that already exposes a sink — union, preserving order.
+        raw = list(gateways) if gateways is not None else list(conn.list_gateways())
+        gws = [str(g) for g in raw]                    # coerce (objects → str)
+        for gw, sink, cfg in sinks:
+            s = str(gw)
+            if s not in gws:
+                gws.append(s)
+        self._log_line(f"populate gateways: {gws!r}  (sinks={len(sinks)})")
+        keep_gw = conn.gw or self._cbo_mqtt_gw.currentText().strip()
+        self._cbo_mqtt_gw.blockSignals(True)
+        self._cbo_mqtt_gw.clear()
+        for g in gws:
+            self._cbo_mqtt_gw.addItem(g)
+        self._cbo_mqtt_gw.blockSignals(False)
+        if keep_gw:
+            self._cbo_mqtt_gw.setEditText(keep_gw)
+        elif gws:
+            self._cbo_mqtt_gw.setCurrentIndex(0)
+        self._populate_mqtt_sink_list(conn)
+
+    def _populate_mqtt_sink_list(self, conn):
+        """Fill the sink list for the currently selected gateway."""
+        gw = self._cbo_mqtt_gw.currentText().strip()
+        keep_sink = conn.sink or self._cbo_mqtt_sink.currentText().strip() or "sink0"
+        self._cbo_mqtt_sink.blockSignals(True)
+        self._cbo_mqtt_sink.clear()
+        for g, sink, cfg in conn.list_sinks():
+            if g == gw:
+                addr = cfg.get("node_address")
+                label = sink
+                if addr is not None:
+                    try:
+                        label = f"{sink}   (0x{int(addr):08x})"
+                    except Exception:
+                        pass
+                self._cbo_mqtt_sink.addItem(label, sink)
+        self._cbo_mqtt_sink.blockSignals(False)
+        # Restore selection by sink id (data), else keep manual text
+        idx = self._cbo_mqtt_sink.findData(keep_sink)
+        if idx >= 0:
+            self._cbo_mqtt_sink.setCurrentIndex(idx)
+        else:
+            self._cbo_mqtt_sink.setEditText(keep_sink)
+
+    def _on_mqtt_refresh_sinks(self):
+        conn = self._conn
+        if not isinstance(conn, MqttConn):
+            self._log_line("Connect to a broker first")
+            return
+        import threading
+        def _do():
+            conn.discover(timeout=8.0)
+            self._signals.mqtt_discovered.emit(conn, conn.list_gateways())
+        threading.Thread(target=_do, daemon=True).start()
+
+    def _on_mqtt_sniff(self):
+        conn = self._conn
+        if not isinstance(conn, MqttConn):
+            self._log_line("Connect to a broker first")
+            return
+        import threading
+        threading.Thread(target=lambda: conn.sniff_topics(6.0), daemon=True).start()
+
+    def _on_mqtt_gw_changed(self, _idx: int):
+        conn = self._conn
+        if isinstance(conn, MqttConn):
+            self._populate_mqtt_sink_list(conn)
+        self._apply_mqtt_selection()
+
+    def _on_mqtt_sink_changed(self, _idx: int):
+        self._apply_mqtt_selection()
+
+    def _apply_mqtt_selection(self):
+        conn = self._conn
+        if not isinstance(conn, MqttConn):
+            return
+        gw, sink = self._mqtt_gwsink()
+        if gw:
+            conn.select(gw, sink)
+            QTimer.singleShot(100, self._on_read_node_info)
+
     def _on_disconnect(self):
         self._poll_timer.stop()
         if self._conn:
@@ -2213,10 +2912,24 @@ class MainWindow(QMainWindow):
         self._cbo_port.setEnabled(not on)
         self._cbo_baud.setEnabled(not on)
         self._spn_timeout.setEnabled(not on)
+        self._cbo_conn_mode.setEnabled(not on)
+        for wdg in (self._txt_mqtt_host, self._spn_mqtt_port, self._chk_mqtt_tls,
+                    self._chk_mqtt_insecure, self._txt_mqtt_user, self._txt_mqtt_pass):
+            wdg.setEnabled(not on)
+        # gw/sink selectors are always editable (manual entry before connect,
+        # dropdown selection after discovery). Refresh needs a live connection.
+        self._cbo_mqtt_gw.setEnabled(True)
+        self._cbo_mqtt_sink.setEnabled(True)
+        self._btn_mqtt_refresh.setEnabled(on)
+        self._btn_mqtt_sniff.setEnabled(on)
         if on:
-            port = self._cbo_port.currentText()
-            baud = self._cbo_baud.currentText()
-            self._lbl_status.setText(f"Connected  {port}  {baud} baud")
+            if self._conn_mode() == "mqtt":
+                host = self._txt_mqtt_host.text()
+                self._lbl_status.setText(f"Connected  MQTT {host}")
+            else:
+                port = self._cbo_port.currentText()
+                baud = self._cbo_baud.currentText()
+                self._lbl_status.setText(f"Connected  {port}  {baud} baud")
             self._lbl_status.setObjectName("lbl_status_ok")
         else:
             self._lbl_status.setText("Disconnected")
@@ -2343,14 +3056,19 @@ class MainWindow(QMainWindow):
             f"  {row['apdu_len']}B"
         )
         # Update network node registry (passive discovery)
-        src = int(row['src_addr'])
-        self._node_model.update_node(
-            src,
-            hops=row['hops'],
-            delay_ms=row['delay_ms'],
-            src_ep=row['src_ep'],
-            incr_pkt=True,
-        )
+        try:
+            src = int(row['src_addr'])
+            self._node_model.update_node(
+                src,
+                hops=row['hops'],
+                delay_ms=row['delay_ms'],
+                src_ep=row['src_ep'],
+                incr_pkt=True,
+            )
+        except Exception as e:
+            self._log_line(f"node registry update failed for "
+                           f"{row.get('src_addr')!r}: {e}")
+            return
         # Enrich with role/mode from Wirepas diagnostic packets (EP=247→255).
         # Skip if we already have the authoritative CSAP role for this node.
         if row['src_ep'] == DIAG_SRC_EP and row['dst_ep'] == DIAG_DST_EP:
@@ -2394,9 +3112,17 @@ class MainWindow(QMainWindow):
             if self._motor_window.isVisible():
                 self._motor_window.feed_reply(row['raw'])
 
-        # Route CTN (EP 11) and SP-110 irradiance (EP 12) to the sensor window
+        # Route CTN (EP 11), SP-110 (EP 12) and AEM10900 (EP 9) to the sensor window
         if self._sensor_window.isVisible():
-            if row['src_ep'] == SensorWindow.EP_SENSOR:
+            if row['src_ep'] == SensorWindow.EP_PMIC:
+                vals = parse_adc_cbor(row['raw'])
+                if vals and len(vals) >= 4:
+                    self._sensor_window.feed_aem(
+                        src,
+                        float(vals[0]), float(vals[1]), float(vals[2]), float(vals[3]),
+                        int(vals[4]) if len(vals) > 4 else 0,
+                        bool(vals[5]) if len(vals) > 5 else False)
+            elif row['src_ep'] == SensorWindow.EP_SENSOR:
                 vals = parse_adc_cbor(row['raw'])
                 if vals:
                     t_c  = vals[0]
@@ -2410,6 +3136,12 @@ class MainWindow(QMainWindow):
                     mv   = vals[1] if len(vals) > 1 else float("nan")
                     diag = int(vals[2]) if len(vals) > 2 else 0
                     self._sensor_window.feed_irr(src, wm2, mv, diag)
+
+        # Route nRF54L15-tag EP 20 uplinks to the tag plot window
+        if self._tag_window.isVisible() and row['src_ep'] == TagWindow.EP_TAG:
+            vals = parse_adc_cbor(row['raw'])
+            if vals and len(vals) >= 10:
+                self._tag_window.feed_tag(src, vals)
 
     def _motor_send(self, dst_addr: int, dst_ep: int, payload: bytes, src_ep: int):
         conn = self._conn
@@ -2443,11 +3175,26 @@ class MainWindow(QMainWindow):
         if not visible:
             self._chk_show_sensor.setChecked(False)
 
+    def _on_tag_toggle(self, checked: bool):
+        if checked:
+            self._tag_window.show()
+            self._tag_window.raise_()
+        else:
+            self._tag_window.hide()
+
+    def _on_tag_window_closed(self, visible: bool):
+        if not visible:
+            self._chk_show_tag.setChecked(False)
+
     def _on_tx_ind(self, info: dict):
         result = info["result"]
         ok = result == 0
         msg = f"TX-IND apdu={info['apdu_id']}  dst={info['dst_addr']}  {'OK' if ok else f'ERR({result})'}"
         self._log_line(msg)
+        # Update the Send-tab result label (was stuck on "Sending…").
+        self._lbl_send_result.setText("OK" if ok else "FAIL")
+        self._lbl_send_result.setStyleSheet(f"color:{COL_TX if ok else COL_ERR};")
+        self._btn_send.setEnabled(True)
 
     def _on_log(self, msg: str):
         self._log_line(msg)
@@ -2732,6 +3479,12 @@ class MainWindow(QMainWindow):
             return
         role    = self._cbo_role.currentData()
         channel = self._spn_cfg_channel.value()
+        # cmd_node_configure closes/reopens the serial port (UART reset on this
+        # node); pause auto-poll so it doesn't hit the port mid-reopen.
+        self._cfg_was_polling = self._poll_timer.isActive()
+        self._poll_timer.stop()
+        self._lbl_cfg_result.setText("Configuring… (node UART resets, ~10 s)")
+        self._lbl_cfg_result.setStyleSheet(f"color:{COL_DIM};")
         import threading
         def _do():
             ok = cmd_node_configure(
@@ -2752,6 +3505,9 @@ class MainWindow(QMainWindow):
     def _on_node_cfg_result(self, msg: str, col: str):
         self._lbl_cfg_result.setText(msg)
         self._lbl_cfg_result.setStyleSheet(f"color:{col};")
+        # Resume auto-poll (was paused during the config's port reopen cycles).
+        if getattr(self, "_cfg_was_polling", False):
+            self._poll_timer.start()
         if "OK" in msg:
             QTimer.singleShot(500, self._on_read_node_info)
 
@@ -3164,8 +3920,11 @@ class MainWindow(QMainWindow):
             return
         import threading
         def _do():
-            st = cmd_otap_status(conn,
-                                  log_cb=lambda m: self._signals.log_message.emit(m))
+            if isinstance(conn, MqttConn):
+                st = conn.otap_status()
+            else:
+                st = cmd_otap_status(
+                    conn, log_cb=lambda m: self._signals.log_message.emit(m))
             if st is not None:
                 self._signals.otap_status.emit(st)
             else:
@@ -3198,7 +3957,7 @@ class MainWindow(QMainWindow):
             return
         import threading
         def _do():
-            ok = cmd_otap_clear(conn)
+            ok = conn.otap_clear() if isinstance(conn, MqttConn) else cmd_otap_clear(conn)
             self._signals.log_message.emit(f"OTAP clear: {'OK' if ok else 'FAIL'}")
         threading.Thread(target=_do, daemon=True).start()
 
@@ -3226,17 +3985,47 @@ class MainWindow(QMainWindow):
         import threading
         def _do():
             try:
-                # target_action is set INSIDE cmd_otap_upload, BEFORE stack restart,
-                # so Wirepas sees seq match at startup and triggers reboot immediately.
-                ok = cmd_otap_upload(
-                    conn, path, seq=seq,
-                    progress_cb=lambda pct, *_: self._signals.otap_progress.emit(pct),
-                    log_cb=lambda msg: self._signals.log_message.emit(msg),
-                    target_action=2 if process else None)
+                if isinstance(conn, MqttConn):
+                    ok = self._otap_upload_mqtt(conn, path, seq, process)
+                else:
+                    # target_action is set INSIDE cmd_otap_upload, BEFORE stack restart,
+                    # so Wirepas sees seq match at startup and triggers reboot immediately.
+                    ok = cmd_otap_upload(
+                        conn, path, seq=seq,
+                        progress_cb=lambda pct, *_: self._signals.otap_progress.emit(pct),
+                        log_cb=lambda msg: self._signals.log_message.emit(msg),
+                        target_action=2 if process else None)
                 self._signals.otap_done.emit(ok)
             finally:
                 self._upload_busy = False
         threading.Thread(target=_do, daemon=True).start()
+
+    def _otap_upload_mqtt(self, conn, path, seq, process) -> bool:
+        """Upload a scratchpad file to the sink over the backend, then (optionally)
+        set the target action so nodes propagate + process it."""
+        log = lambda m: self._signals.log_message.emit(m)
+        try:
+            with open(path, "rb") as f:
+                data = f.read()
+        except OSError as e:
+            log(f"OTAP: cannot read file: {e}")
+            return False
+        self._signals.otap_progress.emit(10)
+        log(f"OTAP upload (MQTT): {len(data)} B seq={seq} → {conn.gw}/{conn.sink} …")
+        ok = conn.otap_upload(data, seq)
+        self._signals.otap_progress.emit(80)
+        if not ok:
+            log("OTAP upload: FAIL")
+            return False
+        if process:
+            st = conn.otap_status()
+            crc = st["crc"] if st else 0
+            tok = conn.otap_set_target(2, seq, crc)      # 2 = propagate + process
+            log(f"OTAP target (propagate+process) seq={seq} "
+                f"crc=0x{crc:04x}: {'OK' if tok else 'FAIL'}")
+        self._signals.otap_progress.emit(100)
+        log("OTAP upload: OK")
+        return True
 
     def _otap_progress_set(self, pct: int):
         self._otap_progress.setValue(pct)
@@ -3254,7 +4043,11 @@ class MainWindow(QMainWindow):
             return
         import threading
         def _do():
-            d = cmd_otap_target_read(conn, log_cb=lambda m: self._signals.log_message.emit(m))
+            if isinstance(conn, MqttConn):
+                d = conn.otap_read_target()
+            else:
+                d = cmd_otap_target_read(
+                    conn, log_cb=lambda m: self._signals.log_message.emit(m))
             if d is not None:
                 self._signals.otap_target.emit(d)
         threading.Thread(target=_do, daemon=True).start()
@@ -3293,8 +4086,11 @@ class MainWindow(QMainWindow):
         param  = self._spn_target_param.value() if action == 3 else 0
         import threading
         def _do():
-            ok = cmd_otap_target(conn, seq, crc=crc, action=action, param=param,
-                                 log_cb=lambda m: self._signals.log_message.emit(m))
+            if isinstance(conn, MqttConn):
+                ok = conn.otap_set_target(action, seq, crc, param)
+            else:
+                ok = cmd_otap_target(conn, seq, crc=crc, action=action, param=param,
+                                     log_cb=lambda m: self._signals.log_message.emit(m))
             action_name = _SCRATCH_ACTION_NAMES.get(action, str(action))
             self._signals.log_message.emit(
                 f"OTAP target set: seq={seq} crc=0x{crc:04x} action={action_name}"
@@ -3393,6 +4189,13 @@ class MainWindow(QMainWindow):
 
     def closeEvent(self, event):
         self._on_disconnect()
+        # Close every auxiliary window so the app fully exits with the main one.
+        for win in (self._log_window, self._motor_window, self._sensor_window,
+                    self._tag_window):
+            try:
+                win.close()
+            except Exception:
+                pass
         super().closeEvent(event)
 
 

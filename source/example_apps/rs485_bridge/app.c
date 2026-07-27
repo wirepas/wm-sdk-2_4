@@ -498,7 +498,7 @@ static void log_node_info(void)
 
 /* ── Energy monitoring ──────────────────────────────────────────────────────── */
 #define ENERGY_MONITOR_PERIOD_MS    10000U  /* sampling period                 */
-#define ENERGY_MONITOR_EXEC_US       2000U  /* I2C budget: ~5 reads @ 400 kHz  */
+#define ENERGY_MONITOR_EXEC_US      12000U  /* I2C budget: median-of-5 reads @ 100 kHz */
 
 /* NTC parameters — NCP15XH103J03RC + 22 kΩ divider */
 #define NTC_R25_OHM     10000.0f
@@ -677,9 +677,43 @@ static void i2c_bus_diag(void)
     LOG(LVL_INFO, CYEL "I2C scan: %u device(s) on the bus" C0, found);
 }
 
+/* Median of 5 — rejects up to 2 outliers (I2C glitches / register transients). */
+static float median5f(const float in[5])
+{
+    float s[5];
+    for (uint8_t i = 0; i < 5u; i++) s[i] = in[i];
+    for (uint8_t i = 1; i < 5u; i++) {
+        float x = s[i]; int8_t j = (int8_t)i - 1;
+        while (j >= 0 && s[j] > x) { s[j + 1] = s[j]; j--; }
+        s[j + 1] = x;
+    }
+    return s[2];
+}
+static uint8_t median5u8(const uint8_t in[5])
+{
+    uint8_t s[5];
+    for (uint8_t i = 0; i < 5u; i++) s[i] = in[i];
+    for (uint8_t i = 1; i < 5u; i++) {
+        uint8_t x = s[i]; int8_t j = (int8_t)i - 1;
+        while (j >= 0 && s[j] > x) { s[j + 1] = s[j]; j--; }
+        s[j + 1] = x;
+    }
+    return s[2];
+}
+
+/* Physical plausibility windows — a value outside these is impossible and is
+ * discarded (the previous good reading is held instead). vsto can never exceed
+ * the Li-Ion overcharge limit (VOVCH ≈ 4.22 V); a higher reading is a charge-
+ * pulse overshoot / transient on the STO sense node, not the battery voltage. */
+#define PMIC_VSTO_MIN_V   2.6f
+#define PMIC_VSTO_MAX_V   4.22f
+#define PMIC_VSRC_MIN_V   0.0f
+#define PMIC_VSRC_MAX_V   3.0f
+#define PMIC_TEMP_MIN_C  -30.0f
+#define PMIC_TEMP_MAX_C   90.0f
+
 static uint32_t energy_monitor_task(void)
 {
-    uint8_t temp_raw;
     aem10900_res_e r;
 
     /* (Re)initialise on demand. Logged here (10 s apart) rather than at boot,
@@ -703,40 +737,50 @@ static uint32_t energy_monitor_task(void)
         m_pmic_ready = true;
     }
 
-    r = AEM10900_read_storage_voltage(&m_energy.storage_v);
-    if (r != AEM10900_RES_OK) goto fail;
+    /* Median-of-5 per analog channel: each register is sampled 5× and the
+     * middle value kept, so up to two transient reads (mid-update register /
+     * I2C glitch) cannot reach the output. */
+    float   sto5[5], src5[5];
+    uint8_t tr5[5];
+    for (uint8_t k = 0; k < 5u; k++)
+    {
+        if ((r = AEM10900_read_storage_voltage(&sto5[k])) != AEM10900_RES_OK) goto fail;
+        if ((r = AEM10900_read_source_voltage(&src5[k]))  != AEM10900_RES_OK) goto fail;
+        if ((r = AEM10900_read_reg(AEM10900_REG_TEMP, &tr5[k])) != AEM10900_RES_OK) goto fail;
+    }
+    float sto_v = median5f(sto5);
+    float src_v = median5f(src5);
+    float tmp_c = ntc_raw_to_celsius(median5u8(tr5));
 
-    r = AEM10900_read_source_voltage(&m_energy.source_v);
-    if (r != AEM10900_RES_OK) goto fail;
+    /* Plausibility hold: keep the last good value when a sample is physically
+     * impossible (e.g. vsto > VOVCH — charge-pulse overshoot the median can't
+     * filter because it persists across all 5 reads). */
+    if (sto_v >= PMIC_VSTO_MIN_V && sto_v <= PMIC_VSTO_MAX_V) m_energy.storage_v     = sto_v;
+    if (src_v >= PMIC_VSRC_MIN_V && src_v <= PMIC_VSRC_MAX_V) m_energy.source_v      = src_v;
+    if (tmp_c >  PMIC_TEMP_MIN_C && tmp_c <  PMIC_TEMP_MAX_C) m_energy.temperature_c = tmp_c;
 
-    /* Raw SRC register, to diagnose the vsrc conversion (LUT tops at ~1.485 V). */
-    uint8_t src_raw = 0;
-    (void)AEM10900_read_reg(AEM10900_REG_SRC, &src_raw);
+    if ((r = AEM10900_get_status(&m_energy.status)) != AEM10900_RES_OK) goto fail;
 
-    r = AEM10900_read_reg(AEM10900_REG_TEMP, &temp_raw);
-    if (r != AEM10900_RES_OK) goto fail;
+    /* Power: only refresh when the AEM signals a completed, error-free APM
+     * window (IRQFLG: APMDONE set, APMERR clear); otherwise hold the last value
+     * so a partial/invalid window never reaches the output. */
+    uint8_t irqflg = 0;
+    (void)AEM10900_get_irqflg(&irqflg);   /* clear-on-read */
+    bool apm_fresh = (irqflg & AEM10900_IRQ_APMDONE) && !(irqflg & AEM10900_IRQ_APMERR);
+    if (apm_fresh)
+        (void)AEM10900_read_apm(&m_energy.apm_uw, NULL);
 
-    r = AEM10900_get_status(&m_energy.status);
-    if (r != AEM10900_RES_OK) goto fail;
-
-    /* Coherent burst read; apm_raw[2:0] = APM2:APM1:APM0 for the diagnostic log. */
-    uint8_t apm_raw[3] = { 0, 0, 0 };
-    r = AEM10900_read_apm(&m_energy.apm_uw, apm_raw);
-    if (r != AEM10900_RES_OK) goto fail;
-
-    m_energy.temperature_c = ntc_raw_to_celsius(temp_raw);
-    m_energy.is_charging   = (m_energy.status & AEM10900_STATUS_CHARGE) != 0u;
-    m_energy.valid         = true;
+    m_energy.is_charging = (m_energy.status & AEM10900_STATUS_CHARGE) != 0u;
+    m_energy.valid       = true;
 
     char bsto[24], bsrc[24], btmp[24], bpwr[24];
     LOG(LVL_INFO,
-        CYEL "PMIC: vsto=%sV vsrc=%sV(0x%02x) T=%sC pwr=%suW(apm=%02x%02x%02x) chg=%d st=0x%02x" C0,
+        CYEL "PMIC: vsto=%sV vsrc=%sV T=%sC pwr=%suW%s chg=%d st=0x%02x" C0,
         fixed_str(bsto, sizeof bsto, m_energy.storage_v, 2),
         fixed_str(bsrc, sizeof bsrc, m_energy.source_v, 2),
-        src_raw,
         fixed_str(btmp, sizeof btmp, m_energy.temperature_c, 1),
         fixed_str(bpwr, sizeof bpwr, m_energy.apm_uw, 1),
-        apm_raw[2], apm_raw[1], apm_raw[0],
+        apm_fresh ? "" : "(held)",
         (int)m_energy.is_charging,
         m_energy.status);
 
@@ -1614,7 +1658,7 @@ static uint32_t sensor_read_task(void)
 
 static uint32_t led_red_off_task(void); /* defined near App_init */
 
-/* ── Wirepas downlink: receive command from gateway, put it on RS485 bus ─────── */
+/* ── Wirepas downlink: receive command from gateway ─────── */
 static app_lib_data_receive_res_e downlink_cb(
     const shared_data_item_t * item,
     const app_lib_data_received_t * data)

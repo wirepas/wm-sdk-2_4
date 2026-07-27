@@ -255,6 +255,32 @@ class WapsConn:
             except Exception:
                 pass
 
+    def reopen(self, settle: float = 2.5, attempts: int = 8) -> bool:
+        """Close and re-open the serial port on the same device/baud.
+
+        Needed after operations that reset the node's UART (STACK_STOP and the
+        NODE_ROLE CSAP write both call Waps_uart_powerReset): on a USB-CDC node
+        this re-enumerates the port, so the current OS file handle goes stale
+        even though the device name is unchanged - every subsequent request then
+        times out. Retries the open until the device re-appears. Registered
+        callbacks are preserved. Returns True once re-opened."""
+        try:
+            self.close()
+        except Exception:
+            pass
+        time.sleep(settle)
+        for _ in range(attempts):
+            try:
+                self._buf = bytearray()
+                with self._lock:
+                    self._pending.clear()
+                self.open()
+                time.sleep(0.5)
+                return True
+            except Exception:
+                time.sleep(1.0)
+        return False
+
     def add_callback(self, cb: Callable):
         self._callbacks.append(cb)
 
@@ -1357,36 +1383,52 @@ def cmd_node_configure(conn: WapsConn, role: int, node_addr: int,
         if log_cb: log_cb(msg)
         else: print(msg)
 
+    # STACK_STOP and the NODE_ROLE write both reset the node's UART
+    # (Waps_uart_powerReset), which re-enumerates a USB-CDC port and invalidates
+    # the serial handle. Re-open the port after each such step so the following
+    # requests land on a fresh handle. Non-serial transports (MQTT backend) have
+    # no such reset, so reopen is a no-op there.
+    has_reopen = hasattr(conn, "reopen")
+
+    def reopen(after: str) -> bool:
+        if not has_reopen:
+            return True
+        if conn.reopen():
+            return True
+        log(f"Serial reopen FAILED after {after} — disconnect/reconnect and retry")
+        return False
+
     cmd_stack_stop(conn)
+    if not reopen("stack stop"):
+        return False
+
     ok = True
-
-    # Read current role to skip the write if unchanged (avoids unnecessary UART reset)
-    cur_role_b = csap_attr_read(conn, CSAP.NODE_ROLE)
-    cur_role = cur_role_b[0] if (cur_role_b and len(cur_role_b) >= 1) else None
-
     ok &= csap_attr_write(conn, CSAP.NODE_ID, struct.pack('<I', node_addr))
     net_bytes = bytes([net_addr & 0xFF, (net_addr >> 8) & 0xFF,
                        (net_addr >> 16) & 0xFF])
     ok &= csap_attr_write(conn, CSAP.NETWORK_ADDR, net_bytes)
     ok &= csap_attr_write(conn, CSAP.NETWORK_CHANNEL, struct.pack('<B', channel))
 
+    # Skip the role write (and its UART reset) if the role is already correct.
+    cur_role_b = csap_attr_read(conn, CSAP.NODE_ROLE)
+    cur_role = cur_role_b[0] if (cur_role_b and len(cur_role_b) >= 1) else None
     if cur_role == role:
         log("Role unchanged — skipping role write")
     else:
-        # Role write last — tolerate the lost CNF (UART power reset inside firmware)
         role_ok = csap_attr_write(conn, CSAP.NODE_ROLE, struct.pack('<B', role))
-        if not role_ok:
-            time.sleep(0.5)  # let the UART power reset settle (was 0.2 — too short)
-            readback = csap_attr_read(conn, CSAP.NODE_ROLE)
-            if readback and len(readback) >= 1 and readback[0] == role:
-                log("Role confirmed by read-back (CNF was lost to UART reset)")
-                role_ok = True
-            else:
-                log(f"Role write FAILED (wanted {role}, got {readback})")
+        reopen("role write")   # role write resets the UART even when the CNF arrives
+        readback = csap_attr_read(conn, CSAP.NODE_ROLE)
+        if readback and len(readback) >= 1 and readback[0] == role:
+            log("Role confirmed")
+            role_ok = True
+        else:
+            log(f"Role write FAILED (wanted {role}, got {readback})")
+            role_ok = False
         ok &= role_ok
 
     if ok:
         cmd_stack_start(conn)
+        reopen("stack start")
     return ok
 
 

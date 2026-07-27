@@ -260,6 +260,8 @@ bool AEM10900_is_charging(void);
     .irq_mask        = AEM10900_IRQ_VOVCH                  \
                      | AEM10900_IRQ_VOVDIS                 \
                      | AEM10900_IRQ_TEMP                   \
+                     | AEM10900_IRQ_APMDONE                \
+                     | AEM10900_IRQ_APMERR                 \
                      | AEM10900_IRQ_I2CRDY,                \
 }
 

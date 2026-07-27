@@ -1,5 +1,5 @@
-# Boards compatible with this app 
-TARGET_BOARDS := bgm220-ek4314a mdbt50q_rx nrf52832_mdk_v2 pan1780 pca10040 pca10056 pca10059 pca10100 pca10156 promistel_rpi_hat silabs_brd2601b silabs_brd2703a silabs_brd4180b silabs_brd4181b silabs_brd4184a silabs_brd4187c silabs_brd4253a silabs_brd4254a silabs_brd4312a tbsense2 ublox_b204 wuerth_261101102 
+# Boards compatible with this app
+TARGET_BOARDS := bgm220-ek4314a mdbt50q_rx nrf52832_mdk_v2 pan1780 pca10040 pca10056 pca10059 pca10100 pca10156 promistel_rpi_hat silabs_brd2601b silabs_brd2703a silabs_brd4180b silabs_brd4181b silabs_brd4184a silabs_brd4187c silabs_brd4253a silabs_brd4254a silabs_brd4312a tbsense2 ublox_b204 wuerth_261101102 thingy91_nrf52840 nrf9160dk_nrf52840 gw26_nrf52840
 
 # Define a specific application area_id
 app_specific_area_id=0x846B74
