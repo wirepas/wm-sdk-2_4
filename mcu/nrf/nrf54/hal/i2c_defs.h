@@ -16,8 +16,13 @@
 #elif defined(USE_I2C2)
 #define I2C_IRQn TWIM22_IRQn
 #define I2C_DEV  NRF_TWIM22
+#elif defined(USE_I2C3)
+/* SERIAL30 lives in the low-power domain and is the only TWIM that can route to
+ * P0 pins (e.g. canopee_v27 I2C on P0.03/P0.04). */
+#define I2C_IRQn TWIM30_IRQn
+#define I2C_DEV  NRF_TWIM30
 #else
-#error USE_I2Cx (x=0-2) must be defined
+#error USE_I2Cx (x=0-3) must be defined
 #endif
 
 /* Define TASKS for the nRF54 series. */
