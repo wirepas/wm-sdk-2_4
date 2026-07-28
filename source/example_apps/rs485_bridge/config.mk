@@ -4,7 +4,7 @@ TARGET_BOARDS := sensorv26
 #
 # Network default settings configuration
 #
-default_network_address ?= 1
+default_network_address ?= 3
 default_network_channel ?= 1
 
 #
