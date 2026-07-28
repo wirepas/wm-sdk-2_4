@@ -1,0 +1,725 @@
+/* Copyright 2019 Wirepas Ltd. All Rights Reserved.
+ *
+ * See file LICENSE.txt for full license details.
+ *
+ */
+
+#include <string.h>
+#include <limits.h>
+
+#include "provisioning.h"
+#include "provisioning_int.h"
+#include "app_scheduler.h"
+#include "stack_state.h"
+#include "node_configuration.h"
+#include "random.h"
+
+#define DEBUG_LOG_MODULE_NAME "JOIN LIB"
+#define DEBUG_LOG_MAX_LEVEL LVL_ERROR
+
+
+#include "debug_log.h"
+
+/** Maximum number of joining beacons to receive in one go. */
+#define MAX_NUM_RX_JOINING_BEACONS 10
+
+/** Delay (in ms) to restart joining if beacon scan failed. */
+#define DELAY_RESTART_SCAN_MS 5000
+
+/** Delay (in ms)  to wait end of joining beacon scan. */
+#define DELAY_WAIT_END_SCAN_MS 5000
+
+/** Delay (in ms)  to wait end of joining process. */
+#define DELAY_WAIT_END_JOINING_MS 20000
+
+/** Execution time of the Joining beacon callback (measured 11 uS). */
+#define JOINING_CB_EXEC_TIME_US 30
+
+/** \brief Joining state machine states. */
+typedef enum
+{
+    JOIN_STATE_UNINIT = 0, /**< Library is not initialized. */
+    JOIN_STATE_IDLE = 1, /**< Waiting Start event. */
+    JOIN_STATE_START = 2, /**< Start scanning joining beacons. */
+    JOIN_STATE_WAIT_SCAN_END = 3, /**< Wait scan end event. */
+    JOIN_STATE_WAIT_ROUTE_CHANGE = 4, /**< Wait route change event. */
+} joining_state_e;
+
+/** \brief Joining events. */
+static struct
+{
+    uint8_t scan_end:1; /**< Joining beacon scan end event. */
+    uint8_t route_change:1; /**< Route changed event. */
+    uint8_t timeout:1; /**< Timeout event occurred. */
+    uint8_t start:1; /**< Application started joining. */
+} m_events;
+
+/** Hold how many retries are left for joining. */
+static uint8_t m_retry;
+/** The state of the joining state machine. */
+static joining_state_e m_state = JOIN_STATE_UNINIT;
+/** Copy of the configuration passed to joining library. */
+static provisioning_joining_conf_t m_conf;
+
+
+//Static memory could be optimized by giving memory management to application.
+/** Buffer used to store received beacons.*/
+static app_lib_joining_received_beacon_t
+    m_beacon_rx_buffer[MAX_NUM_RX_JOINING_BEACONS];
+/** Number of beacons received during last scan. */
+static size_t m_num_beacons;
+
+/** Function forward declaration. */
+static uint32_t run_state_machine(void);
+static void reset_joining(bool stopJoining);
+
+#ifndef JOINING_RANDOM_DELAY_MS
+ #define JOINING_RANDOM_DELAY_MS 60000U /* max random delay (in ms) */
+#endif
+
+#ifndef JOINING_RETRY_BASE_MS
+ #define JOINING_RETRY_BASE_MS 5000U /* initial delay (in ms) */
+#endif
+
+
+/* JOINING_RETRY_MAX_MS applies only to the backoff component.
+ * The final delay may exceed this value by up to JOINING_RETRY_JITTER_MS */
+#ifndef JOINING_RETRY_MAX_MS
+ #define JOINING_RETRY_MAX_MS 50000U /* max back-off time (in ms) */
+#endif
+
+#ifndef JOINING_RETRY_JITTER_MS
+ #define JOINING_RETRY_JITTER_MS 6000U /* max jitter value (in ms) */
+#endif
+
+static uint32_t schedule_retry(uint8_t attempt)
+{
+    uint32_t backoff_ms;
+
+    if (attempt == 0)
+    {
+        /* First retry: no shift applied */
+        backoff_ms = JOINING_RETRY_BASE_MS;
+    }
+    else
+    {
+        uint8_t shift = attempt - 1;
+
+        /* Determine the position of the highest set bit in the base value */
+        uint8_t highest_bit = 31 - __builtin_clz(JOINING_RETRY_BASE_MS);
+
+        /* Maximum safe shift before overflow occurs */
+        uint8_t shift_max = 31 - highest_bit;
+
+        if (shift > shift_max)
+        {
+            /* Shift would overflow a 32-bit value -> clamp to maximum retry delay */
+            backoff_ms = JOINING_RETRY_MAX_MS;
+        }
+        else
+        {
+            /* Safe exponential backoff: base * 2^(attempt-1) */
+            backoff_ms = JOINING_RETRY_BASE_MS << shift;
+
+            /* Clamp result if it exceeds the configured maximum */
+            if (backoff_ms > JOINING_RETRY_MAX_MS)
+                backoff_ms = JOINING_RETRY_MAX_MS;
+        }
+    }
+
+    /* Add jitter in the range [0 .. JOINING_RETRY_JITTER_MS) */
+    uint32_t jitter_ms = Random_get32() % JOINING_RETRY_JITTER_MS;
+    uint32_t delay_ms = backoff_ms + jitter_ms;
+
+    LOG(LVL_INFO,"schd:r:%d,d:%lums", attempt, delay_ms);
+
+    return delay_ms;
+}
+
+/**
+ * \brief   Remove non provisioning beacons (whose type is not
+ *          JOINING_BEACON_TYPE) from beacon list.
+ * \param   beacons
+ *          A pointer to the first beacon or NULL
+ * \return  A pointer to the (new) first beacon or NULL
+ */
+app_lib_joining_received_beacon_t * filter_provisioning_beacons(
+                            app_lib_joining_received_beacon_t * beacons)
+{
+    app_lib_joining_received_beacon_t * beacon;
+    app_lib_joining_received_beacon_t * prev;
+    app_lib_joining_received_beacon_t * start;
+    beacon = beacons;
+    prev = beacons;
+    start = beacons;
+
+    while (beacon != NULL)
+    {
+        if (beacon->type != JOINING_BEACON_TYPE)
+        {
+            if(beacon == start)
+            {
+                start = beacon->next;
+            }
+            else
+            {
+                prev->next = beacon->next;
+            }
+        }
+        beacon = beacon->next;
+    }
+
+    return start;
+}
+
+/**
+ * \brief   Joining beacon reception done callback. Raises scan_end event.
+ * \param   status
+ *          Status of reception \ref app_lib_joining_rx_status_e
+ * \param   beacons
+ *          Received beacons
+ * \param   num_beacons
+ *          Number of beacons received
+ */
+static void joining_beacon_rx_cb(
+                            app_lib_joining_rx_status_e status,
+                            const app_lib_joining_received_beacon_t * beacons,
+                            size_t num_beacons)
+{
+    (void) status;
+    (void) beacons;
+
+    m_num_beacons = num_beacons;
+    m_events.scan_end = 1;
+
+    LOG(LVL_INFO, "s:%d,e:%02xh,st:%d,nb:%d",
+                  m_state,
+                  m_events,
+                  status,
+                  num_beacons);
+
+    app_scheduler_res_e res = App_Scheduler_addTask_execTime(
+                                  run_state_machine,
+                                  APP_SCHEDULER_SCHEDULE_ASAP,
+                                  500);
+
+    if (res != APP_SCHEDULER_RES_OK)
+    {
+        LOG(LVL_ERROR, "s:%d,e:%02xh,r:%d", m_state, m_events, res);
+
+        reset_joining(true);
+
+        m_conf.end_cb(PROV_RES_ERROR_INTERNAL);
+    }
+}
+
+/**
+ * \brief   Route changed callback. Raises route_change event.
+ */
+static void route_changed_cb(app_lib_stack_event_e event, void * param)
+{
+    (void) event;
+    (void) param;
+
+    m_events.route_change = 1;
+
+    LOG(LVL_INFO, "s:%d,e:%02xh,stev:%d", m_state, m_events, event);
+
+    app_scheduler_res_e res = App_Scheduler_addTask_execTime(
+                                 run_state_machine,
+                                 APP_SCHEDULER_SCHEDULE_ASAP,
+                                 500);
+
+    if (res != APP_SCHEDULER_RES_OK)
+    {
+        LOG(LVL_ERROR, "s:%d,e:%02xh,r:%d", m_state, m_events, res);
+
+        reset_joining(true);
+
+        m_conf.end_cb(PROV_RES_ERROR_INTERNAL);
+    }
+}
+
+/**
+ * \brief Task called when a timeout expires. Raises the timeout event.
+ */
+static uint32_t timeout_task(void)
+{
+    m_events.timeout = 1;
+
+    LOG(LVL_INFO, "s:%d,ev:%02xh", m_state, m_events);
+
+    app_scheduler_res_e res = App_Scheduler_addTask_execTime(
+                                  run_state_machine,
+                                  APP_SCHEDULER_SCHEDULE_ASAP,
+                                  500);
+    if (res != APP_SCHEDULER_RES_OK)
+    {
+        LOG(LVL_ERROR, "s:%d,e:%02xh,r:%d", m_state, m_events, res);
+
+        reset_joining(true);
+
+        m_conf.end_cb(PROV_RES_ERROR_INTERNAL);
+    }
+
+    return APP_SCHEDULER_STOP_TASK;
+}
+
+/**
+ * \brief Resets the joining state machine variables and tasks.
+ * \param stopJoining
+ *        If true stops the joining process.
+ */
+static void reset_joining(bool stopJoining)
+{
+    lib_joining->stopJoiningBeaconRx();
+    if (stopJoining)
+    {
+        lib_joining->stopJoiningProcess();
+    }
+
+    app_scheduler_res_e res = App_Scheduler_cancelTask(timeout_task);
+    if (res != APP_SCHEDULER_RES_OK)
+    {
+        LOG(LVL_ERROR, "s:%d,e:%02xh,r:%d", m_state, m_events, res);
+    }
+
+    Stack_State_removeEventCb(route_changed_cb);
+    m_state = JOIN_STATE_IDLE;
+    memset(&m_events,0,sizeof(m_events));
+}
+
+static void add_timeout_task(const uint32_t delay_ms)
+{
+    app_scheduler_res_e res = App_Scheduler_addTask_execTime(
+                                  timeout_task,
+                                  delay_ms,
+                                  500);
+
+    if (res != APP_SCHEDULER_RES_OK)
+    {
+        LOG(LVL_ERROR, "s:%d,e:%02xh,sr:%d,d:%dms",
+                       m_state, m_events, res, delay_ms);
+
+        reset_joining(true);
+
+        m_conf.end_cb(PROV_RES_ERROR_INTERNAL);
+    }
+}
+
+/**
+ * \brief   The Idle state function.
+ * \return  Time in ms to schedule the state machine again.
+ */
+static uint32_t state_idle(void)
+{
+    uint32_t new_delay_ms = APP_SCHEDULER_STOP_TASK;
+
+    bool event_start = m_events.start;
+
+    memset(&m_events,0,sizeof(m_events));
+
+    if (event_start)
+    {
+        m_state = JOIN_STATE_START;
+        m_retry = 0;
+        new_delay_ms = Random_get32() % JOINING_RANDOM_DELAY_MS;
+        LOG(LVL_INFO, "s:%d,e:%02xh,d:%dms", m_state, m_events, new_delay_ms);
+    }
+
+    app_scheduler_res_e res = App_Scheduler_cancelTask(timeout_task);
+    if (res != APP_SCHEDULER_RES_OK)
+    {
+        LOG(LVL_ERROR, "s:%d,e:%02xh,r:%d", m_state, m_events, res);
+    }
+
+    return new_delay_ms;
+}
+
+/**
+ * \brief   The Start state function.
+ * \return  Time in ms to schedule the state machine again.
+ */
+static uint32_t state_start(void)
+{
+    uint32_t new_delay_ms = APP_SCHEDULER_STOP_TASK;
+
+    LOG(LVL_INFO, "s:%d,e:%02xh,scan", m_state, m_events);
+
+    memset(&m_events,0,sizeof(m_events));
+
+    app_lib_joining_beacon_rx_param_t param =
+    {
+        .cb = joining_beacon_rx_cb,
+        .max_exec_time_us = JOINING_CB_EXEC_TIME_US,
+        .addr = JOINING_NETWORK_ADDRESS,
+        .channel = JOINING_NETWORK_CHANNEL,
+        .timeout = JOINING_RX_TIMEOUT,
+        .max_num_beacons = MAX_NUM_RX_JOINING_BEACONS,
+        .buffer = m_beacon_rx_buffer,
+        .num_bytes = sizeof(m_beacon_rx_buffer)
+    };
+
+    /* Force joining library to be in a known state. */
+    lib_joining->stopJoiningBeaconRx();
+    /* Zeroes beacon buffer (Or m_beacon_rx_buffer[0]->next = NULL;).
+     * This is needed in JOIN_STATE_WAIT_SCAN_END state to parse
+     * received beacons.
+     */
+    memset(m_beacon_rx_buffer,0,sizeof(m_beacon_rx_buffer));
+    app_res_e res = lib_joining->startJoiningBeaconRx(&param);
+    if (res != APP_RES_OK)
+    {
+        LOG(LVL_WARNING, "s:%d,e:%02xh,stbrx:r:%d", m_state, m_events, res);
+        m_retry++;
+
+        if (m_retry > m_conf.nb_retry)
+        {
+            LOG(LVL_ERROR, "s:%d,e:%02xh,nbr:%d", m_state, m_events, m_retry);
+
+            reset_joining(true);
+
+            m_conf.end_cb(PROV_RES_ERROR_SCANNING_BEACONS);
+        }
+        else
+        {
+            new_delay_ms = DELAY_RESTART_SCAN_MS;
+
+            LOG(LVL_WARNING, "s:%d,e:%02xh,d:%dms", m_state, m_events, new_delay_ms);
+        }
+    }
+    else
+    {
+        uint32_t delay_ms = DELAY_WAIT_END_SCAN_MS + JOINING_RX_TIMEOUT;
+        add_timeout_task(delay_ms);
+        m_state = JOIN_STATE_WAIT_SCAN_END;
+    }
+
+    return new_delay_ms;
+}
+
+/**
+ * \brief   The Wait scan end state function.
+ * \return  Time in ms to schedule the state machine again.
+ */
+static uint32_t state_wait_scan_end(void)
+{
+    uint32_t new_delay_ms = APP_SCHEDULER_STOP_TASK;
+
+    provisioning_res_e res = PROV_RES_SUCCESS;
+
+    bool event_scan_end = m_events.scan_end;
+    bool event_timeout = m_events.timeout;
+
+    memset(&m_events,0,sizeof(m_events));
+
+    if (event_scan_end)
+    {
+        App_Scheduler_cancelTask(timeout_task);
+        memset(&m_events,0,sizeof(m_events));
+
+        if (m_num_beacons > 0)
+        {
+            const app_lib_joining_received_beacon_t * beacon;
+
+            beacon = filter_provisioning_beacons(m_beacon_rx_buffer);
+            beacon = m_conf.joining_cb(beacon);
+
+            if(beacon != NULL)
+            {
+                app_lib_settings_net_channel_t ch;
+                app_lib_settings_net_addr_t addr;
+
+                /* Note: There is no way to make the difference between
+                 *  connected and joined to a network. The problem is if the
+                 *  node is connected it will get an error when sending data on
+                 *  provisioning reserved endpoints. Provisioning will fail in
+                 *  send START packet (see provisioning.c) but it would be nice
+                 *  to catch it early.
+                 */
+
+                /* Test if the node is already joined to the network from joining beacon.
+                 * If it is the case, route change callback will never be called so skip
+                 * this part
+                 */
+                bool res_param = (lib_settings->getNetworkAddress(&addr) == APP_RES_OK
+                                        && lib_settings->getNetworkChannel(&ch) == APP_RES_OK);
+
+                bool address_check_ok = false;
+                if (m_conf.flags & PROV_START_FLAGS_NW_PARAM_EQUAL_CHECK)
+                {
+                    address_check_ok = true;
+                }
+                else
+                {
+                    address_check_ok = (res_param && ((addr != beacon->addr) || (ch != beacon->channel)));
+                }
+
+                if (address_check_ok)
+                {
+                    LOG(LVL_INFO, "s:%d,e:%02xh,a:%d,ch:%d,startjoin",
+                                  m_state, m_events, beacon->addr, beacon->channel);
+
+                    app_res_e app_res = lib_joining->startJoiningProcess(
+                                            beacon->addr,
+                                            beacon->channel);
+
+                    if (app_res != APP_RES_OK)
+                    {
+                        LOG(LVL_WARNING, "s:%d,e:%02xh,a:%d,ch:%d,r:%d",
+                                         m_state, m_events,
+                                         beacon->addr, beacon->channel,
+                                         app_res);
+
+                        res = PROV_RES_ERROR_JOINING;
+                    }
+                    else
+                    {
+                        // Interested by ROUTE changed event
+                        Stack_State_addEventCb(
+                            route_changed_cb,
+                            1 << APP_LIB_STATE_STACK_EVENT_ROUTE_CHANGED
+                        );
+                        m_state = JOIN_STATE_WAIT_ROUTE_CHANGE;
+                        add_timeout_task(DELAY_WAIT_END_JOINING_MS);
+                    }
+                }
+                else
+                {
+                    /* Node already joined to the selected network. */
+                    LOG(LVL_WARNING, "s:%d,e:%02xh,a:%d,ch:%d",
+                                     m_state, m_events, addr, ch);
+                    m_events.route_change = 1;
+                    m_state = JOIN_STATE_WAIT_ROUTE_CHANGE;
+                    new_delay_ms = APP_SCHEDULER_SCHEDULE_ASAP;
+                    add_timeout_task(DELAY_WAIT_END_JOINING_MS);
+                }
+            }
+            else
+            {
+                LOG(LVL_WARNING,"s:%d,e:%02xh,bcn:0", m_state, m_events);
+                res = PROV_RES_ERROR_SCANNING_BEACONS;
+            }
+        }
+        else
+        {
+            LOG(LVL_WARNING, "s:%d,e:%02xh,bcn:0", m_state, m_events);
+            res = PROV_RES_ERROR_SCANNING_BEACONS;
+        }
+    }
+    else if (event_timeout)
+    {
+        LOG(LVL_WARNING, "s:%d,e:%02xh,to:1", m_state, m_events);
+        res = PROV_RES_TIMEOUT;
+    }
+
+    if (res != PROV_RES_SUCCESS)
+    {
+        m_retry++;
+
+        if (m_retry > m_conf.nb_retry)
+        {
+            LOG(LVL_ERROR, "s:%d,e:%02xh,rt:%d/%d",
+                           m_state, m_events, m_retry, m_conf.nb_retry);
+            reset_joining(true);
+            m_conf.end_cb(res);
+        }
+        else
+        {
+            /* Resend start. */
+            LOG(LVL_WARNING, "s:%d,e:%02xh,rt:%d/%d",
+                             m_state, m_events, m_retry, m_conf.nb_retry);
+            m_state = JOIN_STATE_START;
+
+            new_delay_ms = schedule_retry(m_retry);
+        }
+    }
+
+    return new_delay_ms;
+}
+
+/**
+ * \brief   The Wait route change state function.
+ * \return  Time in ms to schedule the state machine again.
+ */
+static uint32_t state_wait_route_change(void)
+{
+    uint32_t new_delay_ms = APP_SCHEDULER_STOP_TASK;
+
+    bool event_timeout = m_events.timeout;
+
+    memset(&m_events,0,sizeof(m_events));
+
+    /* A route change event is not generated when node is already connected
+     * to the cluster, so this event is not checked. Only check that we have
+     * a valid next hop.
+     */
+    app_lib_state_route_info_t info;
+    lib_state->getRouteInfo(&info);
+
+    LOG(LVL_DEBUG, "s:%d,ch:%d,c:%d,nh:%d,si:%d,rs:%d",
+                   m_state, info.channel, info.cost,
+                   info.next_hop, info.sink, info.state);
+
+    if (info.state != APP_LIB_STATE_ROUTE_STATE_VALID)
+    {
+        LOG(LVL_WARNING, "s:%d,e:%02xh,rs:%d,exp:%d",
+                         m_state, m_events,
+                         info.state, APP_LIB_STATE_ROUTE_STATE_VALID);
+    }
+    else
+    {
+        App_Scheduler_cancelTask(timeout_task);
+
+        LOG(LVL_INFO, "s:%d,e:%02xh,nh:%d", m_state, m_events, info.next_hop);
+        reset_joining(false);
+        m_conf.end_cb(PROV_RES_SUCCESS);
+    }
+
+    if(event_timeout)
+    {
+        LOG(LVL_WARNING, "s:%d,e:%02xh,to");
+        Stack_State_removeEventCb(route_changed_cb);
+
+        m_retry++;
+
+        if (m_retry > m_conf.nb_retry)
+        {
+            LOG(LVL_ERROR, "s:%d,e:%02xh,rt:%d/%d,end",
+                           m_state, m_events, m_retry, m_conf.nb_retry);
+            reset_joining(true);
+            m_conf.end_cb(PROV_RES_ERROR_NO_ROUTE);
+        }
+        else
+        {
+            /* Resend start. */
+            LOG(LVL_WARNING, "s:%d,e:%02xh,rt:%d/%d",
+                             m_retry, m_conf.nb_retry);
+            m_state = JOIN_STATE_START;
+
+            new_delay_ms = schedule_retry(m_retry);
+        }
+    }
+
+    return new_delay_ms;
+}
+
+/**
+ * \brief   The joining state machine. React to events raised in this module.
+ * \note    This function uses the fact the system is not preemptive and that
+ *          all events are raised from non interrupt context.
+ * \return  Time in ms to schedule this function again.
+ */
+static uint32_t run_state_machine(void)
+{
+    LOG(LVL_DEBUG, "sm:%d,e:%02xh", m_state, m_events);
+
+    uint32_t new_delay_ms = APP_SCHEDULER_STOP_TASK;
+
+    switch (m_state)
+    {
+        case JOIN_STATE_IDLE:
+        {
+            new_delay_ms = state_idle();
+            break;
+        }
+
+        case JOIN_STATE_START:
+        {
+            new_delay_ms = state_start();
+            break;
+        }
+
+        case JOIN_STATE_WAIT_SCAN_END:
+        {
+            new_delay_ms = state_wait_scan_end();
+            break;
+        }
+
+        case JOIN_STATE_WAIT_ROUTE_CHANGE:
+        {
+            new_delay_ms = state_wait_route_change();
+            break;
+        }
+
+        default:
+        {
+            break;
+        }
+    }
+
+    return new_delay_ms;
+}
+
+provisioning_ret_e Provisioning_Joining_init(
+                                        provisioning_joining_conf_t * conf)
+{
+    if (m_state != JOIN_STATE_UNINIT && m_state != JOIN_STATE_IDLE)
+    {
+        LOG(LVL_ERROR, "s:%d,exp:%d|%d",
+                       m_state, JOIN_STATE_UNINIT, JOIN_STATE_IDLE);
+
+        return PROV_RET_INVALID_STATE;
+    }
+
+    if (conf->joining_cb == NULL ||
+        conf->end_cb == NULL)
+    {
+        LOG(LVL_ERROR, "cbs:0");
+
+        return PROV_RET_INVALID_PARAM;
+    }
+
+    memcpy(&m_conf,conf,sizeof(m_conf));
+    m_state = JOIN_STATE_IDLE;
+
+    return PROV_RET_OK;
+}
+
+provisioning_ret_e Provisioning_Joining_start()
+{
+    uint32_t seed = getUniqueId() ^ lib_time->getTimestampHp();
+    Random_init(seed);
+
+    if (m_state != JOIN_STATE_IDLE)
+    {
+        LOG(LVL_ERROR, "s:%d,exp:%d", m_state, JOIN_STATE_IDLE);
+        return PROV_RET_INVALID_STATE;
+    }
+
+    m_events.start = 1;
+    app_scheduler_res_e res = App_Scheduler_addTask_execTime(
+                                  run_state_machine,
+                                  APP_SCHEDULER_SCHEDULE_ASAP,
+                                  500);
+    if (res != APP_SCHEDULER_RES_OK)
+    {
+        LOG(LVL_ERROR, "s:%d,e:%02xh,at,r:%d", m_state, m_events, res);
+
+        reset_joining(true);
+
+        m_conf.end_cb(PROV_RES_ERROR_INTERNAL);
+
+        return PROV_RET_INTERNAL_ERROR;
+    }
+    else
+    {
+        LOG(LVL_INFO, "s:%d,e:%02xh,start", m_state, m_events);
+
+        return PROV_RET_OK;
+    }
+}
+
+provisioning_ret_e Provisioning_Joining_stop()
+{
+    /* Special case for stop event. Whatever the state is, stop
+     * the provisioning session.
+     */
+    LOG(LVL_INFO, "stop");
+
+    reset_joining(true);
+
+    m_conf.end_cb(PROV_RES_STOPPED);
+
+    return PROV_RET_OK;
+}
