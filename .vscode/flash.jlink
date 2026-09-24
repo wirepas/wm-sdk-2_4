@@ -1,0 +1,6 @@
+connect
+erase
+loadfile build/sensorv26/rs485_bridge/final_image_rs485_bridge.hex
+r
+g
+exit

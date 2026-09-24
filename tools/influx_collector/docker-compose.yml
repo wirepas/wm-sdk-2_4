@@ -1,0 +1,98 @@
+# Wirepas MQTT → InfluxDB collector stack.
+#
+# Default target is InfluxDB 2.x (turnkey: it auto-creates org/bucket/token on
+# first boot from the DOCKER_INFLUXDB_INIT_* vars below). A commented InfluxDB 3
+# Core service is provided at the bottom — the collector code is identical for
+# both (line-protocol /api/v2/write); only the collector env changes.
+#
+# Copy .env.example → .env and fill in the broker credentials first.
+
+services:
+  influxdb:
+    image: influxdb:2.7
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    volumes:
+      - influx-data:/var/lib/influxdb2
+      - influx-config:/etc/influxdb2
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: ${INFLUX_ADMIN_USER:-admin}
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${INFLUX_ADMIN_PASSWORD:?set INFLUX_ADMIN_PASSWORD in .env}
+      DOCKER_INFLUXDB_INIT_ORG: ${INFLUX_ORG:-wirepas}
+      DOCKER_INFLUXDB_INIT_BUCKET: ${INFLUX_BUCKET:-sensors}
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${INFLUX_TOKEN:?set INFLUX_TOKEN in .env}
+
+  collector:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      - influxdb
+    environment:
+      # Wirepas MQTT backend
+      WIREPAS_MQTT_HOST: ${WIREPAS_MQTT_HOST:?set WIREPAS_MQTT_HOST in .env}
+      WIREPAS_MQTT_PORT: ${WIREPAS_MQTT_PORT:-8883}
+      WIREPAS_MQTT_USER: ${WIREPAS_MQTT_USER:-}
+      WIREPAS_MQTT_PASSWORD: ${WIREPAS_MQTT_PASSWORD:-}
+      WIREPAS_MQTT_INSECURE: ${WIREPAS_MQTT_INSECURE:-0}
+      # InfluxDB (points at the influxdb service on the compose network)
+      INFLUX_URL: ${INFLUX_URL:-http://influxdb:8086}
+      INFLUX_ORG: ${INFLUX_ORG:-wirepas}
+      INFLUX_BUCKET: ${INFLUX_BUCKET:-sensors}
+      INFLUX_TOKEN: ${INFLUX_TOKEN:?set INFLUX_TOKEN in .env}
+      INFLUX_AUTH_SCHEME: ${INFLUX_AUTH_SCHEME:-Token}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+
+  grafana:
+    image: grafana/grafana-oss:11.2.0
+    restart: unless-stopped
+    depends_on:
+      - influxdb
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?set GRAFANA_ADMIN_PASSWORD in .env}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      # Consumed by the provisioned InfluxDB datasource (grafana/provisioning/…)
+      INFLUX_URL: ${INFLUX_URL:-http://influxdb:8086}
+      INFLUX_ORG: ${INFLUX_ORG:-wirepas}
+      INFLUX_BUCKET: ${INFLUX_BUCKET:-sensors}
+      INFLUX_TOKEN: ${INFLUX_TOKEN:?set INFLUX_TOKEN in .env}
+
+volumes:
+  influx-data:
+  influx-config:
+  grafana-data:
+
+# ── InfluxDB 3 Core alternative ───────────────────────────────────────────────
+# To use InfluxDB 3 Core instead of 2.x:
+#   1. Comment out the `influxdb:` service above and uncomment the one below.
+#   2. In .env set  INFLUX_URL=http://influxdb:8181  and  INFLUX_AUTH_SCHEME=Bearer
+#      and treat INFLUX_BUCKET as the v3 database name.
+#   3. v3 Core does not auto-create a token — after first `docker compose up -d`,
+#      create one and put it in .env as INFLUX_TOKEN:
+#        docker compose exec influxdb influxdb3 create token --admin
+#      then `docker compose up -d` again to restart the collector with the token.
+#
+#   influxdb:
+#     image: influxdb:3-core
+#     restart: unless-stopped
+#     ports:
+#       - "8181:8181"
+#     volumes:
+#       - influx3-data:/var/lib/influxdb3
+#     command:
+#       - influxdb3
+#       - serve
+#       - --node-id=node0
+#       - --object-store=file
+#       - --data-dir=/var/lib/influxdb3
+#
+# volumes:
+#   influx3-data:

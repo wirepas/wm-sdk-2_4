@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /usr/local /opt /Applications \"$HOME\" -name \"arm-none-eabi-gcc\" 2>/dev/null | head -10)",
+      "Read(//usr/local/**)",
+      "Bash(make app_name=rs485_bridge target_board=sensorv26 arm_toolchain=\"/Users/laurent/Library/Application Support/stm32cube/bundles/gnu-tools-for-stm32/14.3.1+st.2/bin/\")",
+      "Bash(pip3 install *)",
+      "Bash(ln -sf \"/Users/laurent/Library/Application Support/stm32cube/bundles/gnu-tools-for-stm32/14.3.1+st.2/bin\" /tmp/arm-toolchain)",
+      "Bash(PATH=/tmp/arm-toolchain:__TRACKED_VAR__ make app_name=rs485_bridge target_board=sensorv26)",
+      "Bash(rm -f /Users/laurent/dev/sensorv26/custom_bootloader_keys.ini && ls /Users/laurent/dev/sensorv26/.license_accepted 2>/dev/null && echo \"license already accepted\")",
+      "Bash(brew search *)",
+      "Bash(brew info *)",
+      "Bash(curl -L \"https://developer.arm.com/-/media/Files/downloads/gnu/12.2.rel1/binrel/arm-gnu-toolchain-12.2.rel1-darwin-arm64-arm-none-eabi.tar.xz\" -o /tmp/arm-gcc-12.2.tar.xz --progress-bar)",
+      "Bash(sudo tar -xf /tmp/arm-gcc-12.2.tar.xz -C /usr/local/)",
+      "Bash(mkdir -p /Users/laurent/arm-gcc)",
+      "Bash(tar -xf /tmp/arm-gcc-12.2.tar.xz -C /Users/laurent/arm-gcc/)",
+      "Read(//Users/laurent/arm-gcc/arm-gnu-toolchain-12.2.rel1-darwin-arm64-arm-none-eabi/**)",
+      "Bash(/Users/laurent/arm-gcc/arm-gnu-toolchain-12.2.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc --version)",
+      "Bash(make app_name=rs485_bridge target_board=sensorv26 arm_toolchain=/Users/laurent/arm-gcc/arm-gnu-toolchain-12.2.rel1-darwin-arm64-arm-none-eabi/bin/)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(make app_name=rs485_bridge target_board=sensorv26 app_only)",
+      "Bash(find ~/Library -name \"nrfjprog\" 2>/dev/null | head -5; find /Applications -name \"nrfjprog\" 2>/dev/null | head -5; ls /usr/local/bin/ | grep -i nrf)",
+      "Read(//Users/laurent/Library/**)",
+      "Read(//Applications/**)",
+      "Bash(JLinkExe -help)",
+      "Bash(JLinkExe -device nRF54L15 -if SWD -speed 4000 -autoconnect 1 -CommanderScript /dev/null)"
+    ],
+    "additionalDirectories": [
+      "/Users/laurent/dev/sensorv26"
+    ]
+  }
+}

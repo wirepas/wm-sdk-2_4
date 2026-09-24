@@ -1,0 +1,55 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build rs485_bridge",
+            "type": "shell",
+            "command": "make app_name=rs485_bridge target_board=sensorv26",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": {
+                "owner": "gcc",
+                "fileLocation": ["relative", "${workspaceFolder}"],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "label": "Flash rs485_bridge",
+            "type": "shell",
+            "command": "JLinkExe -device NRF54L15_M33 -if SWD -speed 4000 -autoconnect 1 -CommanderScript .vscode/flash.jlink",
+            "group": "none",
+            "dependsOn": "Build rs485_bridge",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Flash rs485_bridge (no build)",
+            "type": "shell",
+            "command": "JLinkExe -device NRF54L15_M33 -if SWD -speed 4000 -autoconnect 1 -CommanderScript .vscode/flash.jlink",
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
