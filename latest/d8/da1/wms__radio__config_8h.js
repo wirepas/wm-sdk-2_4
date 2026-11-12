@@ -19,7 +19,7 @@ var wms__radio__config_8h =
     ] ],
     [ "app_lib_radio_cfg_power_t", "d8/da1/wms__radio__config_8h.html#db/de5/structapp__lib__radio__cfg__power__t", [
       [ "power_count", "d8/da1/wms__radio__config_8h.html#ad2d6bc76111fa780fbf0700e5fed829c", null ],
-      [ "powers", "d8/da1/wms__radio__config_8h.html#a99d2e8e1675036f3e63f5d109023b147", null ],
+      [ "powers", "d8/da1/wms__radio__config_8h.html#abeb6dd6ab37da4f54532fbb311d5b318", null ],
       [ "rx_current", "d8/da1/wms__radio__config_8h.html#ac172b9243dc93902929400d439706725", null ],
       [ "rx_gain_db", "d8/da1/wms__radio__config_8h.html#aa9cfc1ad54a3e032e49c49033c5a16db", null ]
     ] ],

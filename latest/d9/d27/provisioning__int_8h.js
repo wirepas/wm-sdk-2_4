@@ -47,14 +47,14 @@ var provisioning__int_8h =
       [ "start_cb", "d9/d27/provisioning__int_8h.html#a59f22fa682febf284ef3f2b4c3bba9ba", null ],
       [ "timeout_sec", "d9/d27/provisioning__int_8h.html#abb358cc4b726cfab5b40ae7a1e2043d1", null ]
     ] ],
-    [ "pdu_prov_t.__unnamed__", "d9/d27/provisioning__int_8h.html#d6/d15/unionpdu__prov__t_8____unnamed____", [
+    [ "pdu_prov_t.__unnamed11__", "d9/d27/provisioning__int_8h.html#dc/d90/unionpdu__prov__t_8____unnamed11____", [
       [ "pdu_header", "d9/d27/provisioning__int_8h.html#ac280780f633f62b2441f8a14f788f80e", null ],
       [ "pld", "d9/d27/provisioning__int_8h.html#ae12f159dd97810557789fd4c692eee02", null ]
     ] ],
     [ "provisioning_joining_end_cb_f", "d9/d27/provisioning__int_8h.html#a981d6e69d029513017f86838e4489cca", null ],
     [ "provisioning_start_cb_f", "d9/d27/provisioning__int_8h.html#ab4990f992824d56f9c04b18bfb356a98", null ],
     [ "Provisioning_Data_decode", "d9/d27/provisioning__int_8h.html#a990a169cef676cc56e93e8a8eaa7eb92", null ],
-    [ "Provisioning_Failsafe_callback_beacons", "d9/d27/provisioning__int_8h.html#aaa08080a64367212f0187acefa1d5d27", null ],
+    [ "Provisioning_Failsafe_callback_beacons", "d9/d27/provisioning__int_8h.html#a36110c53ac1383a67c577fdd92bfa3c5", null ],
     [ "Provisioning_Failsafe_callback_end", "d9/d27/provisioning__int_8h.html#a0f4929aa4bf41487bc802f7ad20f2f77", null ],
     [ "Provisioning_Failsafe_init", "d9/d27/provisioning__int_8h.html#a693577a6b2a62de646a16b9aa1bcd2a9", null ],
     [ "Provisioning_Failsafe_start", "d9/d27/provisioning__int_8h.html#a3744e7894d5d7f7be61adad0aa904f57", null ],
@@ -84,9 +84,7 @@ var provisioning__int_8h =
       [ "PROV_DATA_ID_NET_KEY_SEQ", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a03fd02db9136d91cdb509f9ed302ba07", null ],
       [ "PROV_DATA_ID_MGMT_ENC_KEY", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a3c72798ed8e5531bc70f0a4fdf65af21", null ],
       [ "PROV_DATA_ID_MGMT_AUTH_KEY", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2ad3d06dc3d9f95b868020030aed11434f", null ],
-      [ "PROV_DATA_ID_MGMT_KEY_SEQ", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a1df18485485ad3356f1318214268503b", null ],
-      [ "RTC_ID_TIMESTAMP", "dc/d1b/rtc_8h.html#aee542072e8ed4c6421604a90538f9dc2a48d8e55630c25eacd43229f49680ebf1", null ],
-      [ "RTC_ID_TIMEZONE_OFFSET", "dc/d1b/rtc_8h.html#aee542072e8ed4c6421604a90538f9dc2a4a3f2add8548db9b69ec808237fee449", null ]
+      [ "PROV_DATA_ID_MGMT_KEY_SEQ", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a1df18485485ad3356f1318214268503b", null ]
     ] ],
     [ "ENC_KEY_OFFSET", "d9/d27/provisioning__int_8h.html#acab9750c73b692672c8f93732988d300", null ],
     [ "JOINING_BEACON_TYPE", "d9/d27/provisioning__int_8h.html#a0d6b76683aa52206f24bd915a42a0bc1", null ],

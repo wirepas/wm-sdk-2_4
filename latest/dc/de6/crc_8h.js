@@ -3,7 +3,7 @@ var crc_8h =
     [ "crc_t", "dc/de6/crc_8h.html#db/deb/unioncrc__t", [
       [ "crc", "dc/de6/crc_8h.html#aa60093a9a5d5d17864cfda66c47733e3", null ]
     ] ],
-    [ "crc_t.__unnamed__", "dc/de6/crc_8h.html#d7/d17/structcrc__t_8____unnamed____", [
+    [ "crc_t.__unnamed15__", "dc/de6/crc_8h.html#dc/de1/structcrc__t_8____unnamed15____", [
       [ "lsb", "dc/de6/crc_8h.html#a58b7eb5ebaa12a0515c0dac315aa2611", null ],
       [ "msb", "dc/de6/crc_8h.html#ac4781e1f427c6cb6dddc0662358e3eab", null ]
     ] ],

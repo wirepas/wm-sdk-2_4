@@ -5,6 +5,7 @@ var tbsense2_2board_8h =
     [ "BOARD_BUTTON_INTERNAL_PULL", "d3/d8f/tbsense2_2board_8h.html#a8f91fc44ad1f0b5ab77c76564145318a", null ],
     [ "BOARD_GPIO_ID_BUTTON0", "d3/d8f/tbsense2_2board_8h.html#afa0b2ea5bfdd62a83413c1cb4c5962c5", null ],
     [ "BOARD_GPIO_ID_BUTTON1", "d3/d8f/tbsense2_2board_8h.html#ad2a52f8dcf7bd092ce0971357b1d7793", null ],
+    [ "BOARD_GPIO_ID_I2C_SENSOR_ENABLE", "d3/d8f/tbsense2_2board_8h.html#a4721366334cc886aae643a8c2a286a7b", null ],
     [ "BOARD_GPIO_ID_LED_G", "d3/d8f/tbsense2_2board_8h.html#a2d2225bc100605beea12bda9be7148ca", null ],
     [ "BOARD_GPIO_ID_LED_R", "d3/d8f/tbsense2_2board_8h.html#ac3ef35915e549c2285bb1868719f971f", null ],
     [ "BOARD_GPIO_ID_UART_IRQ", "d3/d8f/tbsense2_2board_8h.html#aec9d6daae15d7aa523eb194fdc70e4ee", null ],

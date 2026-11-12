@@ -1,38 +1,31 @@
 /*
-@licstart  The following is the entire license notice for the
-JavaScript code in this file.
+ @licstart  The following is the entire license notice for the JavaScript code in this file.
 
-Copyright (C) 1997-2019 by Dimitri van Heesch
+ The MIT License (MIT)
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of version 2 of the GNU General Public License as published by
-the Free Software Foundation
+ Copyright (C) 1997-2020 by Dimitri van Heesch
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+ and associated documentation files (the "Software"), to deal in the Software without restriction,
+ including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-You should have received a copy of the GNU General Public License along
-with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ The above copyright notice and this permission notice shall be included in all copies or
+ substantial portions of the Software.
 
-@licend  The above is the entire license notice
-for the JavaScript code in this file
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+ BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ @licend  The above is the entire license notice for the JavaScript code in this file
 */
 var NAVTREE =
 [
   [ "Wirepas SDK", "index.html", [
-    [ "Single-MCU Operation Overview", "index.html", [
-      [ "Application", "index.html#application", null ],
-      [ "Wirepas Mesh Single MCU API", "index.html#single_mcu_api", null ],
-      [ "SDK libraries", "index.html#sdk_libraries", null ],
-      [ "Application-specific Hardware Abstraction Layer (HAL)", "index.html#sdk_hal", null ],
-      [ "Wirepas Mesh Stack", "index.html#wirepas_firmware", null ],
-      [ "Wirepas Mesh Bootloader", "index.html#bootloader", null ],
-      [ "Custom bootloader extension", "index.html#bootloader_extension", null ],
-      [ "The physical Hardware", "index.html#hardware", null ]
-    ] ],
+    [ "Single-MCU Operation Overview", "index.html", "index" ],
     [ "SDK Environment setup", "dd/d6a/sdk_environment.html", [
       [ "Installation of SDK Environment", "dd/d6a/sdk_environment.html#installation_of_sdk_environment", null ],
       [ "Flashing devices", "dd/d6a/sdk_environment.html#flashing_guideline", null ],
@@ -177,24 +170,24 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d2/d43/compilersupport__p_8h.html#ab45f140df6fb37f15031758a04b3394f",
-"d2/d9e/cbor_8h.html#ade6fa23a8fb3df9db434c69ca05d5ec1a0cad1a47349e4206f7f885561a1829f1",
-"d4/d0d/pca10059_2board_8h.html#a8f91fc44ad1f0b5ab77c76564145318a",
-"d5/d0c/silabs__brd2601b_2board_8h.html#aa135dd09b6c5397a3fefc89817336527",
-"d5/d92/pca10040_2board_8h.html#a29ae5883a2b90d5dd60552e78fa1a639",
-"d6/d21/poslib_8h.html#abbebcd14bbb8b2b4cbf36d5a4cc60e8ba1dc7700afec3631a104fe038fcc37248",
-"d6/da4/ringbuffer_8h.html",
-"d8/d21/msap__frames_8h.html#a28ff6eb281df315981eaf95f2ac4b8eea8e9d16f1b9c8051a7b1a0c683af4f995",
-"d8/d21/msap__frames_8h_source.html",
-"d9/d3f/ruuvitag_2board_8h.html#acc64641117c0789dfc5b9089d199e6a0",
-"da/d1b/function__codes_8h.html#a5d932513e8009c2280045fe336ff4138acb114a27213134b9ef1bd56205fbfa39",
-"db/db1/waps__frames_8h.html#a493a5cd1c9413254f37cfc4da768f351",
-"dc/db6/wms__beacon__rx_8h.html#a3825cd0cfc978cd52d956c6195604797",
-"dd/d9c/programming_interface.html#stack_api",
-"de/dde/aes_2app_8c-example.html",
-"df/d62/wms__settings_8h.html#da/d24/structapp__lib__settings__key__management__configuration__t",
-"df/de4/wms__beacon__tx_8h.html#a30a12c45866d1166e6e58e6266b5812da4a32601eef16c7a365150527051ac1a6",
-"globals_vars.html"
+"d1/dd6/usart__multi_8h.html#a6789ed5601a0f4d697af3494c5324d14abb23c2c0ee4dc91e819ca2cda77dec3a",
+"d2/d9e/cbor_8h.html#a76e9c9acc63dd940da4ab7e91309f7b5ad32298f493c3928acb81fb36c2c934d4",
+"d3/d8f/tbsense2_2board_8h.html#acb2895a9dbda55c7842898cd59a419ea",
+"d4/d70/poslib__event_8h.html#ac405b81b8a8262a5fa3e8eef5de8dbe6ad0346259b82c458219bf00188e4d8797",
+"d5/d74/shared__data_8h.html#a012590ec156f0827733270dde718c945",
+"d6/d21/poslib_8h.html#a484a3b39624f69a7f3ad187229f4371fa5c1733421ff0bd857ab47be9073e2a32",
+"d6/d50/wms__data_8h.html#af7dcc80b7a3cab03843f5bdff120f452",
+"d7/dc3/tlv_8h.html#a952181be57dba7891e7b2da65a061e25",
+"d8/d21/msap__frames_8h.html#a9f22311192eeb6de14455c27f0b6c924aa0771d2bd4382888f3d53fb9834757ac",
+"d9/d27/provisioning__int_8h.html#ac0d2a1048fb0ab7520ecb4d7df8e8ea6a835a63dd517a816fc0a8aec8ca52c6e8",
+"da/d1b/function__codes_8h.html#a2d4555a3f706a316c777c44354e6efd3",
+"db/d41/pca10100_2board_8h.html#a0210a8d95979bc985e743e2c4e2c412f",
+"dc/d7f/lock__bits_8h.html#a91f51209f4e62c9ca2dc76a111cb8def",
+"dd/d2c/bl__interface_8h.html#aa691912b1f952358843a0d2b7b77d642",
+"de/d59/csap__frames_8h.html#ab94c0fc8c2b40fac43bfa24a682755b9a1996de17e3f6c6aa4890fc659e868495",
+"df/d62/wms__settings_8h.html#a71d48da699880d0b63ace03f3f191bdc",
+"df/d99/wms__otap_8h.html#adb3f2eddc49647bdf780925a81855ec4",
+"globals_defs_u.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

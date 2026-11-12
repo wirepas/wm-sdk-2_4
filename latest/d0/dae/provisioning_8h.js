@@ -1,11 +1,5 @@
 var provisioning_8h =
 [
-    [ "provisioning_proxy_net_param_t", "d0/dae/provisioning_8h.html#d5/d33/structprovisioning__proxy__net__param__t", [
-      [ "auth_key", "d0/dae/provisioning_8h.html#aa5d8024392e2c5a2a1c0dfb968ad8d46", null ],
-      [ "enc_key", "d0/dae/provisioning_8h.html#a4230e96dcacbc8079f5ed4b4ac6aac13", null ],
-      [ "net_addr", "d0/dae/provisioning_8h.html#aed113d07b2547a27d9b1a9ada6723399", null ],
-      [ "net_chan", "d0/dae/provisioning_8h.html#a8450779e8f89f111c03b7412b924a41e", null ]
-    ] ],
     [ "provisioning_uid_t", "d0/dae/provisioning_8h.html#d0/d14/unionprovisioning__uid__t", [
       [ "uid", "d0/dae/provisioning_8h.html#a9a81cd460e24aee7c61cb448891895b2", null ]
     ] ],
@@ -16,6 +10,12 @@ var provisioning_8h =
       [ "prov_uid", "d0/dae/provisioning_8h.html#aaee924ba8066771f18c92cd77e5a3eae", null ],
       [ "prov_uid_len", "d0/dae/provisioning_8h.html#ae02a69f04959a19fe090c41a3e874896", null ],
       [ "timeout_s", "d0/dae/provisioning_8h.html#a6bbdc22c98ba6c8730c29079fe1186ea", null ]
+    ] ],
+    [ "provisioning_proxy_net_param_t", "d0/dae/provisioning_8h.html#d5/d33/structprovisioning__proxy__net__param__t", [
+      [ "auth_key", "d0/dae/provisioning_8h.html#aa5d8024392e2c5a2a1c0dfb968ad8d46", null ],
+      [ "enc_key", "d0/dae/provisioning_8h.html#a4230e96dcacbc8079f5ed4b4ac6aac13", null ],
+      [ "net_addr", "d0/dae/provisioning_8h.html#aed113d07b2547a27d9b1a9ada6723399", null ],
+      [ "net_chan", "d0/dae/provisioning_8h.html#a8450779e8f89f111c03b7412b924a41e", null ]
     ] ],
     [ "provisioning_conf_t", "d0/dae/provisioning_8h.html#dd/d04/structprovisioning__conf__t", [
       [ "beacon_joining_cb", "d0/dae/provisioning_8h.html#a42f2e3cda397821095bac6ae712a22c2", null ],
@@ -33,7 +33,7 @@ var provisioning_8h =
       [ "start_cb", "d0/dae/provisioning_8h.html#a522dd091d64e6871bedc5f496a03f3b5", null ],
       [ "tx_power", "d0/dae/provisioning_8h.html#a72a96ade6a01c9bd107a0977b6a3059c", null ]
     ] ],
-    [ "provisioning_uid_t.__unnamed__", "d0/dae/provisioning_8h.html#d2/d55/structprovisioning__uid__t_8____unnamed____", [
+    [ "provisioning_uid_t.__unnamed8__", "d0/dae/provisioning_8h.html#d8/dfe/structprovisioning__uid__t_8____unnamed8____", [
       [ "authenticator_uid", "d0/dae/provisioning_8h.html#a9838f74b3b027abce1a8d8b6824f8330", null ],
       [ "authenticator_uid_type", "d0/dae/provisioning_8h.html#a10dad645fd45c52750e55e6e35c74a05", null ],
       [ "node_uid", "d0/dae/provisioning_8h.html#a675ae5cb86d750a936127a77a38039d7", null ],
@@ -44,6 +44,7 @@ var provisioning_8h =
       [ "enc_key", "d0/dae/provisioning_8h.html#afa6715a43fb0789a5ebc268b3d700c72", null ]
     ] ],
     [ "provisioning_end_cb_f", "d0/dae/provisioning_8h.html#a9b6827fb56451de710751fe18571917a", null ],
+    [ "provisioning_joining_beacon_cb_f", "d0/dae/provisioning_8h.html#a222a2e14a4f08386ed405514966e0745", null ],
     [ "provisioning_proxy_start_cb_f", "d0/dae/provisioning_8h.html#a95dd664111b432bf5fe76f81137097aa", null ],
     [ "provisioning_user_data_cb_f", "d0/dae/provisioning_8h.html#a71475822eccf80767909e0e5a23147b6", null ],
     [ "Provisioning_init", "d0/dae/provisioning_8h.html#a4686b27c047e34873fe80c0165a0eabb", null ],
@@ -51,6 +52,7 @@ var provisioning_8h =
     [ "Provisioning_Proxy_init", "d0/dae/provisioning_8h.html#a2df1e9207188e320093f9933631137b7", null ],
     [ "Provisioning_Proxy_start", "d0/dae/provisioning_8h.html#a85efeea2b977876f217931152f274b06", null ],
     [ "Provisioning_Proxy_stop", "d0/dae/provisioning_8h.html#ad51652d791cb3cf4b31b021184f16fbb", null ],
+    [ "Provisioning_register_csap_handlers", "d0/dae/provisioning_8h.html#ab0b3dca3397a6ca2102cc76fb3ec7d4e", null ],
     [ "Provisioning_settings_read", "d0/dae/provisioning_8h.html#a225c10d61200e0d65523244149db0716", null ],
     [ "Provisioning_settings_write", "d0/dae/provisioning_8h.html#a70a42bd7904a5c8ae10b93de3b88724d", null ],
     [ "Provisioning_start", "d0/dae/provisioning_8h.html#a95ce975829424074a6a4d85421f57367", null ],
@@ -90,6 +92,5 @@ var provisioning_8h =
     [ "PROV_METHOD_IS_SECURED", "d0/dae/provisioning_8h.html#a65d777b7fb00f7df576c6c2a753dd7e6", null ],
     [ "PROV_METHOD_IS_UNSECURED", "d0/dae/provisioning_8h.html#ab913422fb1d8fbdd40a3d963ddd870da", null ],
     [ "PROV_UID_MAX_SIZE_BYTES", "d0/dae/provisioning_8h.html#a74c7996557190fea54158ee238f50bb0", null ],
-    [ "PROV_UUID_SIZE_BYTES", "d0/dae/provisioning_8h.html#ab5f0c75b4246975b2dce8629d30ff7b5", null ],
-    [ "provisioning_joining_beacon_cb_f", "d0/dae/provisioning_8h.html#a741e8701f576e2fe21b4c48ee3a2eeea", null ]
+    [ "PROV_UUID_SIZE_BYTES", "d0/dae/provisioning_8h.html#ab5f0c75b4246975b2dce8629d30ff7b5", null ]
 ];

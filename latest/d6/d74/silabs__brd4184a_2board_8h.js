@@ -4,10 +4,16 @@ var silabs__brd4184a_2board_8h =
     [ "BOARD_BUTTON_ID_LIST", "d6/d74/silabs__brd4184a_2board_8h.html#a154e4a912cfa2fbec72aeba6b69e18ab", null ],
     [ "BOARD_BUTTON_INTERNAL_PULL", "d6/d74/silabs__brd4184a_2board_8h.html#a8f91fc44ad1f0b5ab77c76564145318a", null ],
     [ "BOARD_GPIO_ID_BUTTON0", "d6/d74/silabs__brd4184a_2board_8h.html#afa0b2ea5bfdd62a83413c1cb4c5962c5", null ],
+    [ "BOARD_GPIO_ID_I2C_SENSOR_ENABLE", "d6/d74/silabs__brd4184a_2board_8h.html#a4721366334cc886aae643a8c2a286a7b", null ],
     [ "BOARD_GPIO_ID_LED0", "d6/d74/silabs__brd4184a_2board_8h.html#a2fdeeeca85127dde90914bbede54965f", null ],
     [ "BOARD_GPIO_ID_SPI_CS", "d6/d74/silabs__brd4184a_2board_8h.html#af3a22056866caf4155af0caaccb790b4", null ],
     [ "BOARD_GPIO_ID_USART_WAKEUP", "d6/d74/silabs__brd4184a_2board_8h.html#af13dc52a09bbe5d8c6005e98907172e5", null ],
     [ "BOARD_GPIO_PIN_LIST", "d6/d74/silabs__brd4184a_2board_8h.html#a433cf3a73ae6b00dde08e7a245b4a2ec", null ],
+    [ "BOARD_I2C_PIN_PULLUP", "d6/d74/silabs__brd4184a_2board_8h.html#afe69dabd232e342092fbebc5e5223de9", null ],
+    [ "BOARD_I2C_SCL_GPIO_PORT", "d6/d74/silabs__brd4184a_2board_8h.html#a68d5e6ddac78d81b6422dfb845c5f431", null ],
+    [ "BOARD_I2C_SCL_PIN", "d6/d74/silabs__brd4184a_2board_8h.html#a23ceec4235fc4b415f54343cf96ad269", null ],
+    [ "BOARD_I2C_SDA_GPIO_PORT", "d6/d74/silabs__brd4184a_2board_8h.html#a7cef4cc02a49f5b4d6f18ccb53b1fb8c", null ],
+    [ "BOARD_I2C_SDA_PIN", "d6/d74/silabs__brd4184a_2board_8h.html#a85ffcb831cf671e2d7420dfcb50f12d4", null ],
     [ "BOARD_LED_ACTIVE_LOW", "d6/d74/silabs__brd4184a_2board_8h.html#a43341ad5e17bb5d20c1e528bce7d6133", null ],
     [ "BOARD_LED_ID_LIST", "d6/d74/silabs__brd4184a_2board_8h.html#a96e3cca1c7fe33c02f7805cd3de699d0", null ],
     [ "BOARD_USART_FORCE_BAUDRATE", "d6/d74/silabs__brd4184a_2board_8h.html#a23a94977182c1741d2ddb5c205858514", null ],
@@ -15,5 +21,6 @@ var silabs__brd4184a_2board_8h =
     [ "BOARD_USART_RX_PIN", "d6/d74/silabs__brd4184a_2board_8h.html#a29ae5883a2b90d5dd60552e78fa1a639", null ],
     [ "BOARD_USART_RX_PORT", "d6/d74/silabs__brd4184a_2board_8h.html#a79f46a4c0b6a09dcf8249d0b607a0443", null ],
     [ "BOARD_USART_TX_PIN", "d6/d74/silabs__brd4184a_2board_8h.html#ac5c54565e5266fd2bf7f9b8bace2ae9c", null ],
-    [ "BOARD_USART_TX_PORT", "d6/d74/silabs__brd4184a_2board_8h.html#a8837c77894bac16ee3808054916ad695", null ]
+    [ "BOARD_USART_TX_PORT", "d6/d74/silabs__brd4184a_2board_8h.html#a8837c77894bac16ee3808054916ad695", null ],
+    [ "USE_I2C0", "d6/d74/silabs__brd4184a_2board_8h.html#abacb48dd1307f915166b2cfbbd00217f", null ]
 ];

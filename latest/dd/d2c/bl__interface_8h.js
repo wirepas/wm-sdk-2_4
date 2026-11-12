@@ -82,6 +82,7 @@ var bl__interface_8h =
       [ "scratchpad_services_p", "dd/d2c/bl__interface_8h.html#a618c3916d715a1709848abadfb64bd21", null ],
       [ "version", "dd/d2c/bl__interface_8h.html#acd99bb05ca015e7d74448acb1deba7ca", null ]
     ] ],
+    [ "bl_hardware_getCapabilities_f", "dd/d2c/bl__interface_8h.html#a8ff0a8d19553ba2ac41c2f3090cc0f7d", null ],
     [ "bl_memory_area_getAreaHeader_f", "dd/d2c/bl__interface_8h.html#a9aee550ac0d15d2569c2090e8786dd17", null ],
     [ "bl_memory_area_getAreaInfo_f", "dd/d2c/bl__interface_8h.html#a5fb3900f9b422fb576ff07a737a1de66", null ],
     [ "bl_memory_area_getAreaList_f", "dd/d2c/bl__interface_8h.html#a2a0621cceb3524809381675f1403429c", null ],
@@ -151,6 +152,5 @@ var bl__interface_8h =
       [ "BL_SCRAT_WRITE_STATUS_INVALID_NULL_BYTES", "dd/d2c/bl__interface_8h.html#a89973f10c4faed0bd6bd5da92853f566a5f9b8b5d216d4d02bfba907ae9f49a7f", null ],
       [ "BL_SCRAT_WRITE_STATUS_FLASH_ERROR", "dd/d2c/bl__interface_8h.html#a89973f10c4faed0bd6bd5da92853f566ace0b656348cce6c4f9a8ecd7080fb623", null ]
     ] ],
-    [ "BL_MEMORY_AREA_UNDEFINED", "dd/d2c/bl__interface_8h.html#a935dcebd09fec384e242e1f45b02ac9d", null ],
-    [ "bl_hardware_getCapabilities_f", "dd/d2c/bl__interface_8h.html#abe48ebab96082c5c01ce0138b04ea55e", null ]
+    [ "BL_MEMORY_AREA_UNDEFINED", "dd/d2c/bl__interface_8h.html#a935dcebd09fec384e242e1f45b02ac9d", null ]
 ];

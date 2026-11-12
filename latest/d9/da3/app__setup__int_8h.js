@@ -36,7 +36,7 @@ var app__setup__int_8h =
       [ "reserved", "d9/da3/app__setup__int_8h.html#a5a6ed8c04a3db86066924b1a1bf4dad3", null ],
       [ "start_dualmcu", "d9/da3/app__setup__int_8h.html#a9a9184c084dca7912152f72fb3c7b441", null ]
     ] ],
-    [ "app_setup", "d9/da3/app__setup__int_8h.html#da/d6c/structapp__setup", [
+    [ "app_setup_t", "d9/da3/app__setup__int_8h.html#d1/d10/structapp__setup__t", [
       [ "action", "d9/da3/app__setup__int_8h.html#a33594a36d5bebab8231984c7f9fa3b1c", null ],
       [ "header", "d9/da3/app__setup__int_8h.html#a6b0ec41601880c68b706bc5a311c06ec", null ],
       [ "network", "d9/da3/app__setup__int_8h.html#a9229f159a16156b0d7a8d09d4ebf06cd", null ],

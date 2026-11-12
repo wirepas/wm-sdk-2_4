@@ -9,16 +9,6 @@ var rtc_8h =
     [ "RTC_init", "dc/d1b/rtc_8h.html#acb61e83ed1b4a31526e6c4cee5ef64b9", null ],
     [ "RTC_removeInitializedCb", "dc/d1b/rtc_8h.html#a8a424c2a39d6781e2e6231d5a6f11a04", null ],
     [ "provisioning_data_ids_e", "dc/d1b/rtc_8h.html#aee542072e8ed4c6421604a90538f9dc2", [
-      [ "PROV_DATA_ID_ENC_KEY", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a25cd2ac46704486ba6a437b0a52c2f5f", null ],
-      [ "PROV_DATA_ID_AUTH_KEY", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a735fcad6c04bd53564143f658bf050ca", null ],
-      [ "PROV_DATA_ID_NET_ADDR", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a02b2e581c486872a11d019e24b7a8123", null ],
-      [ "PROV_DATA_ID_NET_CHAN", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2acdef30ff0f3ffd783c7f35560b01a003", null ],
-      [ "PROV_DATA_ID_NODE_ADDR", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a9c062e96b8a51d81a67313b6b66d7471", null ],
-      [ "PROV_DATA_ID_NODE_ROLE", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a4f41a683db426dac2beabf560f9d261d", null ],
-      [ "PROV_DATA_ID_NET_KEY_SEQ", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a03fd02db9136d91cdb509f9ed302ba07", null ],
-      [ "PROV_DATA_ID_MGMT_ENC_KEY", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a3c72798ed8e5531bc70f0a4fdf65af21", null ],
-      [ "PROV_DATA_ID_MGMT_AUTH_KEY", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2ad3d06dc3d9f95b868020030aed11434f", null ],
-      [ "PROV_DATA_ID_MGMT_KEY_SEQ", "d9/d27/provisioning__int_8h.html#aee542072e8ed4c6421604a90538f9dc2a1df18485485ad3356f1318214268503b", null ],
       [ "RTC_ID_TIMESTAMP", "dc/d1b/rtc_8h.html#aee542072e8ed4c6421604a90538f9dc2a48d8e55630c25eacd43229f49680ebf1", null ],
       [ "RTC_ID_TIMEZONE_OFFSET", "dc/d1b/rtc_8h.html#aee542072e8ed4c6421604a90538f9dc2a4a3f2add8548db9b69ec808237fee449", null ]
     ] ],

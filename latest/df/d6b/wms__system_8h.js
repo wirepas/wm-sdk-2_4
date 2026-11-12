@@ -48,13 +48,17 @@ var wms__system_8h =
       [ "APP_LIB_SYSTEM_HARDWARE_MAGIC_EFR32XG21", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a7f19392bb7901d7af8492a6b519e2675", null ],
       [ "APP_LIB_SYSTEM_HARDWARE_MAGIC_EFR32XG22", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a01f9d2b030a8adf650d031e23cc2255a", null ],
       [ "APP_LIB_SYSTEM_HARDWARE_RESERVED_5", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a2e3aa4ec90f724602681bab84f7d8134", null ],
-      [ "APP_LIB_SYSTEM_HARDWARE_MAGIC_BGM220PC22HNA", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a8f91f17fe3a393b7c1b24e5d50f44602", null ],
-      [ "APP_LIB_SYSTEM_HARDWARE_MAGIC_BGM220SC22HNA", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594ad342fde0b68b82ddd1d57b01b03f2768", null ],
-      [ "APP_LIB_SYSTEM_HARDWARE_MAGIC_NRF9160", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594abee9a04bf05c0fe49e18b6acd31a35d9", null ],
+      [ "APP_LIB_SYSTEM_HARDWARE_RESERVED_6", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a0f90596ed7915eba587d728a0d862ccd", null ],
+      [ "APP_LIB_SYSTEM_HARDWARE_RESERVED_7", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a6cd9b54bd0be7afef75256efedbbb249", null ],
+      [ "APP_LIB_SYSTEM_HARDWARE_RESERVED_8", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a085628232895b79168b9b80759cbf8f3", null ],
       [ "APP_LIB_SYSTEM_HARDWARE_MAGIC_EFR32XG23", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a58c8384ede4a19708b31d73b4d72c07b", null ],
       [ "APP_LIB_SYSTEM_HARDWARE_MAGIC_EFR32XG24", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594ad3d440c1eef7778f20055adbd478201d", null ],
       [ "APP_LIB_SYSTEM_HARDWARE_MAGIC_NRF9120", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594ae36b51df878caf13a2d89eb7aa01c561", null ],
-      [ "APP_LIB_SYSTEM_HARDWARE_MAGIC_NRF54L", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a725748061aac083b35604971d46b20a3", null ]
+      [ "APP_LIB_SYSTEM_HARDWARE_MAGIC_NRF54L", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a725748061aac083b35604971d46b20a3", null ],
+      [ "APP_LIB_SYSTEM_HARDWARE_MAGIC_CC1354P10", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a73f1c147b98c1587ec2610714c68c605", null ],
+      [ "APP_LIB_SYSTEM_HARDWARE_MAGIC_EFR32XG21_DBG", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a56bbd9b177c8681b8056e6db02884b8d", null ],
+      [ "APP_LIB_SYSTEM_HARDWARE_MAGIC_EFR32XG22_DBG", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a09664b4c7b63b7b2951f82ff6d790dbc", null ],
+      [ "APP_LIB_SYSTEM_HARDWARE_MAGIC_EFR32XG24_DBG", "df/d6b/wms__system_8h.html#a055fd8a1c1565c12af35cd82010b2594a630c68e7990d5026f67bad05ca9ac34b", null ]
     ] ],
     [ "app_lib_system_protocol_profile_e", "df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0e", [
       [ "APP_LIB_SYSTEM_PROTOCOL_PROFILE_UNKNOWN", "df/d6b/wms__system_8h.html#a51d626023dc9f39cb5ea38204b735f0ea9433a78e29e71439e678523be52234aa", null ],

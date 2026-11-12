@@ -12,6 +12,7 @@ var dir_6cf55800a80cb7b7dd1fbbea9cea607d =
     [ "power.h", "d3/d6a/power_8h.html", "d3/d6a/power_8h" ],
     [ "radio.h", "d7/d62/radio_8h.html", "d7/d62/radio_8h" ],
     [ "spi.h", "da/d87/spi_8h.html", "da/d87/spi_8h" ],
-    [ "usart.h", "d3/dfa/mcu_2hal__api_2usart_8h.html", "d3/dfa/mcu_2hal__api_2usart_8h" ],
+    [ "usart.h", "db/de4/usart_8h.html", "db/de4/usart_8h" ],
+    [ "usart_multi.h", "d1/dd6/usart__multi_8h.html", "d1/dd6/usart__multi_8h" ],
     [ "voltage.h", "d0/d27/voltage_8h.html", "d0/d27/voltage_8h" ]
 ];

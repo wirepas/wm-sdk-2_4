@@ -20,7 +20,7 @@ var waps__frames_8h =
       [ "sfunc", "db/db1/waps__frames_8h.html#afac9616c72bfaf29b3b1502792102821", null ],
       [ "splen", "db/db1/waps__frames_8h.html#aa014186b836ca0589945706229ae9fec", null ]
     ] ],
-    [ "waps_frame_t.__unnamed__", "dd/db3/unionwaps__frame__t_8____unnamed____.html", "dd/db3/unionwaps__frame__t_8____unnamed____" ],
+    [ "waps_frame_t.__unnamed6__", "d4/d38/unionwaps__frame__t_8____unnamed6____.html", "d4/d38/unionwaps__frame__t_8____unnamed6____" ],
     [ "attr_t", "db/db1/waps__frames_8h.html#a4e0d5999f05d5d98291245accf2bd6b9", null ],
     [ "ep_t", "db/db1/waps__frames_8h.html#aee71d80c96b47076b17640ee902138a2", null ],
     [ "pduid_t", "db/db1/waps__frames_8h.html#ac976fc18c658ed6d8a9e9a3a045c7f18", null ],

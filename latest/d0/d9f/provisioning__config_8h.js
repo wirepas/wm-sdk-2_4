@@ -11,6 +11,7 @@ var provisioning__config_8h =
       [ "SETTINGS_UID_INVALID_LENGTH", "d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6abc6392f63d9b9701b31c3fcb2d9586ea", null ],
       [ "SETTINGS_EUID_INVALID_TYPE", "d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6ae69f0c7466ffbbb8d75b64776453c620", null ],
       [ "SETTINGS_INVALID_KEY", "d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6ac134c59a44e0ae5b897d9cf405d3ae81", null ],
-      [ "SETTINGS_INVALID_TIMEOUT", "d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6a18e8c9b267502d1b21e90bc9bba93a77", null ]
+      [ "SETTINGS_INVALID_TIMEOUT", "d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6a18e8c9b267502d1b21e90bc9bba93a77", null ],
+      [ "SETTINGS_INVALID_METHOD", "d0/d9f/provisioning__config_8h.html#aaa3be685d8bf3f85db585456332c13b6a2f1e001f6c6f5f5183b9951eb6bafafb", null ]
     ] ]
 ];

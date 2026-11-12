@@ -7,6 +7,7 @@ var local__provisioning_8h =
     [ "local_provisioning_config_t", "d6/dd2/local__provisioning_8h.html#d3/d88/structlocal__provisioning__config__t", [
       [ "timeout_s", "d6/dd2/local__provisioning_8h.html#a6bbdc22c98ba6c8730c29079fe1186ea", null ]
     ] ],
+    [ "local_provisioning_joining_beacon_selection_f", "d6/dd2/local__provisioning_8h.html#ad6a2a3371240be1c0618e60e18df8ac4", null ],
     [ "local_provisioning_joining_done_cb", "d6/dd2/local__provisioning_8h.html#ad22911ba252aaf2111f21366e47ff097", null ],
     [ "local_provisioning_proxy_enabled_cb", "d6/dd2/local__provisioning_8h.html#a00780404197689f4b7712d723b080083", null ],
     [ "Local_provisioning_init", "d6/dd2/local__provisioning_8h.html#a6c7a59d2e40eb5efa2f92a90f8fd89ad", null ],
@@ -20,6 +21,5 @@ var local__provisioning_8h =
       [ "LOCAL_PROVISIONING_RES_INTERNAL_ERROR", "d6/dd2/local__provisioning_8h.html#a6754cb62e5c4f624b9d9852d0b5c0d0ea829a18d497b634a47d07f1bc6545e2da", null ],
       [ "LOCAL_PROVISIONING_RES_UNPROVISIONED", "d6/dd2/local__provisioning_8h.html#a6754cb62e5c4f624b9d9852d0b5c0d0ea8d2d20c1e4b3a08c6e266d14c17a3f33", null ],
       [ "LOCAL_PROVISIONING_RES_ALREADY_PROVISIONED", "d6/dd2/local__provisioning_8h.html#a6754cb62e5c4f624b9d9852d0b5c0d0ea9070dce322067a3ccb0e2451e0db69f2", null ]
-    ] ],
-    [ "local_provisioning_joining_beacon_selection_f", "d6/dd2/local__provisioning_8h.html#ab7cd61757d42e8c9feeeab00c023b7fa", null ]
+    ] ]
 ];

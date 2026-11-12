@@ -2,29 +2,20 @@ var serverUrl="file://C:/SL/DOC TOOLS/SLP DOCOUT/searchengine.html";
 var tagMap = {
 };
 
-function SearchBox(name, resultsPath, inFrame, label)
+// Replaces the search/search.js doxygen generates (see the doxygen goal of the makefile): the
+// results page searches the searchdata.xml embedded in search.html, in the browser. The
+// SearchBox constructor must accept the arguments the generated pages call it with; doxygen
+// 1.9 calls new SearchBox(name, resultsPath, extension) (1.8 called it with inFrame and label), and
+// the search field's hint is its placeholder attribute.
+function SearchBox(name, resultsPath, extension)
 {
-  this.searchLabel = label;
   this.DOMSearchField = function()
   {  return document.getElementById("MSearchField");  }
   this.DOMSearchBox = function()
   {  return document.getElementById("MSearchBox");  }
   this.OnSearchFieldFocus = function(isActive)
   {
-    if (isActive)
-    {
-      this.DOMSearchBox().className = 'MSearchBoxActive';
-      var searchField = this.DOMSearchField();
-      if (searchField.value == this.searchLabel)
-      {
-        searchField.value = '';
-      }
-    }
-    else
-    {
-      this.DOMSearchBox().className = 'MSearchBoxInactive';
-      this.DOMSearchField().value   = this.searchLabel;
-    }
+    this.DOMSearchBox().className = isActive ? 'MSearchBoxActive' : 'MSearchBoxInactive';
   }
 }
 

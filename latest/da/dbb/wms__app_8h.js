@@ -18,7 +18,7 @@ var wms__app_8h =
       [ "getStackFirmwareVersion", "da/dbb/wms__app_8h.html#a3b127491dea26d9727fa97dc76a458b1", null ],
       [ "openLibrary", "da/dbb/wms__app_8h.html#ac5c0d81e5cdf8c6c0f2134d56d669ccc", null ]
     ] ],
-    [ "app_firmware_version_t.__unnamed__", "da/dbb/wms__app_8h.html#db/ddc/structapp__firmware__version__t_8____unnamed____", [
+    [ "app_firmware_version_t.__unnamed1__", "da/dbb/wms__app_8h.html#de/d2e/structapp__firmware__version__t_8____unnamed1____", [
       [ "devel", "da/dbb/wms__app_8h.html#adaf98543c487af6ceb230cae002c92fd", null ],
       [ "maint", "da/dbb/wms__app_8h.html#a67f50785d40416a7a7689c5c353f1128", null ],
       [ "major", "da/dbb/wms__app_8h.html#af1425da40a9f2d21ab702a1c7feae026", null ],
@@ -27,6 +27,7 @@ var wms__app_8h =
     [ "app_addr_t", "da/dbb/wms__app_8h.html#ad019ddac3feea21ca0548bced1c9e501", null ],
     [ "app_get_api_version_f", "da/dbb/wms__app_8h.html#a5831208ab7992e70dd14281479830343", null ],
     [ "app_get_stack_firmware_version_f", "da/dbb/wms__app_8h.html#af54fe697de5ca6b4c85faaaf03d45876", null ],
+    [ "app_open_library_f", "da/dbb/wms__app_8h.html#ab3f81db0d3ad7568fd03fb0810bf0108", null ],
     [ "get_api_version_compatible_f", "da/dbb/wms__app_8h.html#ad6cb21e8cfc14ab5f3b4d342edf777f2", null ],
     [ "App_entrypoint", "da/dbb/wms__app_8h.html#aeac7453aac5efa0b1d5ae5b34b8166cd", null ],
     [ "App_getApiVersion", "da/dbb/wms__app_8h.html#a79387855d9e2d22902b543a2cd0309bd", null ],
@@ -53,6 +54,5 @@ var wms__app_8h =
     [ "APP_V2_TAG", "da/dbb/wms__app_8h.html#abcd49438474ad0409eaa94eaf0070f65", null ],
     [ "APP_V2_TAG_LENGTH", "da/dbb/wms__app_8h.html#a31ed58b7719dfb81b129a370e3008981", null ],
     [ "APP_V2_TAG_MIN_API_VERSION", "da/dbb/wms__app_8h.html#af7e3c6355c34cfb22b2908c0d615760e", null ],
-    [ "APP_V2_TAG_OFFSET", "da/dbb/wms__app_8h.html#a418e8bcd1bd8aa82df7d9fbd0c66bec1", null ],
-    [ "app_open_library_f", "da/dbb/wms__app_8h.html#a5495b6de969dc78cabb55001ba9da2ad", null ]
+    [ "APP_V2_TAG_OFFSET", "da/dbb/wms__app_8h.html#a418e8bcd1bd8aa82df7d9fbd0c66bec1", null ]
 ];

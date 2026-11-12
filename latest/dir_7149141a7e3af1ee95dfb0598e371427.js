@@ -1,6 +1,6 @@
 var dir_7149141a7e3af1ee95dfb0598e371427 =
 [
-    [ "bgm220-ek4314a", "dir_e701cec92489807e549634494cb2bc1c.html", "dir_e701cec92489807e549634494cb2bc1c" ],
+    [ "bg22-ek4108a", "dir_fd553302d72fb52a3cab4039379452a0.html", "dir_fd553302d72fb52a3cab4039379452a0" ],
     [ "efr32_template", "dir_0006c00be31d721fe51aa50d6c40dad2.html", "dir_0006c00be31d721fe51aa50d6c40dad2" ],
     [ "mdbt50q_rx", "dir_5fc1d2f020ae64e64f600234538253a8.html", "dir_5fc1d2f020ae64e64f600234538253a8" ],
     [ "nrf52832_mdk_v2", "dir_38ea80369e6ab23e4f3fc00004d3dd9b.html", "dir_38ea80369e6ab23e4f3fc00004d3dd9b" ],
@@ -22,7 +22,6 @@ var dir_7149141a7e3af1ee95dfb0598e371427 =
     [ "silabs_brd4187c", "dir_9bf4b77b7a134e02c703ec11d4c6f28a.html", "dir_9bf4b77b7a134e02c703ec11d4c6f28a" ],
     [ "silabs_brd4253a", "dir_936e57eb449f4860b4218b49b33c18e4.html", "dir_936e57eb449f4860b4218b49b33c18e4" ],
     [ "silabs_brd4254a", "dir_0b5d52d8cf935980608cb302c23bb4ba.html", "dir_0b5d52d8cf935980608cb302c23bb4ba" ],
-    [ "silabs_brd4312a", "dir_ab18bb381621569b5e6d7431f269cb76.html", "dir_ab18bb381621569b5e6d7431f269cb76" ],
     [ "tbsense2", "dir_0dfa791de6f8570a2a0f99f88360469b.html", "dir_0dfa791de6f8570a2a0f99f88360469b" ],
     [ "ublox_b204", "dir_6d5e5dd94d99b50ae2ffe3e1ba3cb78d.html", "dir_6d5e5dd94d99b50ae2ffe3e1ba3cb78d" ],
     [ "wuerth_261101102", "dir_16c7c23ef95fef9f9a52cbda05d031cc.html", "dir_16c7c23ef95fef9f9a52cbda05d031cc" ],

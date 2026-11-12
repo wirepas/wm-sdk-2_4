@@ -7,7 +7,7 @@ var waps__item_8h =
     [ "Waps_item_init", "df/d52/waps__item_8h.html#a9885ab27773c335bb68687293bf57e4f", null ],
     [ "Waps_itemFree", "df/d52/waps__item_8h.html#a6e5c632e6eceefd96377d8c1cec1089a", null ],
     [ "Waps_itemInit", "df/d52/waps__item_8h.html#a2347f5523582c89fb69f5a1bcc98dc0b", null ],
-    [ "Waps_itemReserve", "df/d52/waps__item_8h.html#ae77ad93e7d3172ee06b89efcb74ff993", null ],
+    [ "Waps_itemReserve", "df/d52/waps__item_8h.html#a0842666b16889370ac3547a1fa392a9d", null ],
     [ "waps_item_type_e", "df/d52/waps__item_8h.html#abd65b1226e312a2dcf741d57d176df9d", [
       [ "WAPS_ITEM_TYPE_REQUEST", "df/d52/waps__item_8h.html#abd65b1226e312a2dcf741d57d176df9dae7cfe585f201b696a66ff1d17c0d7372", null ],
       [ "WAPS_ITEM_TYPE_INDICATION", "df/d52/waps__item_8h.html#abd65b1226e312a2dcf741d57d176df9da9abfcf5068b75dfa444634aa645e6238", null ]

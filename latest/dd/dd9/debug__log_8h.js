@@ -6,6 +6,7 @@ var debug__log_8h =
     [ "DEBUG_LOG_PRINT_TIME", "dd/dd9/debug__log_8h.html#a07bbbacdf6d418593fce18a22fc31fee", null ],
     [ "DEBUG_LVL_TO_STRING", "dd/dd9/debug__log_8h.html#ab45fc0ab46132fafc0f8171930564aeb", null ],
     [ "FLUSH_DELAY_MS", "dd/dd9/debug__log_8h.html#a2854280604946b2415b21c2d8d127633", null ],
+    [ "Flush_Log", "dd/dd9/debug__log_8h.html#ac73be8a729f5682db16082b165f547eb", null ],
     [ "LOG", "dd/dd9/debug__log_8h.html#a94e6401c9e46b35182d9dbbce6b99be5", null ],
     [ "LOG_BUFFER", "dd/dd9/debug__log_8h.html#a0666e007be537f1dd48e75b4abc0f53a", null ],
     [ "LOG_FLUSH", "dd/dd9/debug__log_8h.html#a5b66384d00be9d278467f88588807584", null ],
@@ -30,6 +31,7 @@ var debug__log_8h =
     [ "S_LEVEL_PREFIX", "dd/dd9/debug__log_8h.html#af9aff8d7864c02bddd354ce28035bc7a", null ],
     [ "S_LINE_PREFIX", "dd/dd9/debug__log_8h.html#a8003802afd36cdc53d319bff716aba9a", null ],
     [ "S_LINE_SUFFIX", "dd/dd9/debug__log_8h.html#ac6bb6d46dae9a8cfb912c9744d23c328", null ],
+    [ "S_LINEENDING", "dd/dd9/debug__log_8h.html#ace102268efdbb0ad30db89d07496d296", null ],
     [ "S_MOD_NAME_PREFIX", "dd/dd9/debug__log_8h.html#a20565bed13c2754f77b945f740831dbc", null ],
     [ "S_TIME_PREFIX", "dd/dd9/debug__log_8h.html#ac0b5502963775791390c4f0a883e23b8", null ],
     [ "S_TIME_SUFFIX", "dd/dd9/debug__log_8h.html#a889870716dd3e84c1bd6c8a64a6c2249", null ]
